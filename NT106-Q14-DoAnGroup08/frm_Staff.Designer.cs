@@ -77,6 +77,7 @@
             this.btnTaiKhoan.TabIndex = 5;
             this.btnTaiKhoan.Text = "Tài khoản";
             this.btnTaiKhoan.UseVisualStyleBackColor = true;
+            this.btnTaiKhoan.Click += new System.EventHandler(this.btnTaiKhoan_Click);
             // 
             // btnChat
             // 
@@ -87,6 +88,7 @@
             this.btnChat.TabIndex = 4;
             this.btnChat.Text = "Chat";
             this.btnChat.UseVisualStyleBackColor = true;
+            this.btnChat.Click += new System.EventHandler(this.btnChat_Click);
             // 
             // btnHoaDon
             // 
