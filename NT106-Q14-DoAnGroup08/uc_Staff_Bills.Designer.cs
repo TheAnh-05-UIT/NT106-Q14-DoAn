@@ -30,12 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // uc_Product
+            // uc_Staff_Bills
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "uc_Product";
-            this.Size = new System.Drawing.Size(299, 263);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name = "uc_Staff_Bills";
+            this.Size = new System.Drawing.Size(567, 384);
             this.ResumeLayout(false);
 
         }
