@@ -249,5 +249,10 @@ namespace NT106_Q14_DoAnGroup08.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        internal static System.Drawing.Bitmap defaultImage
+        {
+            get { return ((System.Drawing.Bitmap)(ResourceManager.GetObject("defaultImage", resourceCulture))); }
+        }
     }
 }

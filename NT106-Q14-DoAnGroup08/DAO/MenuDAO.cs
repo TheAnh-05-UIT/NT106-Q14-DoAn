@@ -1,4 +1,5 @@
-﻿using QuanLyQuanNet.DAO;
+﻿using Guna.UI2.WinForms;
+using QuanLyQuanNet.DAO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,21 +7,20 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace NT106_Q14_DoAnGroup08.DAO
 {
-    internal class CategoryDAO
+    internal class MenuDAO
     {
-        private static CategoryDAO instance;
+        private static MenuDAO instance;
 
-        public static CategoryDAO Instance
+        public static MenuDAO Instance
         {
-            get { if (instance == null) instance = new CategoryDAO(); return CategoryDAO.instance; }
+            get { if (instance == null) instance = new MenuDAO(); return MenuDAO.instance; }
             private set => instance = value;
         }
-        private CategoryDAO() { }
+        private MenuDAO() { }
 
         public void AddCategory(FlowLayoutPanel CategoryPanel)
         {
@@ -42,7 +42,5 @@ namespace NT106_Q14_DoAnGroup08.DAO
                 }
             }
         }
-
-
     }
 }

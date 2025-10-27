@@ -30,15 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
-            this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
-            this.txtImage = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblName = new System.Windows.Forms.Label();
-            this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
+            this.txtImage = new Guna.UI2.WinForms.Guna2PictureBox();
+            this.guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(this.components);
             this.guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(this.components);
             this.guna2ShadowPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtImage)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtImage)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2ShadowPanel1
@@ -54,17 +54,12 @@
             this.guna2ShadowPanel1.Size = new System.Drawing.Size(225, 221);
             this.guna2ShadowPanel1.TabIndex = 0;
             // 
-            // txtImage
+            // guna2Separator1
             // 
-            this.txtImage.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.mi_nuoc;
-            this.txtImage.ImageRotate = 0F;
-            this.txtImage.Location = new System.Drawing.Point(37, 25);
-            this.txtImage.Name = "txtImage";
-            this.txtImage.Size = new System.Drawing.Size(157, 87);
-            this.txtImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.txtImage.TabIndex = 0;
-            this.txtImage.TabStop = false;
-            this.txtImage.Click += new System.EventHandler(this.txtImage_Click);
+            this.guna2Separator1.Location = new System.Drawing.Point(1, 134);
+            this.guna2Separator1.Name = "guna2Separator1";
+            this.guna2Separator1.Size = new System.Drawing.Size(222, 10);
+            this.guna2Separator1.TabIndex = 2;
             // 
             // panel1
             // 
@@ -85,12 +80,17 @@
             this.lblName.Text = "ProductName";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // guna2Separator1
+            // txtImage
             // 
-            this.guna2Separator1.Location = new System.Drawing.Point(1, 134);
-            this.guna2Separator1.Name = "guna2Separator1";
-            this.guna2Separator1.Size = new System.Drawing.Size(222, 10);
-            this.guna2Separator1.TabIndex = 2;
+            this.txtImage.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.mi_nuoc;
+            this.txtImage.ImageRotate = 0F;
+            this.txtImage.Location = new System.Drawing.Point(22, 19);
+            this.txtImage.Name = "txtImage";
+            this.txtImage.Size = new System.Drawing.Size(180, 108);
+            this.txtImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.txtImage.TabIndex = 0;
+            this.txtImage.TabStop = false;
+            this.txtImage.Click += new System.EventHandler(this.txtImage_Click);
             // 
             // uc_Product
             // 
@@ -100,8 +100,8 @@
             this.Name = "uc_Product";
             this.Size = new System.Drawing.Size(231, 227);
             this.guna2ShadowPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtImage)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtImage)).EndInit();
             this.ResumeLayout(false);
 
         }

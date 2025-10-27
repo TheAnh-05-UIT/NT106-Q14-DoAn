@@ -15,18 +15,20 @@ namespace NT106_Q14_DoAnGroup08
         public uc_Product()
         {
             InitializeComponent();
-            this.Size = new Size(288, 334);
+            this.Size = new Size(110, 115);
         }
 
         public event EventHandler onselect = null;
 
-        public int id {get;set;}
+        public int Id {get;set;}
         public string FoodName
         {
             get { return lblName.Text; }
             set { lblName.Text = value; }
         }
         public string FoodPrice { get; set; }
+
+        public string FoodCategory { get; set; }
 
         public Image FoodImage 
         { 
