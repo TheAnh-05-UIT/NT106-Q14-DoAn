@@ -3,44 +3,40 @@
   "WorkspaceRootPath": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\frm_customer_foodmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\frm_customer_foodmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\DAO\\MenuDAO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NT106-Q14-DoAnGroup08\\DAO\\MenuDAO.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|c:\\users\\macbook\\nt106-q14-doan\\nt106-q14-doangroup08\\frm_customer_foodmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\frm_customer_foodmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\frm_customer_foodmenu.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\frm_customer_foodmenu.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\uc_product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\uc_product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Properties\\Resources.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NT106-Q14-DoAnGroup08\\Properties\\Resources.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\uc_product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\uc_product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\DAO\\DataProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NT106-Q14-DoAnGroup08\\DAO\\DataProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\uc_product.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\uc_product.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\uc_Product.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NT106-Q14-DoAnGroup08\\uc_Product.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\dao\\dataprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\dao\\dataprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\uc_Product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NT106-Q14-DoAnGroup08\\uc_Product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\properties\\resources.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\properties\\resources.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\uc_product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:nt106-q14-doangroup08\\uc_product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\dao\\menudao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\dao\\menudao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NT106-Q14-DoAnGroup08\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,7 +54,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "Resources.Designer.cs",
               "DocumentMoniker": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Properties\\Resources.Designer.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\Properties\\Resources.Designer.cs",
@@ -75,28 +71,29 @@
               "Title": "frm_Customer_FoodMenu.Designer.cs",
               "DocumentMoniker": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.Designer.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.Designer.cs",
-              "ToolTip": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.Designer.cs*",
-              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.Designer.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEgAAAAMAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.Designer.cs",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.Designer.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAEgAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-22T16:13:04.2Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "MenuDAO.cs",
               "DocumentMoniker": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\DAO\\MenuDAO.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\DAO\\MenuDAO.cs",
               "ToolTip": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\DAO\\MenuDAO.cs",
               "RelativeToolTip": "NT106-Q14-DoAnGroup08\\DAO\\MenuDAO.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAkwCsAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T15:33:10.841Z"
+              "WhenOpened": "2025-10-22T15:33:10.841Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "DataProvider.cs",
               "DocumentMoniker": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\DAO\\DataProvider.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\DAO\\DataProvider.cs",
@@ -122,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "uc_Product.cs",
               "DocumentMoniker": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\uc_Product.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\uc_Product.cs",
@@ -135,7 +132,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "uc_Product.cs [Design]",
               "DocumentMoniker": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\uc_Product.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\uc_Product.cs",
@@ -151,28 +148,16 @@
               "Title": "frm_Customer_FoodMenu.cs",
               "DocumentMoniker": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.cs",
-              "ToolTip": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.cs*",
-              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.cs*",
-              "ViewState": "AgIAABoAAAAAAAAAAAAQwI4AAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.cs",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAQwFUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-20T14:18:38.929Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frm_Customer_FoodMenu.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.cs",
-              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.cs",
-              "ToolTip": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.cs [Design]*",
-              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\frm_Customer_FoodMenu.cs [Design]*",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-20T14:18:34.21Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\MACBOOK\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Program.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\Program.cs",
@@ -180,7 +165,8 @@
               "RelativeToolTip": "NT106-Q14-DoAnGroup08\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-12T09:13:29.89Z"
+              "WhenOpened": "2025-10-12T09:13:29.89Z",
+              "EditorCaption": ""
             }
           ]
         }

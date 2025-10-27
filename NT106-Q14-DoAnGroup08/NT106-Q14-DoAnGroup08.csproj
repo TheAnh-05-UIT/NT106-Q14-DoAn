@@ -180,13 +180,10 @@
     <Compile Include="Admin_CustomerAccountManagement.Designer.cs">
       <DependentUpon>Admin_CustomerAccountManagement.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="DAO\MenuDAO.cs" />
-=======
     <Compile Include="DAO\BillDAO.cs" />
     <Compile Include="DAO\BillDTO.cs" />
     <Compile Include="DAO\CategoryDAO.cs" />
->>>>>>> 242e55bbd9d102df4954d4e9cb77f697cc4198cb
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="frm_AddCustomer.cs">
