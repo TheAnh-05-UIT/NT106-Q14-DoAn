@@ -37,6 +37,9 @@
             this.labelSummary = new System.Windows.Forms.Label();
             this.panelActions = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnKhoaMay = new Guna.UI2.WinForms.Guna2Button();
+            this.btnKetThucPhien = new Guna.UI2.WinForms.Guna2Button();
+            this.btnLamMoi = new Guna.UI2.WinForms.Guna2Button();
             this.panelMain = new System.Windows.Forms.Panel();
             this.dgvComputers = new System.Windows.Forms.DataGridView();
             this.colComputerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,9 +47,6 @@
             this.colStartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCustomer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFee = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnKhoaMay = new Guna.UI2.WinForms.Guna2Button();
-            this.btnLamMoi = new Guna.UI2.WinForms.Guna2Button();
-            this.btnKetThucPhien = new Guna.UI2.WinForms.Guna2Button();
             this.panelHeader.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelActions.SuspendLayout();
@@ -129,6 +129,63 @@
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.WrapContents = false;
             // 
+            // btnKhoaMay
+            // 
+            this.btnKhoaMay.AutoRoundedCorners = true;
+            this.btnKhoaMay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.btnKhoaMay.BorderRadius = 15;
+            this.btnKhoaMay.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnKhoaMay.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnKhoaMay.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnKhoaMay.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnKhoaMay.FillColor = System.Drawing.Color.MediumTurquoise;
+            this.btnKhoaMay.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKhoaMay.ForeColor = System.Drawing.Color.Black;
+            this.btnKhoaMay.HoverState.FillColor = System.Drawing.Color.LightSeaGreen;
+            this.btnKhoaMay.Location = new System.Drawing.Point(11, 11);
+            this.btnKhoaMay.Name = "btnKhoaMay";
+            this.btnKhoaMay.Size = new System.Drawing.Size(135, 33);
+            this.btnKhoaMay.TabIndex = 1;
+            this.btnKhoaMay.Text = "Khóa máy";
+            // 
+            // btnKetThucPhien
+            // 
+            this.btnKetThucPhien.AutoRoundedCorners = true;
+            this.btnKetThucPhien.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.btnKetThucPhien.BorderRadius = 15;
+            this.btnKetThucPhien.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnKetThucPhien.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnKetThucPhien.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnKetThucPhien.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnKetThucPhien.FillColor = System.Drawing.Color.MediumTurquoise;
+            this.btnKetThucPhien.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKetThucPhien.ForeColor = System.Drawing.Color.Black;
+            this.btnKetThucPhien.HoverState.FillColor = System.Drawing.Color.LightSeaGreen;
+            this.btnKetThucPhien.Location = new System.Drawing.Point(152, 11);
+            this.btnKetThucPhien.Name = "btnKetThucPhien";
+            this.btnKetThucPhien.Size = new System.Drawing.Size(135, 33);
+            this.btnKetThucPhien.TabIndex = 3;
+            this.btnKetThucPhien.Text = "Kết thúc phiên chơi";
+            // 
+            // btnLamMoi
+            // 
+            this.btnLamMoi.AutoRoundedCorners = true;
+            this.btnLamMoi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.btnLamMoi.BorderRadius = 15;
+            this.btnLamMoi.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnLamMoi.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnLamMoi.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnLamMoi.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnLamMoi.FillColor = System.Drawing.Color.MediumTurquoise;
+            this.btnLamMoi.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLamMoi.ForeColor = System.Drawing.Color.Black;
+            this.btnLamMoi.HoverState.FillColor = System.Drawing.Color.LightSeaGreen;
+            this.btnLamMoi.Location = new System.Drawing.Point(293, 11);
+            this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.Size = new System.Drawing.Size(135, 33);
+            this.btnLamMoi.TabIndex = 2;
+            this.btnLamMoi.Text = "Làm mới";
+            // 
             // panelMain
             // 
             this.panelMain.BackColor = System.Drawing.Color.White;
@@ -201,63 +258,6 @@
             this.colFee.HeaderText = "Số dư";
             this.colFee.Name = "colFee";
             this.colFee.ReadOnly = true;
-            // 
-            // btnKhoaMay
-            // 
-            this.btnKhoaMay.AutoRoundedCorners = true;
-            this.btnKhoaMay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.btnKhoaMay.BorderRadius = 15;
-            this.btnKhoaMay.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnKhoaMay.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnKhoaMay.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnKhoaMay.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnKhoaMay.FillColor = System.Drawing.Color.DarkCyan;
-            this.btnKhoaMay.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKhoaMay.ForeColor = System.Drawing.Color.Black;
-            this.btnKhoaMay.HoverState.FillColor = System.Drawing.Color.LightSeaGreen;
-            this.btnKhoaMay.Location = new System.Drawing.Point(11, 11);
-            this.btnKhoaMay.Name = "btnKhoaMay";
-            this.btnKhoaMay.Size = new System.Drawing.Size(135, 33);
-            this.btnKhoaMay.TabIndex = 1;
-            this.btnKhoaMay.Text = "Khóa máy";
-            // 
-            // btnLamMoi
-            // 
-            this.btnLamMoi.AutoRoundedCorners = true;
-            this.btnLamMoi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.btnLamMoi.BorderRadius = 15;
-            this.btnLamMoi.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnLamMoi.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnLamMoi.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnLamMoi.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnLamMoi.FillColor = System.Drawing.Color.DarkCyan;
-            this.btnLamMoi.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLamMoi.ForeColor = System.Drawing.Color.Black;
-            this.btnLamMoi.HoverState.FillColor = System.Drawing.Color.LightSeaGreen;
-            this.btnLamMoi.Location = new System.Drawing.Point(293, 11);
-            this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.Size = new System.Drawing.Size(135, 33);
-            this.btnLamMoi.TabIndex = 2;
-            this.btnLamMoi.Text = "Làm mới";
-            // 
-            // btnKetThucPhien
-            // 
-            this.btnKetThucPhien.AutoRoundedCorners = true;
-            this.btnKetThucPhien.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.btnKetThucPhien.BorderRadius = 15;
-            this.btnKetThucPhien.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnKetThucPhien.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnKetThucPhien.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnKetThucPhien.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnKetThucPhien.FillColor = System.Drawing.Color.DarkCyan;
-            this.btnKetThucPhien.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKetThucPhien.ForeColor = System.Drawing.Color.Black;
-            this.btnKetThucPhien.HoverState.FillColor = System.Drawing.Color.LightSeaGreen;
-            this.btnKetThucPhien.Location = new System.Drawing.Point(152, 11);
-            this.btnKetThucPhien.Name = "btnKetThucPhien";
-            this.btnKetThucPhien.Size = new System.Drawing.Size(135, 33);
-            this.btnKetThucPhien.TabIndex = 3;
-            this.btnKetThucPhien.Text = "Kết thúc phiên chơi";
             // 
             // frm_Staff_ComputerManagement
             // 
