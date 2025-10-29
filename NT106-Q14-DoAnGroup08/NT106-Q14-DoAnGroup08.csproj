@@ -174,52 +174,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin_CustomerAccountManagement.cs">
+    <Compile Include="ClientAdmin\Admin_CustomerAccountManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Admin_CustomerAccountManagement.Designer.cs">
+    <Compile Include="ClientAdmin\Admin_CustomerAccountManagement.Designer.cs">
       <DependentUpon>Admin_CustomerAccountManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\MenuDAO.cs" />
     <Compile Include="DAO\BillDAO.cs" />
     <Compile Include="DAO\BillDTO.cs" />
-    <Compile Include="DAO\CategoryDAO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\UserDAO.cs" />
-    <Compile Include="frm_AddCustomer.cs">
+    <Compile Include="ClientCustomer\frm_AddCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_AddCustomer.Designer.cs">
+    <Compile Include="ClientCustomer\frm_AddCustomer.Designer.cs">
       <DependentUpon>frm_AddCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_Admin_Employee_management.cs">
+    <Compile Include="ClientAdmin\frm_Admin_Employee_management.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_Admin_Employee_management.Designer.cs">
+    <Compile Include="ClientAdmin\frm_Admin_Employee_management.Designer.cs">
       <DependentUpon>frm_Admin_Employee_management.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_Customer.cs">
+    <Compile Include="ClientCustomer\frm_Customer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_Customer.Designer.cs">
+    <Compile Include="ClientCustomer\frm_Customer.Designer.cs">
       <DependentUpon>frm_Customer.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_Customer_Chat.cs">
+    <Compile Include="ClientCustomer\frm_Customer_Chat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_Customer_Chat.Designer.cs">
+    <Compile Include="ClientCustomer\frm_Customer_Chat.Designer.cs">
       <DependentUpon>frm_Customer_Chat.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_Customer_FoodMenu.cs">
+    <Compile Include="ClientCustomer\frm_Customer_FoodMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_Customer_FoodMenu.Designer.cs">
+    <Compile Include="ClientCustomer\frm_Customer_FoodMenu.Designer.cs">
       <DependentUpon>frm_Customer_FoodMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_Customer_TopUp.cs">
+    <Compile Include="ClientCustomer\frm_Customer_TopUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_Customer_TopUp.Designer.cs">
+    <Compile Include="ClientCustomer\frm_Customer_TopUp.Designer.cs">
       <DependentUpon>frm_Customer_TopUp.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_Deposit.cs">
@@ -231,74 +230,74 @@
     <Compile Include="Utils\PasswordHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="frm_Staff.cs">
+    <Compile Include="ClientStaff\frm_Staff.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_Staff.Designer.cs">
+    <Compile Include="ClientStaff\frm_Staff.Designer.cs">
       <DependentUpon>frm_Staff.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\SessionManager.cs" />
-    <Compile Include="uc_Staff_Account.cs">
+    <Compile Include="Uc_Staff\uc_Staff_Account.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="uc_Staff_Account.Designer.cs">
+    <Compile Include="Uc_Staff\uc_Staff_Account.Designer.cs">
       <DependentUpon>uc_Staff_Account.cs</DependentUpon>
     </Compile>
-    <Compile Include="uc_Staff_Bills.cs">
+    <Compile Include="Uc_Staff\uc_Staff_Bills.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="uc_Staff_Bills.Designer.cs">
+    <Compile Include="Uc_Staff\uc_Staff_Bills.Designer.cs">
       <DependentUpon>uc_Staff_Bills.cs</DependentUpon>
     </Compile>
-    <Compile Include="uc_Staff_Chat.cs">
+    <Compile Include="Uc_Staff\uc_Staff_Chat.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="uc_Staff_Chat.Designer.cs">
+    <Compile Include="Uc_Staff\uc_Staff_Chat.Designer.cs">
       <DependentUpon>uc_Staff_Chat.cs</DependentUpon>
     </Compile>
-    <Compile Include="uc_Staff_ImportGood.cs">
+    <Compile Include="Uc_Staff\uc_Staff_ImportGood.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="uc_Staff_ImportGood.Designer.cs">
+    <Compile Include="Uc_Staff\uc_Staff_ImportGood.Designer.cs">
       <DependentUpon>uc_Staff_ImportGood.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_Staff_ComputerManagement.cs">
+    <Compile Include="ClientStaff\frm_Staff_ComputerManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_Staff_ComputerManagement.Designer.cs">
+    <Compile Include="ClientStaff\frm_Staff_ComputerManagement.Designer.cs">
       <DependentUpon>frm_Staff_ComputerManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="uc_Staff_Menu.cs">
+    <Compile Include="Uc_Staff\uc_Staff_Menu.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="uc_Staff_Menu.Designer.cs">
+    <Compile Include="Uc_Staff\uc_Staff_Menu.Designer.cs">
       <DependentUpon>uc_Staff_Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="uc_Product.cs">
+    <Compile Include="Uc_Staff\uc_Product.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="uc_Product.Designer.cs">
+    <Compile Include="Uc_Staff\uc_Product.Designer.cs">
       <DependentUpon>uc_Product.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Admin_CustomerAccountManagement.resx">
+    <EmbeddedResource Include="ClientAdmin\Admin_CustomerAccountManagement.resx">
       <DependentUpon>Admin_CustomerAccountManagement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_AddCustomer.resx">
+    <EmbeddedResource Include="ClientCustomer\frm_AddCustomer.resx">
       <DependentUpon>frm_AddCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_Admin_Employee_management.resx">
+    <EmbeddedResource Include="ClientAdmin\frm_Admin_Employee_management.resx">
       <DependentUpon>frm_Admin_Employee_management.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_Customer.resx">
+    <EmbeddedResource Include="ClientCustomer\frm_Customer.resx">
       <DependentUpon>frm_Customer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_Customer_Chat.resx">
+    <EmbeddedResource Include="ClientCustomer\frm_Customer_Chat.resx">
       <DependentUpon>frm_Customer_Chat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_Customer_FoodMenu.resx">
+    <EmbeddedResource Include="ClientCustomer\frm_Customer_FoodMenu.resx">
       <DependentUpon>frm_Customer_FoodMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_Customer_TopUp.resx">
+    <EmbeddedResource Include="ClientCustomer\frm_Customer_TopUp.resx">
       <DependentUpon>frm_Customer_TopUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Deposit.resx">
@@ -314,25 +313,25 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="frm_Staff_ComputerManagement.resx">
+    <EmbeddedResource Include="ClientStaff\frm_Staff_ComputerManagement.resx">
       <DependentUpon>frm_Staff_ComputerManagement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="uc_Staff_Bills.resx">
+    <EmbeddedResource Include="Uc_Staff\uc_Staff_Bills.resx">
       <DependentUpon>uc_Staff_Bills.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="uc_Product.resx">
+    <EmbeddedResource Include="Uc_Staff\uc_Product.resx">
       <DependentUpon>uc_Product.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_Staff.resx">
+    <EmbeddedResource Include="ClientStaff\frm_Staff.resx">
       <DependentUpon>frm_Staff.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="uc_Staff_Chat.resx">
+    <EmbeddedResource Include="Uc_Staff\uc_Staff_Chat.resx">
       <DependentUpon>uc_Staff_Chat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="uc_Staff_ImportGood.resx">
+    <EmbeddedResource Include="Uc_Staff\uc_Staff_ImportGood.resx">
       <DependentUpon>uc_Staff_ImportGood.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="uc_Staff_Menu.resx">
+    <EmbeddedResource Include="Uc_Staff\uc_Staff_Menu.resx">
       <DependentUpon>uc_Staff_Menu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
