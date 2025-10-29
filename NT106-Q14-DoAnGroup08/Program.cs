@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NT106_Q14_DoAnGroup08.ClientCustomer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace NT106_Q14_DoAnGroup08
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_Login());
+            Application.Run(new frm_Customer());
         }
     }
 }
