@@ -36,7 +36,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         private void AddItems(string id, string name, string cat, string price, Image image)
         {
-            var w = new uc_Product
+            var w = new Uc_Staff.uc_Product
             {
                 FoodName = name,
                 FoodPrice = price,
@@ -49,7 +49,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
             w.onselect += (ss, ee) =>
             {
-                var wdg = (uc_Product)ss;
+                var wdg = (Uc_Staff.uc_Product)ss;
                 int foodId = wdg.Id;
                 double itemPrice = double.Parse(wdg.FoodPrice); // Đảm bảo FoodPrice là chuỗi số hợp lệ
                 bool found = false;

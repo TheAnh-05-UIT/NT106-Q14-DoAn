@@ -221,10 +221,10 @@
     <Compile Include="ClientCustomer\frm_Customer_TopUp.Designer.cs">
       <DependentUpon>frm_Customer_TopUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_Deposit.cs">
+    <Compile Include="ClientCustomer\frm_Deposit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_Deposit.Designer.cs">
+    <Compile Include="ClientCustomer\frm_Deposit.Designer.cs">
       <DependentUpon>frm_Deposit.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\PasswordHelper.cs" />
@@ -300,7 +300,7 @@
     <EmbeddedResource Include="ClientCustomer\frm_Customer_TopUp.resx">
       <DependentUpon>frm_Customer_TopUp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_Deposit.resx">
+    <EmbeddedResource Include="ClientCustomer\frm_Deposit.resx">
       <DependentUpon>frm_Deposit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

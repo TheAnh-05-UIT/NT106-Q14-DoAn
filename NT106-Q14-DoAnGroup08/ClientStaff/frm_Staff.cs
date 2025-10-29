@@ -14,19 +14,19 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
 {
     public partial class frm_Staff : Form
     {
-        private uc_Staff_ImportGood ImportGood;
-        private uc_Staff_Menu Menu;
-        private uc_Staff_Bills Bills;
-        private uc_Staff_Chat Chat;
-        private uc_Staff_Account Account;
+        private Uc_Staff.uc_Staff_ImportGood ImportGood;
+        private Uc_Staff.uc_Staff_Menu Menu;
+        private Uc_Staff.uc_Staff_Bills Bills;
+        private Uc_Staff.uc_Staff_Chat Chat;
+        private Uc_Staff.uc_Staff_Account Account;
         public frm_Staff()
         {
             InitializeComponent();
-            ImportGood = new uc_Staff_ImportGood();
-            Menu = new uc_Staff_Menu();
-            Bills = new uc_Staff_Bills();
-            Chat = new uc_Staff_Chat();
-            Account = new uc_Staff_Account();
+            ImportGood = new Uc_Staff.uc_Staff_ImportGood();
+            Menu = new Uc_Staff.uc_Staff_Menu();
+            Bills = new Uc_Staff.uc_Staff_Bills();
+            Chat = new Uc_Staff.uc_Staff_Chat();
+            Account = new Uc_Staff.uc_Staff_Account();
             ShowUserControl(ImportGood);
         }
 

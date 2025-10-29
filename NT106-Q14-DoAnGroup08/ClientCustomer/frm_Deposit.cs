@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NT106_Q14_DoAnGroup08
+namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {
     public partial class frm_Deposit : Form
     {

@@ -101,7 +101,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                 string balance = selectedRow.Cells["colBalance"].Value.ToString();
                 string username = selectedRow.Cells["colUser"].Value.ToString();
                 string status = selectedRow.Cells["colStatus"].Value.ToString();
-                frm_Deposit depositt = new frm_Deposit();
+                ClientCustomer.frm_Deposit depositt = new ClientCustomer.frm_Deposit();
         
                 depositt.LoadCustomerData(balance,status, username);
       
