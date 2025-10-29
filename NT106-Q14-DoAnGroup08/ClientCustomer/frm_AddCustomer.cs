@@ -19,7 +19,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         }
         public string CustomerName { get; private set; }
         public string Balance { get; private set; }
-        public string Status{ get; private set; }
+        public string Status { get; private set; }
         public string userName { get; private set; }
         public string userPassword { get; private set; }
         private void frm_AddCustomer_Load(object sender, EventArgs e)

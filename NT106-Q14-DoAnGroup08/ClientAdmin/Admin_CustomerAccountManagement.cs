@@ -8,11 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using TcpServer;
 
 namespace NT106_Q14_DoAnGroup08.ClientAdmin
 {
     public partial class Admin_CustomerAccountManagement : Form
     {
+        private readonly DatabaseHelper db;
+
         public Admin_CustomerAccountManagement()
         {
             InitializeComponent();
@@ -32,7 +35,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
             dgvAccCustomers.Rows.Add("KH03", "Le Van C", "120000", "Active", "UserC", "userC@123");
         
 
-    }
+         }
 
         private void btnAddAccount_Click(object sender, EventArgs e)
         {

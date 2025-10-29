@@ -16,7 +16,7 @@ namespace NT106_Q14_DoAnGroup08
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_Login());
+            Application.Run(new ClientAdmin.Admin_CustomerAccountManagement());
         }
     }
 }
