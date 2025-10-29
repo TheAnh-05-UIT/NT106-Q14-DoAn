@@ -95,6 +95,9 @@
     <Reference Include="Microsoft.IdentityModel.Tokens, Version=7.7.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Tokens.7.7.1\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
@@ -184,6 +187,7 @@
     <Compile Include="DAO\BillDAO.cs" />
     <Compile Include="DAO\BillDTO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
+    <Compile Include="DAO\RequestData.cs" />
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="ClientCustomer\frm_AddCustomer.cs">
       <SubType>Form</SubType>
@@ -226,6 +230,12 @@
     </Compile>
     <Compile Include="ClientCustomer\frm_Deposit.Designer.cs">
       <DependentUpon>frm_Deposit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Login.Designer.cs">
+      <DependentUpon>frm_Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\PasswordHelper.cs" />
     <Compile Include="Program.cs" />
@@ -302,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClientCustomer\frm_Deposit.resx">
       <DependentUpon>frm_Deposit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Login.resx">
+      <DependentUpon>frm_Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
