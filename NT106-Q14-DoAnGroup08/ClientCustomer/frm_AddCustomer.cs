@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {
@@ -34,15 +35,50 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             txtMatKhau.Text = userpassword;
             cbbTrangthai.Text = status;
         }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
-            CustomerName = txtHoten.Text;
-            Balance = txtSodu.Text;
-            Status = cbbTrangthai.Text;
-            userName = txtTenDangNhap.Text;
-            userPassword = txtMatKhau.Text;
+
+
+            if (string.IsNullOrWhiteSpace(txtHoten.Text) ||
+                    string.IsNullOrWhiteSpace(txtTenDangNhap.Text) ||
+                    string.IsNullOrWhiteSpace(txtMatKhau.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                return;
+            }
+
+            CustomerName = txtHoten.Text.Trim();
+
+            if (!decimal.TryParse(txtSodu.Text.Trim(), out var balanceValue))
+            {
+                MessageBox.Show("Số dư không hợp lệ!");
+                return;
+            }
+            txtSodu.Text = balanceValue.ToString();
+
+            Status = cbbTrangthai.SelectedItem?.ToString() ?? "Inactive";
+            userName = txtTenDangNhap.Text.Trim();
+            userPassword = txtMatKhau.Text.Trim();
+
             this.DialogResult = DialogResult.OK;
             this.Close();
+
+            //CustomerName = txtHoten.Text;
+            //Balance = txtSodu.Text;
+            //Status = cbbTrangthai.Text;
+            //userName = txtTenDangNhap.Text;
+            //userPassword = txtMatKhau.Text;
+            //this.DialogResult = DialogResult.OK;
+            //this.Close();
         }
 
         private void btnCanCel_Click(object sender, EventArgs e)

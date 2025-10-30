@@ -108,6 +108,7 @@
       <HintPath>..\packages\System.ClientModel.1.5.1\lib\netstandard2.0\System.ClientModel.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
@@ -187,7 +188,7 @@
     <Compile Include="DAO\BillDAO.cs" />
     <Compile Include="DAO\BillDTO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
-    <Compile Include="DAO\RequestData.cs" />
+    <Compile Include="ConnectionServer\ServerConnection.cs" />
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="ClientCustomer\frm_AddCustomer.cs">
       <SubType>Form</SubType>
@@ -231,12 +232,24 @@
     <Compile Include="ClientCustomer\frm_Deposit.Designer.cs">
       <DependentUpon>frm_Deposit.cs</DependentUpon>
     </Compile>
+    <Compile Include="DTO\Admin.cs" />
+    <Compile Include="DTO\Category.cs" />
+    <Compile Include="DTO\Computer.cs" />
+    <Compile Include="DTO\Customer.cs" />
+    <Compile Include="DTO\EmployeeDTO.cs" />
+    <Compile Include="DTO\FoodAndDrink.cs" />
+    <Compile Include="DTO\Invoice.cs" />
+    <Compile Include="DTO\Service.cs" />
+    <Compile Include="DTO\Session.cs" />
+    <Compile Include="DTO\topUpTransaction.cs" />
+    <Compile Include="DTO\User.cs" />
     <Compile Include="frm_Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm_Login.Designer.cs">
       <DependentUpon>frm_Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Utils\PasswordHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -316,6 +329,23 @@
     <EmbeddedResource Include="frm_Login.resx">
       <DependentUpon>frm_Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientAdmin.Admin_CustomerAccountManagement.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientAdmin.frm_Admin_Employee_management.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientCustomer.frm_AddCustomer.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientCustomer.frm_Customer.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientCustomer.frm_Customer_Chat.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientCustomer.frm_Customer_FoodMenu.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientCustomer.frm_Customer_TopUp.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientCustomer.frm_Deposit.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientStaff.frm_Staff.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientStaff.frm_Staff_ComputerManagement.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.frm_Login.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.Properties.Resources.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.Uc_Staff.uc_Product.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.Uc_Staff.uc_Staff_Bills.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.Uc_Staff.uc_Staff_Chat.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.Uc_Staff.uc_Staff_ImportGood.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.Uc_Staff.uc_Staff_Menu.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -347,7 +377,17 @@
     <EmbeddedResource Include="Uc_Staff\uc_Staff_Menu.resx">
       <DependentUpon>uc_Staff_Menu.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="bin\Debug\NT106-Q14-DoAnGroup08.exe.config" />
+    <None Include="bin\Debug\TcpServer.exe.config" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\NT106-Q1.788DEBAA.Up2Date" />
+    <None Include="obj\Debug\NT106-Q14-DoAnGroup08.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\NT106-Q14-DoAnGroup08.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\NT106-Q14-DoAnGroup08.csproj.GenerateResource.cache" />
+    <None Include="obj\Debug\NT106-Q14-DoAnGroup08.exe.config" />
     <None Include="packages.config" />
+    <None Include="paket.references" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -452,6 +492,109 @@
     <None Include="Resources\2.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\Azure.Core.dll" />
+    <Content Include="bin\Debug\Azure.Core.xml" />
+    <Content Include="bin\Debug\Azure.Identity.dll" />
+    <Content Include="bin\Debug\Azure.Identity.xml" />
+    <Content Include="bin\Debug\cs\Microsoft.Data.SqlClient.resources.dll" />
+    <Content Include="bin\Debug\de\Microsoft.Data.SqlClient.resources.dll" />
+    <Content Include="bin\Debug\es\Microsoft.Data.SqlClient.resources.dll" />
+    <Content Include="bin\Debug\fr\Microsoft.Data.SqlClient.resources.dll" />
+    <Content Include="bin\Debug\Guna.UI2.dll" />
+    <Content Include="bin\Debug\Images\com_ran.jpg" />
+    <Content Include="bin\Debug\Images\com_tam.jpg" />
+    <Content Include="bin\Debug\Images\mi_ga.jpg" />
+    <Content Include="bin\Debug\Images\mi_xao.jpg" />
+    <Content Include="bin\Debug\Images\nuoc_cam.jpg" />
+    <Content Include="bin\Debug\Images\nuoc_chanh.jpg" />
+    <Content Include="bin\Debug\it\Microsoft.Data.SqlClient.resources.dll" />
+    <Content Include="bin\Debug\ja\Microsoft.Data.SqlClient.resources.dll" />
+    <Content Include="bin\Debug\ko\Microsoft.Data.SqlClient.resources.dll" />
+    <Content Include="bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <Content Include="bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml" />
+    <Content Include="bin\Debug\Microsoft.Bcl.Cryptography.dll" />
+    <Content Include="bin\Debug\Microsoft.Bcl.Cryptography.xml" />
+    <Content Include="bin\Debug\Microsoft.Data.SqlClient.dll" />
+    <Content Include="bin\Debug\Microsoft.Data.SqlClient.SNI.arm64.dll" />
+    <Content Include="bin\Debug\Microsoft.Data.SqlClient.SNI.arm64.pdb" />
+    <Content Include="bin\Debug\Microsoft.Data.SqlClient.SNI.x64.dll" />
+    <Content Include="bin\Debug\Microsoft.Data.SqlClient.SNI.x64.pdb" />
+    <Content Include="bin\Debug\Microsoft.Data.SqlClient.SNI.x86.dll" />
+    <Content Include="bin\Debug\Microsoft.Data.SqlClient.SNI.x86.pdb" />
+    <Content Include="bin\Debug\Microsoft.Data.SqlClient.xml" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Caching.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Caching.Abstractions.xml" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Caching.Memory.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Caching.Memory.xml" />
+    <Content Include="bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Options.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Options.xml" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Primitives.dll" />
+    <Content Include="bin\Debug\Microsoft.Extensions.Primitives.xml" />
+    <Content Include="bin\Debug\Microsoft.Identity.Client.dll" />
+    <Content Include="bin\Debug\Microsoft.Identity.Client.Extensions.Msal.dll" />
+    <Content Include="bin\Debug\Microsoft.Identity.Client.Extensions.Msal.xml" />
+    <Content Include="bin\Debug\Microsoft.Identity.Client.xml" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.Abstractions.dll" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.Abstractions.xml" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.JsonWebTokens.dll" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.JsonWebTokens.xml" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.Logging.dll" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.Logging.xml" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.Protocols.dll" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.Protocols.xml" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.Tokens.dll" />
+    <Content Include="bin\Debug\Microsoft.IdentityModel.Tokens.xml" />
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.xml" />
+    <Content Include="bin\Debug\NT106-Q14-DoAnGroup08.exe" />
+    <Content Include="bin\Debug\NT106-Q14-DoAnGroup08.pdb" />
+    <Content Include="bin\Debug\pl\Microsoft.Data.SqlClient.resources.dll" />
+    <Content Include="bin\Debug\pt-BR\Microsoft.Data.SqlClient.resources.dll" />
+    <Content Include="bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll" />
+    <Content Include="bin\Debug\System.Buffers.dll" />
+    <Content Include="bin\Debug\System.Buffers.xml" />
+    <Content Include="bin\Debug\System.ClientModel.dll" />
+    <Content Include="bin\Debug\System.ClientModel.xml" />
+    <Content Include="bin\Debug\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="bin\Debug\System.Diagnostics.DiagnosticSource.xml" />
+    <Content Include="bin\Debug\System.IdentityModel.Tokens.Jwt.dll" />
+    <Content Include="bin\Debug\System.IdentityModel.Tokens.Jwt.xml" />
+    <Content Include="bin\Debug\System.IO.FileSystem.AccessControl.dll" />
+    <Content Include="bin\Debug\System.IO.FileSystem.AccessControl.xml" />
+    <Content Include="bin\Debug\System.Memory.Data.dll" />
+    <Content Include="bin\Debug\System.Memory.Data.xml" />
+    <Content Include="bin\Debug\System.Memory.dll" />
+    <Content Include="bin\Debug\System.Memory.xml" />
+    <Content Include="bin\Debug\System.Numerics.Vectors.dll" />
+    <Content Include="bin\Debug\System.Numerics.Vectors.xml" />
+    <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="bin\Debug\System.Runtime.CompilerServices.Unsafe.xml" />
+    <Content Include="bin\Debug\System.Security.AccessControl.dll" />
+    <Content Include="bin\Debug\System.Security.AccessControl.xml" />
+    <Content Include="bin\Debug\System.Security.Cryptography.Pkcs.dll" />
+    <Content Include="bin\Debug\System.Security.Cryptography.Pkcs.xml" />
+    <Content Include="bin\Debug\System.Security.Cryptography.ProtectedData.dll" />
+    <Content Include="bin\Debug\System.Security.Principal.Windows.dll" />
+    <Content Include="bin\Debug\System.Security.Principal.Windows.xml" />
+    <Content Include="bin\Debug\System.Text.Encodings.Web.dll" />
+    <Content Include="bin\Debug\System.Text.Encodings.Web.xml" />
+    <Content Include="bin\Debug\System.Text.Json.dll" />
+    <Content Include="bin\Debug\System.Text.Json.xml" />
+    <Content Include="bin\Debug\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="bin\Debug\System.Threading.Tasks.Extensions.xml" />
+    <Content Include="bin\Debug\System.ValueTuple.dll" />
+    <Content Include="bin\Debug\System.ValueTuple.xml" />
+    <Content Include="bin\Debug\TcpServer.exe" />
+    <Content Include="bin\Debug\TcpServer.pdb" />
+    <Content Include="bin\Debug\tr\Microsoft.Data.SqlClient.resources.dll" />
+    <Content Include="bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll" />
+    <Content Include="bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll" />
     <Content Include="Images\com_ran.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -470,9 +613,18 @@
     <Content Include="Images\nuoc_chanh.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.exe" />
+    <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.pdb" />
+    <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
     <Content Include="Resources\defaultImage.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TcpServer\TcpServer.csproj">
+      <Project>{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}</Project>
+      <Name>TcpServer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Choose>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.0.3')">

@@ -9,7 +9,7 @@ namespace TcpServer
         {
             Console.WriteLine("Starting TCP Server...");
             string connStr = ConfigurationManager.ConnectionStrings["QuanLyQuanNet"].ConnectionString;
-            ServerHandler server = new ServerHandler(connStr);
+            ServerHandler.ServerHandler server = new ServerHandler.ServerHandler(connStr);
             server.Start(8080);
         }
     }

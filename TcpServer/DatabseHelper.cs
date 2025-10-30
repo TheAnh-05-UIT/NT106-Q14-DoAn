@@ -76,6 +76,7 @@ namespace TcpServer
             connectionString = connStr;
             EnsureDatabaseExists();
         }
+        public string ConnectionString => connectionString;
 
         private void EnsureDatabaseExists()
         {

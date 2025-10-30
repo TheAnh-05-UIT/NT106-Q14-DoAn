@@ -18,7 +18,7 @@ namespace QuanLyQuanNet.DTOs
 
         public FoodAndDrink(){}
 
-        public FoodAndDrinkDTO(
+        public FoodAndDrink(
             string foodId,
             string foodName,
             decimal price,
@@ -27,13 +27,13 @@ namespace QuanLyQuanNet.DTOs
             bool available,
             DateTime createdAt)
         {
-            FoodId = foodId;
-            FoodName = foodName;
-            Price = price;
-            CategoryId = categoryId;
-            Image = image;
-            Available = available;
-            CreatedAt = createdAt;
+            this.FoodId = foodId;
+            this.FoodName = foodName;
+            this.Price = price;
+            this.CategoryId = categoryId;
+            this.Image = image;
+            this.Available = available;
+            this.CreateAt = createdAt;
         }
 
 

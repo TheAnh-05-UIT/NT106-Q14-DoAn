@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace QuanLyQuanNet.DTOs
 {
-    class Employee : User
+    class EmployeeDTO : User
     {
         private string employeeId;
         private DateTime hiredDate;
         private double salary;
 
-        public Employee()
+        public EmployeeDTO()
         {
         }
 
-        public Employee(string userId, string username, string password, 
+        public EmployeeDTO(string userId, string username, string password, 
                         string fullName, string phone, string email, 
                         string role, bool isActive, string employeeId,
                         DateTime hiredDate, double salary) 

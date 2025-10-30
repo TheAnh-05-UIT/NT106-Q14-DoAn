@@ -1,14 +1,20 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using NT106_Q14_DoAnGroup08.ConnectionServser;
+using QuanLyQuanNet.DTOs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Security;
 using System.Windows.Forms;
-using System.Globalization;
-using System.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 namespace NT106_Q14_DoAnGroup08.ClientAdmin
 {
     public partial class frm_Admin_Employee_management : Form
@@ -17,93 +23,114 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
         {
             InitializeComponent();
         }
+        private void frm_Admin_Employee_management_Load(object sender, EventArgs e)
+        {
+            LoadEmployeeData();
+        }
+
+        private void LoadEmployeeData()
+        {
+            var request = new
+            {
+                action = "get_all_employees"
+            };
+
+            string jsonRequest = JsonConvert.SerializeObject(request);
+            string jsonResponse = ServerConnection.SendRequest(jsonRequest);
+
+            try
+            {
+                var result = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
+                if (result.status == "success")
+                {
+                    dgvNhanVien.DataSource = null;
+                    dgvNhanVien.Columns.Clear();
+                    dgvNhanVien.AutoGenerateColumns = true;
+                    dgvNhanVien.DataSource = result.data.ToObject<DataTable>();
+                }
+                else
+                {
+                    MessageBox.Show(result.message.ToString(), "Lỗi tải dữ liệu");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi parse JSON: " + ex.Message);
+            }
+        }
 
         private void btnThemNV_Click(object sender, EventArgs e)
         {
-           try
+            var newEmployee = new
             {
-                if(string.IsNullOrWhiteSpace(txtMaNV.Text) ||
-                    string.IsNullOrWhiteSpace(txtHoTen.Text) ||
-                    string.IsNullOrWhiteSpace(cboGioiTinh.Text) ||
-                    string.IsNullOrWhiteSpace(txtSDT.Text) ||
-                    string.IsNullOrWhiteSpace(txtLuongCoBan.Text) ||
-                    string.IsNullOrWhiteSpace(txtLuongThang.Text))
-                {
-                    MessageBox.Show("Vui lòng điền đầy đủ thông tin nhân viên.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                string ngaysinh = dtpNgaySinh.Value.ToString("dd/MM/yyyy");
-                string ngayvaolam = dtpNgayVaoLam.Value.ToString("dd/MM/yyyy");
-                dgvNhanVien.Rows.Add(txtMaNV.Text, txtHoTen.Text, cboGioiTinh.Text, ngaysinh, txtSDT.Text, ngayvaolam, numSoNgayLam.Value.ToString(), txtLuongCoBan.Text, txtLuongThang.Text);
-                MessageBox.Show("Thêm nhân viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch(Exception ex)
+                maNV = txtMaNV.Text,
+                hoTen = txtHoTen.Text,
+                gioiTinh = cboGioiTinh.Text,
+                ngaySinh = dtpNgaySinh.Value.ToString("yyyy-MM-dd"),
+                soDienThoai = txtSDT.Text,
+                ngayVaoLam = dtpNgayVaoLam.Value.ToString("yyyy-MM-dd"),
+                soNgayLam = (int)numSoNgayLam.Value,
+                luongCoBan = decimal.Parse(txtLuongCoBan.Text),
+                luongThang = decimal.Parse(txtLuongThang.Text)
+            };
+
+            var request = new
             {
-                MessageBox.Show("Lỗi khi thêm nhân viên: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                action = "add_employee",
+                data = newEmployee
+            };
+
+            string jsonRequest = JsonConvert.SerializeObject(request);
+            string jsonResponse = ServerConnection.SendRequest(jsonRequest);
+
+            var result = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
+            MessageBox.Show(result.message.ToString(), result.status.ToString());
+
+            if (result.status == "success")
+                LoadEmployeeData();
         }
 
         private void BTNSuaNV_Click(object sender, EventArgs e)
         {
-            if (dgvNhanVien.SelectedRows.Count > 0)
+            var updateEmployee = new
             {
-                btnSave.Visible = true;
-                DataGridViewRow row = dgvNhanVien.SelectedRows[0];
-                txtMaNV.Text = row.Cells["colID"].Value?.ToString();
-                txtHoTen.Text = row.Cells["colName"].Value?.ToString();
-                cboGioiTinh.Text = row.Cells["colSex"].Value?.ToString();
-                string ngaysinh = row.Cells["colDateOfBirth"].Value?.ToString();
-                if (DateTime.TryParseExact(ngaysinh, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime ngays ))
-                {
-                   dtpNgaySinh.Value = ngays;
-                }
-                string ngayvaolam = row.Cells["colStartingDate"].Value?.ToString();
-                if (DateTime.TryParseExact(ngayvaolam, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime ngayvl))
-                {
-                    dtpNgayVaoLam.Value = ngayvl;
-                }
-                txtSDT.Text = row.Cells["colPhone"].Value?.ToString();
-                txtLuongCoBan.Text = row.Cells["colBasicSalary"].Value?.ToString();
-                txtLuongThang.Text = row.Cells["colMonthlySalary"].Value?.ToString();
-                numSoNgayLam.Value = Convert.ToDecimal(row.Cells["colNumberOfWorkingDays"].Value?.ToString());
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một nhân viên muốn sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-        }
+                maNV = txtMaNV.Text,
+                luongCoBan = decimal.Parse(txtLuongCoBan.Text),
+                soNgayLam = (int)numSoNgayLam.Value
+            };
 
-        private void frm_Admin_Employee_management_Load(object sender, EventArgs e)
-        {
-            dgvNhanVien.Rows.Add("NV01", "Nguyen Van A", "Nam", "01/01/1998", "0372773025", "25/08/2024", "300", "3000000","5000000");
-            dgvNhanVien.Rows.Add("NV02", "Nguyen Van B", "Nu", "30/12/2000","0352653331", "25/08/2025", "12", "3000000", "5000000");
-            dgvNhanVien.Rows.Add("NV03", "Nguyen Van C", "Nam", "06/07/2001" , "0333324943", "25/09/2024", "24", "3000000", "5000000");
-            dgvNhanVien.Rows.Add("NV04", "Nguyen Van D", "Nam", "09/09/2002", "037256789", "15/08/2024", "48", "3000000", "5000000");
-            dgvNhanVien.Rows.Add("NV05", "Nguyen Van E", "Nu",  "20/10/2003", "0123456789", "25/10/2024","96", "3000000", "5000000");
-            dgvNhanVien.Rows.Add("NV06", "Nguyen Van F", "Nu",  "02/09/1945", "0233245678", "05/08/2025", "192", "3000000", "5000000");
+            var request = new
+            {
+                action = "update_employee",
+                data = updateEmployee
+            };
+
+            string jsonRequest = JsonConvert.SerializeObject(request);
+            string jsonResponse = ServerConnection.SendRequest(jsonRequest);
+
+            var result = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
+            MessageBox.Show(result.message.ToString(), result.status.ToString());
+
+            if (result.status == "success")
+                LoadEmployeeData();
         }
 
         private void btnXoaNV_Click(object sender, EventArgs e)
         {
-            if(dgvNhanVien.SelectedRows.Count == 0)
+            var request = new
             {
-                MessageBox.Show("Vui lòng chọn ít nhất một hàng để xóa!", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            DialogResult rs = MessageBox.Show("Bạn có chắc chắn muốn xóa nhân viên này?", "Xác nhận xóa",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(rs == DialogResult.Yes)
-            {
-                DataGridViewRow row = dgvNhanVien.SelectedRows[0];
-                if(!row.IsNewRow)
-                {
-                    dgvNhanVien.Rows.Remove(row);
-                    MessageBox.Show("Xóa nhân viên thành công!", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
+                action = "delete_employee",
+                data = new { maNV = txtMaNV.Text }
+            };
+
+            string jsonRequest = JsonConvert.SerializeObject(request);
+            string jsonResponse = ServerConnection.SendRequest(jsonRequest);
+
+            var result = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
+            MessageBox.Show(result.message.ToString(), result.status.ToString());
+
+            if (result.status == "success")
+                LoadEmployeeData();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -121,6 +148,23 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
             dgvNhanVien.EndEdit();
             btnSave.Visible = false;
             MessageBox.Show("Lưu thay đổi thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void dgvNhanVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvNhanVien.Rows[e.RowIndex];
+                txtMaNV.Text = row.Cells["Mã nhân viên"].Value.ToString();
+                txtHoTen.Text = row.Cells["Họ tên"].Value.ToString();
+                cboGioiTinh.Text = row.Cells["Giới tính"].Value.ToString();
+                dtpNgaySinh.Value = Convert.ToDateTime(row.Cells["Ngày sinh"].Value);
+                txtSDT.Text = row.Cells["Số điện thoại"].Value.ToString();
+                dtpNgayVaoLam.Value = Convert.ToDateTime(row.Cells["Ngày vào làm"].Value);
+                numSoNgayLam.Value = Convert.ToInt32(row.Cells["Số ngày làm"].Value);
+                txtLuongCoBan.Text = row.Cells["Lương cơ bản"].Value.ToString();
+                txtLuongThang.Text = row.Cells["Lương tháng"].Value.ToString();
+            }
         }
     }
 }

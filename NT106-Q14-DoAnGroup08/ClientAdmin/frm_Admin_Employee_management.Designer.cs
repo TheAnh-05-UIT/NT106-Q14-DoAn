@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelInput = new System.Windows.Forms.Panel();
+            this.btnSave = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnThemNV = new System.Windows.Forms.Button();
             this.BTNSuaNV = new System.Windows.Forms.Button();
@@ -66,7 +67,6 @@
             this.colNumberOfWorkingDays = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBasicSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMonthlySalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSave = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelInput.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -120,6 +120,17 @@
             this.panelInput.Size = new System.Drawing.Size(354, 743);
             this.panelInput.TabIndex = 0;
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(236, 534);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(98, 43);
+            this.btnSave.TabIndex = 20;
+            this.btnSave.Text = "Lưu";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Visible = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.btnThemNV);
@@ -165,7 +176,7 @@
             // 
             this.txtLuongThang.Location = new System.Drawing.Point(143, 476);
             this.txtLuongThang.Name = "txtLuongThang";
-            this.txtLuongThang.Size = new System.Drawing.Size(191, 25);
+            this.txtLuongThang.Size = new System.Drawing.Size(191, 33);
             this.txtLuongThang.TabIndex = 18;
             // 
             // label6
@@ -175,7 +186,7 @@
             this.label6.Margin = new System.Windows.Forms.Padding(10);
             this.label6.Name = "label6";
             this.label6.Padding = new System.Windows.Forms.Padding(10);
-            this.label6.Size = new System.Drawing.Size(108, 37);
+            this.label6.Size = new System.Drawing.Size(153, 48);
             this.label6.TabIndex = 17;
             this.label6.Text = "Lương tháng";
             // 
@@ -183,7 +194,7 @@
             // 
             this.txtLuongCoBan.Location = new System.Drawing.Point(143, 419);
             this.txtLuongCoBan.Name = "txtLuongCoBan";
-            this.txtLuongCoBan.Size = new System.Drawing.Size(191, 25);
+            this.txtLuongCoBan.Size = new System.Drawing.Size(191, 33);
             this.txtLuongCoBan.TabIndex = 16;
             // 
             // numSoNgayLam
@@ -195,28 +206,28 @@
             0,
             0});
             this.numSoNgayLam.Name = "numSoNgayLam";
-            this.numSoNgayLam.Size = new System.Drawing.Size(191, 25);
+            this.numSoNgayLam.Size = new System.Drawing.Size(191, 33);
             this.numSoNgayLam.TabIndex = 15;
             // 
             // dtpNgayVaoLam
             // 
             this.dtpNgayVaoLam.Location = new System.Drawing.Point(143, 305);
             this.dtpNgayVaoLam.Name = "dtpNgayVaoLam";
-            this.dtpNgayVaoLam.Size = new System.Drawing.Size(191, 25);
+            this.dtpNgayVaoLam.Size = new System.Drawing.Size(191, 33);
             this.dtpNgayVaoLam.TabIndex = 14;
             // 
             // txtSDT
             // 
             this.txtSDT.Location = new System.Drawing.Point(143, 248);
             this.txtSDT.Name = "txtSDT";
-            this.txtSDT.Size = new System.Drawing.Size(191, 25);
+            this.txtSDT.Size = new System.Drawing.Size(191, 33);
             this.txtSDT.TabIndex = 13;
             // 
             // dtpNgaySinh
             // 
             this.dtpNgaySinh.Location = new System.Drawing.Point(143, 185);
             this.dtpNgaySinh.Name = "dtpNgaySinh";
-            this.dtpNgaySinh.Size = new System.Drawing.Size(191, 25);
+            this.dtpNgaySinh.Size = new System.Drawing.Size(191, 33);
             this.dtpNgaySinh.TabIndex = 12;
             // 
             // cboGioiTinh
@@ -227,21 +238,21 @@
             "Nữ"});
             this.cboGioiTinh.Location = new System.Drawing.Point(143, 131);
             this.cboGioiTinh.Name = "cboGioiTinh";
-            this.cboGioiTinh.Size = new System.Drawing.Size(191, 25);
+            this.cboGioiTinh.Size = new System.Drawing.Size(191, 36);
             this.cboGioiTinh.TabIndex = 11;
             // 
             // txtHoTen
             // 
             this.txtHoTen.Location = new System.Drawing.Point(143, 77);
             this.txtHoTen.Name = "txtHoTen";
-            this.txtHoTen.Size = new System.Drawing.Size(191, 25);
+            this.txtHoTen.Size = new System.Drawing.Size(191, 33);
             this.txtHoTen.TabIndex = 10;
             // 
             // txtMaNV
             // 
             this.txtMaNV.Location = new System.Drawing.Point(143, 20);
             this.txtMaNV.Name = "txtMaNV";
-            this.txtMaNV.Size = new System.Drawing.Size(191, 25);
+            this.txtMaNV.Size = new System.Drawing.Size(191, 33);
             this.txtMaNV.TabIndex = 9;
             // 
             // label9
@@ -251,7 +262,7 @@
             this.label9.Margin = new System.Windows.Forms.Padding(10);
             this.label9.Name = "label9";
             this.label9.Padding = new System.Windows.Forms.Padding(10);
-            this.label9.Size = new System.Drawing.Size(113, 37);
+            this.label9.Size = new System.Drawing.Size(162, 48);
             this.label9.TabIndex = 8;
             this.label9.Text = "Lương cơ bản";
             // 
@@ -262,7 +273,7 @@
             this.label8.Margin = new System.Windows.Forms.Padding(10);
             this.label8.Name = "label8";
             this.label8.Padding = new System.Windows.Forms.Padding(10);
-            this.label8.Size = new System.Drawing.Size(104, 37);
+            this.label8.Size = new System.Drawing.Size(148, 48);
             this.label8.TabIndex = 7;
             this.label8.Text = "Số ngày làm";
             // 
@@ -273,7 +284,7 @@
             this.label7.Margin = new System.Windows.Forms.Padding(10);
             this.label7.Name = "label7";
             this.label7.Padding = new System.Windows.Forms.Padding(10);
-            this.label7.Size = new System.Drawing.Size(113, 37);
+            this.label7.Size = new System.Drawing.Size(163, 48);
             this.label7.TabIndex = 6;
             this.label7.Text = "Ngày vào làm";
             // 
@@ -284,7 +295,7 @@
             this.label5.Margin = new System.Windows.Forms.Padding(10);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(10);
-            this.label5.Size = new System.Drawing.Size(110, 37);
+            this.label5.Size = new System.Drawing.Size(158, 48);
             this.label5.TabIndex = 4;
             this.label5.Text = "Số điện thoại";
             // 
@@ -295,7 +306,7 @@
             this.label4.Margin = new System.Windows.Forms.Padding(10);
             this.label4.Name = "label4";
             this.label4.Padding = new System.Windows.Forms.Padding(10);
-            this.label4.Size = new System.Drawing.Size(90, 37);
+            this.label4.Size = new System.Drawing.Size(127, 48);
             this.label4.TabIndex = 3;
             this.label4.Text = "Ngày sinh";
             // 
@@ -306,7 +317,7 @@
             this.label3.Margin = new System.Windows.Forms.Padding(10);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(10);
-            this.label3.Size = new System.Drawing.Size(82, 37);
+            this.label3.Size = new System.Drawing.Size(115, 48);
             this.label3.TabIndex = 2;
             this.label3.Text = "Giới tính";
             // 
@@ -317,7 +328,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(10);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(10);
-            this.label2.Size = new System.Drawing.Size(70, 37);
+            this.label2.Size = new System.Drawing.Size(96, 48);
             this.label2.TabIndex = 1;
             this.label2.Text = "Họ tên";
             // 
@@ -328,7 +339,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(10);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(10);
-            this.label1.Size = new System.Drawing.Size(114, 37);
+            this.label1.Size = new System.Drawing.Size(165, 48);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã Nhân viên";
             // 
@@ -348,14 +359,14 @@
             this.dgvNhanVien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvNhanVien.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dgvNhanVien.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Gold;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNhanVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gold;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNhanVien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNhanVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
@@ -367,32 +378,33 @@
             this.colNumberOfWorkingDays,
             this.colBasicSalary,
             this.colMonthlySalary});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvNhanVien.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvNhanVien.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvNhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvNhanVien.EnableHeadersVisualStyles = false;
             this.dgvNhanVien.Location = new System.Drawing.Point(0, 0);
             this.dgvNhanVien.Name = "dgvNhanVien";
             this.dgvNhanVien.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNhanVien.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNhanVien.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvNhanVien.RowHeadersVisible = false;
             this.dgvNhanVien.RowHeadersWidth = 82;
             this.dgvNhanVien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvNhanVien.Size = new System.Drawing.Size(991, 743);
             this.dgvNhanVien.TabIndex = 0;
+            this.dgvNhanVien.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNhanVien_CellContentClick);
             // 
             // colID
             // 
@@ -457,20 +469,9 @@
             this.colMonthlySalary.Name = "colMonthlySalary";
             this.colMonthlySalary.ReadOnly = true;
             // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(259, 534);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 20;
-            this.btnSave.Text = "Lưu";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Visible = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // frm_Admin_Employee_management
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1357, 749);

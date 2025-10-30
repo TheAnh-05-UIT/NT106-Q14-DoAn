@@ -13,7 +13,7 @@ namespace QuanLyQuanNet.DTOs
 
         public Category() { }
 
-        public CategoryDTO(string categoryId, string categoryName)
+        public Category(string categoryId, string categoryName)
         {
             CategoryId = categoryId;
             CategoryName = categoryName;

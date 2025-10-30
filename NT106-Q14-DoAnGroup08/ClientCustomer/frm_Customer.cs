@@ -30,13 +30,15 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         private void btn_Chat_Click(object sender, EventArgs e)
         {
             frm_Customer_Chat f = new frm_Customer_Chat();
-            f.ShowDialog();
+            f.Show();
         }
 
         private void btn_FoodMenu_Click(object sender, EventArgs e)
         {
             frm_Customer_FoodMenu f = new frm_Customer_FoodMenu();
-            f.ShowDialog();
+            f.TopMost = true;
+            f.WindowState = FormWindowState.Normal;
+            f.Show();
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
@@ -47,7 +49,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         private void btn_TopUp_Click(object sender, EventArgs e)
         {
             frm_Customer_TopUp f = new frm_Customer_TopUp();
-            f.ShowDialog();
+            f.Show();
         }
     }
 }
