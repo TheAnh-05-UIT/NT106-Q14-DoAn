@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NT106_Q14_DoAnGroup08.DAO;
+using NT106_Q14_DoAnGroup08.Uc_Staff;
 using QuanLyQuanNet.DAO;
 
 namespace NT106_Q14_DoAnGroup08.ClientCustomer
@@ -28,12 +29,44 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         private void frm_Customer_FoodMenu_Load(object sender, EventArgs e)
         {
             guna2DataGridView1.BorderStyle = BorderStyle.FixedSingle;
-            MenuDAO.Instance.AddCategory(CategoryPanel1);
+            AddCategory();
 
             ProductPanel.Controls.Clear();
             LoadProduct();
         }
 
+        public void AddCategory()
+        {
+            string query = "Select * from Category";
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+            CategoryPanel.Controls.Clear();
+
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    Guna.UI2.WinForms.Guna2Button b = new Guna.UI2.WinForms.Guna2Button();
+                    b.FillColor = Color.FromArgb(0, 32, 63);
+                    b.Size = new Size(120, 50);
+                    b.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+                    b.Text = row["CategoryName"].ToString();
+
+                    b.Click += new EventHandler(b_Click);
+
+                    CategoryPanel.Controls.Add(b);
+                }
+            }
+        }
+
+        private void b_Click(object sender, EventArgs e)
+        {
+            Guna.UI2.WinForms.Guna2Button b = (Guna.UI2.WinForms.Guna2Button)sender;
+            foreach (var item in ProductPanel.Controls)
+            {
+                var pro = (uc_Product)item;
+                pro.Visible = pro.FoodCategory.ToLower().Contains(b.Text.Trim().ToLower());
+            }
+        }
         private void AddItems(string id, string name, string cat, string price, Image image)
         {
             var w = new Uc_Staff.uc_Product
@@ -51,34 +84,29 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             {
                 var wdg = (Uc_Staff.uc_Product)ss;
                 int foodId = wdg.Id;
-                double itemPrice = double.Parse(wdg.FoodPrice); // Đảm bảo FoodPrice là chuỗi số hợp lệ
+                double itemPrice = double.Parse(wdg.FoodPrice);
                 bool found = false;
 
-                // 1. Duyệt qua các hàng để TÌM và CẬP NHẬT nếu món đã có
                 foreach (DataGridViewRow item in guna2DataGridView1.Rows)
                 {
-                    // Kiểm tra cột dgvid của DataGridView (chắc chắn cột này tồn tại)
                     if (item.Cells["dgvid"].Value != null && Convert.ToInt32(item.Cells["dgvid"].Value) == foodId)
                     {
-                        // Cập nhật số lượng
                         int currentQty = Convert.ToInt32(item.Cells["dgvQty"].Value);
                         currentQty++;
                         item.Cells["dgvQty"].Value = currentQty;
 
-                        // Cập nhật tổng tiền hàng
                         item.Cells["dgvAmount"].Value = currentQty * itemPrice;
 
                         found = true;
-                        break; // Thoát khỏi vòng lặp sau khi tìm và cập nhật
+                        break;
                     }
                 }
 
-                // 2. Nếu không tìm thấy, THÊM món mới vào DataGridView
                 if (!found)
                 {
-                    // Thêm món mới với số lượng là 1 và tổng tiền bằng giá
                     guna2DataGridView1.Rows.Add(new object[] { 0, foodId, wdg.FoodName, 1, itemPrice, itemPrice });
                 }
+                GetTotal();
             };
         }
 
@@ -92,42 +120,36 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             {
                 Image foodImage = null;
 
-                // ✅ Giả sử cột Image trong DB là NVARCHAR, lưu kiểu: "Images/burger.png"
                 string imagePath = item["Image"].ToString();
 
-                // Nếu cột ảnh rỗng hoặc file không tồn tại → dùng ảnh mặc định
                 string fullPath = string.Empty;
 
-                // Nếu cột ảnh rỗng hoặc file không tồn tại → dùng ảnh mặc định
                 if (string.IsNullOrEmpty(imagePath))
                 {
                     foodImage = Properties.Resources.defaultImage;
                 }
                 else
                 {
-                    // Now calculate the fullPath inside the 'else' block
-                    fullPath = Path.Combine(Application.StartupPath, imagePath); // fullPath is set here
+                    fullPath = Path.Combine(Application.StartupPath, imagePath);
 
                     if (File.Exists(fullPath))
                     {
-                        // **Apply the robust, non-locking file loading code here**
                         try
                         {
-                            // Use MemoryStream to load the image data and immediately release the file lock
                             using (var stream = new MemoryStream(File.ReadAllBytes(fullPath)))
                             {
                                 Image tempImage = Image.FromStream(stream);
-                                foodImage = new Bitmap(tempImage); // Create a copy
+                                foodImage = new Bitmap(tempImage);
                             }
                         }
                         catch
                         {
-                            foodImage = Properties.Resources.defaultImage; // fallback on read error
+                            foodImage = Properties.Resources.defaultImage;
                         }
                     }
                     else
                     {
-                        foodImage = Properties.Resources.defaultImage; // fallback if file doesn't exist
+                        foodImage = Properties.Resources.defaultImage; 
                     }
 
                     AddItems(
@@ -139,6 +161,43 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                     );
                 }
             }
+        }
+
+        private void txt_Search_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = txt_Search.Text.Trim().ToLower();
+
+            foreach (Control ctrl in ProductPanel.Controls)
+            {
+                if (ctrl is uc_Product pro)
+                {
+                    string name = pro.FoodName?.ToLower() ?? string.Empty;
+                    bool match = string.IsNullOrEmpty(keyword) || name.Contains(keyword);
+
+                    pro.Visible = match;
+                }
+            }
+        }
+
+        private void GetTotal()
+        {
+            double total = 0;
+            lbl_Total.Text = "";
+            foreach(DataGridViewRow item in guna2DataGridView1.Rows)
+            {
+                var value = item.Cells["dgvAmount"].Value;
+                if (value != null && double.TryParse(value.ToString(), out double amount))
+                {
+                    total += amount;
+                }
+            }
+            lbl_Total.Text = total.ToString("N2");
+        }
+
+        private void btn_New_Click(object sender, EventArgs e)
+        {
+            guna2DataGridView1.Rows.Clear();
+            lbl_Total.Text = "0";
         }
     }
 }

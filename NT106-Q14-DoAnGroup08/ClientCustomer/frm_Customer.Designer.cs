@@ -45,7 +45,7 @@
             // 
             this.lbl_Username.AutoSize = true;
             this.lbl_Username.Font = new System.Drawing.Font("Times New Roman", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Username.Location = new System.Drawing.Point(130, 43);
+            this.lbl_Username.Location = new System.Drawing.Point(160, 43);
             this.lbl_Username.Name = "lbl_Username";
             this.lbl_Username.Size = new System.Drawing.Size(167, 42);
             this.lbl_Username.TabIndex = 0;
@@ -75,6 +75,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(137, 130);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(100, 31);
             this.textBox1.TabIndex = 3;
             // 
@@ -82,21 +83,24 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(137, 188);
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(100, 31);
             this.textBox2.TabIndex = 4;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(243, 130);
+            this.textBox3.Location = new System.Drawing.Point(261, 130);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(169, 31);
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(196, 31);
             this.textBox3.TabIndex = 5;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(243, 188);
+            this.textBox4.Location = new System.Drawing.Point(261, 187);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(169, 31);
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(196, 31);
             this.textBox4.TabIndex = 6;
             // 
             // btn_TopUp
@@ -155,7 +159,7 @@
             this.btn_Chat.UseVisualStyleBackColor = true;
             this.btn_Chat.Click += new System.EventHandler(this.btn_Chat_Click);
             // 
-            // Customer
+            // frm_Customer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -171,7 +175,7 @@
             this.Controls.Add(this.lbl_Remain);
             this.Controls.Add(this.lbl_Used);
             this.Controls.Add(this.lbl_Username);
-            this.Name = "Customer";
+            this.Name = "frm_Customer";
             this.Text = "Customer";
             this.Load += new System.EventHandler(this.Customer_Load);
             this.ResumeLayout(false);

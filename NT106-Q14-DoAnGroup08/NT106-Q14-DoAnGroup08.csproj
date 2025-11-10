@@ -618,6 +618,7 @@
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
     <Content Include="Resources\defaultImage.jpg" />
+    <None Include="Resources\search.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TcpServer\TcpServer.csproj">
