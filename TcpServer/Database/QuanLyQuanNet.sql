@@ -105,14 +105,21 @@ CREATE TABLE Invoices (
 -- Bảng InvoiceDetails (Chi tiết hóa đơn)
 
 CREATE TABLE InvoiceDetails (
-    InvoiceDetailId NVARCHAR(20) PRIMARY KEY, -- VD: ID001
+    InvoiceDetailId NVARCHAR(20) PRIMARY KEY,
     InvoiceId NVARCHAR(20) NOT NULL,
-    ServiceId NVARCHAR(20) NOT NULL,
+    FoodId NVARCHAR(20) NULL,
+    ServiceId NVARCHAR(20) NULL,
     Quantity INT DEFAULT 1,
-    Price DECIMAL(10,2),
+    Price DECIMAL(10,2) NOT NULL,
+    Status NVARCHAR(20)
+        CHECK (Status IN ('PENDING', 'IN_PROGRESS', 'COMPLETED', 'CANCELLED')) 
+        DEFAULT 'PENDING',
+    Note NVARCHAR(255) NULL,
     FOREIGN KEY (InvoiceId) REFERENCES Invoices(InvoiceId),
+    FOREIGN KEY (FoodId) REFERENCES FoodAndDrink(FoodId),
     FOREIGN KEY (ServiceId) REFERENCES Services(ServiceId)
 );
+
 
 -- Bảng TopUpTransactions (Nạp tiền)
 

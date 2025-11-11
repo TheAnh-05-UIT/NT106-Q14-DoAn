@@ -14,8 +14,10 @@ using QuanLyQuanNet.DAO;
 
 namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {
-    public partial class frm_Customer_FoodMenu : Form
+    public partial class frm_Customer_FoodMenu : CustomForm
     {
+        private Dictionary<string, string> currentNotes = new Dictionary<string, string>();
+
         public frm_Customer_FoodMenu()
         {
             InitializeComponent();
@@ -197,7 +199,111 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         private void btn_New_Click(object sender, EventArgs e)
         {
             guna2DataGridView1.Rows.Clear();
-            lbl_Total.Text = "0";
+            lbl_Total.Text = "";
+        }
+
+        private void btn_Note_Click(object sender, EventArgs e)
+        {
+            if (guna2DataGridView1.SelectedRows.Count > 0)
+            {
+                string foodName = guna2DataGridView1.SelectedRows[0].Cells["dgvName"].Value.ToString();
+
+                frm_Customer_Note note = new frm_Customer_Note(foodName);
+
+
+                if (note.ShowDialog() == DialogResult.OK)
+                {
+                    string note1 = note.NoteText;
+
+                    currentNotes[foodName] = note1;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn món cần ghi chú trước.");
+            }
+        }
+
+        private void btn_Order_Click(object sender, EventArgs e)
+        {
+            if (guna2DataGridView1.Rows.Count <= 0)
+            {
+                MessageBox.Show("Chưa có món nào để đặt.");
+                return;
+            }
+            string queryMaxId = "SELECT MAX(InvoiceId) FROM Invoices WHERE InvoiceId LIKE 'HD%'";
+            object result = DataProvider.Instance.ExecuteScalar(queryMaxId);
+
+            string invoiceId;
+            if (result == DBNull.Value || result == null)
+                invoiceId = "HD001";
+            else
+            {
+                string maxId = result.ToString();
+                int num = int.Parse(maxId.Substring(2)) + 1;
+                invoiceId = "HD" + num.ToString("D3");
+            }
+            string customerId = "KH001";
+            decimal totalAmount = 0;
+
+            foreach (DataGridViewRow row in guna2DataGridView1.Rows) 
+            {
+                if (row.Cells["dgvAmount"].Value != null) 
+                {
+                    totalAmount += Convert.ToDecimal(row.Cells["dgvAmount"].Value);
+                }
+            }
+            string createInvoiceQuery = $@"
+                INSERT INTO Invoices 
+                (InvoiceId, CustomerId, TotalAmount) 
+                VALUES 
+                (N'{invoiceId}', N'{customerId}', {totalAmount})";
+
+            int resultInvoice = DataProvider.Instance.ExecuteNonQuery(createInvoiceQuery);
+
+            if (resultInvoice <= 0)
+            {
+                MessageBox.Show("Tạo hóa đơn thất bại!");
+                return;
+            }
+
+            foreach (DataGridViewRow row in guna2DataGridView1.Rows)
+            {
+                if (row.Cells["dgvid"].Value == null) continue;
+
+                string foodId = row.Cells["dgvid"].Value.ToString();
+                int quantity = Convert.ToInt32(row.Cells["dgvQty"].Value);
+                decimal price = Convert.ToDecimal(row.Cells["dgvAmount"].Value); // tổng tiền món
+                string foodName = row.Cells["dgvName"].Value.ToString();
+                string note = currentNotes.ContainsKey(foodName) ? currentNotes[foodName] : null;
+
+                string queryMaxDetailId = "SELECT MAX(InvoiceDetailId) FROM InvoiceDetails WHERE InvoiceDetailId LIKE 'CTHD%'";
+                object resultDetail = DataProvider.Instance.ExecuteScalar(queryMaxDetailId);
+
+                string detailId;
+                if (resultDetail == DBNull.Value || resultDetail == null)
+                    detailId = "CTHD001";
+                else
+                {
+                    string maxId = resultDetail.ToString(); // VD: "CTHD005"
+                    int num = int.Parse(maxId.Substring(4)) + 1; // bỏ "CTHD"
+                    detailId = "CTHD" + num.ToString("D3");       // luôn 3 chữ số
+                }
+
+                string insertDetailQuery = $@"
+                    INSERT INTO InvoiceDetails
+                    (InvoiceDetailId, InvoiceId, FoodId, Quantity, Price, Status, Note)
+                    VALUES
+                    (N'{detailId}', N'{invoiceId}', N'{foodId}', {quantity}, {price}, 'PENDING', N'{note}')";
+
+                DataProvider.Instance.ExecuteNonQuery(insertDetailQuery);
+            }
+
+            MessageBox.Show("Đặt món thành công!");
+          
+            guna2DataGridView1.Rows.Clear();
+            lbl_Total.Text = "";
+            currentNotes.Clear();
         }
     }
 }

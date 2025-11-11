@@ -184,6 +184,15 @@
     <Compile Include="ClientAdmin\Admin_CustomerAccountManagement.Designer.cs">
       <DependentUpon>Admin_CustomerAccountManagement.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClientCustomer\frm_Customer_Note.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientCustomer\frm_Customer_Note.Designer.cs">
+      <DependentUpon>frm_Customer_Note.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DAO\MenuDAO.cs" />
     <Compile Include="DAO\BillDAO.cs" />
     <Compile Include="DAO\BillDTO.cs" />
@@ -319,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClientCustomer\frm_Customer_FoodMenu.resx">
       <DependentUpon>frm_Customer_FoodMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientCustomer\frm_Customer_Note.resx">
+      <DependentUpon>frm_Customer_Note.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClientCustomer\frm_Customer_TopUp.resx">
       <DependentUpon>frm_Customer_TopUp.cs</DependentUpon>
@@ -617,6 +629,9 @@
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.exe" />
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\confirmation.png" />
+    <None Include="Resources\checkout.png" />
     <Content Include="Resources\defaultImage.jpg" />
     <None Include="Resources\search.png" />
   </ItemGroup>
