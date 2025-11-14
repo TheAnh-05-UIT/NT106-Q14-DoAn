@@ -3,11 +3,71 @@
   "WorkspaceRootPath": "D:\\doanNT106\\NT106-Q14-DoAn\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\frm_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\clientadmin\\frm_admin_employee_management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\clientadmin\\frm_admin_employee_management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|d:\\doannt106\\nt106-q14-doan\\nt106-q14-doangroup08\\clientadmin\\admin_customeraccountmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\clientadmin\\admin_customeraccountmanagement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\clientadmin\\frm_admin_employee_management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\clientadmin\\frm_admin_employee_management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\tcpserver\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|solutionrelative:tcpserver\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|d:\\doannt106\\nt106-q14-doan\\nt106-q14-doangroup08\\paket.references||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\paket.references||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|d:\\doannt106\\nt106-q14-doan\\nt106-q14-doangroup08\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|d:\\doannt106\\nt106-q14-doan\\nt106-q14-doangroup08\\clientadmin\\frm_revenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\clientadmin\\frm_revenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|d:\\doannt106\\nt106-q14-doan\\nt106-q14-doangroup08\\clientadmin\\frm_revenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\clientadmin\\frm_revenue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|d:\\doannt106\\nt106-q14-doan\\nt106-q14-doangroup08\\clientadmin\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\clientadmin\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|d:\\doannt106\\nt106-q14-doan\\nt106-q14-doangroup08\\clientadmin\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\clientadmin\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\tcpserver\\handlers\\handleradmincustomeracc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|solutionrelative:tcpserver\\handlers\\handleradmincustomeracc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\tcpserver\\database\\quanlyquannet.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|solutionrelative:tcpserver\\database\\quanlyquannet.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|d:\\doannt106\\nt106-q14-doan\\nt106-q14-doangroup08\\frm_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\frm_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|d:\\doannt106\\nt106-q14-doan\\nt106-q14-doangroup08\\customform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\frm_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\frm_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\customform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\customform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -15,7 +75,7 @@
       "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\connectionserver\\serverconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|d:\\doannt106\\nt106-q14-doan\\tcpserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\tcpserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|solutionrelative:tcpserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -43,14 +103,6 @@
       "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\uc_staff\\uc_product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\tcpserver\\database\\quanlyquannet.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|solutionrelative:tcpserver\\database\\quanlyquannet.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\frm_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\frm_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\tcpserver\\serverhandler\\serverhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|solutionrelative:tcpserver\\serverhandler\\serverhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -75,10 +127,6 @@
       "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\clientcustomer\\frm_addcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\clientadmin\\frm_admin_employee_management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\clientadmin\\frm_admin_employee_management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\clientcustomer\\frm_addcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\clientcustomer\\frm_addcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
@@ -93,22 +141,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\tcpserver\\databsehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|solutionrelative:tcpserver\\databsehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\tcpserver\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|solutionrelative:tcpserver\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\tcpserver\\handlers\\handleradmincustomeracc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|solutionrelative:tcpserver\\handlers\\handleradmincustomeracc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\clientadmin\\frm_admin_employee_management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\clientadmin\\frm_admin_employee_management.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\dto\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -129,10 +161,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\utils\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\utils\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\clientstaff\\frm_staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -189,6 +217,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|D:\\doanNT106\\NT106-Q14-DoAn\\nt106-q14-doangroup08\\dao\\dataprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D49C3A9D-3903-4F79-AC23-667551669AE5}|NT106-Q14-DoAnGroup08\\NT106-Q14-DoAnGroup08.csproj|solutionrelative:nt106-q14-doangroup08\\dao\\dataprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|d:\\doannt106\\nt106-q14-doan\\tcpserver\\database\\quanlyquannet.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
+      "RelativeMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|solutionrelative:tcpserver\\database\\quanlyquannet.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|d:\\doannt106\\nt106-q14-doan\\tcpserver\\database\\quanlyquannet.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame",
+      "RelativeMoniker": "D:0:0:{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}|TcpServer\\TcpServer.csproj|solutionrelative:tcpserver\\database\\quanlyquannet.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -198,7 +234,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -207,29 +243,183 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CustomForm.cs [Design]",
-              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\CustomForm.cs",
-              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\CustomForm.cs",
-              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\CustomForm.cs [Design]",
-              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\CustomForm.cs [Design]",
+              "Title": "Admin_CustomerAccountManagement.cs [Design]",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin_CustomerAccountManagement.cs",
+              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin_CustomerAccountManagement.cs",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin_CustomerAccountManagement.cs [Design]",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin_CustomerAccountManagement.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T12:40:23.573Z",
+              "WhenOpened": "2025-11-14T15:39:10.212Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "uc_Staff_Chat.cs [Design]",
-              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_Chat.cs",
-              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_Chat.cs",
-              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_Chat.cs [Design]",
-              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_Chat.cs [Design]",
+              "DocumentIndex": 0,
+              "Title": "frm_Admin_Employee_management.cs [Design]",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs",
+              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs [Design]*",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T17:59:41.418Z"
+              "WhenOpened": "2025-10-29T13:47:43.211Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frm_Admin_Employee_management.cs",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs",
+              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs*",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs*",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAFkAAACBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T17:12:26.22Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "App.config",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\App.config",
+              "RelativeDocumentMoniker": "TcpServer\\App.config",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\App.config",
+              "RelativeToolTip": "TcpServer\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-10-29T10:35:27.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "paket.references",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\paket.references",
+              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\paket.references",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\paket.references",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\paket.references",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-11-14T17:22:13.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "packages.config",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\packages.config",
+              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\packages.config",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\packages.config",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\packages.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-11-14T17:22:10.416Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "App.config",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\App.config",
+              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\App.config",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\App.config",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-10-29T17:40:07.794Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Admin.cs",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin.cs",
+              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin.cs",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin.cs",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T17:11:23.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "frm_Revenue.cs",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Revenue.cs",
+              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Revenue.cs",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Revenue.cs",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Revenue.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T17:15:05.557Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "frm_Revenue.cs [Design]",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Revenue.cs",
+              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Revenue.cs",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Revenue.cs [Design]",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Revenue.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T15:39:02.018Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Admin.cs [Design]",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin.cs",
+              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin.cs",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin.cs [Design]",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T15:39:05.868Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Program.cs",
+              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\Program.cs",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Program.cs",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T12:53:31.029Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "HandlerAdminCustomerAcc.cs",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\Handlers\\HandlerAdminCustomerAcc.cs",
+              "RelativeDocumentMoniker": "TcpServer\\Handlers\\HandlerAdminCustomerAcc.cs",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\Handlers\\HandlerAdminCustomerAcc.cs",
+              "RelativeToolTip": "TcpServer\\Handlers\\HandlerAdminCustomerAcc.cs",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAAAHAAAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T15:00:17.126Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "QuanLyQuanNet.sql ",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\Database\\QuanLyQuanNet.sql",
+              "RelativeDocumentMoniker": "TcpServer\\Database\\QuanLyQuanNet.sql",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\Database\\QuanLyQuanNet.sql",
+              "RelativeToolTip": "TcpServer\\Database\\QuanLyQuanNet.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-10-29T10:27:15.688Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\Program.cs",
               "RelativeDocumentMoniker": "TcpServer\\Program.cs",
@@ -237,12 +427,11 @@
               "RelativeToolTip": "TcpServer\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAhwAsAAABaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T10:25:59.106Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-29T10:25:59.106Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 14,
               "Title": "frm_Login.cs [Design]",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Login.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\frm_Login.cs",
@@ -254,7 +443,42 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 15,
+              "Title": "frm_Login.cs",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Login.cs",
+              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\frm_Login.cs",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Login.cs",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\frm_Login.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAQwGcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T10:17:08.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "uc_Staff_Chat.cs [Design]",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_Chat.cs",
+              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_Chat.cs",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_Chat.cs [Design]",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_Chat.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T17:59:41.418Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CustomForm.cs [Design]",
+              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\CustomForm.cs",
+              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\CustomForm.cs",
+              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\CustomForm.cs [Design]",
+              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\CustomForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T12:40:23.573Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "uc_Staff_ImportGood.cs [Design]",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_ImportGood.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_ImportGood.cs",
@@ -265,7 +489,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 17,
               "Title": "ServerConnection.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ConnectionServer\\ServerConnection.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ConnectionServer\\ServerConnection.cs",
@@ -273,12 +497,11 @@
               "RelativeToolTip": "NT106-Q14-DoAnGroup08\\ConnectionServer\\ServerConnection.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T11:03:56.412Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-29T11:03:56.412Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 19,
               "Title": "uc_Staff_Menu.cs [Design]",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_Menu.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_Menu.cs",
@@ -289,7 +512,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 22,
               "Title": "uc_Staff_Bills.cs [Design]",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_Bills.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_Bills.cs",
@@ -300,7 +523,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 23,
               "Title": "uc_Staff_Account.cs [Design]",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_Account.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Staff_Account.cs",
@@ -311,7 +534,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 24,
               "Title": "uc_Product.cs [Design]",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Product.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\Uc_Staff\\uc_Product.cs",
@@ -322,31 +545,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "QuanLyQuanNet.sql ",
-              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\Database\\QuanLyQuanNet.sql",
-              "RelativeDocumentMoniker": "TcpServer\\Database\\QuanLyQuanNet.sql",
-              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\Database\\QuanLyQuanNet.sql",
-              "RelativeToolTip": "TcpServer\\Database\\QuanLyQuanNet.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-10-29T10:27:15.688Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "frm_Login.cs",
-              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Login.cs",
-              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\frm_Login.cs",
-              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Login.cs",
-              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\frm_Login.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAAAEEAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T10:17:08.589Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 26,
               "Title": "HandlerLogin.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\Handlers\\HandlerLogin.cs",
               "RelativeDocumentMoniker": "TcpServer\\Handlers\\HandlerLogin.cs",
@@ -358,7 +557,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 25,
               "Title": "ServerHandler.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\ServerHandler\\ServerHandler.cs",
               "RelativeDocumentMoniker": "TcpServer\\ServerHandler\\ServerHandler.cs",
@@ -370,7 +569,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 29,
               "Title": "packages.config",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\packages.config",
               "RelativeDocumentMoniker": "TcpServer\\packages.config",
@@ -382,7 +581,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 27,
               "Title": "Admin_CustomerAccountManagement.Designer.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin_CustomerAccountManagement.Designer.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin_CustomerAccountManagement.Designer.cs",
@@ -390,11 +589,12 @@
               "RelativeToolTip": "NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin_CustomerAccountManagement.Designer.cs",
               "ViewState": "AgIAAKYAAAAAAAAAAAAwwLIAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T16:04:59.043Z"
+              "WhenOpened": "2025-10-29T16:04:59.043Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 28,
               "Title": "Admin_CustomerAccountManagement.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin_CustomerAccountManagement.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin_CustomerAccountManagement.cs",
@@ -402,11 +602,12 @@
               "RelativeToolTip": "NT106-Q14-DoAnGroup08\\ClientAdmin\\Admin_CustomerAccountManagement.cs",
               "ViewState": "AgIAAK0BAAAAAAAAAAAwwLkBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T11:03:32.138Z"
+              "WhenOpened": "2025-10-29T11:03:32.138Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 30,
               "Title": "frm_AddCustomer.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_AddCustomer.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_AddCustomer.cs",
@@ -418,19 +619,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "frm_Admin_Employee_management.cs",
-              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs",
-              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs",
-              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs",
-              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T17:12:26.22Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 31,
               "Title": "frm_AddCustomer.cs [Design]",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_AddCustomer.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_AddCustomer.cs",
@@ -441,7 +630,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 32,
               "Title": "frm_Customer.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_Customer.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_Customer.cs",
@@ -453,7 +642,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 33,
               "Title": "frm_Customer.cs [Design]",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_Customer.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_Customer.cs",
@@ -464,7 +653,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 34,
               "Title": "DatabseHelper.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\DatabseHelper.cs",
               "RelativeDocumentMoniker": "TcpServer\\DatabseHelper.cs",
@@ -476,54 +665,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "App.config",
-              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\App.config",
-              "RelativeDocumentMoniker": "TcpServer\\App.config",
-              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\App.config",
-              "RelativeToolTip": "TcpServer\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-10-29T10:35:27.608Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "HandlerAdminCustomerAcc.cs",
-              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\Handlers\\HandlerAdminCustomerAcc.cs",
-              "RelativeDocumentMoniker": "TcpServer\\Handlers\\HandlerAdminCustomerAcc.cs",
-              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\TcpServer\\Handlers\\HandlerAdminCustomerAcc.cs",
-              "RelativeToolTip": "TcpServer\\Handlers\\HandlerAdminCustomerAcc.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T15:00:17.126Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "frm_Admin_Employee_management.cs [Design]",
-              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs",
-              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs",
-              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs [Design]",
-              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\ClientAdmin\\frm_Admin_Employee_management.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T13:47:43.211Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Program.cs",
-              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\Program.cs",
-              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Program.cs",
-              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\Program.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAmwBMAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T12:53:31.029Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 35,
               "Title": "Admin.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\DTO\\Admin.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\DTO\\Admin.cs",
@@ -535,7 +677,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 36,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\DTO\\User.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\DTO\\User.cs",
@@ -547,7 +689,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 37,
               "Title": "EmployeeDTO.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\DTO\\EmployeeDTO.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\DTO\\EmployeeDTO.cs",
@@ -559,7 +701,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 38,
               "Title": "BillDTO.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\DAO\\BillDTO.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\DAO\\BillDTO.cs",
@@ -571,7 +713,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 39,
               "Title": "PasswordHelper.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Utils\\PasswordHelper.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\Utils\\PasswordHelper.cs",
@@ -583,19 +725,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "App.config",
-              "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\App.config",
-              "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\App.config",
-              "ToolTip": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\App.config",
-              "RelativeToolTip": "NT106-Q14-DoAnGroup08\\App.config",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-10-29T17:40:07.794Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 40,
               "Title": "frm_Staff.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientStaff\\frm_Staff.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientStaff\\frm_Staff.cs",
@@ -607,7 +737,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 43,
               "Title": "Customer.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\DTO\\Customer.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\DTO\\Customer.cs",
@@ -619,7 +749,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 41,
               "Title": "frm_Login.Designer.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\frm_Login.Designer.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\frm_Login.Designer.cs",
@@ -632,7 +762,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 45,
               "Title": "Category.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\DTO\\Category.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\DTO\\Category.cs",
@@ -644,7 +774,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 44,
               "Title": "Computer.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\DTO\\Computer.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\DTO\\Computer.cs",
@@ -656,7 +786,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 42,
               "Title": "FoodAndDrink.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\DTO\\FoodAndDrink.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\DTO\\FoodAndDrink.cs",
@@ -668,7 +798,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 46,
               "Title": "SessionManager.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\Utils\\SessionManager.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\Utils\\SessionManager.cs",
@@ -680,7 +810,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 47,
               "Title": "frm_Staff_ComputerManagement.cs [Design]",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientStaff\\frm_Staff_ComputerManagement.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientStaff\\frm_Staff_ComputerManagement.cs",
@@ -691,7 +821,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 48,
               "Title": "frm_Staff.cs [Design]",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientStaff\\frm_Staff.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientStaff\\frm_Staff.cs",
@@ -702,7 +832,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 50,
               "Title": "frm_Deposit.cs [Design]",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_Deposit.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_Deposit.cs",
@@ -713,7 +843,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 49,
               "Title": "frm_Customer_TopUp.cs [Design]",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_Customer_TopUp.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_Customer_TopUp.cs",
@@ -724,7 +854,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 51,
               "Title": "frm_Customer_FoodMenu.cs [Design]",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_Customer_FoodMenu.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_Customer_FoodMenu.cs",
@@ -735,7 +865,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 52,
               "Title": "frm_Customer_Chat.cs [Design]",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_Customer_Chat.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\ClientCustomer\\frm_Customer_Chat.cs",
@@ -746,7 +876,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 53,
               "Title": "DataProvider.cs",
               "DocumentMoniker": "D:\\doanNT106\\NT106-Q14-DoAn\\NT106-Q14-DoAnGroup08\\DAO\\DataProvider.cs",
               "RelativeDocumentMoniker": "NT106-Q14-DoAnGroup08\\DAO\\DataProvider.cs",

@@ -335,6 +335,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
 {
     public partial class Admin_CustomerAccountManagement : Form
     {
+      //  private string connString = "Data Source=LOG-DG-VINHPP;Initial Catalog=QuanLyQuanNet;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
         public Admin_CustomerAccountManagement()
         {
             InitializeComponent();
@@ -440,6 +441,11 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
         }
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+        }
+
+        private void dgvAccCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

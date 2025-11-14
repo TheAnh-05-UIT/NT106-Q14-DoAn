@@ -4,6 +4,7 @@ using QuanLyQuanNet.DTOs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -19,9 +20,11 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
 {
     public partial class frm_Admin_Employee_management : Form
     {
+        //private string connnectionString;
         public frm_Admin_Employee_management()
         {
             InitializeComponent();
+            //connnectionString = ConfigurationManager.ConnectionStrings["MyConn"].ConnectionString;
         }
         private void frm_Admin_Employee_management_Load(object sender, EventArgs e)
         {
@@ -84,7 +87,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
             string jsonResponse = ServerConnection.SendRequest(jsonRequest);
 
             var result = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
-            MessageBox.Show(result.message.ToString(), result.status.ToString());
+            MessageBox.Show(result.message.ToString(), result.status.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             if (result.status == "success")
                 LoadEmployeeData();

@@ -1,4 +1,5 @@
-﻿using NT106_Q14_DoAnGroup08.ClientCustomer;
+﻿using NT106_Q14_DoAnGroup08.ClientAdmin;
+using NT106_Q14_DoAnGroup08.ClientCustomer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,7 @@ namespace NT106_Q14_DoAnGroup08
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_Customer());
-
+            Application.Run(new ClientAdmin.Admin());
         }
     }
 }

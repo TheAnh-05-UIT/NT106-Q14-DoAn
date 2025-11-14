@@ -62,13 +62,12 @@
             this.tableMain.Controls.Add(this.dgvAccCustomers, 0, 2);
             this.tableMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableMain.Location = new System.Drawing.Point(0, 0);
-            this.tableMain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableMain.Name = "tableMain";
             this.tableMain.RowCount = 3;
             this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 75F));
-            this.tableMain.Size = new System.Drawing.Size(1374, 863);
+            this.tableMain.Size = new System.Drawing.Size(913, 487);
             this.tableMain.TabIndex = 0;
             // 
             // lblTitle
@@ -77,10 +76,9 @@
             this.lblTitle.BackColor = System.Drawing.Color.LightSteelBlue;
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(4, 0);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Location = new System.Drawing.Point(3, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(1366, 86);
+            this.lblTitle.Size = new System.Drawing.Size(907, 48);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "QUẢN LÝ TÀI KHOẢN KHÁCH HÀNG";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -97,17 +95,16 @@
             this.panel1.Controls.Add(this.btnRepair);
             this.panel1.Controls.Add(this.btnAddAccount);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(4, 91);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel1.Location = new System.Drawing.Point(3, 51);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1366, 119);
+            this.panel1.Size = new System.Drawing.Size(907, 67);
             this.panel1.TabIndex = 1;
             // 
             // btnNaptien
             // 
             this.btnNaptien.AutoRoundedCorners = true;
             this.btnNaptien.BackColor = System.Drawing.Color.Transparent;
-            this.btnNaptien.BorderRadius = 31;
+            this.btnNaptien.BorderRadius = 20;
             this.btnNaptien.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnNaptien.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnNaptien.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -116,10 +113,9 @@
             this.btnNaptien.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNaptien.ForeColor = System.Drawing.Color.Black;
             this.btnNaptien.HoverState.FillColor = System.Drawing.Color.LightSkyBlue;
-            this.btnNaptien.Location = new System.Drawing.Point(728, 25);
-            this.btnNaptien.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnNaptien.Location = new System.Drawing.Point(485, 16);
             this.btnNaptien.Name = "btnNaptien";
-            this.btnNaptien.Size = new System.Drawing.Size(170, 65);
+            this.btnNaptien.Size = new System.Drawing.Size(113, 42);
             this.btnNaptien.TabIndex = 13;
             this.btnNaptien.Text = "Nạp tiền";
             this.btnNaptien.Click += new System.EventHandler(this.btnNaptien_Click);
@@ -127,10 +123,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources._1;
-            this.pictureBox1.Location = new System.Drawing.Point(1288, 37);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox1.Location = new System.Drawing.Point(859, 24);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(44, 52);
+            this.pictureBox1.Size = new System.Drawing.Size(29, 34);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
@@ -149,19 +144,19 @@
             this.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtSearch.Location = new System.Drawing.Point(980, 34);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.txtSearch.Location = new System.Drawing.Point(653, 22);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = "";
             this.txtSearch.SelectedText = "";
-            this.txtSearch.Size = new System.Drawing.Size(300, 55);
+            this.txtSearch.Size = new System.Drawing.Size(200, 36);
             this.txtSearch.TabIndex = 11;
             // 
             // btnRefresh
             // 
             this.btnRefresh.AutoRoundedCorners = true;
             this.btnRefresh.BackColor = System.Drawing.Color.White;
-            this.btnRefresh.BorderRadius = 31;
+            this.btnRefresh.BorderRadius = 20;
             this.btnRefresh.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnRefresh.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnRefresh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -170,10 +165,9 @@
             this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.ForeColor = System.Drawing.Color.Black;
             this.btnRefresh.HoverState.FillColor = System.Drawing.Color.LightSkyBlue;
-            this.btnRefresh.Location = new System.Drawing.Point(549, 25);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnRefresh.Location = new System.Drawing.Point(366, 16);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(170, 65);
+            this.btnRefresh.Size = new System.Drawing.Size(113, 42);
             this.btnRefresh.TabIndex = 9;
             this.btnRefresh.Text = "Làm mới";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
@@ -182,7 +176,7 @@
             // 
             this.btnDelete.AutoRoundedCorners = true;
             this.btnDelete.BackColor = System.Drawing.Color.White;
-            this.btnDelete.BorderRadius = 31;
+            this.btnDelete.BorderRadius = 20;
             this.btnDelete.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnDelete.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnDelete.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -191,10 +185,9 @@
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
             this.btnDelete.HoverState.FillColor = System.Drawing.Color.LightSkyBlue;
-            this.btnDelete.Location = new System.Drawing.Point(370, 25);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnDelete.Location = new System.Drawing.Point(247, 16);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(170, 65);
+            this.btnDelete.Size = new System.Drawing.Size(113, 42);
             this.btnDelete.TabIndex = 8;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -203,7 +196,7 @@
             // 
             this.btnRepair.AutoRoundedCorners = true;
             this.btnRepair.BackColor = System.Drawing.Color.White;
-            this.btnRepair.BorderRadius = 31;
+            this.btnRepair.BorderRadius = 20;
             this.btnRepair.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnRepair.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnRepair.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -212,10 +205,9 @@
             this.btnRepair.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRepair.ForeColor = System.Drawing.Color.Black;
             this.btnRepair.HoverState.FillColor = System.Drawing.Color.LightSkyBlue;
-            this.btnRepair.Location = new System.Drawing.Point(192, 25);
-            this.btnRepair.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnRepair.Location = new System.Drawing.Point(128, 16);
             this.btnRepair.Name = "btnRepair";
-            this.btnRepair.Size = new System.Drawing.Size(170, 65);
+            this.btnRepair.Size = new System.Drawing.Size(113, 42);
             this.btnRepair.TabIndex = 7;
             this.btnRepair.Text = "Sửa";
             this.btnRepair.Click += new System.EventHandler(this.btnRepair_Click);
@@ -224,7 +216,7 @@
             // 
             this.btnAddAccount.AutoRoundedCorners = true;
             this.btnAddAccount.BackColor = System.Drawing.Color.White;
-            this.btnAddAccount.BorderRadius = 31;
+            this.btnAddAccount.BorderRadius = 20;
             this.btnAddAccount.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnAddAccount.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnAddAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -233,10 +225,9 @@
             this.btnAddAccount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddAccount.ForeColor = System.Drawing.Color.Black;
             this.btnAddAccount.HoverState.FillColor = System.Drawing.Color.LightSkyBlue;
-            this.btnAddAccount.Location = new System.Drawing.Point(14, 25);
-            this.btnAddAccount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAddAccount.Location = new System.Drawing.Point(9, 16);
             this.btnAddAccount.Name = "btnAddAccount";
-            this.btnAddAccount.Size = new System.Drawing.Size(170, 65);
+            this.btnAddAccount.Size = new System.Drawing.Size(113, 42);
             this.btnAddAccount.TabIndex = 6;
             this.btnAddAccount.Text = "Thêm tài khoản";
             this.btnAddAccount.Click += new System.EventHandler(this.btnAddAccount_Click);
@@ -260,14 +251,14 @@
             this.colUser,
             this.colPass});
             this.dgvAccCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvAccCustomers.Location = new System.Drawing.Point(4, 220);
-            this.dgvAccCustomers.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvAccCustomers.Location = new System.Drawing.Point(3, 124);
             this.dgvAccCustomers.Name = "dgvAccCustomers";
             this.dgvAccCustomers.ReadOnly = true;
             this.dgvAccCustomers.RowHeadersWidth = 62;
             this.dgvAccCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAccCustomers.Size = new System.Drawing.Size(1366, 638);
+            this.dgvAccCustomers.Size = new System.Drawing.Size(907, 360);
             this.dgvAccCustomers.TabIndex = 2;
+            this.dgvAccCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAccCustomers_CellContentClick);
             // 
             // colID
             // 
@@ -319,12 +310,11 @@
             // 
             // Admin_CustomerAccountManagement
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1374, 863);
+            this.ClientSize = new System.Drawing.Size(913, 487);
             this.Controls.Add(this.tableMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Admin_CustomerAccountManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Admin_CustomerAccountManagement";

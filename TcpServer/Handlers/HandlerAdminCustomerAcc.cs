@@ -101,10 +101,24 @@ namespace TcpServer.Handlers
                         tran.Commit();
                         return new { status = "success", message = "Thêm nhân viên thành công!" };
                     }
-                    catch (Exception ex)
+                    catch (SqlException ex)
                     {
                         tran.Rollback();
-                        return new { status = "error", message = "Lỗi thêm nhân viên: " + ex.Message };
+                        // lỗi trùng khóa
+                        if (ex.Number == 2627 || ex.Number == 2601)
+                        {
+                            return new
+                            {
+                                status = "error",
+                                message = "Mã nhân viên đã trùng với 1 nhân viên khác!"
+                            };
+                        }
+
+                        return new
+                        {
+                            status = "error",
+                            message = "Lỗi SQL: " + ex.Message
+                        };
                     }
                 }
             }
