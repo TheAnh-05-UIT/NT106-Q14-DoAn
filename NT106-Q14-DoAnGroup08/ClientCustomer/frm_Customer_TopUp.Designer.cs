@@ -39,7 +39,8 @@
             this.btn_TopUp_100000 = new System.Windows.Forms.Button();
             this.btn_TopUp_200000 = new System.Windows.Forms.Button();
             this.btn_TopUp_500000 = new System.Windows.Forms.Button();
-            this.btn_TopUp = new System.Windows.Forms.Button();
+            this.btn_Cash = new System.Windows.Forms.Button();
+            this.btn_QR = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_TopUp
@@ -150,21 +151,32 @@
             this.btn_TopUp_500000.UseVisualStyleBackColor = true;
             this.btn_TopUp_500000.Click += new System.EventHandler(this.btn_TopUp_500000_Click);
             // 
-            // btn_TopUp
+            // btn_Cash
             // 
-            this.btn_TopUp.Location = new System.Drawing.Point(298, 608);
-            this.btn_TopUp.Name = "btn_TopUp";
-            this.btn_TopUp.Size = new System.Drawing.Size(125, 62);
-            this.btn_TopUp.TabIndex = 11;
-            this.btn_TopUp.Text = "Nạp";
-            this.btn_TopUp.UseVisualStyleBackColor = true;
+            this.btn_Cash.Location = new System.Drawing.Point(118, 608);
+            this.btn_Cash.Name = "btn_Cash";
+            this.btn_Cash.Size = new System.Drawing.Size(188, 62);
+            this.btn_Cash.TabIndex = 11;
+            this.btn_Cash.Text = "Tiền mặt";
+            this.btn_Cash.UseVisualStyleBackColor = true;
             // 
-            // Customer_TopUp
+            // btn_QR
+            // 
+            this.btn_QR.Location = new System.Drawing.Point(410, 608);
+            this.btn_QR.Name = "btn_QR";
+            this.btn_QR.Size = new System.Drawing.Size(188, 62);
+            this.btn_QR.TabIndex = 12;
+            this.btn_QR.Text = "QR";
+            this.btn_QR.UseVisualStyleBackColor = true;
+            this.btn_QR.Click += new System.EventHandler(this.btn_QR_Click);
+            // 
+            // frm_Customer_TopUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(717, 744);
-            this.Controls.Add(this.btn_TopUp);
+            this.Controls.Add(this.btn_QR);
+            this.Controls.Add(this.btn_Cash);
             this.Controls.Add(this.btn_TopUp_500000);
             this.Controls.Add(this.btn_TopUp_200000);
             this.Controls.Add(this.btn_TopUp_100000);
@@ -176,7 +188,7 @@
             this.Controls.Add(this.txt_TopUp);
             this.Controls.Add(this.lbl_TopUpInput);
             this.Controls.Add(this.lbl_TopUp);
-            this.Name = "Customer_TopUp";
+            this.Name = "frm_Customer_TopUp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer_TopUp";
             this.ResumeLayout(false);
@@ -197,6 +209,7 @@
         private System.Windows.Forms.Button btn_TopUp_100000;
         private System.Windows.Forms.Button btn_TopUp_200000;
         private System.Windows.Forms.Button btn_TopUp_500000;
-        private System.Windows.Forms.Button btn_TopUp;
+        private System.Windows.Forms.Button btn_Cash;
+        private System.Windows.Forms.Button btn_QR;
     }
 }
