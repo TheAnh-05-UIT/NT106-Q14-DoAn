@@ -69,7 +69,11 @@ CREATE TABLE Computers (
     IpAddress NVARCHAR(50),
     PricePerHour DECIMAL(10,2)
 );
-
+--EXEC sp_helpconstraint 'Computers';
+--ALTER TABLE Computers DROP CONSTRAINT CK__Computers__Statu__1293BD5E;
+--ALTER TABLE Computers ADD CONSTRAINT CK_status CHECK (Status in ('On', 'Off'));
+--ALTER TABLE Computers DROP CONSTRAINT DF__Computers__Statu__1387E197;
+--ALTER TABLE Computers ADD CONSTRAINT DF_status DEFAULT 'Off' FOR Status;
 -- Bảng Sessions (Phiên chơi)
 
 CREATE TABLE Sessions (

@@ -41,5 +41,13 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                 LogoutClicked?.Invoke(this, EventArgs.Empty);
             }
         }
+        public void changeLblTitle(string title)
+        {
+            lblTitle.Text = title;
+        }
+        private void lblTitle_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
