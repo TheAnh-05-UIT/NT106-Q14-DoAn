@@ -138,5 +138,21 @@ namespace TcpServer
                 return cmd.ExecuteNonQuery();
             }
         }
+        public object ExecuteScalar(string query, params SqlParameter[] prms)
+        {
+            object rs = null;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                if(prms != null)
+                {
+                    cmd.Parameters.AddRange(prms);
+                }
+                conn.Open();
+                rs = cmd.ExecuteScalar();
+                conn.Close();
+            }
+            return rs;
+        }
     }
 }

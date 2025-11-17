@@ -27,3 +27,6 @@ packages/  # Legacy NuGet package folder
 Debug/
 Release/
 publish/
+
+bin/
+obj/

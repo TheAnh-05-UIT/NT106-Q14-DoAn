@@ -21,7 +21,10 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
 
         private void Admin_Load(object sender, EventArgs e)
         {
-            OpenChildControl(new uc_Staff_Account());
+            uc_Staff_Account f = new uc_Staff_Account();
+            string s = "Thông tin tài khoản quản lý";
+            f.changeLblTitle(s);
+            OpenChildControl(f);
         }
         //hàm thêm form vào
         private void openChildForm(Form childForm)
@@ -79,7 +82,11 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
 
         private void btnAccount_Click(object sender, EventArgs e)
         {
-            OpenChildControl(new uc_Staff_Account());
+            uc_Staff_Account f = new uc_Staff_Account();
+            string s = "Thông tin tài khoản quản lý";
+            f.changeLblTitle(s);
+            OpenChildControl(f);
+
         }
     }
 }
