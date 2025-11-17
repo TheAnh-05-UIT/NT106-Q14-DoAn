@@ -15,12 +15,14 @@ namespace TcpServer.ServerHandler
 
         private readonly HandlerLogin handlerLogin;
         private readonly HandlerAdminCustomerAcc handlerAdminCustomerAcc;
+        private readonly HandlerFood handlerFood;
 
         public ServerHandler(string connStr)
         {
             db = new DatabaseHelper(connStr);
             handlerLogin = new HandlerLogin(db);
             handlerAdminCustomerAcc = new HandlerAdminCustomerAcc(db);
+            handlerFood = new HandlerFood(db);
         }
 
         public void Start(int port)
@@ -83,6 +85,24 @@ namespace TcpServer.ServerHandler
                         // xóa nhân viên
                         case "delete_employee":
                             response = handlerAdminCustomerAcc.HandleDeleteEmployee(obj.data);
+                            break;
+                        case "get_all_categories":
+                            response = handlerFood.HandleGetAllCategories();
+                            break;
+                        case "get_all_food":
+                            response = handlerFood.HandleGetAllFood();
+                            break;
+                        case "create_invoice":
+                            response = handlerFood.HandleCreateInvoice(obj.data);
+                            break;
+                        case "create_invoice_detail":
+                            response = handlerFood.HandleCreateInvoiceDetail(obj.data);
+                            break;
+                        case "get_max_invoice_id":
+                            response = handlerFood.HandleGetMaxInvoiceId();
+                            break;
+                        case "get_max_invoice_detail_id":
+                            response = handlerFood.HandleGetMaxInvoiceDetailId();
                             break;
                         // ngoại lệ
                         default:

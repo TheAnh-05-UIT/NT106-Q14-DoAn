@@ -1,21 +1,18 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using NT106_Q14_DoAnGroup08.Uc_Staff;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using NT106_Q14_DoAnGroup08.DAO;
-using NT106_Q14_DoAnGroup08.Uc_Staff;
-using QuanLyQuanNet.DAO;
 
 namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {
     public partial class frm_Customer_FoodMenu : CustomForm
     {
+        private readonly ApiClient api = new ApiClient("127.0.0.1", 8080);
         private Dictionary<string, string> currentNotes = new Dictionary<string, string>();
 
         public frm_Customer_FoodMenu()
@@ -23,82 +20,124 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             InitializeComponent();
         }
 
-        private void btn_Exit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void frm_Customer_FoodMenu_Load(object sender, EventArgs e)
         {
             guna2DataGridView1.BorderStyle = BorderStyle.FixedSingle;
             AddCategory();
-
-            ProductPanel.Controls.Clear();
             LoadProduct();
         }
-
         public void AddCategory()
         {
-            string query = "Select * from Category";
-            DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+            var res = api.Send(new { action = "get_all_categories" });
+
+            if (res == null || res.status != "success")
+            {
+                MessageBox.Show("Không tải được Category!");
+                return;
+            }
+
+            JArray arr = (JArray)res.data;
             CategoryPanel.Controls.Clear();
 
-            if (dt.Rows.Count > 0)
+            foreach (var row in arr)
             {
-                foreach (DataRow row in dt.Rows)
-                {
-                    Guna.UI2.WinForms.Guna2Button b = new Guna.UI2.WinForms.Guna2Button();
-                    b.FillColor = Color.FromArgb(0, 32, 63);
-                    b.Size = new Size(120, 50);
-                    b.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-                    b.Text = row["CategoryName"].ToString();
-
-                    b.Click += new EventHandler(b_Click);
-
-                    CategoryPanel.Controls.Add(b);
-                }
+                var btn = new Guna.UI2.WinForms.Guna2Button();
+                btn.FillColor = Color.FromArgb(0, 32, 63);
+                btn.Size = new Size(120, 50);
+                btn.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+                btn.Text = row["CategoryName"].ToString();
+                btn.Click += b_Click;
+                CategoryPanel.Controls.Add(btn);
             }
         }
 
         private void b_Click(object sender, EventArgs e)
         {
-            Guna.UI2.WinForms.Guna2Button b = (Guna.UI2.WinForms.Guna2Button)sender;
-            foreach (var item in ProductPanel.Controls)
+            var btn = sender as Guna.UI2.WinForms.Guna2Button;
+
+            foreach (uc_Product pro in ProductPanel.Controls)
             {
-                var pro = (uc_Product)item;
-                pro.Visible = pro.FoodCategory.ToLower().Contains(b.Text.Trim().ToLower());
+                pro.Visible = pro.FoodCategory
+                    .ToLower()
+                    .Contains(btn.Text.Trim().ToLower());
             }
         }
+        private void LoadProduct()
+        {
+            var res = api.Send(new { action = "get_all_food" });
+            if (res == null || res.status != "success")
+            {
+                MessageBox.Show("Không tải được danh sách món ăn!");
+                return;
+            }
+
+            ProductPanel.Controls.Clear();
+            JArray arr = (JArray)res.data;
+
+            foreach (var item in arr)
+            {
+                string imgPath = item["Image"]?.ToString();
+                Image foodImg = null;
+
+                try
+                {
+                    if (!string.IsNullOrEmpty(imgPath))
+                    {
+                        string fullImgPath = Path.Combine(Application.StartupPath, imgPath);
+                        if (File.Exists(fullImgPath))
+                        {
+                            using (var stream = new MemoryStream(File.ReadAllBytes(fullImgPath)))
+                            {
+                                foodImg = Image.FromStream(stream);
+                            }
+                        }
+                    }
+
+                    if (foodImg == null)
+                        foodImg = Properties.Resources.defaultImage;
+                }
+                catch
+                {
+                    foodImg = Properties.Resources.defaultImage;
+                }
+
+                AddItems(
+                    item["FoodId"].ToString(),
+                    item["FoodName"].ToString(),
+                    item["CategoryName"].ToString(),
+                    item["Price"].ToString(),
+                    foodImg
+                );
+            }
+        }
+
         private void AddItems(string id, string name, string cat, string price, Image image)
         {
-            var w = new Uc_Staff.uc_Product
+            var pro = new uc_Product
             {
                 FoodName = name,
                 FoodPrice = price,
                 FoodCategory = cat,
                 FoodImage = image,
-                Id = Convert.ToInt32(id)
+                Id = int.Parse(id)
             };
 
-            ProductPanel.Controls.Add(w);
+            ProductPanel.Controls.Add(pro);
 
-            w.onselect += (ss, ee) =>
+            pro.onselect += (ss, ee) =>
             {
-                var wdg = (Uc_Staff.uc_Product)ss;
-                int foodId = wdg.Id;
-                double itemPrice = double.Parse(wdg.FoodPrice);
+                int foodId = pro.Id;
+                double itemPrice = double.Parse(price);
                 bool found = false;
 
-                foreach (DataGridViewRow item in guna2DataGridView1.Rows)
+                foreach (DataGridViewRow row in guna2DataGridView1.Rows)
                 {
-                    if (item.Cells["dgvid"].Value != null && Convert.ToInt32(item.Cells["dgvid"].Value) == foodId)
+                    if (row.Cells["dgvid"].Value != null &&
+                        Convert.ToInt32(row.Cells["dgvid"].Value) == foodId)
                     {
-                        int currentQty = Convert.ToInt32(item.Cells["dgvQty"].Value);
-                        currentQty++;
-                        item.Cells["dgvQty"].Value = currentQty;
-
-                        item.Cells["dgvAmount"].Value = currentQty * itemPrice;
-
+                        int qty = Convert.ToInt32(row.Cells["dgvQty"].Value) + 1;
+                        row.Cells["dgvQty"].Value = qty;
+                        row.Cells["dgvAmount"].Value = qty * itemPrice;
                         found = true;
                         break;
                     }
@@ -106,204 +145,153 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
                 if (!found)
                 {
-                    guna2DataGridView1.Rows.Add(new object[] { 0, foodId, wdg.FoodName, 1, itemPrice, itemPrice });
+                    guna2DataGridView1.Rows.Add(new object[]
+                    {
+                        0, foodId, name, 1, itemPrice, itemPrice
+                    });
                 }
+
                 GetTotal();
             };
-        }
-
-        private void LoadProduct()
-        {
-
-            string query = "SELECT f.*, c.CategoryName FROM FoodAndDrink f INNER JOIN Category c ON f.CategoryId = c.CategoryId";
-            DataTable dt = DataProvider.Instance.ExecuteQuery(query);
-
-            foreach (DataRow item in dt.Rows)
-            {
-                Image foodImage = null;
-
-                string imagePath = item["Image"].ToString();
-
-                string fullPath = string.Empty;
-
-                if (string.IsNullOrEmpty(imagePath))
-                {
-                    foodImage = Properties.Resources.defaultImage;
-                }
-                else
-                {
-                    fullPath = Path.Combine(Application.StartupPath, imagePath);
-
-                    if (File.Exists(fullPath))
-                    {
-                        try
-                        {
-                            using (var stream = new MemoryStream(File.ReadAllBytes(fullPath)))
-                            {
-                                Image tempImage = Image.FromStream(stream);
-                                foodImage = new Bitmap(tempImage);
-                            }
-                        }
-                        catch
-                        {
-                            foodImage = Properties.Resources.defaultImage;
-                        }
-                    }
-                    else
-                    {
-                        foodImage = Properties.Resources.defaultImage; 
-                    }
-
-                    AddItems(
-                    item["FoodId"].ToString(),
-                    item["FoodName"].ToString(),
-                    item["CategoryName"].ToString(),
-                    item["Price"].ToString(),
-                    foodImage
-                    );
-                }
-            }
         }
 
         private void txt_Search_TextChanged(object sender, EventArgs e)
         {
             string keyword = txt_Search.Text.Trim().ToLower();
 
-            foreach (Control ctrl in ProductPanel.Controls)
+            foreach (uc_Product pro in ProductPanel.Controls)
             {
-                if (ctrl is uc_Product pro)
-                {
-                    string name = pro.FoodName?.ToLower() ?? string.Empty;
-                    bool match = string.IsNullOrEmpty(keyword) || name.Contains(keyword);
-
-                    pro.Visible = match;
-                }
+                pro.Visible = string.IsNullOrEmpty(keyword)
+                    || pro.FoodName.ToLower().Contains(keyword);
             }
         }
-
         private void GetTotal()
         {
             double total = 0;
-            lbl_Total.Text = "";
-            foreach(DataGridViewRow item in guna2DataGridView1.Rows)
+
+            foreach (DataGridViewRow row in guna2DataGridView1.Rows)
             {
-                var value = item.Cells["dgvAmount"].Value;
-                if (value != null && double.TryParse(value.ToString(), out double amount))
-                {
-                    total += amount;
-                }
+                if (row.Cells["dgvAmount"].Value != null &&
+                    double.TryParse(row.Cells["dgvAmount"].Value.ToString(), out double t))
+                    total += t;
             }
+
             lbl_Total.Text = total.ToString("N2");
+        }
+        private void btn_Note_Click(object sender, EventArgs e)
+        {
+            if (guna2DataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn món cần ghi chú.");
+                return;
+            }
+
+            string foodName = guna2DataGridView1.SelectedRows[0].Cells["dgvName"].Value.ToString();
+
+            frm_Customer_Note note = new frm_Customer_Note(foodName);
+            if (note.ShowDialog() == DialogResult.OK)
+                currentNotes[foodName] = note.NoteText;
+        }
+
+        private void btn_Order_Click(object sender, EventArgs e)
+        {
+            if (guna2DataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("Chưa có món nào để đặt!");
+                return;
+            }
+
+            
+            var maxInv = api.Send(new { action = "get_max_invoice_id" });
+            string invoiceId;
+
+            if (maxInv?.maxId == null || maxInv.maxId.ToString() == "")
+                invoiceId = "HD001";
+            else
+            {
+                int num = int.Parse(maxInv.maxId.ToString().Substring(2)) + 1;
+                invoiceId = "HD" + num.ToString("D3");
+            }
+
+            string customerId = "KH001";
+
+            decimal totalAmount = 0;
+            foreach (DataGridViewRow row in guna2DataGridView1.Rows)
+            {
+                if (row.Cells["dgvAmount"].Value != null)
+                    totalAmount += Convert.ToDecimal(row.Cells["dgvAmount"].Value);
+            }
+
+            
+            var invoiceRes = api.Send(new
+            {
+                action = "create_invoice",
+                data = new
+                {
+                    invoiceId,
+                    customerId,
+                    totalAmount
+                }
+            });
+
+            if (invoiceRes == null || invoiceRes.status != "success")
+            {
+                MessageBox.Show("Tạo hóa đơn thất bại!");
+                return;
+            }
+
+           
+            foreach (DataGridViewRow row in guna2DataGridView1.Rows)
+            {
+                string foodId = row.Cells["dgvid"].Value.ToString();
+                int qty = Convert.ToInt32(row.Cells["dgvQty"].Value);
+                decimal price = Convert.ToDecimal(row.Cells["dgvAmount"].Value);
+                string foodName = row.Cells["dgvName"].Value.ToString();
+                string note = currentNotes.ContainsKey(foodName) ? currentNotes[foodName] : "";
+
+                var maxDetail = api.Send(new { action = "get_max_invoice_detail_id" });
+
+                string detailId;
+                if (maxDetail?.maxId == null || maxDetail.maxId == "")
+                    detailId = "CTHD001";
+                else
+                {
+                    int num = int.Parse(maxDetail.maxId.ToString().Substring(4)) + 1;
+                    detailId = "CTHD" + num.ToString("D3");
+                }
+
+                api.Send(new
+                {
+                    action = "create_invoice_detail",
+                    data = new
+                    {
+                        detailId,
+                        invoiceId,
+                        foodId,
+                        quantity = qty,
+                        price,
+                        note
+                    }
+                });
+            }
+
+            MessageBox.Show("Đặt món thành công!");
+
+            guna2DataGridView1.Rows.Clear();
+            lbl_Total.Text = "";
+            currentNotes.Clear();
         }
 
         private void btn_New_Click(object sender, EventArgs e)
         {
             guna2DataGridView1.Rows.Clear();
             lbl_Total.Text = "";
-        }
-
-        private void btn_Note_Click(object sender, EventArgs e)
-        {
-            if (guna2DataGridView1.SelectedRows.Count > 0)
-            {
-                string foodName = guna2DataGridView1.SelectedRows[0].Cells["dgvName"].Value.ToString();
-
-                frm_Customer_Note note = new frm_Customer_Note(foodName);
-
-
-                if (note.ShowDialog() == DialogResult.OK)
-                {
-                    string note1 = note.NoteText;
-
-                    currentNotes[foodName] = note1;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn món cần ghi chú trước.");
-            }
-        }
-
-        private void btn_Order_Click(object sender, EventArgs e)
-        {
-            if (guna2DataGridView1.Rows.Count <= 0)
-            {
-                MessageBox.Show("Chưa có món nào để đặt.");
-                return;
-            }
-            string queryMaxId = "SELECT MAX(InvoiceId) FROM Invoices WHERE InvoiceId LIKE 'HD%'";
-            object result = DataProvider.Instance.ExecuteScalar(queryMaxId);
-
-            string invoiceId;
-            if (result == DBNull.Value || result == null)
-                invoiceId = "HD001";
-            else
-            {
-                string maxId = result.ToString();
-                int num = int.Parse(maxId.Substring(2)) + 1;
-                invoiceId = "HD" + num.ToString("D3");
-            }
-            string customerId = "KH001";
-            decimal totalAmount = 0;
-
-            foreach (DataGridViewRow row in guna2DataGridView1.Rows) 
-            {
-                if (row.Cells["dgvAmount"].Value != null) 
-                {
-                    totalAmount += Convert.ToDecimal(row.Cells["dgvAmount"].Value);
-                }
-            }
-            string createInvoiceQuery = $@"
-                INSERT INTO Invoices 
-                (InvoiceId, CustomerId, TotalAmount) 
-                VALUES 
-                (N'{invoiceId}', N'{customerId}', {totalAmount})";
-
-            int resultInvoice = DataProvider.Instance.ExecuteNonQuery(createInvoiceQuery);
-
-            if (resultInvoice <= 0)
-            {
-                MessageBox.Show("Tạo hóa đơn thất bại!");
-                return;
-            }
-
-            foreach (DataGridViewRow row in guna2DataGridView1.Rows)
-            {
-                if (row.Cells["dgvid"].Value == null) continue;
-
-                string foodId = row.Cells["dgvid"].Value.ToString();
-                int quantity = Convert.ToInt32(row.Cells["dgvQty"].Value);
-                decimal price = Convert.ToDecimal(row.Cells["dgvAmount"].Value); // tổng tiền món
-                string foodName = row.Cells["dgvName"].Value.ToString();
-                string note = currentNotes.ContainsKey(foodName) ? currentNotes[foodName] : null;
-
-                string queryMaxDetailId = "SELECT MAX(InvoiceDetailId) FROM InvoiceDetails WHERE InvoiceDetailId LIKE 'CTHD%'";
-                object resultDetail = DataProvider.Instance.ExecuteScalar(queryMaxDetailId);
-
-                string detailId;
-                if (resultDetail == DBNull.Value || resultDetail == null)
-                    detailId = "CTHD001";
-                else
-                {
-                    string maxId = resultDetail.ToString(); // VD: "CTHD005"
-                    int num = int.Parse(maxId.Substring(4)) + 1; // bỏ "CTHD"
-                    detailId = "CTHD" + num.ToString("D3");       // luôn 3 chữ số
-                }
-
-                string insertDetailQuery = $@"
-                    INSERT INTO InvoiceDetails
-                    (InvoiceDetailId, InvoiceId, FoodId, Quantity, Price, Status, Note)
-                    VALUES
-                    (N'{detailId}', N'{invoiceId}', N'{foodId}', {quantity}, {price}, 'PENDING', N'{note}')";
-
-                DataProvider.Instance.ExecuteNonQuery(insertDetailQuery);
-            }
-
-            MessageBox.Show("Đặt món thành công!");
-          
-            guna2DataGridView1.Rows.Clear();
-            lbl_Total.Text = "";
             currentNotes.Clear();
+        }
+
+        private void btn_Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
