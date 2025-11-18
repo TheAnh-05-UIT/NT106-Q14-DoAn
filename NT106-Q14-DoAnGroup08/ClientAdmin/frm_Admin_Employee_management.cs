@@ -20,11 +20,9 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
 {
     public partial class frm_Admin_Employee_management : Form
     {
-        //private string connnectionString;
         public frm_Admin_Employee_management()
         {
             InitializeComponent();
-            //connnectionString = ConfigurationManager.ConnectionStrings["MyConn"].ConnectionString;
         }
         private void frm_Admin_Employee_management_Load(object sender, EventArgs e)
         {
@@ -169,5 +167,10 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                 txtLuongThang.Text = row.Cells["Lương tháng"].Value.ToString();
             }
         }
+
+        //public static implicit operator frm_Admin_Employee_management(Admin_CustomerAccountManagement v)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
