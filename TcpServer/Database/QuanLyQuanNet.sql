@@ -134,7 +134,8 @@ CREATE TABLE TopUpTransactions (
     Amount DECIMAL(12,2) NOT NULL,
     [Date] DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId),
-    FOREIGN KEY (EmployeeId) REFERENCES Employees(EmployeeId)
+    -- FOREIGN KEY (EmployeeId) REFERENCES Employees(EmployeeId),
+    FOREIGN KEY (EmployeeId) REFERENCES Users(UserId)
 );
 GO
 
