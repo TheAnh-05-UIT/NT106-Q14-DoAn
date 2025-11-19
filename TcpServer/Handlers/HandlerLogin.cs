@@ -20,7 +20,7 @@ namespace TcpServer.Handlers
                 string username = (string)data.username;
                 string password = (string)data.password;
 
-                string query = "SELECT [Role] FROM Users WHERE Username=@user AND [Password]=@pass AND Active=1";
+                string query = "SELECT UserId, FullName, [Role] FROM Users WHERE Username=@user AND [Password]=@pass AND Active=1";
                 SqlParameter[] prms = {
                     new SqlParameter("@user", username),
                     new SqlParameter("@pass", password)
@@ -30,7 +30,10 @@ namespace TcpServer.Handlers
                 if (dt.Rows.Count > 0)
                 {
                     string role = dt.Rows[0]["Role"].ToString();
-                    return new { status = "success", role };
+                    string userId = dt.Rows[0]["UserId"].ToString();
+                    string fullName = dt.Rows[0]["FullName"].ToString();
+
+                    return new { status = "success", role = role, userId = userId, fullName = fullName };
                 }
                 else
                 {

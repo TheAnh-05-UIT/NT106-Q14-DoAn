@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuanLyQuanNet.DTOs
 {
-    class User
+    public class User
     {
         private string userId;
         private string username;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using NT106_Q14_DoAnGroup08.ConnectionServser;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,92 +16,95 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {
     public partial class frm_AddCustomer : Form
     {
+        private bool isEditMode = false;
         public frm_AddCustomer()
         {
             InitializeComponent();
+            isEditMode = false;
+            this.Text = "Thêm khách hàng mới";
         }
-        public string CustomerName { get; private set; }
-        public string Balance { get; private set; }
-        public string Status { get; private set; }
-        public string userName { get; private set; }
-        public string userPassword { get; private set; }
+        public frm_AddCustomer(dynamic data) : this()
+        {
+            isEditMode = true;
+            this.Text = "Cập nhật thông tin khách hàng";
+
+            // lấy dữ liệu cũ lên form
+            txtHoten.Text = data.FullName;
+            txtSodu.Text = data.Balance.ToString("N0").Replace(".", "");
+            txtTenDangNhap.Text = data.Username;
+            txtMatKhau.Text = data.Password;
+
+            cbbTrangthai.SelectedItem = data.Status;
+
+            // Khi sửa, không cho đổi Tên đăng nhập (khóa để tìm trong DB)
+            txtTenDangNhap.Enabled = false;
+        }
         private void frm_AddCustomer_Load(object sender, EventArgs e)
         {
-
-        }
-        public void LoadCustomerData(string name, string balance, string status, string username, string userpassword)
-        {
-            txtHoten.Text = name;
-            txtSodu.Text = balance;
-            txtTenDangNhap.Text = username;
-            txtMatKhau.Text = userpassword;
-            cbbTrangthai.Text = status;
-        }
-
-        private void btnHuy_Click(object sender, EventArgs e)
-        {
-
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-
+            if (!isEditMode)
+            {
+                cbbTrangthai.SelectedIndex = 0;
+                txtSodu.Text = "0";
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            string hoTen = txtHoten.Text.Trim();
+            string tenDangNhap = txtTenDangNhap.Text.Trim();
+            string matKhau = txtMatKhau.Text.Trim();
+            string trangThai = cbbTrangthai.SelectedItem.ToString();
 
-
-            if (string.IsNullOrWhiteSpace(txtHoten.Text) ||
-                    string.IsNullOrWhiteSpace(txtTenDangNhap.Text) ||
-                    string.IsNullOrWhiteSpace(txtMatKhau.Text))
+            if (string.IsNullOrWhiteSpace(hoTen) ||
+                string.IsNullOrWhiteSpace(tenDangNhap) ||
+                string.IsNullOrWhiteSpace(matKhau))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                MessageBox.Show("Vui lòng nhập đầy đủ Họ tên, Tên đăng nhập và Mật khẩu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            CustomerName = txtHoten.Text.Trim();
-
-            if (!decimal.TryParse(txtSodu.Text.Trim(), out var balanceValue))
+            if (!decimal.TryParse(txtSodu.Text, out decimal soDu) || soDu < 0)
             {
-                MessageBox.Show("Số dư không hợp lệ!");
+                MessageBox.Show("Số dư phải là một số không âm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            txtSodu.Text = balanceValue.ToString();
 
-            Status = cbbTrangthai.SelectedItem?.ToString() ?? "Inactive";
-            userName = txtTenDangNhap.Text.Trim();
-            userPassword = txtMatKhau.Text.Trim();
+            // Tạo đối tượng data để gửi đi
+            var customerData = new
+            {
+                fullName = txtHoten.Text.Trim(),
+                balance = decimal.Parse(txtSodu.Text),
+                status = cbbTrangthai.Text,
+                username = txtTenDangNhap.Text.Trim(),
+                password = txtMatKhau.Text.Trim()
+            };
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            // TỰ ĐỘNG CHỌN ACTION
+            string actionName = isEditMode ? "UPDATE_CUSTOMER" : "ADD_CUSTOMER";
 
-            //CustomerName = txtHoten.Text;
-            //Balance = txtSodu.Text;
-            //Status = cbbTrangthai.Text;
-            //userName = txtTenDangNhap.Text;
-            //userPassword = txtMatKhau.Text;
-            //this.DialogResult = DialogResult.OK;
-            //this.Close();
+            var request = new
+            {
+                action = actionName,
+                data = customerData
+            };
+
+            string jsonRequest = JsonConvert.SerializeObject(request);
+            string jsonResponse = ServerConnection.SendRequest(jsonRequest);
+            dynamic response = JsonConvert.DeserializeObject(jsonResponse);
+
+            MessageBox.Show(response.message.ToString());
+
+            if (response.status == "success")
+            {
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
 
         private void btnCanCel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
-        }
-
-        private void cbbTrangthai_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtSodu_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtHoten_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

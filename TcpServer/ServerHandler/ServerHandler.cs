@@ -15,6 +15,7 @@ namespace TcpServer.ServerHandler
 
         private readonly HandlerLogin handlerLogin;
         private readonly HandlerAdminCustomerAcc handlerAdminCustomerAcc;
+        private readonly HandlerAdminCustomer handlerCustomerHandler;
         private readonly HandlerFood handlerFood;
 
         public ServerHandler(string connStr)
@@ -22,6 +23,7 @@ namespace TcpServer.ServerHandler
             db = new DatabaseHelper(connStr);
             handlerLogin = new HandlerLogin(db);
             handlerAdminCustomerAcc = new HandlerAdminCustomerAcc(db);
+            handlerCustomerHandler = new HandlerAdminCustomer(db);
             handlerFood = new HandlerFood(db);
         }
 
@@ -85,6 +87,24 @@ namespace TcpServer.ServerHandler
                         // xóa nhân viên
                         case "delete_employee":
                             response = handlerAdminCustomerAcc.HandleDeleteEmployee(obj.data);
+                            break;
+                        case "GET_ALL_CUSTOMERS":
+                            response = handlerCustomerHandler.HandleGetAllCustomers();
+                            break;
+                        case "ADD_CUSTOMER":
+                            response = handlerCustomerHandler.HandleAddCustomer(obj.data);
+                            break;
+                        case "UPDATE_CUSTOMER":
+                            response = handlerCustomerHandler.HandleUpdateCustomer(obj.data);
+                            break;
+                        case "DELETE_CUSTOMER":
+                            response = handlerCustomerHandler.HandleDeleteCustomer(obj.data);
+                            break;
+                        case "DEPOSIT_FUNDS":
+                            response = handlerCustomerHandler.HandleDeposit(obj.data);
+                            break;
+                        case "SEARCH_CUSTOMER":
+                            response = handlerCustomerHandler.HandleSearchCustomer(obj.data);
                             break;
                         case "get_all_categories":
                             response = handlerFood.HandleGetAllCategories();

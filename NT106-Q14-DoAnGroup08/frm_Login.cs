@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Azure;
+using Newtonsoft.Json;
 using NT106_Q14_DoAnGroup08.ClientAdmin;
 using NT106_Q14_DoAnGroup08.ConnectionServser;
 using QuanLyQuanNet.DAO;
@@ -56,14 +57,15 @@ namespace NT106_Q14_DoAnGroup08
 
                     if (obj.status == "success")
                     {
+                        DTO.UserSession.UserId = obj.userId;
+                        DTO.UserSession.Role = obj.role;
+                        DTO.UserSession.FullName = obj.fullName;
                         string role = obj.role;
                         MessageBox.Show($"Đăng nhập thành công với quyền: {role}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         // Mở form theo role
                         if (role == "ADMIN")
                         {
-                            ClientAdmin.frm_Admin_Employee_management Admin_Employee = new ClientAdmin.frm_Admin_Employee_management();
-                            Admin_Employee.Show();
-                            //this.Hide();
+                            new ClientAdmin.Admin().Show();
                         }   
                         else if (role == "EMPLOYEE")
                             new ClientStaff.frm_Staff().Show();
@@ -97,6 +99,8 @@ namespace NT106_Q14_DoAnGroup08
             public string status { get; set; }
             public string role { get; set; }
             public string message { get; set; }
+            public string userId { get; set; }
+            public string fullName { get; set; }
         }
 
         private void frm_Login_Load(object sender, EventArgs e)
