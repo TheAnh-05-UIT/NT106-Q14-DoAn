@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
 
 namespace TcpServer.Handlers
 {
@@ -78,5 +81,110 @@ namespace TcpServer.Handlers
             object result = db.ExecuteScalar("SELECT MAX(InvoiceDetailId) FROM InvoiceDetails WHERE InvoiceDetailId LIKE 'CTHD%'");
             return new { status = "success", maxId = result?.ToString() };
         }
+
+        public object HandleLoadInvoiceInSession()
+        {
+            string machineId = Environment.MachineName;
+
+            string sessionQuery = "SELECT TOP 1 SessionId FROM Sessions WHERE MachineId = @MachineId AND Status='Active'";
+            DataTable sessionDt = db.ExecuteQuery(sessionQuery, new SqlParameter("@MachineId", machineId));
+
+            if (sessionDt.Rows.Count == 0)
+            {
+                return new { status = "fail", message = "No active session for this machine." };
+            }
+
+            string sessionId = sessionDt.Rows[0]["SessionId"].ToString();
+
+
+            string query = "SELECT InvoiceId, CreatedAt, TotalAmount FROM Invoices WHERE SessionId=@SessionId ORDER BY CreatedAt DESC";
+
+            DataTable dt = db.ExecuteQuery(query, new SqlParameter("@SessionId", sessionId));
+
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                return new { status = "fail", message = "No invoices found." };
+            }
+
+            // convert datatable to list of objects
+            var invoices = dt.AsEnumerable().Select(r => new
+            {
+                InvoiceId = r["InvoiceId"].ToString(),
+                CreatedAt = Convert.ToDateTime(r["CreatedAt"]).ToString("yyyy-MM-dd HH:mm"),
+                TotalAmount = Convert.ToDecimal(r["TotalAmount"])
+            }).ToList();
+
+            return new
+            {
+                status = "success",
+                data = invoices
+            };
+        }
+        public object HandleLoadInvoiceDetail()
+        {
+            // 1. Detect current machine
+            string machineId = Environment.MachineName; // or MAC address for uniqueness
+
+            // 2. Get active session for this machine
+            string sessionQuery = @"
+        SELECT TOP 1 SessionId 
+        FROM Sessions 
+        WHERE MachineId = @MachineId AND Status = 'Active'
+        ORDER BY StartTime DESC
+    ";
+            DataTable sessionDt = db.ExecuteQuery(sessionQuery, new SqlParameter("@MachineId", machineId));
+
+            if (sessionDt == null || sessionDt.Rows.Count == 0)
+            {
+                return new { status = "fail", message = "No active session for this machine." };
+            }
+
+            string sessionId = sessionDt.Rows[0]["SessionId"].ToString();
+
+            // 3. Get invoice for the session
+            string invoiceQuery = @"
+        SELECT TOP 1 InvoiceId 
+        FROM Invoices 
+        WHERE SessionId = @SessionId 
+        ORDER BY CreatedAt DESC
+    ";
+            DataTable invoiceDt = db.ExecuteQuery(invoiceQuery, new SqlParameter("@SessionId", sessionId));
+
+            if (invoiceDt == null || invoiceDt.Rows.Count == 0)
+            {
+                return new { status = "fail", message = "No invoice found for this session." };
+            }
+
+            string invoiceId = invoiceDt.Rows[0]["InvoiceId"].ToString();
+
+            // 4. Get invoice details
+            string detailsQuery = @"
+        SELECT f.FoodName, id.Quantity, id.Price, (id.Quantity * id.Price) AS Total
+        FROM InvoiceDetails id
+        INNER JOIN Food f ON id.FoodId = f.FoodId
+        WHERE id.InvoiceId = @InvoiceId
+    ";
+            DataTable detailsDt = db.ExecuteQuery(detailsQuery, new SqlParameter("@InvoiceId", invoiceId));
+
+            if (detailsDt == null || detailsDt.Rows.Count == 0)
+            {
+                return new { status = "fail", message = "No details found for this invoice." };
+            }
+
+            var details = detailsDt.AsEnumerable().Select(r => new
+            {
+                FoodName = r["FoodName"].ToString(),
+                Quantity = Convert.ToInt32(r["Quantity"]),
+                Price = Convert.ToDecimal(r["Price"]).ToString("F2"),
+                Total = Convert.ToDecimal(r["Total"]).ToString("F2")
+            }).ToList();
+
+            return new
+            {
+                status = "success",
+                data = details
+            };
+        }
+
     }
 }

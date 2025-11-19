@@ -293,5 +293,11 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         {
             this.Close();
         }
+
+        private void btn_Bill_Click(object sender, EventArgs e)
+        {
+            frm_Customer_BillList f = new frm_Customer_BillList();
+            f.ShowDialog();
+        }
     }
 }

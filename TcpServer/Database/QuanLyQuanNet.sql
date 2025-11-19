@@ -116,7 +116,7 @@ CREATE TABLE InvoiceDetails (
     Quantity INT DEFAULT 1,
     Price DECIMAL(10,2) NOT NULL,
     Status NVARCHAR(20)
-        CHECK (Status IN ('PENDING', 'IN_PROGRESS', 'COMPLETED', 'CANCELLED')) 
+        CHECK (Status IN ('PENDING', 'COMPLETED', 'CANCELLED')) 
         DEFAULT 'PENDING',
     Note NVARCHAR(255) NULL,
     FOREIGN KEY (InvoiceId) REFERENCES Invoices(InvoiceId),

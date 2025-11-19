@@ -207,6 +207,18 @@
     <Compile Include="ClientAdmin\frm_Revenue.Designer.cs">
       <DependentUpon>frm_Revenue.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClientCustomer\frm_Customer_BillDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientCustomer\frm_Customer_BillDetail.Designer.cs">
+      <DependentUpon>frm_Customer_BillDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientCustomer\frm_Customer_BillList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientCustomer\frm_Customer_BillList.Designer.cs">
+      <DependentUpon>frm_Customer_BillList.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAO\ApiClient.cs" />
     <Compile Include="DAO\ApiRequest.cs" />
     <Compile Include="ClientCustomer\frm_Customer_Note.cs">
@@ -230,10 +242,10 @@
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="ConnectionServer\ServerConnection.cs" />
     <Compile Include="DAO\UserDAO.cs" />
-    <Compile Include="ClientCustomer\frm_AddCustomer.cs">
+    <Compile Include="ClientStaff\frm_AddCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClientCustomer\frm_AddCustomer.Designer.cs">
+    <Compile Include="ClientStaff\frm_AddCustomer.Designer.cs">
       <DependentUpon>frm_AddCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="ClientAdmin\frm_Admin_Employee_management.cs">
@@ -266,10 +278,10 @@
     <Compile Include="ClientCustomer\frm_Customer_TopUp.Designer.cs">
       <DependentUpon>frm_Customer_TopUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="ClientCustomer\frm_Deposit.cs">
+    <Compile Include="ClientStaff\frm_Deposit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClientCustomer\frm_Deposit.Designer.cs">
+    <Compile Include="ClientStaff\frm_Deposit.Designer.cs">
       <DependentUpon>frm_Deposit.cs</DependentUpon>
     </Compile>
     <Compile Include="DTO\Admin.cs" />
@@ -306,28 +318,28 @@
       <DependentUpon>frm_Staff.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\SessionManager.cs" />
-    <Compile Include="Uc_Staff\uc_Staff_Account.cs">
+    <Compile Include="User Control\uc_Staff_Account.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Uc_Staff\uc_Staff_Account.Designer.cs">
+    <Compile Include="User Control\uc_Staff_Account.Designer.cs">
       <DependentUpon>uc_Staff_Account.cs</DependentUpon>
     </Compile>
-    <Compile Include="Uc_Staff\uc_Staff_Bills.cs">
+    <Compile Include="User Control\uc_Staff_Bills.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Uc_Staff\uc_Staff_Bills.Designer.cs">
+    <Compile Include="User Control\uc_Staff_Bills.Designer.cs">
       <DependentUpon>uc_Staff_Bills.cs</DependentUpon>
     </Compile>
-    <Compile Include="Uc_Staff\uc_Staff_Chat.cs">
+    <Compile Include="User Control\uc_Staff_Chat.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Uc_Staff\uc_Staff_Chat.Designer.cs">
+    <Compile Include="User Control\uc_Staff_Chat.Designer.cs">
       <DependentUpon>uc_Staff_Chat.cs</DependentUpon>
     </Compile>
-    <Compile Include="Uc_Staff\uc_Staff_ImportGood.cs">
+    <Compile Include="User Control\uc_Staff_ImportGood.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Uc_Staff\uc_Staff_ImportGood.Designer.cs">
+    <Compile Include="User Control\uc_Staff_ImportGood.Designer.cs">
       <DependentUpon>uc_Staff_ImportGood.cs</DependentUpon>
     </Compile>
     <Compile Include="ClientStaff\frm_Staff_ComputerManagement.cs">
@@ -336,16 +348,16 @@
     <Compile Include="ClientStaff\frm_Staff_ComputerManagement.Designer.cs">
       <DependentUpon>frm_Staff_ComputerManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="Uc_Staff\uc_Staff_Menu.cs">
+    <Compile Include="User Control\uc_Staff_Menu.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Uc_Staff\uc_Staff_Menu.Designer.cs">
+    <Compile Include="User Control\uc_Staff_Menu.Designer.cs">
       <DependentUpon>uc_Staff_Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Uc_Staff\uc_Product.cs">
+    <Compile Include="User Control\uc_Product.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Uc_Staff\uc_Product.Designer.cs">
+    <Compile Include="User Control\uc_Product.Designer.cs">
       <DependentUpon>uc_Product.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ClientAdmin\Admin.resx">
@@ -357,7 +369,13 @@
     <EmbeddedResource Include="ClientAdmin\frm_Revenue.resx">
       <DependentUpon>frm_Revenue.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ClientCustomer\frm_AddCustomer.resx">
+    <EmbeddedResource Include="ClientCustomer\frm_Customer_BillDetail.resx">
+      <DependentUpon>frm_Customer_BillDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientCustomer\frm_Customer_BillList.resx">
+      <DependentUpon>frm_Customer_BillList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientStaff\frm_AddCustomer.resx">
       <DependentUpon>frm_AddCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClientAdmin\frm_Admin_Employee_management.resx">
@@ -381,7 +399,7 @@
     <EmbeddedResource Include="ClientCustomer\frm_Customer_TopUp.resx">
       <DependentUpon>frm_Customer_TopUp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ClientCustomer\frm_Deposit.resx">
+    <EmbeddedResource Include="ClientStaff\frm_Deposit.resx">
       <DependentUpon>frm_Deposit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Login.resx">
@@ -412,22 +430,22 @@
     <EmbeddedResource Include="ClientStaff\frm_Staff_ComputerManagement.resx">
       <DependentUpon>frm_Staff_ComputerManagement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Uc_Staff\uc_Staff_Bills.resx">
+    <EmbeddedResource Include="User Control\uc_Staff_Bills.resx">
       <DependentUpon>uc_Staff_Bills.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Uc_Staff\uc_Product.resx">
+    <EmbeddedResource Include="User Control\uc_Product.resx">
       <DependentUpon>uc_Product.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClientStaff\frm_Staff.resx">
       <DependentUpon>frm_Staff.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Uc_Staff\uc_Staff_Chat.resx">
+    <EmbeddedResource Include="User Control\uc_Staff_Chat.resx">
       <DependentUpon>uc_Staff_Chat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Uc_Staff\uc_Staff_ImportGood.resx">
+    <EmbeddedResource Include="User Control\uc_Staff_ImportGood.resx">
       <DependentUpon>uc_Staff_ImportGood.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Uc_Staff\uc_Staff_Menu.resx">
+    <EmbeddedResource Include="User Control\uc_Staff_Menu.resx">
       <DependentUpon>uc_Staff_Menu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bin\Debug\NT106-Q14-DoAnGroup08.exe.config" />
@@ -634,9 +652,11 @@
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.exe" />
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <None Include="Resources\invoice.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\confirmation.png" />
     <None Include="Resources\checkout.png" />
+    <None Include="Resources\close.png" />
     <Content Include="Resources\defaultImage.jpg" />
     <None Include="Resources\search.png" />
   </ItemGroup>

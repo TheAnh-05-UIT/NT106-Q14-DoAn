@@ -124,6 +124,12 @@ namespace TcpServer.ServerHandler
                         case "get_max_invoice_detail_id":
                             response = handlerFood.HandleGetMaxInvoiceDetailId();
                             break;
+                        case "get_invoices_in_session":
+                            response = handlerFood.HandleLoadInvoiceInSession();
+                            break;
+                        case "get_invoices_details":
+                            response = handlerFood.HandleLoadInvoiceDetail();
+                            break;
                         // ngoại lệ
                         default:
                             response = new { status = "error", message = $"Unknown action: {action}" };
