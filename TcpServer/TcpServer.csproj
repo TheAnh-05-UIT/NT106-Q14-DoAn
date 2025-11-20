@@ -50,6 +50,7 @@
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="Handlers\HandlerAdminCustomer.cs" />
     <Compile Include="Handlers\HandlerFood.cs" />
+    <Compile Include="Handlers\HandlerRevenue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerHandler\ServerHandler.cs" />
