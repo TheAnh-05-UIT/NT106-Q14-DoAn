@@ -238,6 +238,12 @@
     <Compile Include="ClientCustomer\frm_Customer_BillList.Designer.cs">
       <DependentUpon>frm_Customer_BillList.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClientCustomer\frm_LockScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientCustomer\frm_LockScreen.Designer.cs">
+      <DependentUpon>frm_LockScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAO\ApiClient.cs" />
     <Compile Include="DAO\ApiRequest.cs" />
     <Compile Include="ClientCustomer\frm_Customer_Note.cs">
@@ -393,6 +399,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClientCustomer\frm_Customer_BillList.resx">
       <DependentUpon>frm_Customer_BillList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientCustomer\frm_LockScreen.resx">
+      <DependentUpon>frm_LockScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClientStaff\frm_AddCustomer.resx">
       <DependentUpon>frm_AddCustomer.cs</DependentUpon>

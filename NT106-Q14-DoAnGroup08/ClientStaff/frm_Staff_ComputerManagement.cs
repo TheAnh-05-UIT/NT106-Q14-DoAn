@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Guna.UI2.WinForms;
 using TcpServer;
+using TcpServer.Handlers;
 
 namespace NT106_Q14_DoAnGroup08.ClientStaff
 {
     public partial class frm_Staff_ComputerManagement : Form
     {
         private DatabaseHelper dbHelper;
+        private readonly HandlerComputerManagement HandlerCM;
         private Timer refreshTimer;
         public frm_Staff_ComputerManagement()
         {
@@ -27,7 +29,6 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             refreshTimer.Start();
             
         }
-        
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -39,23 +40,35 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
         }
         private void LoadMachines()
         {
-            try
+            var handler = new HandlerComputerManagement(dbHelper);
+            ComputerManagemetResult result = handler.HandlerGetAllComputersManagement();
+            if (result.status == "success")
             {
-                string query = "SELECT co.ComputerId as [Mã máy], co.Status as [Trạng thái], se.StartTime as [Thời gian bắt đầu], cu.CustomerId as [Khách hàng], cu.Balance as [Số dư] FROM Computers co LEFT JOIN Sessions se ON co.ComputerId = se.ComputerId  LEFT JOIN Customers cu ON CU.CustomerId = se.CustomerId";
-                string query2 = "SELECT COUNT(*) FROM Computers WHERE Status = 'On'";
-                string query1 = "SELECT COUNT(*) FROM Computers";
-                int rs1 = (int)(dbHelper.ExecuteScalar(query1));
-                int rs2 = (int)(dbHelper.ExecuteScalar(query2));
-                labelSummary.Text = $"Active: {rs2}/{rs1}";
-                DataTable dt = dbHelper.ExecuteQuery(query);
-                dgvComputers.DataSource = dt;
-                
-               // dgvComputers.InvokeIfRequired(() => dgvComputers.DataSource = dt);
+                dgvComputers.DataSource = result.data;
+                labelSummary.Text = result.s;
             }
-            catch(Exception ex)
+            else
             {
-                Console.WriteLine("Lỗi: " + ex.Message);
+                MessageBox.Show("Lỗi khi tải dữ liệu " + result.message);
             }
+
+            //try
+            //{
+            //    string query = "SELECT co.ComputerId as [Mã máy], co.Status as [Trạng thái], se.StartTime as [Thời gian bắt đầu], cu.CustomerId as [Khách hàng], cu.Balance as [Số dư] FROM Computers co LEFT JOIN Sessions se ON co.ComputerId = se.ComputerId  LEFT JOIN Customers cu ON CU.CustomerId = se.CustomerId";
+            //    string query2 = "SELECT COUNT(*) FROM Computers WHERE Status = 'On'";
+            //    string query1 = "SELECT COUNT(*) FROM Computers";
+            //    int rs1 = (int)(dbHelper.ExecuteScalar(query1));
+            //    int rs2 = (int)(dbHelper.ExecuteScalar(query2));
+            //    labelSummary.Text = $"Active: {rs2}/{rs1}";
+            //    DataTable dt = dbHelper.ExecuteQuery(query);
+            //    dgvComputers.DataSource = dt;
+
+            //   // dgvComputers.InvokeIfRequired(() => dgvComputers.DataSource = dt);
+            //}
+            //catch(Exception ex)
+            //{
+            //    Console.WriteLine("Lỗi: " + ex.Message);
+            //}
         }
 
         private void labelSummary_Click(object sender, EventArgs e)

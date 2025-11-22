@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="Handlers\HandlerAdminCustomer.cs" />
+    <Compile Include="Handlers\HandlerComputerManagement.cs" />
     <Compile Include="Handlers\HandlerFood.cs" />
     <Compile Include="Handlers\HandlerRevenue.cs" />
     <Compile Include="Program.cs" />
