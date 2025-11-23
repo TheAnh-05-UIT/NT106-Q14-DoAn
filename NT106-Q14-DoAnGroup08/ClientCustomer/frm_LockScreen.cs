@@ -8,16 +8,30 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TcpServer.Handlers;
 
 namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {
     public partial class frm_LockScreen : Form
     {
+        frm_Login f = new frm_Login();
         public frm_LockScreen()
         {
             InitializeComponent();
+            f.LoginSuccess += HandleLoginSuccess;
         }
-
+        private void HandleLoginSuccess()
+        {
+            Form newlyOpenedForm = Form.ActiveForm;
+            if(newlyOpenedForm != null && newlyOpenedForm != this)
+            {
+                newlyOpenedForm.Hide();
+                DTO.UserSession.NextForm = newlyOpenedForm;
+            }
+            f.LoginSuccess -= HandleLoginSuccess;
+            f.Dispose();
+            AllowClose();
+        }
         private void lblTitle_Click(object sender, EventArgs e)
         {
 
@@ -67,7 +81,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         private void frm_LockScreen_Load(object sender, EventArgs e)
         {
             lblTitle.Visible = false;
-            MergerForm(new frm_Login());
+            MergerForm(f);
         }
     }
 }

@@ -57,6 +57,7 @@
             this.ClientSize = new System.Drawing.Size(1251, 450);
             this.Controls.Add(this.panelMainForm);
             this.Controls.Add(this.lblTitle);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_LockScreen";
             this.Opacity = 0.9D;
             this.Text = "frm_LockScreen";

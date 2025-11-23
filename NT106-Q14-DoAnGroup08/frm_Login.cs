@@ -18,6 +18,8 @@ namespace NT106_Q14_DoAnGroup08
 {
     public partial class frm_Login : Form
     {
+        public delegate void LoginSuccessHandler();
+        public event LoginSuccessHandler LoginSuccess;
         public frm_Login()
         {
             InitializeComponent();
@@ -57,11 +59,13 @@ namespace NT106_Q14_DoAnGroup08
 
                     if (obj.status == "success")
                     {
+                        
                         DTO.UserSession.UserId = obj.userId;
                         DTO.UserSession.Role = obj.role;
                         DTO.UserSession.FullName = obj.fullName;
                         string role = obj.role;
                         MessageBox.Show($"Đăng nhập thành công với quyền: {role}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
                         // Mở form theo role
                         if (role == "ADMIN")
                         {
@@ -71,6 +75,7 @@ namespace NT106_Q14_DoAnGroup08
                             new ClientStaff.frm_Staff().Show();
                         else
                             new ClientCustomer.frm_Customer().Show();
+                        LoginSuccess?.Invoke();
                     }
                     else
                     {
