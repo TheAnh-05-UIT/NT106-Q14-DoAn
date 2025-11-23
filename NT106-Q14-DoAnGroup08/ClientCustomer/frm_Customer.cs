@@ -43,6 +43,8 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
+            //frm_LockScreen f = new frm_LockScreen();
+            //f.ShowDialog();
             this.Close();
         }
 

@@ -21,6 +21,15 @@ namespace TcpServer.Handlers
         {
             db = databaseHelper;
         }
+        public void HandlerLockComputer(int computerId)
+        {
+            string query = "UPDATE Computers SET Status='Off' WHERE ComputerId=@compId";
+            var prms = new System.Data.SqlClient.SqlParameter[]
+            {
+                new System.Data.SqlClient.SqlParameter("@compId", computerId)
+            };
+            db.ExecuteNonQuery(query, prms);
+        }
         public ComputerManagemetResult HandlerGetAllComputersManagement()
         {
             try
