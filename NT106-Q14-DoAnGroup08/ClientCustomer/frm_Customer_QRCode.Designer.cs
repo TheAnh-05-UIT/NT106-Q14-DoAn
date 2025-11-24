@@ -52,6 +52,7 @@
             this.btn_Confirm.TabIndex = 1;
             this.btn_Confirm.Text = "Xác nhận thanh toán";
             this.btn_Confirm.UseVisualStyleBackColor = true;
+            this.btn_Confirm.Click += new System.EventHandler(this.btn_Confirm_Click);
             // 
             // frm_Customer_QRCode
             // 

@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 using QRCoder;
 using System.Net;
+using System.Diagnostics;
 
 namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {
@@ -64,7 +65,20 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             txt_TopUp.Text = "500000";
         }
         private void btn_QR_Click(object sender, EventArgs e)
-        { 
+        {
+            var maxInv = ApiClient.Client.Send(new { action = "get_max_invoice_id" });
+            string lastId = maxInv?["maxId"]?.ToString();
+
+            string invoiceId;
+
+            if (string.IsNullOrEmpty(lastId))
+                invoiceId = "HD001";
+            else
+            {
+                int num = int.Parse(lastId.Substring(2)) + 1;
+                invoiceId = "HD" + num.ToString("D3");
+            }
+
             int acqId = 970436; long accountNo = 1036339042; 
             string accountName = "TRAN MINH HOANG QUAN"; 
             int Amount = int.Parse(txt_TopUp.Text); 
@@ -72,7 +86,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             {   acqId = acqId, 
                 accountNo = accountNo, 
                 accountName = accountName, 
-                amount = Amount, addInfo = $"NAPTIEN_{Amount}", 
+                amount = Amount, addInfo = invoiceId, 
                 format = "text", template = "compact" 
             }; 
             string jsonRequest = JsonConvert.SerializeObject(apiRequest); 
@@ -91,8 +105,78 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                 return;
             } 
             string base64QR = dataResult.data.qrDataURL.Replace("data:image/png;base64,", ""); 
-            frm_Customer_QRCode f = new frm_Customer_QRCode(base64QR); 
+            frm_Customer_QRCode f = new frm_Customer_QRCode(base64QR, Amount); 
             f.ShowDialog(); 
+        }
+
+        private void btn_Cash_Click(object sender, EventArgs e)
+        {
+            var maxInv = ApiClient.Client.Send(new { action = "get_max_invoice_id" });
+            string lastId = maxInv?["maxId"]?.ToString();
+
+            string invoiceId;
+
+            if (string.IsNullOrEmpty(lastId))
+                invoiceId = "HD001";
+            else
+            {
+                int num = int.Parse(lastId.Substring(2)) + 1;
+                invoiceId = "HD" + num.ToString("D3");
+            }
+
+
+            string customerId = "KH001";
+
+            decimal totalAmount = Convert.ToDecimal(txt_TopUp.Text);
+
+            var invoiceRes = ApiClient.Client.Send(new
+            {
+                action = "create_invoice",
+                data = new
+                {
+                    invoiceId,
+                    customerId,
+                    totalAmount
+                }
+            });
+
+            if (invoiceRes == null || invoiceRes.status != "success")
+            {
+                MessageBox.Show("Tạo hóa đơn thất bại!");
+                return;
+            }
+
+            var maxDetail = ApiClient.Client.Send(new { action = "get_max_invoice_detail_id" });
+
+            string detailId;
+            if (maxDetail?.maxId == null || maxDetail.maxId == "")
+                detailId = "CTHD001";
+            else
+            {
+                int num = int.Parse(maxDetail.maxId.ToString().Substring(4)) + 1;
+                detailId = "CTHD" + num.ToString("D3");
+            }
+
+            string serviceId = "2";
+            string note = "Nạp tiền";
+
+
+            ApiClient.Client.Send(new
+            {
+                action = "create_invoice_detail_top_up",
+                data = new
+                {
+                    detailId,
+                    invoiceId,
+                    serviceId,
+                    quantity = 1,
+                    totalAmount,
+                    note
+                }
+            });
+
+            MessageBox.Show("Đã yêu cầu nạp tiền thành công!");
+            this.Close();
         }
     }
 }

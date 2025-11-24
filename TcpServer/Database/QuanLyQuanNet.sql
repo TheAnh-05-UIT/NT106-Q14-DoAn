@@ -125,21 +125,6 @@ CREATE TABLE InvoiceDetails (
 );
 
 
--- Bảng TopUpTransactions (Nạp tiền)
-
-CREATE TABLE TopUpTransactions (
-    TransactionId NVARCHAR(20) PRIMARY KEY,  -- VD: T001
-    CustomerId NVARCHAR(20) NOT NULL,
-    EmployeeId NVARCHAR(20) NOT NULL,
-    Amount DECIMAL(12,2) NOT NULL,
-    [Date] DATETIME DEFAULT GETDATE(),
-    FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId),
-    -- FOREIGN KEY (EmployeeId) REFERENCES Employees(EmployeeId),
-    FOREIGN KEY (EmployeeId) REFERENCES Users(UserId)
-);
-GO
-
-
 CREATE TABLE Category (
     CategoryId NVARCHAR(20) PRIMARY KEY,
     CategoryName NVARCHAR(100) NOT NULL

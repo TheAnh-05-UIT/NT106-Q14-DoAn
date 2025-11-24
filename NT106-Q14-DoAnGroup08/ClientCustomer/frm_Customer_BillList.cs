@@ -13,7 +13,6 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {
     public partial class frm_Customer_BillList : CustomForm
     {
-        private readonly ApiClient api = new ApiClient("127.0.0.1", 8080);
         public frm_Customer_BillList()
         {
             InitializeComponent();
@@ -31,7 +30,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         private void LoadInvoicesInSession()
         {
-            var res = api.Send(new { action = "get_invoices_in_session"});
+            var res = ApiClient.Client.Send(new { action = "get_invoices_in_session"});
             if (res == null || res.status != "success")
             {
                 MessageBox.Show("Không tồn tại hoặc không tải được hóa đơn!");

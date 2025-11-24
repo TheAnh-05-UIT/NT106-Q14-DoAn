@@ -12,7 +12,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {
     public partial class frm_Customer_FoodMenu : CustomForm
     {
-        private readonly ApiClient api = new ApiClient("127.0.0.1", 8080);
+        
         private Dictionary<string, string> currentNotes = new Dictionary<string, string>();
 
         public frm_Customer_FoodMenu()
@@ -28,7 +28,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         }
         public void AddCategory()
         {
-            var res = api.Send(new { action = "get_all_categories" });
+            var res = ApiClient.Client.Send(new { action = "get_all_categories" });
 
             if (res == null || res.status != "success")
             {
@@ -64,7 +64,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         }
         private void LoadProduct()
         {
-            var res = api.Send(new { action = "get_all_food" });
+            var res = ApiClient.Client.Send(new { action = "get_all_food" });
             if (res == null || res.status != "success")
             {
                 MessageBox.Show("Không tải được danh sách món ăn!");
@@ -201,17 +201,20 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                 return;
             }
 
-            
-            var maxInv = api.Send(new { action = "get_max_invoice_id" });
+
+            var maxInv = ApiClient.Client.Send(new { action = "get_max_invoice_id" });
+            string lastId = maxInv?["maxId"]?.ToString(); 
+
             string invoiceId;
 
-            if (maxInv?.maxId == null || maxInv.maxId.ToString() == "")
+            if (string.IsNullOrEmpty(lastId))
                 invoiceId = "HD001";
             else
             {
-                int num = int.Parse(maxInv.maxId.ToString().Substring(2)) + 1;
+                int num = int.Parse(lastId.Substring(2)) + 1;
                 invoiceId = "HD" + num.ToString("D3");
             }
+
 
             string customerId = "KH001";
 
@@ -223,7 +226,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             }
 
             
-            var invoiceRes = api.Send(new
+            var invoiceRes = ApiClient.Client.Send(new
             {
                 action = "create_invoice",
                 data = new
@@ -243,13 +246,15 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
            
             foreach (DataGridViewRow row in guna2DataGridView1.Rows)
             {
+                if (row.IsNewRow) continue;
+                if (row.Cells["dgvid"].Value == null) continue;
                 string foodId = row.Cells["dgvid"].Value.ToString();
                 int qty = Convert.ToInt32(row.Cells["dgvQty"].Value);
                 decimal price = Convert.ToDecimal(row.Cells["dgvAmount"].Value);
                 string foodName = row.Cells["dgvName"].Value.ToString();
                 string note = currentNotes.ContainsKey(foodName) ? currentNotes[foodName] : "";
 
-                var maxDetail = api.Send(new { action = "get_max_invoice_detail_id" });
+                var maxDetail = ApiClient.Client.Send(new { action = "get_max_invoice_detail_id" });
 
                 string detailId;
                 if (maxDetail?.maxId == null || maxDetail.maxId == "")
@@ -259,14 +264,15 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                     int num = int.Parse(maxDetail.maxId.ToString().Substring(4)) + 1;
                     detailId = "CTHD" + num.ToString("D3");
                 }
-
-                api.Send(new
+                string serviceId = "1";
+                ApiClient.Client.Send(new
                 {
                     action = "create_invoice_detail",
                     data = new
                     {
                         detailId,
                         invoiceId,
+                        serviceId,
                         foodId,
                         quantity = qty,
                         price,

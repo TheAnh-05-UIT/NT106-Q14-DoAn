@@ -13,7 +13,6 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {
     public partial class frm_Customer_BillDetail : Form
     {
-        private readonly ApiClient api = new ApiClient("127.0.0.1", 8080);
         private readonly string invoiceId;
         public frm_Customer_BillDetail(string invoiceId)
         {
@@ -23,7 +22,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         private void frm_Customer_BillDetail_Load(object sender, EventArgs e)
         {
-            var res = api.Send(new { action = "get_invoice_details", invoiceId = this.invoiceId });
+            var res = ApiClient.Client.Send(new { action = "get_invoice_details", invoiceId = this.invoiceId });
 
             if (res == null || res.status != "success")
             {

@@ -176,6 +176,7 @@ namespace TcpServer.ServerHandler
                     case "get_invoices_details": response = handlerFood.HandleLoadInvoiceDetail(); break;
                     case "CONTROL_PC": response = HandleComputerControl(obj.data); break;
                     case "END_SESSION": response = HandleComputerControl(obj.data); break;
+                    case "create_invoice_detail_top_up": response = handlerFood.HandleCreateInvoiceDetailTopUp(obj.data); break;
                     default: response = new { status = "error", message = $"Unknown action: {action}" }; break;
                 }
 

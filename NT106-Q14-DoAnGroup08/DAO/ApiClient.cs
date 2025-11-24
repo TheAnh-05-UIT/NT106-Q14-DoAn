@@ -4,6 +4,7 @@ using System.Text;
 
 public class ApiClient
 {
+    public static readonly ApiClient Client = new ApiClient("127.0.0.1", 8080);
     private readonly string host;
     private readonly int port;
 

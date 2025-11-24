@@ -159,6 +159,7 @@
             this.btn_Cash.TabIndex = 11;
             this.btn_Cash.Text = "Tiền mặt";
             this.btn_Cash.UseVisualStyleBackColor = true;
+            this.btn_Cash.Click += new System.EventHandler(this.btn_Cash_Click);
             // 
             // btn_QR
             // 

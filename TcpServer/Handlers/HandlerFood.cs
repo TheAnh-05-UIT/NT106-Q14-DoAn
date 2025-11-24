@@ -59,12 +59,13 @@ namespace TcpServer.Handlers
             int quantity = data["quantity"].ToObject<int>();
             decimal price = data["price"].ToObject<decimal>();
             string note = data["note"].ToString();
+            string serviceId = data["serviceId"].ToString();
 
             string query = $@"
                 INSERT INTO InvoiceDetails
-                (InvoiceDetailId, InvoiceId, FoodId, Quantity, Price, Status, Note)
+                (InvoiceDetailId, InvoiceId, ServiceId,FoodId, Quantity, Price, Status, Note)
                 VALUES
-                ('{detailId}', '{invoiceId}', '{foodId}', {quantity}, {price}, 'PENDING', '{note}')";
+                ('{detailId}', '{invoiceId}', '{serviceId}','{foodId}', {quantity}, {price}, 'PENDING', '{note}')";
 
             int result = db.ExecuteNonQuery(query);
             return new { status = result > 0 ? "success" : "fail" };
@@ -185,6 +186,23 @@ namespace TcpServer.Handlers
                 data = details
             };
         }
+        public object HandleCreateInvoiceDetailTopUp(JObject data)
+        {
+            string detailId = data["detailId"].ToString();
+            string invoiceId = data["invoiceId"].ToString();
+            int quantity = data["quantity"].ToObject<int>();
+            decimal price = data["totalAmount"].ToObject<decimal>();
+            string note = data["note"].ToString();
+            string serviceId = data["serviceId"].ToString();
 
+            string query = $@"
+                INSERT INTO InvoiceDetails
+                (InvoiceDetailId, InvoiceId, ServiceId, Quantity, Price, Status, Note)
+                VALUES
+                ('{detailId}', '{invoiceId}', '{serviceId}', {quantity}, {price}, 'PENDING', N'{note}')";
+
+            int result = db.ExecuteNonQuery(query);
+            return new { status = result > 0 ? "success" : "fail" };
+        }
     }
 }
