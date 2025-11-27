@@ -82,7 +82,7 @@ namespace TcpServer
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
-                if(prms != null)
+                if (prms != null)
                 {
                     cmd.Parameters.AddRange(prms);
                 }

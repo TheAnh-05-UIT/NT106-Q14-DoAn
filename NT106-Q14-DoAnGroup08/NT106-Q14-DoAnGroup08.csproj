@@ -51,8 +51,8 @@
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.7\lib\net472\Guna.UI2.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.1\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Bcl.Cryptography, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.Cryptography.8.0.0\lib\net462\Microsoft.Bcl.Cryptography.dll</HintPath>
@@ -689,6 +689,13 @@
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.exe" />
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <None Include="Resources\ViewVer3.jpg" />
+    <None Include="Resources\View1.jpg" />
+    <None Include="Resources\password.jpg" />
+    <None Include="Resources\user.jpg" />
+    <None Include="Resources\UserName.png" />
+    <None Include="Resources\View.jpg" />
+    <None Include="Resources\kinh-nghiem-kinh-doanh-quan-net-thanh-cong-toi-uu-chi-phi.jpg" />
     <None Include="Resources\invoice.png" />
     <None Include="Resources\delete.png" />
     <None Include="Resources\confirmation.png" />

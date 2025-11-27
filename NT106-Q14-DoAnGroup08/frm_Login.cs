@@ -107,11 +107,96 @@ namespace NT106_Q14_DoAnGroup08
             public string userId { get; set; }
             public string fullName { get; set; }
         }
+        private void UpdatePasswordMask()
+        {
+            string placeholder = txt_Password.Tag?.ToString();
+            if (txt_Password.Text == placeholder)
+            {
+                txt_Password.UseSystemPasswordChar = false;
+                return;
+            }
+            if (checkBoxVisible.Checked)
+            {
+                txt_Password.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txt_Password.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void TextBox_Enter(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null) return;
+
+            string placeholder = tb.Tag?.ToString();
+            if (tb.Text == placeholder)
+            {
+                tb.Text = "";
+                tb.ForeColor = SystemColors.WindowText;
+            }
+
+            if (tb == txt_Password)
+                UpdatePasswordMask();
+        }
+
+        private void TextBox_Leave(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            if (tb == null) return;
+
+            string placeholder = tb.Tag?.ToString();
+            if (string.IsNullOrWhiteSpace(tb.Text))
+            {
+                tb.Text = placeholder;
+                tb.ForeColor = SystemColors.GrayText;
+            }
+
+            if (tb == txt_Password)
+                UpdatePasswordMask();
+        }
 
         private void frm_Login_Load(object sender, EventArgs e)
         {
+           
+        }
+
+        private void txt_Password_TextChanged(object sender, EventArgs e)
+        {
+            txt_Password.UseSystemPasswordChar = true;
+        }
+
+        private void pictureBoxUser_Click(object sender, EventArgs e)
+        {
 
         }
+
+        private void lbl_Title_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_Username_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_Username_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_Password_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBoxVisible_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdatePasswordMask();
+        }
+
     }
 }
 

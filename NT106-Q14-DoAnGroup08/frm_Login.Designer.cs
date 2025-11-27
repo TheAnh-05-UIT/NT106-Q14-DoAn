@@ -28,99 +28,145 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbl_Title = new System.Windows.Forms.Label();
-            this.lbl_Username = new System.Windows.Forms.Label();
-            this.lbl_Password = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
             this.txt_Username = new System.Windows.Forms.TextBox();
             this.txt_Password = new System.Windows.Forms.TextBox();
             this.btn_Login = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.pictureBoxPass = new System.Windows.Forms.PictureBox();
+            this.pictureUserName = new System.Windows.Forms.PictureBox();
+            this.pictureBoxUser = new System.Windows.Forms.PictureBox();
+            this.checkBoxVisible = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPass)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureUserName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lbl_Title
-            // 
-            this.lbl_Title.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lbl_Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Title.Location = new System.Drawing.Point(0, 0);
-            this.lbl_Title.Name = "lbl_Title";
-            this.lbl_Title.Size = new System.Drawing.Size(800, 78);
-            this.lbl_Title.TabIndex = 0;
-            this.lbl_Title.Text = "Login";
-            this.lbl_Title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_Username
-            // 
-            this.lbl_Username.AutoSize = true;
-            this.lbl_Username.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Username.Location = new System.Drawing.Point(127, 113);
-            this.lbl_Username.Name = "lbl_Username";
-            this.lbl_Username.Size = new System.Drawing.Size(102, 25);
-            this.lbl_Username.TabIndex = 1;
-            this.lbl_Username.Text = "Username";
-            // 
-            // lbl_Password
-            // 
-            this.lbl_Password.AutoSize = true;
-            this.lbl_Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Password.Location = new System.Drawing.Point(127, 207);
-            this.lbl_Password.Name = "lbl_Password";
-            this.lbl_Password.Size = new System.Drawing.Size(98, 25);
-            this.lbl_Password.TabIndex = 2;
-            this.lbl_Password.Text = "Password";
             // 
             // txt_Username
             // 
             this.txt_Username.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Username.Location = new System.Drawing.Point(291, 110);
+            this.txt_Username.Location = new System.Drawing.Point(149, 186);
+            this.txt_Username.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Username.Name = "txt_Username";
-            this.txt_Username.Size = new System.Drawing.Size(305, 30);
+            this.txt_Username.Size = new System.Drawing.Size(205, 23);
             this.txt_Username.TabIndex = 3;
+            this.txt_Username.TabStop = false;
+            this.txt_Username.Tag = "Username";
+            this.txt_Username.Text = "Username";
+            this.txt_Username.TextChanged += new System.EventHandler(this.txt_Username_TextChanged);
+            this.txt_Username.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.txt_Username.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // txt_Password
             // 
             this.txt_Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Password.Location = new System.Drawing.Point(291, 204);
+            this.txt_Password.Location = new System.Drawing.Point(149, 247);
+            this.txt_Password.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Password.Name = "txt_Password";
-            this.txt_Password.Size = new System.Drawing.Size(305, 30);
+            this.txt_Password.Size = new System.Drawing.Size(205, 23);
             this.txt_Password.TabIndex = 4;
+            this.txt_Password.TabStop = false;
+            this.txt_Password.Tag = "Password";
+            this.txt_Password.Text = "Password";
+            this.txt_Password.TextChanged += new System.EventHandler(this.txt_Password_TextChanged);
+            this.txt_Password.Enter += new System.EventHandler(this.TextBox_Enter);
+            this.txt_Password.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
             // btn_Login
             // 
             this.btn_Login.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Login.Location = new System.Drawing.Point(291, 318);
+            this.btn_Login.Location = new System.Drawing.Point(192, 312);
+            this.btn_Login.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Login.Name = "btn_Login";
-            this.btn_Login.Size = new System.Drawing.Size(156, 53);
+            this.btn_Login.Size = new System.Drawing.Size(104, 34);
             this.btn_Login.TabIndex = 5;
             this.btn_Login.Text = "Login";
             this.btn_Login.UseVisualStyleBackColor = true;
             this.btn_Login.Click += new System.EventHandler(this.btn_Login_Click);
             // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // pictureBoxPass
+            // 
+            this.pictureBoxPass.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.password;
+            this.pictureBoxPass.Location = new System.Drawing.Point(95, 234);
+            this.pictureBoxPass.Name = "pictureBoxPass";
+            this.pictureBoxPass.Size = new System.Drawing.Size(49, 51);
+            this.pictureBoxPass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxPass.TabIndex = 8;
+            this.pictureBoxPass.TabStop = false;
+            // 
+            // pictureUserName
+            // 
+            this.pictureUserName.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.user;
+            this.pictureUserName.Location = new System.Drawing.Point(95, 174);
+            this.pictureUserName.Name = "pictureUserName";
+            this.pictureUserName.Size = new System.Drawing.Size(49, 45);
+            this.pictureUserName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureUserName.TabIndex = 7;
+            this.pictureUserName.TabStop = false;
+            // 
+            // pictureBoxUser
+            // 
+            this.pictureBoxUser.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.UserName;
+            this.pictureBoxUser.Location = new System.Drawing.Point(170, 12);
+            this.pictureBoxUser.Name = "pictureBoxUser";
+            this.pictureBoxUser.Size = new System.Drawing.Size(158, 146);
+            this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxUser.TabIndex = 6;
+            this.pictureBoxUser.TabStop = false;
+            this.pictureBoxUser.Click += new System.EventHandler(this.pictureBoxUser_Click);
+            // 
+            // checkBoxVisible
+            // 
+            this.checkBoxVisible.AutoSize = true;
+            this.checkBoxVisible.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxVisible.Location = new System.Drawing.Point(359, 251);
+            this.checkBoxVisible.Name = "checkBoxVisible";
+            this.checkBoxVisible.Size = new System.Drawing.Size(118, 17);
+            this.checkBoxVisible.TabIndex = 9;
+            this.checkBoxVisible.Text = "Hiển thị mật khẩu";
+            this.checkBoxVisible.UseVisualStyleBackColor = true;
+            this.checkBoxVisible.CheckedChanged += new System.EventHandler(this.checkBoxVisible_CheckedChanged);
+            // 
             // frm_Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ClientSize = new System.Drawing.Size(542, 366);
+            this.Controls.Add(this.checkBoxVisible);
+            this.Controls.Add(this.pictureBoxPass);
+            this.Controls.Add(this.pictureUserName);
+            this.Controls.Add(this.pictureBoxUser);
             this.Controls.Add(this.btn_Login);
             this.Controls.Add(this.txt_Password);
             this.Controls.Add(this.txt_Username);
-            this.Controls.Add(this.lbl_Password);
-            this.Controls.Add(this.lbl_Username);
-            this.Controls.Add(this.lbl_Title);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frm_Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "From Login";
             this.Load += new System.EventHandler(this.frm_Login_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPass)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureUserName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lbl_Title;
-        private System.Windows.Forms.Label lbl_Username;
-        private System.Windows.Forms.Label lbl_Password;
         private System.Windows.Forms.TextBox txt_Username;
         private System.Windows.Forms.TextBox txt_Password;
         private System.Windows.Forms.Button btn_Login;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.PictureBox pictureBoxUser;
+        private System.Windows.Forms.PictureBox pictureUserName;
+        private System.Windows.Forms.PictureBox pictureBoxPass;
+        private System.Windows.Forms.CheckBox checkBoxVisible;
     }
 }
