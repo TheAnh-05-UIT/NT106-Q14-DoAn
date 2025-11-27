@@ -21,6 +21,7 @@ namespace TcpServer.ServerHandler
         private readonly HandlerAdminCustomerAcc handlerAdminCustomerAcc;
         private readonly HandlerAdminCustomer handlerCustomerHandler;
         private readonly HandlerFood handlerFood;
+        private readonly HandlerCustomer handlerCustomer;
 
         public ServerHandler(string connStr)
         {
@@ -29,6 +30,7 @@ namespace TcpServer.ServerHandler
             handlerAdminCustomerAcc = new HandlerAdminCustomerAcc(db);
             handlerCustomerHandler = new HandlerAdminCustomer(db);
             handlerFood = new HandlerFood(db);
+            handlerCustomer = new HandlerCustomer(db);
         }
 
         public void Start(int port)
@@ -177,6 +179,15 @@ namespace TcpServer.ServerHandler
                     case "CONTROL_PC": response = HandleComputerControl(obj.data); break;
                     case "END_SESSION": response = HandleComputerControl(obj.data); break;
                     case "create_invoice_detail_top_up": response = handlerFood.HandleCreateInvoiceDetailTopUp(obj.data); break;
+                    case "start_session":
+                        response = handlerCustomer.HandleStartSession(obj);
+                        break;
+                    case "update_session":
+                        response = handlerCustomer.HandleUpdateSession(obj);
+                        break;
+                    case "end_session":
+                        response = handlerCustomer.HandleEndSession(obj);
+                        break;
                     default: response = new { status = "error", message = $"Unknown action: {action}" }; break;
                 }
 

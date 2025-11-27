@@ -1,0 +1,310 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TcpServer.Handlers
+{
+    public class HandlerCustomer
+    {
+        private readonly DatabaseHelper _db;
+
+        public HandlerCustomer(DatabaseHelper db)
+        {
+            _db = db;
+        }
+
+        // --- HÀM TẠO SESSION MỚI (ĐÃ SỬA LỖI SINH ID) ---
+        private object CreateNewSession(string customerId, string computerId, decimal balance, decimal pricePerSecond)
+        {
+            // Sinh SessionId kiểu S001, S002...
+            // SỬA: Dùng CAST để sắp xếp đúng theo số
+            string sqlMax = "SELECT TOP 1 SessionId FROM Sessions ORDER BY CAST(SUBSTRING(SessionId, 2, 10) AS INT) DESC";
+            var dtMax = _db.ExecuteQuery(sqlMax);
+
+            string newSessionId;
+            if (dtMax.Rows.Count == 0 || dtMax.Rows[0]["SessionId"].ToString() == "S")
+            {
+                newSessionId = "S001";
+            }
+            else
+            {
+                string lastId = dtMax.Rows[0]["SessionId"].ToString();
+                int number;
+                // Xử lý lỗi parse nếu ID không đúng format Sxxx
+                if (int.TryParse(lastId.Substring(1), out number))
+                {
+                    newSessionId = "S" + (number + 1).ToString("D3");
+                }
+                else
+                {
+                    // Trường hợp ID bị lỗi, reset về S001
+                    newSessionId = "S001";
+                }
+            }
+
+            int initialTimeLeft = (int)Math.Floor(balance / pricePerSecond);
+
+            string sqlInsert = @"INSERT INTO Sessions(SessionId, CustomerId, ComputerId, StartTime, TotalCost)
+                                 VALUES(@sessionId, @customerId, @computerId, GETDATE(), 0)";
+            _db.ExecuteNonQuery(sqlInsert,
+                new SqlParameter("@sessionId", newSessionId),
+                new SqlParameter("@customerId", customerId),
+                new SqlParameter("@computerId", computerId));
+
+            return new
+            {
+                status = "success",
+                sessionId = newSessionId,
+                computerName = computerId,
+                timeUsed = 0,
+                moneyUsed = 0,
+                moneyLeft = balance,
+                timeLeft = initialTimeLeft,
+                customerId = customerId,
+            };
+        }
+
+
+        // --- HÀM XỬ LÝ START SESSION (ĐÃ SỬA LỖI LOGIC) ---
+        public object HandleStartSession(dynamic data)
+        {
+            try
+            {
+                string customerId = data.customerId;
+                string computerIdNew = data.computerId;
+
+                // Lấy thông tin khách hàng và giá máy tính
+                string sqlCustomer = @"SELECT c.Balance, t.PricePerHour 
+                                       FROM Customers c
+                                       JOIN Computers t ON t.ComputerId = @computerIdNew
+                                       WHERE c.CustomerId=@customerId";
+                var dtCustomer = _db.ExecuteQuery(sqlCustomer,
+                    new SqlParameter("@customerId", customerId),
+                    new SqlParameter("@computerIdNew", computerIdNew));
+
+                if (dtCustomer.Rows.Count == 0)
+                    return new { status = "error", message = "Customer or computer not found" };
+
+                decimal balance = Convert.ToDecimal(dtCustomer.Rows[0]["Balance"]);
+                decimal pricePerHour = Convert.ToDecimal(dtCustomer.Rows[0]["PricePerHour"]);
+                decimal pricePerSecond = pricePerHour / 3600m;
+
+                // 1. Kiểm tra session đang mở (dùng sqlSession đã đúng)
+                string sqlSession = @"SELECT s.SessionId, s.StartTime, s.EndTime, s.ComputerId, s.TotalCost
+                                     FROM Sessions s
+                                     WHERE s.CustomerId=@customerId AND s.EndTime IS NULL";
+
+                var dtSession = _db.ExecuteQuery(sqlSession, new SqlParameter("@customerId", customerId));
+
+                if (dtSession.Rows.Count > 0)
+                {
+                    // Nếu đã có session → tính tiền hiện tại (đã có ở lần trước)
+                    string sessionId = dtSession.Rows[0]["SessionId"].ToString();
+                    DateTime startTime = Convert.ToDateTime(dtSession.Rows[0]["StartTime"]);
+                    string computerId = dtSession.Rows[0]["ComputerId"].ToString();
+
+                    int timeUsed = (int)(DateTime.Now - startTime).TotalSeconds;
+                    decimal moneyUsed = timeUsed * pricePerSecond;
+                    decimal moneyLeft = balance - moneyUsed;
+
+                    int timeLeft = (int)Math.Floor(moneyLeft / pricePerSecond);
+                    if (timeLeft < 0) timeLeft = 0;
+
+                    if (moneyLeft <= 0)
+                    {
+                        // Session cũ hết tiền -> Yêu cầu Client đóng form và Server kết thúc session đó
+                        // Gọi HandleEndSession để cập nhật DB lần cuối
+                        HandleEndSession(new { sessionId = sessionId });
+
+                        return new
+                        {
+                            status = "error",
+                            message = "Phiên cũ đã hết tiền và đã kết thúc! Vui lòng nạp thêm tiền."
+                        };
+                    }
+                    else
+                    {
+                        // Session cũ vẫn còn tiền -> trả dữ liệu hiện tại
+                        return new
+                        {
+                            status = "success",
+                            sessionId = sessionId,
+                            computerName = computerId,
+                            timeUsed = timeUsed,
+                            moneyUsed = moneyUsed,
+                            moneyLeft = moneyLeft,
+                            timeLeft = timeLeft,
+                            customerId = customerId
+                        };
+                    }
+                }
+
+                // 2. Nếu chưa có session → tạo mới
+                return CreateNewSession(customerId, computerIdNew, balance, pricePerSecond);
+            }
+            catch (Exception ex)
+            {
+                return new { status = "error", message = ex.Message };
+            }
+        }
+
+
+        // --- HÀM XỬ LÝ UPDATE SESSION (ĐÃ SỬA LỖI THIẾU CỘT) ---
+        public object HandleUpdateSession(dynamic data)
+        {
+            try
+            {
+                string sessionId = data.sessionId;
+
+                // Lấy session hiện tại + thông tin máy + balance khách (ĐÃ THÊM cu.CustomerId)
+                string sql = @"
+             SELECT s.StartTime, s.TotalCost, s.EndTime, s.ComputerId, c.PricePerHour, cu.Balance, cu.CustomerId
+             FROM Sessions s
+             JOIN Computers c ON s.ComputerId = c.ComputerId
+             JOIN Customers cu ON s.CustomerId = cu.CustomerId
+             WHERE s.SessionId=@sessionId";
+
+                var dt = _db.ExecuteQuery(sql, new SqlParameter("@sessionId", sessionId));
+
+                if (dt.Rows.Count == 0)
+                    return new { status = "error", message = "Session not found" };
+
+                DateTime startTime = Convert.ToDateTime(dt.Rows[0]["StartTime"]);
+                decimal totalCost = Convert.ToDecimal(dt.Rows[0]["TotalCost"]);
+                decimal pricePerHour = Convert.ToDecimal(dt.Rows[0]["PricePerHour"]);
+                decimal balance = Convert.ToDecimal(dt.Rows[0]["Balance"]);
+                string computerId = dt.Rows[0]["ComputerId"].ToString();
+                DateTime? endTime = dt.Rows[0]["EndTime"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dt.Rows[0]["EndTime"]);
+                string customerId = dt.Rows[0]["CustomerId"].ToString(); // Lấy CustomerId
+
+                decimal pricePerSecond = pricePerHour / 3600m;
+
+                if (endTime != null)
+                {
+                    // Session đã kết thúc (Không cần cập nhật, chỉ cần trả về trạng thái)
+                    return new
+                    {
+                        status = "ended",
+                        timeUsed = (int)(endTime.Value - startTime).TotalSeconds,
+                        moneyUsed = totalCost,
+                        moneyLeft = balance - totalCost,
+                        timeLeft = 0,
+                        computerName = computerId
+                    };
+                }
+
+                // Tính thời gian đã dùng
+                int timeUsed = (int)(DateTime.Now - startTime).TotalSeconds;
+                decimal moneyUsed = timeUsed * pricePerSecond;
+
+                // Nếu tiền đã dùng >= balance → kết thúc session
+                bool autoEnd = false;
+                if (moneyUsed >= balance)
+                {
+                    moneyUsed = balance;
+                    endTime = DateTime.Now;
+                    autoEnd = true;
+
+                    // Cập nhật Balance về 0
+                    string sqlUpdateBalance = @"UPDATE Customers SET Balance=0 WHERE CustomerId=@customerId";
+                    _db.ExecuteNonQuery(sqlUpdateBalance, new SqlParameter("@customerId", customerId));
+                }
+
+                decimal moneyLeft = balance - moneyUsed;
+                int timeLeft = (int)Math.Floor(moneyLeft / pricePerSecond);
+                if (timeLeft < 0) timeLeft = 0;
+
+                // Cập nhật session
+                string sqlUpdate = @"UPDATE Sessions SET TotalCost=@moneyUsed, EndTime=@endTime WHERE SessionId=@sessionId";
+                _db.ExecuteNonQuery(sqlUpdate,
+                    new SqlParameter("@moneyUsed", moneyUsed),
+                    new SqlParameter("@endTime", (object)endTime ?? DBNull.Value),
+                    new SqlParameter("@sessionId", sessionId));
+
+                return new
+                {
+                    status = autoEnd ? "ended" : "success",
+                    timeUsed = timeUsed,
+                    moneyUsed = moneyUsed,
+                    moneyLeft = moneyLeft,
+                    timeLeft = timeLeft,
+                    computerName = computerId
+                };
+            }
+            catch (Exception ex)
+            {
+                return new { status = "error", message = ex.Message };
+            }
+        }
+
+
+        // --- HÀM XỬ LÝ END SESSION (ĐÃ SỬA LỖI THIẾU CỘT) ---
+        public object HandleEndSession(dynamic data)
+        {
+            try
+            {
+                string sessionId = data.sessionId;
+
+                // Lấy session và tính tiền (ĐÃ THÊM cu.CustomerId và cu.Balance)
+                string sqlGet = @"SELECT s.StartTime, s.ComputerId, s.TotalCost, c.PricePerHour, cu.CustomerId, cu.Balance
+                                   FROM Sessions s
+                                   JOIN Computers c ON s.ComputerId = c.ComputerId
+                                   JOIN Customers cu ON s.CustomerId = cu.CustomerId
+                                   WHERE s.SessionId=@sessionId AND s.EndTime IS NULL";
+
+                var dt = _db.ExecuteQuery(sqlGet, new SqlParameter("@sessionId", sessionId));
+
+                if (dt.Rows.Count == 0)
+                    return new { status = "error", message = "Session not found" };
+
+                DateTime startTime = Convert.ToDateTime(dt.Rows[0]["StartTime"]);
+                decimal balance = Convert.ToDecimal(dt.Rows[0]["Balance"]);
+                string customerId = dt.Rows[0]["CustomerId"].ToString();
+                decimal pricePerHour = Convert.ToDecimal(dt.Rows[0]["PricePerHour"]);
+
+                int timeUsed = (int)(DateTime.Now - startTime).TotalSeconds;
+                decimal pricePerSecond = pricePerHour / 3600m;
+                decimal finalCost = timeUsed * pricePerSecond;
+
+                // Kiểm tra tiền (không cho trừ quá số dư)
+                if (finalCost > balance)
+                {
+                    finalCost = balance;
+                }
+
+                // Cập nhật EndTime và TotalCost cho Session
+                string sqlUpdate = @"UPDATE Sessions
+                                     SET EndTime=GETDATE(),
+                                         TotalCost=@finalCost
+                                     WHERE SessionId=@sessionId";
+
+                _db.ExecuteNonQuery(sqlUpdate,
+                    new SqlParameter("@finalCost", finalCost),
+                    new SqlParameter("@sessionId", sessionId));
+
+                // Cập nhật Balance của khách hàng
+                decimal newBalance = balance - finalCost;
+                string sqlUpdateBalance = @"UPDATE Customers SET Balance=@newBalance WHERE CustomerId=@customerId";
+                _db.ExecuteNonQuery(sqlUpdateBalance,
+                    new SqlParameter("@newBalance", newBalance),
+                    new SqlParameter("@customerId", customerId));
+
+                return new
+                {
+                    status = "success",
+                    message = "Session ended",
+                    timeUsed = timeUsed,
+                    totalCost = finalCost,
+                    newBalance = newBalance
+                };
+            }
+            catch (Exception ex)
+            {
+                return new { status = "error", message = ex.Message };
+            }
+        }
+    }
+}
