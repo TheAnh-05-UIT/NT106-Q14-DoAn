@@ -1,5 +1,4 @@
-﻿using AxWMPLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -85,7 +84,10 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             lblTitle.Visible = false;
             MergerForm(f);
         }
-        
 
+        private void panelMainForm_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

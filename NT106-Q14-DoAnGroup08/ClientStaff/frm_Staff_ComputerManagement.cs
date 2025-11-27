@@ -148,7 +148,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             if(command.Equals("LOCK_PC", StringComparison.OrdinalIgnoreCase))
             {
                 MessageBox.Show("Máy tính đã bị khóa từ Server!");
-                frm_LockScreenVer2 lockScreen = new frm_LockScreenVer2();
+                frm_LockScreen lockScreen = new frm_LockScreen();
                 this.Hide();
                 lockScreen.ShowDialog();
             }
@@ -251,7 +251,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             string customerId = dgvComputers.CurrentRow.Cells["Khách hàng"].Value?.ToString();
             string status = dgvComputers.CurrentRow.Cells["Trạng thái"].Value?.ToString();
 
-            if (computerId == null || status == "Off" || string.IsNullOrEmpty(customerId))
+            if (computerId == null || status == "Off")
             {
                 MessageBox.Show("Máy đã tắt hoặc không có phiên chơi đang hoạt động.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

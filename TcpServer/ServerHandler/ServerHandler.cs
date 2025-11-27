@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Concurrent; 
+using System.Collections.Concurrent;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -46,7 +46,7 @@ namespace TcpServer.ServerHandler
             }
         }
 
-        private void HandleClient(TcpClient client) 
+        private void HandleClient(TcpClient client)
         {
             string clientName = string.Empty;
             try
@@ -74,7 +74,7 @@ namespace TcpServer.ServerHandler
                             ListenForClientStaffCommands(clientName, client, ns);
                         }
                     }
-                    catch (IOException) 
+                    catch (IOException)
                     {
                         Console.WriteLine("Client ket noi nhung khong gui du lieu đang ky/yeu cau kip thoi.");
                         return;
@@ -97,7 +97,7 @@ namespace TcpServer.ServerHandler
                 }
             }
         }
-        
+
         private object HandleComputerControl(dynamic data)
         {
             string computerId = data.ComputerId?.ToString();
@@ -108,7 +108,7 @@ namespace TcpServer.ServerHandler
             {
                 return new { status = "error", message = "Missing ComputerId or ActionType." };
             }
-            clientName = computerId; 
+            clientName = computerId;
 
             if (string.IsNullOrEmpty(clientName))
             {
@@ -119,17 +119,17 @@ namespace TcpServer.ServerHandler
             switch (actionType.ToUpper())
             {
                 case "LOCK":
-                    
+
                     if (SendCommandToClientStaff(clientName, "LOCK_PC"))
                     {
-                        
+
                         Console.WriteLine($"[CONTROL] Đa khoa may {computerId} ({clientName}).");
                         return new { status = "success", message = $"Đa gui lenh khoa đen may {computerId}" };
                     }
                     return new { status = "error", message = $"Khong the gui lenh khoa đen may {clientName}. May khong ket noi." };
 
                 case "END_SESSION":
-                    SendCommandToClientStaff(clientName, "LOGOUT_PC"); 
+                    SendCommandToClientStaff(clientName, "LOGOUT_PC");
 
                     Console.WriteLine($"[CONTROL] Đa ket thuc phien may {computerId}.");
                     return new { status = "success", message = $"Đa ket thuc phien may {computerId}" };
@@ -242,7 +242,7 @@ namespace TcpServer.ServerHandler
                     if (ns.DataAvailable)
                     {
                         bytesRead = ns.Read(buffer, 0, buffer.Length);
-                        if (bytesRead == 0) break; 
+                        if (bytesRead == 0) break;
 
                         string data = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
                         Console.WriteLine($"Client Staff {clientName} gui: {data}");
