@@ -41,7 +41,7 @@
             this.lst_Chat.FormattingEnabled = true;
             this.lst_Chat.ItemHeight = 20;
             this.lst_Chat.Location = new System.Drawing.Point(0, 0);
-            this.lst_Chat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lst_Chat.Margin = new System.Windows.Forms.Padding(2);
             this.lst_Chat.Name = "lst_Chat";
             this.lst_Chat.Size = new System.Drawing.Size(674, 579);
             this.lst_Chat.TabIndex = 0;
@@ -62,16 +62,17 @@
             this.txt_Chat.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txt_Chat.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_Chat.Location = new System.Drawing.Point(0, 0);
-            this.txt_Chat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_Chat.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_Chat.Multiline = true;
             this.txt_Chat.Name = "txt_Chat";
-            this.txt_Chat.Size = new System.Drawing.Size(558, 35);
+            this.txt_Chat.Size = new System.Drawing.Size(558, 49);
             this.txt_Chat.TabIndex = 0;
             // 
             // btn_SendMessage
             // 
             this.btn_SendMessage.Dock = System.Windows.Forms.DockStyle.Right;
             this.btn_SendMessage.Location = new System.Drawing.Point(558, 0);
-            this.btn_SendMessage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_SendMessage.Margin = new System.Windows.Forms.Padding(2);
             this.btn_SendMessage.Name = "btn_SendMessage";
             this.btn_SendMessage.Size = new System.Drawing.Size(116, 49);
             this.btn_SendMessage.TabIndex = 1;

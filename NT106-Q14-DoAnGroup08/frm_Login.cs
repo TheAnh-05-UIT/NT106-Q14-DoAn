@@ -63,6 +63,12 @@ namespace NT106_Q14_DoAnGroup08
                         DTO.UserSession.UserId = obj.userId;
                         DTO.UserSession.Role = obj.role;
                         DTO.UserSession.FullName = obj.fullName;
+
+                        if (obj.role == "CUSTOMER" && obj.balance.HasValue)
+                        {
+                            DTO.UserSession.Balance = obj.balance.Value;
+                        }
+
                         string role = obj.role;
                         MessageBox.Show($"Đăng nhập thành công với quyền: {role}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         
@@ -74,7 +80,7 @@ namespace NT106_Q14_DoAnGroup08
                         else if (role == "EMPLOYEE")
                             new ClientStaff.frm_Staff().Show();
                         else
-                            new ClientCustomer.frm_Customer().Show();
+                            new ClientCustomer.frm_Customer(obj.userId).Show();
                         LoginSuccess?.Invoke();
                     }
                     else
@@ -106,6 +112,8 @@ namespace NT106_Q14_DoAnGroup08
             public string message { get; set; }
             public string userId { get; set; }
             public string fullName { get; set; }
+
+            public decimal? balance { get; set; }
         }
         private void UpdatePasswordMask()
         {

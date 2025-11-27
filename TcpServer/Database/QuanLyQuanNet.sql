@@ -69,6 +69,14 @@ CREATE TABLE Computers (
     IpAddress NVARCHAR(50),
     PricePerHour DECIMAL(10,2)
 );
+
+
+INSERT INTO Computers (ComputerId, ComputerName, [Status], IpAddress, PricePerHour)
+VALUES 
+('MAY01', 'Máy 01', 'AVAILABLE', '192.168.1.101', 5000),
+('MAY02', 'Máy 02', 'IN_USE', '192.168.1.102', 5000),
+('MAY03', 'Máy 03', 'MAINTENANCE', '192.168.1.103', 5000),
+('MAY04', 'Máy 04', 'AVAILABLE', '192.168.1.104', 6000);
 --EXEC sp_helpconstraint 'Computers';
 --ALTER TABLE Computers DROP CONSTRAINT CK__Computers__Statu__1293BD5E;
 --ALTER TABLE Computers ADD CONSTRAINT CK_status CHECK (Status in ('On', 'Off'));

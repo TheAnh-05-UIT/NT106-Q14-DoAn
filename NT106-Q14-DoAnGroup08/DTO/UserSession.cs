@@ -13,6 +13,8 @@ namespace NT106_Q14_DoAnGroup08.DTO
         public static string UserName { get; set; }
         public static string FullName { get; set; }
         public static string Role { get; set; }
+
+        public static decimal Balance { get; set; }
         public static Form NextForm { get; set; }
         // Hàm để xóa thông tin khi Đăng xuất
         public static void Clear()

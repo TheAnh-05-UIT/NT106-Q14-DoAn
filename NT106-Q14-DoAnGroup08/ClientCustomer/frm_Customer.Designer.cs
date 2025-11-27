@@ -31,23 +31,28 @@
             this.lbl_Username = new System.Windows.Forms.Label();
             this.lbl_Used = new System.Windows.Forms.Label();
             this.lbl_Remain = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txt_TimeUsed = new System.Windows.Forms.TextBox();
+            this.txt_TimeRemain = new System.Windows.Forms.TextBox();
+            this.txt_BalanceUsed = new System.Windows.Forms.TextBox();
+            this.txt_BalanceRemain = new System.Windows.Forms.TextBox();
             this.btn_TopUp = new System.Windows.Forms.Button();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.btn_FoodMenu = new System.Windows.Forms.Button();
             this.btn_Chat = new System.Windows.Forms.Button();
+            this.lbl_CName = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_Username
             // 
             this.lbl_Username.AutoSize = true;
+            this.lbl_Username.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbl_Username.Font = new System.Drawing.Font("Times New Roman", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Username.Location = new System.Drawing.Point(171, 43);
+            this.lbl_Username.Location = new System.Drawing.Point(0, 0);
+            this.lbl_Username.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_Username.Name = "lbl_Username";
-            this.lbl_Username.Size = new System.Drawing.Size(167, 42);
+            this.lbl_Username.Size = new System.Drawing.Size(124, 33);
             this.lbl_Username.TabIndex = 0;
             this.lbl_Username.Text = "Username";
             // 
@@ -55,9 +60,10 @@
             // 
             this.lbl_Used.AutoSize = true;
             this.lbl_Used.Font = new System.Drawing.Font("Times New Roman", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Used.Location = new System.Drawing.Point(12, 129);
+            this.lbl_Used.Location = new System.Drawing.Point(9, 103);
+            this.lbl_Used.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_Used.Name = "lbl_Used";
-            this.lbl_Used.Size = new System.Drawing.Size(111, 31);
+            this.lbl_Used.Size = new System.Drawing.Size(84, 23);
             this.lbl_Used.TabIndex = 1;
             this.lbl_Used.Text = "Sử dụng:";
             // 
@@ -65,51 +71,62 @@
             // 
             this.lbl_Remain.AutoSize = true;
             this.lbl_Remain.Font = new System.Drawing.Font("Times New Roman", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Remain.Location = new System.Drawing.Point(12, 187);
+            this.lbl_Remain.Location = new System.Drawing.Point(9, 150);
+            this.lbl_Remain.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_Remain.Name = "lbl_Remain";
-            this.lbl_Remain.Size = new System.Drawing.Size(100, 31);
+            this.lbl_Remain.Size = new System.Drawing.Size(77, 23);
             this.lbl_Remain.TabIndex = 2;
             this.lbl_Remain.Text = "Còn lại:";
             // 
-            // textBox1
+            // txt_TimeUsed
             // 
-            this.textBox1.Location = new System.Drawing.Point(137, 130);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(100, 31);
-            this.textBox1.TabIndex = 3;
+            this.txt_TimeUsed.ForeColor = System.Drawing.Color.White;
+            this.txt_TimeUsed.Location = new System.Drawing.Point(103, 104);
+            this.txt_TimeUsed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_TimeUsed.Name = "txt_TimeUsed";
+            this.txt_TimeUsed.ReadOnly = true;
+            this.txt_TimeUsed.Size = new System.Drawing.Size(76, 26);
+            this.txt_TimeUsed.TabIndex = 3;
+            this.txt_TimeUsed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox2
+            // txt_TimeRemain
             // 
-            this.textBox2.Location = new System.Drawing.Point(137, 188);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(100, 31);
-            this.textBox2.TabIndex = 4;
+            this.txt_TimeRemain.Location = new System.Drawing.Point(103, 150);
+            this.txt_TimeRemain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_TimeRemain.Name = "txt_TimeRemain";
+            this.txt_TimeRemain.ReadOnly = true;
+            this.txt_TimeRemain.Size = new System.Drawing.Size(76, 26);
+            this.txt_TimeRemain.TabIndex = 4;
+            this.txt_TimeRemain.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox3
+            // txt_BalanceUsed
             // 
-            this.textBox3.Location = new System.Drawing.Point(261, 130);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(196, 31);
-            this.textBox3.TabIndex = 5;
+            this.txt_BalanceUsed.Location = new System.Drawing.Point(196, 104);
+            this.txt_BalanceUsed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_BalanceUsed.Name = "txt_BalanceUsed";
+            this.txt_BalanceUsed.ReadOnly = true;
+            this.txt_BalanceUsed.Size = new System.Drawing.Size(148, 26);
+            this.txt_BalanceUsed.TabIndex = 5;
+            this.txt_BalanceUsed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox4
+            // txt_BalanceRemain
             // 
-            this.textBox4.Location = new System.Drawing.Point(261, 187);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(196, 31);
-            this.textBox4.TabIndex = 6;
+            this.txt_BalanceRemain.Location = new System.Drawing.Point(196, 150);
+            this.txt_BalanceRemain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_BalanceRemain.Name = "txt_BalanceRemain";
+            this.txt_BalanceRemain.ReadOnly = true;
+            this.txt_BalanceRemain.Size = new System.Drawing.Size(148, 26);
+            this.txt_BalanceRemain.TabIndex = 6;
+            this.txt_BalanceRemain.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btn_TopUp
             // 
             this.btn_TopUp.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.top_up__1___2_;
             this.btn_TopUp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btn_TopUp.Location = new System.Drawing.Point(18, 470);
+            this.btn_TopUp.Location = new System.Drawing.Point(14, 376);
+            this.btn_TopUp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_TopUp.Name = "btn_TopUp";
-            this.btn_TopUp.Size = new System.Drawing.Size(141, 125);
+            this.btn_TopUp.Size = new System.Drawing.Size(106, 100);
             this.btn_TopUp.TabIndex = 10;
             this.btn_TopUp.Text = "Nạp tiền";
             this.btn_TopUp.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -121,9 +138,10 @@
             // 
             this.btnLogOut.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.logout__1_;
             this.btnLogOut.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnLogOut.Location = new System.Drawing.Point(348, 325);
+            this.btnLogOut.Location = new System.Drawing.Point(261, 260);
+            this.btnLogOut.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(141, 125);
+            this.btnLogOut.Size = new System.Drawing.Size(106, 100);
             this.btnLogOut.TabIndex = 9;
             this.btnLogOut.Text = "Đăng xuất";
             this.btnLogOut.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -135,9 +153,10 @@
             // 
             this.btn_FoodMenu.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.food__1_;
             this.btn_FoodMenu.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btn_FoodMenu.Location = new System.Drawing.Point(178, 325);
+            this.btn_FoodMenu.Location = new System.Drawing.Point(134, 260);
+            this.btn_FoodMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_FoodMenu.Name = "btn_FoodMenu";
-            this.btn_FoodMenu.Size = new System.Drawing.Size(149, 125);
+            this.btn_FoodMenu.Size = new System.Drawing.Size(112, 100);
             this.btn_FoodMenu.TabIndex = 8;
             this.btn_FoodMenu.Text = "Gọi món";
             this.btn_FoodMenu.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -149,9 +168,10 @@
             // 
             this.btn_Chat.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.chat__1___1___1___1_;
             this.btn_Chat.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btn_Chat.Location = new System.Drawing.Point(18, 325);
+            this.btn_Chat.Location = new System.Drawing.Point(14, 260);
+            this.btn_Chat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_Chat.Name = "btn_Chat";
-            this.btn_Chat.Size = new System.Drawing.Size(141, 125);
+            this.btn_Chat.Size = new System.Drawing.Size(106, 100);
             this.btn_Chat.TabIndex = 7;
             this.btn_Chat.Text = "Giao tiếp";
             this.btn_Chat.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -159,25 +179,49 @@
             this.btn_Chat.UseVisualStyleBackColor = true;
             this.btn_Chat.Click += new System.EventHandler(this.btn_Chat_Click);
             // 
+            // lbl_CName
+            // 
+            this.lbl_CName.AutoSize = true;
+            this.lbl_CName.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_CName.Location = new System.Drawing.Point(257, 15);
+            this.lbl_CName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_CName.Name = "lbl_CName";
+            this.lbl_CName.Size = new System.Drawing.Size(116, 21);
+            this.lbl_CName.TabIndex = 11;
+            this.lbl_CName.Text = "Computer Type";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbl_Username);
+            this.panel1.Location = new System.Drawing.Point(126, 50);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(149, 42);
+            this.panel1.TabIndex = 12;
+            // 
             // frm_Customer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 867);
+            this.ClientSize = new System.Drawing.Size(384, 694);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.lbl_CName);
             this.Controls.Add(this.btn_TopUp);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btn_FoodMenu);
             this.Controls.Add(this.btn_Chat);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt_BalanceRemain);
+            this.Controls.Add(this.txt_BalanceUsed);
+            this.Controls.Add(this.txt_TimeRemain);
+            this.Controls.Add(this.txt_TimeUsed);
             this.Controls.Add(this.lbl_Remain);
             this.Controls.Add(this.lbl_Used);
-            this.Controls.Add(this.lbl_Username);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frm_Customer";
             this.Text = "Customer";
             this.Load += new System.EventHandler(this.Customer_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,13 +232,15 @@
         private System.Windows.Forms.Label lbl_Username;
         private System.Windows.Forms.Label lbl_Used;
         private System.Windows.Forms.Label lbl_Remain;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txt_TimeUsed;
+        private System.Windows.Forms.TextBox txt_TimeRemain;
+        private System.Windows.Forms.TextBox txt_BalanceUsed;
+        private System.Windows.Forms.TextBox txt_BalanceRemain;
         private System.Windows.Forms.Button btn_Chat;
         private System.Windows.Forms.Button btn_FoodMenu;
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Button btn_TopUp;
+        private System.Windows.Forms.Label lbl_CName;
+        private System.Windows.Forms.Panel panel1;
     }
 }
