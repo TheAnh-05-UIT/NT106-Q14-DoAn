@@ -23,7 +23,7 @@ namespace TcpServer.ServerHandler
         private readonly HandlerFood handlerFood;
         private readonly HandlerCustomer handlerCustomer;
         private readonly HandlerComputerManagement computerHandler;
-
+        private readonly HandlerAdminComputerManagementcs adminComputerHandler;
         public ServerHandler(string connStr)
         {
             db = new DatabaseHelper(connStr);
@@ -33,6 +33,7 @@ namespace TcpServer.ServerHandler
             handlerFood = new HandlerFood(db);
             handlerCustomer = new HandlerCustomer(db);
             computerHandler = new HandlerComputerManagement(db);
+            adminComputerHandler = new HandlerAdminComputerManagementcs(db);
         }
 
         public void Start(int port)
@@ -164,6 +165,7 @@ namespace TcpServer.ServerHandler
                     case "add_employee": response = handlerAdminCustomerAcc.HandleAddEmployee(obj.data); break;
                     case "update_employee": response = handlerAdminCustomerAcc.HandleUpdateEmployee(obj.data); break;
                     case "delete_employee": response = handlerAdminCustomerAcc.HandleDeleteEmployee(obj.data); break;
+                    case "GET_ALL_COMPUTERS_ADMIN": response = adminComputerHandler.HandleGetAllComputers(); break;
                     case "GET_ALL_CUSTOMERS": response = handlerCustomerHandler.HandleGetAllCustomers(); break;
                     case "ADD_CUSTOMER": response = handlerCustomerHandler.HandleAddCustomer(obj.data); break;
                     case "UPDATE_CUSTOMER": response = handlerCustomerHandler.HandleUpdateCustomer(obj.data); break;
@@ -195,6 +197,12 @@ namespace TcpServer.ServerHandler
                         break;
                     case "UPDATE_COMPUTER_STATUS":
                         response = computerHandler.HandleUpdateStatus(obj.data);
+                        break;
+                    case "DELETE_COMPUTER":
+                        response = adminComputerHandler.HandleDeleteComputer(obj.data);
+                        break;
+                    case "ADD_COMPUTER":
+                        response = adminComputerHandler.HandleAddComputer(obj.data);
                         break;
                     default: response = new { status = "error", message = $"Unknown action: {action}" }; break;
                 }
