@@ -301,6 +301,7 @@ namespace TcpServer.ServerHandler
         }
 
         // Chia ra project khác sau
+
         /* Test bằng
 curl -X POST -H "Content-Type: application/json" -d "{\"action\":\"paid\",\"data\":{\"amount\":1000,\"accountName\":\"NhatAnh\",\"addInfo\":\"Số hóa đơn\"}}" http://localhost:5000/
         */
@@ -325,11 +326,14 @@ curl -X POST -H "Content-Type: application/json" -d "{\"action\":\"paid\",\"data
                 http.Start();
                 Console.WriteLine($"http://{localAddress}:{httpPort}/");
                 Console.WriteLine($"HTTP server started on port {httpPort} (prefix: {prefix})");
+                Console.WriteLine("Để test HTTP notification ta xài thử lệnh như sau:");
+                Console.WriteLine("curl -X POST -H \"Content-Type: application/json\" -d \"{\\\"action\\\":\\\"paid\\\",\\\"data\\\":{\\\"amount\\\":1000,\\\"accountName\\\":\\\"NhatAnh\\\",\\\"addInfo\\\":\\\"Số hóa đơn\\\"}}\" http://localhost:5000/");
             }
             catch (HttpListenerException hlex)
             {
                 Console.WriteLine($"HttpListener start failed: {hlex.Message}");
-                Console.WriteLine("If you get access denied, reserve the URL with netsh or run as admin.");
+                Console.WriteLine($"Lỗi thì mở port bằng quyền admin bằng lệnh sau trên cmd:\nnetsh http add urlacl url=http://+:{httpPort}/ user=Everyone"
+            );
                 throw;
             }
 

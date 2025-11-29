@@ -25,7 +25,7 @@ namespace TcpServer
             { IsBackground = true };
             tcpThread.Start();
 
-            // Lỗi thì mở port bằng quyền admin
+            // Lỗi thì mở port bằng quyền admin bằng lệnh sau trên cmd:
             // netsh http add urlacl url=http://+:5000/ user=Everyone
             try
             {
