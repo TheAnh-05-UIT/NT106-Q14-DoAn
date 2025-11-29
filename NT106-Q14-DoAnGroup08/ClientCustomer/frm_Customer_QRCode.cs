@@ -56,7 +56,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             }
 
 
-            string customerId = "KH001";
+            string customerId = "CUS001";
 
             decimal totalAmount = Convert.ToDecimal(amount);
 

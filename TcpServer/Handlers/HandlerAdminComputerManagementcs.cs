@@ -16,6 +16,38 @@ namespace TcpServer.Handlers
         {
             db = databaseHelper;
         }
+        // HandlerAdminComputerManagementcs.cs
+
+        public object HandleGetComputerDetails(dynamic data)
+        {
+            try
+            {
+                string id = ((string)data.ComputerId).Trim();
+
+                string query = "SELECT ComputerId, ComputerName, [Status], IpAddress, PricePerHour FROM Computers WHERE ComputerId = @Id";
+                DataTable dt = db.ExecuteQuery(query, new SqlParameter("@Id", id));
+                DataRow row = (dt.Rows.Count > 0) ? dt.Rows[0] : null;
+
+                if (row != null)
+                {
+                    // Chuyển DataRow thành một đối tượng ẩn danh (anonymous object)
+                    var computerDetails = new
+                    {
+                        ComputerId = row["ComputerId"].ToString(),
+                        ComputerName = row["ComputerName"].ToString(),
+                        Status = row["Status"].ToString(),
+                        IpAddress = row["IpAddress"].ToString(),
+                        PricePerHour = (decimal)row["PricePerHour"] // Ép kiểu về decimal
+                    };
+                    return new { status = "success", data = computerDetails };
+                }
+                return new { status = "error", message = "Computer not found." };
+            }
+            catch (Exception ex)
+            {
+                return new { status = "error", message = ex.Message };
+            }
+        }
         public object HandleGetAllComputers()
         {
             try
@@ -29,6 +61,46 @@ namespace TcpServer.Handlers
                 return new { status = "error", message = ex.Message };
             }
         }
+        // HandlerAdminComputerManagementcs.cs
+        // ... (các hàm khác)
+
+        public object HandleUpdateComputer(dynamic data)
+        {
+            try
+            {
+                // Lấy dữ liệu và loại bỏ khoảng trắng thừa
+                string id = ((string)data.ComputerId).Trim();
+                string name = ((string)data.ComputerName).Trim();
+                string ipAddress = ((string)data.IpAddress).Trim();
+                // Cần đảm bảo Status được truyền vào khớp CHÍNH XÁC: AVAILABLE, IN_USE, MAINTENANCE
+                string status = ((string)data.Status).Trim().ToUpper();
+                decimal pricePerHour = (decimal)data.PricePerHour;
+
+                string query = "UPDATE Computers SET " +
+                               "ComputerName = @Name, " +
+                               "[Status] = @Status, " +
+                               "IpAddress = @IpAddress, " +
+                               "PricePerHour = @Price " +
+                               "WHERE ComputerId = @Id";
+
+                int rows = db.ExecuteNonQuery(query,
+                    new SqlParameter("@Id", id),
+                    new SqlParameter("@Name", name),
+                    new SqlParameter("@Status", status),
+                    new SqlParameter("@IpAddress", ipAddress),
+                    new SqlParameter("@Price", pricePerHour));
+
+                if (rows > 0) return new { status = "success" };
+
+                // Trả về lỗi nếu không tìm thấy ID máy
+                return new { status = "error", message = "Computer not found or no changes made." };
+            }
+            catch (Exception ex)
+            {
+                // Trả về lỗi nếu xung đột CHECK constraint (CK_Status)
+                return new { status = "error", message = ex.Message };
+            }
+        }
         public object HandleAddComputer(dynamic data)
         {
             try
@@ -36,7 +108,7 @@ namespace TcpServer.Handlers
                 string id = (string)data.ComputerId;
                 string name = (string)data.ComputerName;
                 string ipAddress = (string)data.IpAddress;
-                string status = "AVAILABLE".Trim();
+                string status = (string)data.Status;
                 decimal pricePerHour = (decimal)data.PricePerHour;
                 string query = "INSERT INTO Computers (ComputerId, ComputerName, [Status], IpAddress, PricePerHour) " +
                                "VALUES (@Id, @Name, @Status, @IpAddress, @price)";

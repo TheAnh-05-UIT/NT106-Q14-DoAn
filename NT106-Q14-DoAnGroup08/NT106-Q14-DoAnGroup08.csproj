@@ -237,6 +237,12 @@
     <Compile Include="ClientAdmin\frm_AddComputer.Designer.cs">
       <DependentUpon>frm_AddComputer.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClientAdmin\frm_Admin_Change.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientAdmin\frm_Admin_Change.Designer.cs">
+      <DependentUpon>frm_Admin_Change.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClientAdmin\frm_Admin_ComputerManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -362,6 +368,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="User Control\uc_Staff_Notification.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\uc_Staff_Notification.Designer.cs">
+      <DependentUpon>uc_Staff_Notification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\uc_Staff_Notification_Item.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\uc_Staff_Notification_Item.Designer.cs">
+      <DependentUpon>uc_Staff_Notification_Item.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils\PasswordHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -422,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClientAdmin\frm_AddComputer.resx">
       <DependentUpon>frm_AddComputer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientAdmin\frm_Admin_Change.resx">
+      <DependentUpon>frm_Admin_Change.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClientAdmin\frm_Admin_ComputerManagement.resx">
       <DependentUpon>frm_Admin_ComputerManagement.cs</DependentUpon>
@@ -513,6 +534,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User Control\uc_Staff_Menu.resx">
       <DependentUpon>uc_Staff_Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\uc_Staff_Notification.resx">
+      <DependentUpon>uc_Staff_Notification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\uc_Staff_Notification_Item.resx">
+      <DependentUpon>uc_Staff_Notification_Item.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bin\Debug\NT106-Q14-DoAnGroup08.exe.config" />
     <None Include="bin\Debug\TcpServer.exe.config" />

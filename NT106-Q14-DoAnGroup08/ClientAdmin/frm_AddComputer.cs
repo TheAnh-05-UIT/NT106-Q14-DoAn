@@ -41,6 +41,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            //chua hoan thien
             try
             {
                 var request = new
@@ -50,7 +51,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                     {
                         ComputerId = txtID.Text.Trim(),
                         ComputerName = txtName.Text.Trim(),
-                        //Status = cobStatus.Text,
+                        Status = cobStatus.Text.Trim(),
                         IpAddress = txtIP.Text.Trim(),
                         PricePerHour = decimal.Parse(txtPrice.Text.Trim())
                     }
@@ -61,7 +62,6 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                 {
                     MessageBox.Show("Thêm máy thành công!", "Confirm", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
-                   // LoadComputerList();
                 }
                 else
                 {

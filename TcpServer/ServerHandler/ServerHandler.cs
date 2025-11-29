@@ -24,6 +24,7 @@ namespace TcpServer.ServerHandler
         private readonly HandlerCustomer handlerCustomer;
         private readonly HandlerComputerManagement computerHandler;
         private readonly HandlerAdminComputerManagementcs adminComputerHandler;
+        private readonly HandlerNotification handlerNotification;
         public ServerHandler(string connStr)
         {
             db = new DatabaseHelper(connStr);
@@ -34,6 +35,7 @@ namespace TcpServer.ServerHandler
             handlerCustomer = new HandlerCustomer(db);
             computerHandler = new HandlerComputerManagement(db);
             adminComputerHandler = new HandlerAdminComputerManagementcs(db);
+            handlerNotification = new HandlerNotification(db);
         }
 
         public void Start(int port)
@@ -204,6 +206,12 @@ namespace TcpServer.ServerHandler
                     case "ADD_COMPUTER":
                         response = adminComputerHandler.HandleAddComputer(obj.data);
                         break;
+                    case "UPDATE_COMPUTER": // <<< THÊM ACTION NÀY
+                        response = adminComputerHandler.HandleUpdateComputer(obj.data);
+                        break;
+                    case "GET_COMPUTER_DETAILS": // <<< THÊM ACTION NÀY
+                        response = adminComputerHandler.HandleGetComputerDetails(obj.data);
+                        break;
                     default: response = new { status = "error", message = $"Unknown action: {action}" }; break;
                 }
 
@@ -304,6 +312,177 @@ namespace TcpServer.ServerHandler
             string json = JsonConvert.SerializeObject(obj);
             byte[] sendData = Encoding.UTF8.GetBytes(json);
             ns.Write(sendData, 0, sendData.Length);
+        }
+
+        // Chia ra project khác sau
+        /* Test bằng
+curl -X POST -H "Content-Type: application/json" -d "{\"action\":\"paid\",\"data\":{\"amount\":1000,\"accountName\":\"NhatAnh\",\"addInfo\":\"Số hóa đơn\"}}" http://localhost:5000/
+        */
+
+        public void StartHttp(int httpPort)
+        {
+            IPAddress localAddress = null;
+            foreach (IPAddress address in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+            {
+                if (address.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    localAddress = address;
+                    break;
+                }
+            }
+            string prefix = $"http://+:{httpPort}/";
+            HttpListener http = new HttpListener();
+            http.Prefixes.Add(prefix);
+
+            try
+            {
+                http.Start();
+                Console.WriteLine($"http://{localAddress}:{httpPort}/");
+                Console.WriteLine($"HTTP server started on port {httpPort} (prefix: {prefix})");
+            }
+            catch (HttpListenerException hlex)
+            {
+                Console.WriteLine($"HttpListener start failed: {hlex.Message}");
+                Console.WriteLine("If you get access denied, reserve the URL with netsh or run as admin.");
+                throw;
+            }
+
+            while (true)
+            {
+                HttpListenerContext ctx = http.GetContext();
+                ThreadPool.QueueUserWorkItem(_ => HandleHttpContext(ctx));
+            }
+        }
+
+        private void HandleHttpContext(HttpListenerContext ctx)
+        {
+            try
+            {
+                HttpListenerRequest req = ctx.Request;
+                HttpListenerResponse resp = ctx.Response;
+
+                if (req.HttpMethod != "POST")
+                {
+                    resp.StatusCode = (int)HttpStatusCode.MethodNotAllowed;
+                    resp.Close();
+                    return;
+                }
+
+                string body;
+                using (var reader = new StreamReader(req.InputStream, req.ContentEncoding))
+                {
+                    body = reader.ReadToEnd();
+                }
+
+                Console.WriteLine($"HTTP Received: {body}");
+
+                object responseObj = ProcessRequestString(body);
+
+                string json = JsonConvert.SerializeObject(responseObj);
+                byte[] data = Encoding.UTF8.GetBytes(json);
+
+                resp.ContentType = "application/json";
+                resp.ContentEncoding = Encoding.UTF8;
+                resp.ContentLength64 = data.Length;
+                resp.OutputStream.Write(data, 0, data.Length);
+                resp.OutputStream.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in HandleHttpContext: {ex.Message}");
+                try
+                {
+                    ctx.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    ctx.Response.Close();
+                }
+                catch { }
+            }
+        }
+
+        private object ProcessRequestString(string request)
+        {
+            if (string.IsNullOrWhiteSpace(request))
+                return new { status = "error", message = "Empty request" };
+
+            try
+            {
+                dynamic obj = JsonConvert.DeserializeObject(request);
+                if (obj?.action == null)
+                {
+                    return new { status = "error", message = "Missing 'action' field" };
+                }
+
+                string action = obj.action.ToString();
+                object response;
+
+                switch (action)
+                {
+                    case "paid":
+                        {
+                            object handle = handlerNotification.HandleNotification(obj);
+                            try
+                            {
+                                dynamic handleMessage = handle;
+                                var notificationObj = handleMessage.notification;
+                                string notificationJson = JsonConvert.SerializeObject(notificationObj);
+                                string message = "NOTIFICATION|" + notificationJson;
+
+                                bool sentToAny = false;
+
+                                if (ClientConnections.ContainsKey("Staff"))
+                                {
+                                    sentToAny = SendCommandToClientStaff("Staff", message);
+                                }
+
+                                if (!sentToAny)
+                                {
+                                    bool any = BroadcastToAllStaff(message);
+                                    if (!any)
+                                    {
+                                        Console.WriteLine("No connected staff clients to deliver notification.");
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"Error while sending notification to clients: {ex.Message}");
+                            }
+
+                            response = handle;
+                        }
+                        break;
+                    default:
+                        response = new { status = "error", message = $"Unknown HTTP action: {action}" };
+                        break;
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return new { status = "error", message = $"JSON Error: {ex.Message}" };
+            }
+        }
+
+        private bool BroadcastToAllStaff(string command)
+        {
+            bool sentAny = false;
+            foreach (var kv in ClientConnections)
+            {
+                string clientName = kv.Key;
+                try
+                {
+                    if (SendCommandToClientStaff(clientName, command))
+                    {
+                        sentAny = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Broadcast error to {clientName}: {ex.Message}");
+                }
+            }
+            return sentAny;
         }
     }
 }

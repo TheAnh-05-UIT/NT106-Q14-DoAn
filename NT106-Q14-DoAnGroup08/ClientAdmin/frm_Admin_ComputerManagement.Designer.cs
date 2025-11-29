@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMain = new System.Windows.Forms.Panel();
             this.flpComputers = new System.Windows.Forms.FlowLayoutPanel();
             this.dgvComputers = new System.Windows.Forms.DataGridView();
@@ -77,8 +77,8 @@
             // 
             // dgvComputers
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
-            this.dgvComputers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
+            this.dgvComputers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvComputers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvComputers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvComputers.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -88,9 +88,9 @@
             this.dgvComputers.ReadOnly = true;
             this.dgvComputers.RowHeadersVisible = false;
             this.dgvComputers.RowHeadersWidth = 62;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.dgvComputers.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(251)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.dgvComputers.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvComputers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvComputers.Size = new System.Drawing.Size(800, 340);
             this.dgvComputers.TabIndex = 0;
@@ -180,6 +180,7 @@
             this.btnRepair.Size = new System.Drawing.Size(135, 33);
             this.btnRepair.TabIndex = 5;
             this.btnRepair.Text = "Sửa thông tin máy";
+            this.btnRepair.Click += new System.EventHandler(this.btnRepair_Click);
             // 
             // btnKetThucPhien
             // 
@@ -235,7 +236,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.3681F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.6319F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 124F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
             this.tableLayoutPanel1.Controls.Add(this.lbl_MAINTENANCE, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbl_AVAILABLE, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbl_IN_USE, 1, 0);
@@ -255,7 +256,7 @@
             this.lbl_MAINTENANCE.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lbl_MAINTENANCE.Dock = System.Windows.Forms.DockStyle.Left;
             this.lbl_MAINTENANCE.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_MAINTENANCE.Location = new System.Drawing.Point(668, 10);
+            this.lbl_MAINTENANCE.Location = new System.Drawing.Point(667, 10);
             this.lbl_MAINTENANCE.Name = "lbl_MAINTENANCE";
             this.lbl_MAINTENANCE.Size = new System.Drawing.Size(119, 40);
             this.lbl_MAINTENANCE.TabIndex = 2;
@@ -267,7 +268,7 @@
             this.lbl_AVAILABLE.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lbl_AVAILABLE.Dock = System.Windows.Forms.DockStyle.Left;
             this.lbl_AVAILABLE.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_AVAILABLE.Location = new System.Drawing.Point(559, 10);
+            this.lbl_AVAILABLE.Location = new System.Drawing.Point(558, 10);
             this.lbl_AVAILABLE.Name = "lbl_AVAILABLE";
             this.lbl_AVAILABLE.Size = new System.Drawing.Size(99, 40);
             this.lbl_AVAILABLE.TabIndex = 1;
@@ -279,7 +280,7 @@
             this.lbl_IN_USE.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lbl_IN_USE.Dock = System.Windows.Forms.DockStyle.Left;
             this.lbl_IN_USE.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_IN_USE.Location = new System.Drawing.Point(452, 10);
+            this.lbl_IN_USE.Location = new System.Drawing.Point(451, 10);
             this.lbl_IN_USE.Name = "lbl_IN_USE";
             this.lbl_IN_USE.Size = new System.Drawing.Size(94, 40);
             this.lbl_IN_USE.TabIndex = 0;
@@ -294,7 +295,7 @@
             this.labelTitle.ForeColor = System.Drawing.Color.White;
             this.labelTitle.Location = new System.Drawing.Point(13, 10);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(433, 40);
+            this.labelTitle.Size = new System.Drawing.Size(432, 40);
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "QUẢN LÝ MÁY TRẠM";
             this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

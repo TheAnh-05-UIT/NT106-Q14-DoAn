@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NT106_Q14_DoAnGroup08.ConnectionServser;
+using QuanLyQuanNet.DTOs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -54,31 +55,6 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
             lbl_AVAILABLE.Text = $"AVAILABLE: {countAvailable}";
             lbl_MAINTENANCE.Text = $"MAINTENANCE: {countMaintenance}";
         }
-
-        // Hàm chung để gọi Server update trạng thái
-        //private void UpdateComputerStatus(string compId, string newStatus)
-        //{
-        //    var request = new
-        //    {
-        //        action = "UPDATE_COMPUTER_STATUS",
-        //        data = new { ComputerId = compId, Status = newStatus }
-        //    };
-
-        //    string jsonResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(request));
-        //    dynamic response = JsonConvert.DeserializeObject(jsonResponse);
-
-        //    if (response.status == "success")
-        //    {
-        //        MessageBox.Show("Cập nhật trạng thái thành công!", "Confirm", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //        LoadComputerList();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Lỗi: " + response.message);
-        //    }
-        //}
-
-        // --- HÀM TẠO GIAO DIỆN MÁY (DYNAMIC BUTTONS) ---
         private void GenerateComputerControls(DataTable dt)
         {
             flpComputers.Controls.Clear(); // Xóa cũ
@@ -117,8 +93,6 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                 flpComputers.Controls.Add(btn);
             }
         }
-
-        // --- HÀM TẢI DANH SÁCH MÁY TỪ SERVER ---
         private void LoadComputerList()
         {
             try
@@ -198,5 +172,28 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                 DeleteComputer(selectedComputerId);
             }
         }
+
+        // frm_Admin_ComputerManagement.cs (Form quản lý)
+        // frm_Admin_ComputerManagement.cs
+
+        private void btnRepair_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(selectedComputerId))
+            {
+                MessageBox.Show("Vui lòng chọn máy để sửa thông tin.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Tạo Form chỉnh sửa và truyền ID máy đã chọn
+            frm_Admin_Change f = new frm_Admin_Change(selectedComputerId);
+            f.ShowDialog();
+
+            // Sau khi Form chỉnh sửa đóng, tải lại danh sách
+            LoadComputerList();
+        }
+        // Lưu ý: Đảm bảo bạn đã xóa (hoặc sửa) đoạn code xóa máy tính bị copy nhầm trong hàm này.
+        // Lưu ý: Sửa lại hàm btnRepair_Click, bạn đang copy paste nhầm code của btnDelete_Click
+        // Lỗi: if (MessageBox.Show("Bạn muốn XÓA máy này ra khỏi hệ thống máy?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+        // Đổi lại thành logic gọi Form chỉnh sửa.
     }
 }

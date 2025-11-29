@@ -1,9 +1,16 @@
-﻿
+﻿USE master;
+GO
+
+DROP DATABASE QuanLyQuanNet;
+
 CREATE DATABASE QuanLyQuanNet;
 GO
 
 USE QuanLyQuanNet;
 GO
+
+SELECT *
+FROM Customers;
 
 CREATE TABLE Users (
     UserId NVARCHAR(20) PRIMARY KEY,       
@@ -47,8 +54,6 @@ VALUES
 ('U002', 'user1', '123', 'Nguyen Van B', '0352653331', 'b@gmail.com', 'EMPLOYEE', 1),
 ('U003', 'user3', '123', 'Nguyen Van D', '037256789', 'd@gmail.com', 'CUSTOMER', 1);
 
-select * from Users
-
 
 -- Bảng Customers (Khách hàng)
 
@@ -77,11 +82,15 @@ VALUES
 ('MAY02', 'Máy 02', 'IN_USE', '192.168.1.102', 5000),
 ('MAY03', 'Máy 03', 'MAINTENANCE', '192.168.1.103', 5000),
 ('MAY04', 'Máy 04', 'AVAILABLE', '192.168.1.104', 6000);
+INSERT INTO Computers (ComputerId, ComputerName, [Status], IpAddress, PricePerHour)
+VALUES ('MAY03', 'Máy 03', 'MAINTENANCE', '192.168.1.103', 5000);
 --EXEC sp_helpconstraint 'Computers';
---ALTER TABLE Computers DROP CONSTRAINT CK__Computers__Statu__1293BD5E;
---ALTER TABLE Computers ADD CONSTRAINT CK_status CHECK (Status in ('On', 'Off'));
---ALTER TABLE Computers DROP CONSTRAINT DF__Computers__Statu__1387E197;
---ALTER TABLE Computers ADD CONSTRAINT DF_status DEFAULT 'Off' FOR Status;
+--ALTER TABLE Computers DROP CONSTRAINT CK_status;
+--DELETE FROM Computers WHERE ComputerName = 'MAY07';
+--SELECT * FROM Computers;
+--ALTER TABLE Computers ADD CONSTRAINT CK_status CHECK (Status in ('AVAILABLE','MAINTENANCE', 'IN_USE'));
+--ALTER TABLE Computers DROP CONSTRAINT DF_status;
+--ALTER TABLE Computers ADD CONSTRAINT DF_status DEFAULT 'AVAILABLE' FOR Status;
 -- Bảng Sessions (Phiên chơi)
 
 CREATE TABLE Sessions (
@@ -114,24 +123,6 @@ CREATE TABLE Invoices (
     FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId)
 );
 
--- Bảng InvoiceDetails (Chi tiết hóa đơn)
-
-CREATE TABLE InvoiceDetails (
-    InvoiceDetailId NVARCHAR(20) PRIMARY KEY,
-    InvoiceId NVARCHAR(20) NOT NULL,
-    FoodId NVARCHAR(20) NULL,
-    ServiceId NVARCHAR(20) NULL,
-    Quantity INT DEFAULT 1,
-    Price DECIMAL(10,2) NOT NULL,
-    Status NVARCHAR(20)
-        CHECK (Status IN ('PENDING', 'COMPLETED', 'CANCELLED')) 
-        DEFAULT 'PENDING',
-    Note NVARCHAR(255) NULL,
-    FOREIGN KEY (InvoiceId) REFERENCES Invoices(InvoiceId),
-    FOREIGN KEY (FoodId) REFERENCES FoodAndDrink(FoodId),
-    FOREIGN KEY (ServiceId) REFERENCES Services(ServiceId)
-);
-
 
 CREATE TABLE Category (
     CategoryId NVARCHAR(20) PRIMARY KEY,
@@ -148,6 +139,31 @@ CREATE TABLE FoodAndDrink (
     CreatedAt DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (CategoryId) REFERENCES Category(CategoryId)
 );
+
+-- Bảng InvoiceDetails (Chi tiết hóa đơn)
+
+CREATE TABLE InvoiceDetails (
+    InvoiceDetailId NVARCHAR(20) PRIMARY KEY,
+    InvoiceId NVARCHAR(20) NOT NULL,
+    FoodId NVARCHAR(20) NULL,
+    ServiceId NVARCHAR(20) NULL,
+    Quantity INT DEFAULT 1,
+    Price DECIMAL(10,2) NOT NULL,
+    Status NVARCHAR(20)
+        CHECK (Status IN ('PENDING', 'PAID', 'COMPLETED', 'CANCELLED')) 
+        DEFAULT 'PENDING',
+    Note NVARCHAR(255) NULL,
+    FOREIGN KEY (InvoiceId) REFERENCES Invoices(InvoiceId),
+    FOREIGN KEY (FoodId) REFERENCES FoodAndDrink(FoodId),
+    FOREIGN KEY (ServiceId) REFERENCES Services(ServiceId)
+);
+
+INSERT INTO Services
+VALUES
+('1', 'Dịch vụ 1'),
+('2', 'Dịch vụ 2'),
+('3', 'Dịch vụ 3');
+
 
 -- Hiển thị của bảng Employees
 CREATE VIEW EmployeesView AS
