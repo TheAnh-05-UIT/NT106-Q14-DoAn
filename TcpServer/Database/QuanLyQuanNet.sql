@@ -1,9 +1,16 @@
-﻿
+﻿USE master;
+GO
+
+DROP DATABASE QuanLyQuanNet;
+
 CREATE DATABASE QuanLyQuanNet;
 GO
 
 USE QuanLyQuanNet;
 GO
+
+SELECT *
+FROM Customers;
 
 CREATE TABLE Users (
     UserId NVARCHAR(20) PRIMARY KEY,       
@@ -46,8 +53,6 @@ VALUES
 ('U001', 'admin', '123', 'Nguyen Van A', '0372773025', 'a@gmail.com', 'ADMIN',1 ),
 ('U002', 'user1', '123', 'Nguyen Van B', '0352653331', 'b@gmail.com', 'EMPLOYEE', 1),
 ('U003', 'user3', '123', 'Nguyen Van D', '037256789', 'd@gmail.com', 'CUSTOMER', 1);
-
-select * from Users
 
 
 -- Bảng Customers (Khách hàng)
@@ -114,24 +119,6 @@ CREATE TABLE Invoices (
     FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId)
 );
 
--- Bảng InvoiceDetails (Chi tiết hóa đơn)
-
-CREATE TABLE InvoiceDetails (
-    InvoiceDetailId NVARCHAR(20) PRIMARY KEY,
-    InvoiceId NVARCHAR(20) NOT NULL,
-    FoodId NVARCHAR(20) NULL,
-    ServiceId NVARCHAR(20) NULL,
-    Quantity INT DEFAULT 1,
-    Price DECIMAL(10,2) NOT NULL,
-    Status NVARCHAR(20)
-        CHECK (Status IN ('PENDING', 'COMPLETED', 'CANCELLED')) 
-        DEFAULT 'PENDING',
-    Note NVARCHAR(255) NULL,
-    FOREIGN KEY (InvoiceId) REFERENCES Invoices(InvoiceId),
-    FOREIGN KEY (FoodId) REFERENCES FoodAndDrink(FoodId),
-    FOREIGN KEY (ServiceId) REFERENCES Services(ServiceId)
-);
-
 
 CREATE TABLE Category (
     CategoryId NVARCHAR(20) PRIMARY KEY,
@@ -148,6 +135,31 @@ CREATE TABLE FoodAndDrink (
     CreatedAt DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (CategoryId) REFERENCES Category(CategoryId)
 );
+
+-- Bảng InvoiceDetails (Chi tiết hóa đơn)
+
+CREATE TABLE InvoiceDetails (
+    InvoiceDetailId NVARCHAR(20) PRIMARY KEY,
+    InvoiceId NVARCHAR(20) NOT NULL,
+    FoodId NVARCHAR(20) NULL,
+    ServiceId NVARCHAR(20) NULL,
+    Quantity INT DEFAULT 1,
+    Price DECIMAL(10,2) NOT NULL,
+    Status NVARCHAR(20)
+        CHECK (Status IN ('PENDING', 'PAID', 'COMPLETED', 'CANCELLED')) 
+        DEFAULT 'PENDING',
+    Note NVARCHAR(255) NULL,
+    FOREIGN KEY (InvoiceId) REFERENCES Invoices(InvoiceId),
+    FOREIGN KEY (FoodId) REFERENCES FoodAndDrink(FoodId),
+    FOREIGN KEY (ServiceId) REFERENCES Services(ServiceId)
+);
+
+INSERT INTO Services
+VALUES
+('1', 'Dịch vụ 1'),
+('2', 'Dịch vụ 2'),
+('3', 'Dịch vụ 3');
+
 
 -- Hiển thị của bảng Employees
 CREATE VIEW EmployeesView AS

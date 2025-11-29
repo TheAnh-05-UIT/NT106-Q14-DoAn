@@ -350,6 +350,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="User Control\uc_Staff_Notification.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\uc_Staff_Notification.Designer.cs">
+      <DependentUpon>uc_Staff_Notification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\uc_Staff_Notification_Item.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\uc_Staff_Notification_Item.Designer.cs">
+      <DependentUpon>uc_Staff_Notification_Item.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils\PasswordHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -495,6 +507,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User Control\uc_Staff_Menu.resx">
       <DependentUpon>uc_Staff_Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\uc_Staff_Notification.resx">
+      <DependentUpon>uc_Staff_Notification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\uc_Staff_Notification_Item.resx">
+      <DependentUpon>uc_Staff_Notification_Item.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bin\Debug\NT106-Q14-DoAnGroup08.exe.config" />
     <None Include="bin\Debug\TcpServer.exe.config" />
