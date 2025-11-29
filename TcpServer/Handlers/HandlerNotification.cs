@@ -105,16 +105,19 @@ namespace TcpServer.Handlers
                             catch (Exception exDet)
                             {
                                 Console.WriteLine($"Warning: cannot update InvoiceDetails status: {exDet.Message}");
+                                messages += " Không thể cập nhật thông tin hóa đơn";
                             }
                         }
                         else
                         {
                             Console.WriteLine($"HandlerNotification: invoice '{addInfo}' not found in DB.");
+                            messages += " Không tìm thấy mã hóa đơn";
                         }
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine($"Error while processing DB update in HandlerNotification: {ex.Message}");
+                        messages = "Không xử lý được thông tin.";
                     }
                 }
 
