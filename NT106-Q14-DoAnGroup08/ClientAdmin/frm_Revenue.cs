@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -11,22 +10,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using TcpServer;
-using TcpServer.Handlers;
 using Excel = Microsoft.Office.Interop.Excel;
+using Newtonsoft.Json;
+using NT106_Q14_DoAnGroup08.ConnectionServser;
 
 namespace NT106_Q14_DoAnGroup08.ClientAdmin
 {
+    public class RevenueDataResponse
+    {
+        public DataTable Details { get; set; }
+        public DataTable ChartData { get; set; }
+        public string ChartTitle { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public decimal TotalRevenue { get; set; }
+    }
     public partial class frm_Revenue : Form
     {
-        private readonly RevenueHandler revenueHandler;
         private readonly ExcelExportService excelExportService;
-        private const string CONNECTION_STRING = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=QuanLyQuanNet;Integrated Security=True";
 
         public frm_Revenue()
         {
             InitializeComponent();
-            revenueHandler = new RevenueHandler(CONNECTION_STRING);
             excelExportService = new ExcelExportService();
         }
 
@@ -34,19 +39,19 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
         {
             cboMode.SelectedIndex = 0;
             UpdateDatePickerVisibility();
-            ResetForm(); 
+            ResetForm();
         }
 
-        private void cbMode_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboMode_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateDatePickerVisibility();
         }
 
         private void UpdateDatePickerVisibility()
         {
-            dtWeekDate.Visible = cboMode.SelectedIndex <= 1; // Day or Week
-            dtMonth.Visible = cboMode.SelectedIndex == 2; // Month
-            dtYear.Visible = cboMode.SelectedIndex == 3; // Year
+            dtWeekDate.Visible = cboMode.SelectedIndex <= 1; 
+            dtMonth.Visible = cboMode.SelectedIndex == 2; 
+            dtYear.Visible = cboMode.SelectedIndex == 3; 
         }
 
         private void btnFilter_Click(object sender, EventArgs e)
@@ -54,18 +59,34 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
             try
             {
                 DateTime selectedDate = GetSelectedDate();
-                var request = new RevenueFilterRequest
+                var request = new
                 {
-                    Mode = cboMode.SelectedIndex,
-                    SelectedDate = selectedDate
+                    action = "FILTER_REVENUE",
+                    data = new
+                    {
+                        Mode = cboMode.SelectedIndex,
+                        SelectedDate = selectedDate
+                    }
                 };
-                RevenueResponse response = revenueHandler.HandleRevenueFilter(request);
-               
-                dgvSales.DataSource = response.Details;
-              
-                UpdateChart(response);
-               
-                lblTotal.Text = response.TotalRevenue.ToString("N0") + " VND";
+
+                string jsonRequest = JsonConvert.SerializeObject(request);
+                string jsonResponse = ServerConnection.SendRequest(jsonRequest);
+                dynamic response = JsonConvert.DeserializeObject(jsonResponse);
+                if (response.status == "success")
+                {
+                    var responseData = response.data.ToObject<RevenueDataResponse>();
+
+                    dgvSales.DataSource = responseData.Details;
+
+                    UpdateChart(responseData);
+
+                    lblTotal.Text = responseData.TotalRevenue.ToString("N0") + " VND";
+                }
+                else
+                {
+                    MessageBox.Show($"Lỗi từ server: {response.message}", "Lỗi",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
@@ -89,8 +110,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                     return DateTime.Now;
             }
         }
-
-        private void UpdateChart(RevenueResponse response)
+        private void UpdateChart(RevenueDataResponse response)
         {
             try
             {
@@ -135,11 +155,25 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void RenderDayChart(Series series, DataTable dt)
         {
-            var chartData = ChartDataHelper.PrepareChartDataForDay(dt);
-            foreach (var item in chartData)
+            var result = new Dictionary<string, int>();
+            var groupedData = dt.AsEnumerable()
+                                .GroupBy(row => row.Field<DateTime>("Ngày").Hour)
+                                .Select(g => new {
+                                    Gio = g.Key,
+                                    TongTien = g.Sum(row => Convert.ToInt32(row["Số tiền (VND)"]))
+                                })
+                                .OrderBy(x => x.Gio);
+            foreach (var item in groupedData)
+            {
+                result.Add($"{item.Gio}h", item.TongTien);
+            }
+            if (!result.Any())
+            {
+                result.Add("Không có dữ liệu", 0);
+            }
+            foreach (var item in result)
             {
                 series.Points.AddXY(item.Key, item.Value);
             }
@@ -147,8 +181,27 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
 
         private void RenderWeekChart(Series series, DataTable dt, DateTime startOfWeek)
         {
-            var chartData = ChartDataHelper.PrepareChartDataForWeek(dt, startOfWeek);
-            foreach (var item in chartData)
+            var result = new Dictionary<string, int>();
+            string[] dayNames = { "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy", "Chủ Nhật" };
+
+            for (int i = 0; i < 7; i++)
+            {
+                DateTime date = startOfWeek.AddDays(i);
+                result.Add($"{dayNames[i]} ({date.Day}/{date.Month})", 0);
+            }
+
+            foreach (DataRow row in dt.Rows)
+            {
+                DateTime date = Convert.ToDateTime(row["Ngày"]);
+                int revenue = Convert.ToInt32(row["Tổng tiền"]);
+                int dayIndex = ((int)date.DayOfWeek - 1 + 7) % 7;
+                string key = $"{dayNames[dayIndex]} ({date.Day}/{date.Month})";
+                if (result.ContainsKey(key))
+                {
+                    result[key] = revenue;
+                }
+            }
+            foreach (var item in result)
             {
                 series.Points.AddXY(item.Key, item.Value);
             }
@@ -156,8 +209,24 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
 
         private void RenderMonthChart(Series series, DataTable dt, DateTime date)
         {
-            var chartData = ChartDataHelper.PrepareChartDataForMonth(dt, date.Year, date.Month);
-            foreach (var item in chartData.OrderBy(x => x.Key))
+            var result = new Dictionary<int, int>();
+            int daysInMonth = DateTime.DaysInMonth(date.Year, date.Month);
+
+            for (int i = 1; i <= daysInMonth; i++)
+            {
+                result.Add(i, 0);
+            }
+
+            foreach (DataRow row in dt.Rows)
+            {
+                int day = Convert.ToInt32(row["Ngày"]);
+                int revenue = Convert.ToInt32(row["Tổng tiền"]);
+                if (result.ContainsKey(day))
+                {
+                    result[day] = revenue;
+                }
+            }
+            foreach (var item in result.OrderBy(x => x.Key))
             {
                 series.Points.AddXY(item.Key.ToString(), item.Value);
             }
@@ -165,8 +234,22 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
 
         private void RenderYearChart(Series series, DataTable dt)
         {
-            var chartData = ChartDataHelper.PrepareChartDataForYear(dt);
-            foreach (var item in chartData)
+            var result = new Dictionary<string, int>();
+            string[] monthNames = { "", "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
+                                   "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12" };
+
+            for (int i = 1; i <= 12; i++)
+            {
+                result.Add(monthNames[i], 0);
+            }
+
+            foreach (DataRow row in dt.Rows)
+            {
+                int month = Convert.ToInt32(row["Tháng"]);
+                int revenue = Convert.ToInt32(row["Tổng tiền"]);
+                result[monthNames[month]] = revenue;
+            }
+            foreach (var item in result)
             {
                 series.Points.AddXY(item.Key, item.Value);
             }
@@ -203,8 +286,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
 
         private void ResetForm()
         {
-            RevenueResponse response = revenueHandler.HandleRefresh();
-            dgvSales.DataSource = response.Details;
+            dgvSales.DataSource = null;
             chartRevenue.Titles.Clear();
             chartRevenue.Series.Clear();
             chartRevenue.ChartAreas[0].AxisX.Title = "";
@@ -216,22 +298,9 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
             dtMonth.Value = DateTime.Today;
             dtYear.Value = DateTime.Today;
         }
-
-        private void RevenueChart(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void dgvSales_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
-        }
-
-        private void chartRevenue_Click(object sender, EventArgs e)
-        {
-            
-        }
-
+        private void RevenueChart(object sender, EventArgs e) { }
+        private void dgvSales_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+        private void chartRevenue_Click(object sender, EventArgs e) { }
         private void btnRefresh_Click_1(object sender, EventArgs e)
         {
             ResetForm();

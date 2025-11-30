@@ -4,6 +4,7 @@ using System.Collections.Concurrent;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
@@ -25,6 +26,7 @@ namespace TcpServer.ServerHandler
         private readonly HandlerComputerManagement computerHandler;
         private readonly HandlerAdminComputerManagementcs adminComputerHandler;
         private readonly HandlerNotification handlerNotification;
+        private readonly HandlerRevenue handlerRevenue;
         public ServerHandler(string connStr)
         {
             db = new DatabaseHelper(connStr);
@@ -36,6 +38,7 @@ namespace TcpServer.ServerHandler
             computerHandler = new HandlerComputerManagement(db);
             adminComputerHandler = new HandlerAdminComputerManagementcs(db);
             handlerNotification = new HandlerNotification(db);
+            handlerRevenue = new HandlerRevenue(db);
         }
 
         public void Start(int port)
@@ -211,6 +214,9 @@ namespace TcpServer.ServerHandler
                         break;
                     case "GET_COMPUTER_DETAILS": 
                         response = adminComputerHandler.HandleGetComputerDetails(obj.data);
+                        break;
+                    case "FILTER_REVENUE":
+                        response = handlerRevenue.HandleRevenueFilter(obj.data);
                         break;
                     default: response = new { status = "error", message = $"Unknown action: {action}" }; break;
                 }

@@ -249,9 +249,7 @@
     <Compile Include="ClientAdmin\frm_Admin_ComputerManagement.Designer.cs">
       <DependentUpon>frm_Admin_ComputerManagement.cs</DependentUpon>
     </Compile>
-    <Compile Include="ClientAdmin\frm_Revenue.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="ClientAdmin\frm_Revenue.cs" />
     <Compile Include="ClientAdmin\frm_Revenue.Designer.cs">
       <DependentUpon>frm_Revenue.cs</DependentUpon>
     </Compile>
