@@ -28,11 +28,9 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
         }
         private void UpdateStatistics(DataTable dt)
         {
-            int countInUse = 0;      // Đang chơi
-            int countAvailable = 0;  // Máy trống
-            int countMaintenance = 0;// Bảo trì
-
-            // 2. Duyệt qua từng dòng dữ liệu để đếm
+            int countInUse = 0;      
+            int countAvailable = 0;  
+            int countMaintenance = 0;
             foreach (DataRow row in dt.Rows)
             {
                 string status = row["Status"].ToString();
@@ -57,21 +55,18 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
         }
         private void GenerateComputerControls(DataTable dt)
         {
-            flpComputers.Controls.Clear(); // Xóa cũ
-            selectedComputerId = ""; // Reset chọn
+            flpComputers.Controls.Clear();
+            selectedComputerId = ""; 
 
             foreach (DataRow row in dt.Rows)
             {
-                // Tạo một nút đại diện cho máy
                 Button btn = new Button();
                 btn.Width = 100;
                 btn.Height = 100;
                 btn.Text = row["ComputerName"].ToString() + "\n" + row["Status"].ToString();
-                btn.Tag = row["ComputerId"].ToString(); // Lưu ID máy vào Tag
+                btn.Tag = row["ComputerId"].ToString(); 
                 btn.Font = new Font("Arial", 10, FontStyle.Bold);
                 btn.FlatStyle = FlatStyle.Flat;
-
-                // màu dựa theo trạng thái
                 string status = row["Status"].ToString();
                 switch (status)
                 {
@@ -97,7 +92,6 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
         {
             try
             {
-                // 1. Gửi yêu cầu lấy danh sách
                 var request = new { action = "GET_ALL_COMPUTERS_ADMIN" };
                 string jsonResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(request));
                 dynamic response = JsonConvert.DeserializeObject(jsonResponse);
@@ -173,9 +167,6 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
             }
         }
 
-        // frm_Admin_ComputerManagement.cs (Form quản lý)
-        // frm_Admin_ComputerManagement.cs
-
         private void btnRepair_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(selectedComputerId))
@@ -183,17 +174,9 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                 MessageBox.Show("Vui lòng chọn máy để sửa thông tin.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            // Tạo Form chỉnh sửa và truyền ID máy đã chọn
             frm_Admin_Change f = new frm_Admin_Change(selectedComputerId);
             f.ShowDialog();
-
-            // Sau khi Form chỉnh sửa đóng, tải lại danh sách
             LoadComputerList();
         }
-        // Lưu ý: Đảm bảo bạn đã xóa (hoặc sửa) đoạn code xóa máy tính bị copy nhầm trong hàm này.
-        // Lưu ý: Sửa lại hàm btnRepair_Click, bạn đang copy paste nhầm code của btnDelete_Click
-        // Lỗi: if (MessageBox.Show("Bạn muốn XÓA máy này ra khỏi hệ thống máy?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
-        // Đổi lại thành logic gọi Form chỉnh sửa.
     }
 }

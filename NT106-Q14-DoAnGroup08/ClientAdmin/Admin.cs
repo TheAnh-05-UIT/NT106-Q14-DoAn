@@ -88,5 +88,10 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
             OpenChildControl(f);
 
         }
+
+        private void btnComPuMa_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frm_Admin_ComputerManagement());
+        }
     }
 }

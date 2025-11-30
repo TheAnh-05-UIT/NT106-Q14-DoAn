@@ -19,7 +19,7 @@ namespace NT106_Q14_DoAnGroup08
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_Admin_ComputerManagement());
+            Application.Run(new Admin());
             //frm_Staff newForm = new frm_Staff();
             //newForm.Show();
             //frm_Customer_TopUp newForm1 = new frm_Customer_TopUp();

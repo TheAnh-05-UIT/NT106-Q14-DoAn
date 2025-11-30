@@ -37,8 +37,11 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             var res = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (res == DialogResult.Yes)
             {
-                SessionManager.Clear();
-                LogoutClicked?.Invoke(this, EventArgs.Empty);
+                //SessionManager.Clear();
+                //LogoutClicked?.Invoke(this, EventArgs.Empty);
+                ClientCustomer.frm_LockScreen f = new ClientCustomer.frm_LockScreen();
+                f.ShowDialog();
+                this.Hide();
             }
         }
         public void changeLblTitle(string title)

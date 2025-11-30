@@ -16,7 +16,6 @@ namespace TcpServer.Handlers
         {
             db = databaseHelper;
         }
-        // HandlerAdminComputerManagementcs.cs
 
         public object HandleGetComputerDetails(dynamic data)
         {
@@ -30,14 +29,13 @@ namespace TcpServer.Handlers
 
                 if (row != null)
                 {
-                    // Chuyển DataRow thành một đối tượng ẩn danh (anonymous object)
                     var computerDetails = new
                     {
                         ComputerId = row["ComputerId"].ToString(),
                         ComputerName = row["ComputerName"].ToString(),
                         Status = row["Status"].ToString(),
                         IpAddress = row["IpAddress"].ToString(),
-                        PricePerHour = (decimal)row["PricePerHour"] // Ép kiểu về decimal
+                        PricePerHour = (decimal)row["PricePerHour"] 
                     };
                     return new { status = "success", data = computerDetails };
                 }
@@ -61,18 +59,15 @@ namespace TcpServer.Handlers
                 return new { status = "error", message = ex.Message };
             }
         }
-        // HandlerAdminComputerManagementcs.cs
-        // ... (các hàm khác)
+
 
         public object HandleUpdateComputer(dynamic data)
         {
             try
             {
-                // Lấy dữ liệu và loại bỏ khoảng trắng thừa
                 string id = ((string)data.ComputerId).Trim();
                 string name = ((string)data.ComputerName).Trim();
                 string ipAddress = ((string)data.IpAddress).Trim();
-                // Cần đảm bảo Status được truyền vào khớp CHÍNH XÁC: AVAILABLE, IN_USE, MAINTENANCE
                 string status = ((string)data.Status).Trim().ToUpper();
                 decimal pricePerHour = (decimal)data.PricePerHour;
 
@@ -91,13 +86,10 @@ namespace TcpServer.Handlers
                     new SqlParameter("@Price", pricePerHour));
 
                 if (rows > 0) return new { status = "success" };
-
-                // Trả về lỗi nếu không tìm thấy ID máy
                 return new { status = "error", message = "Computer not found or no changes made." };
             }
             catch (Exception ex)
             {
-                // Trả về lỗi nếu xung đột CHECK constraint (CK_Status)
                 return new { status = "error", message = ex.Message };
             }
         }
@@ -148,7 +140,6 @@ namespace TcpServer.Handlers
             }
         }
 
-        // CẬP NHẬT TRẠNG THÁI MÁY (Available / Maintenance / In_Use)
         public object HandleUpdateStatus(dynamic data)
         {
             try

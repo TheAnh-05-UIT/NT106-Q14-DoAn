@@ -38,7 +38,6 @@
             this.btnAdd = new Guna.UI2.WinForms.Guna2Button();
             this.btnDelete = new Guna.UI2.WinForms.Guna2Button();
             this.btnRepair = new Guna.UI2.WinForms.Guna2Button();
-            this.btnKetThucPhien = new Guna.UI2.WinForms.Guna2Button();
             this.btnLamMoi = new Guna.UI2.WinForms.Guna2Button();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -111,7 +110,6 @@
             this.flowLayoutPanel1.Controls.Add(this.btnAdd);
             this.flowLayoutPanel1.Controls.Add(this.btnDelete);
             this.flowLayoutPanel1.Controls.Add(this.btnRepair);
-            this.flowLayoutPanel1.Controls.Add(this.btnKetThucPhien);
             this.flowLayoutPanel1.Controls.Add(this.btnLamMoi);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.ForeColor = System.Drawing.Color.Black;
@@ -182,25 +180,6 @@
             this.btnRepair.Text = "Sửa thông tin máy";
             this.btnRepair.Click += new System.EventHandler(this.btnRepair_Click);
             // 
-            // btnKetThucPhien
-            // 
-            this.btnKetThucPhien.AutoRoundedCorners = true;
-            this.btnKetThucPhien.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.btnKetThucPhien.BorderRadius = 15;
-            this.btnKetThucPhien.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnKetThucPhien.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnKetThucPhien.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnKetThucPhien.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnKetThucPhien.FillColor = System.Drawing.Color.MediumTurquoise;
-            this.btnKetThucPhien.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKetThucPhien.ForeColor = System.Drawing.Color.Black;
-            this.btnKetThucPhien.HoverState.FillColor = System.Drawing.Color.LightSeaGreen;
-            this.btnKetThucPhien.Location = new System.Drawing.Point(434, 11);
-            this.btnKetThucPhien.Name = "btnKetThucPhien";
-            this.btnKetThucPhien.Size = new System.Drawing.Size(135, 33);
-            this.btnKetThucPhien.TabIndex = 3;
-            this.btnKetThucPhien.Text = "Kết thúc phiên chơi";
-            // 
             // btnLamMoi
             // 
             this.btnLamMoi.AutoRoundedCorners = true;
@@ -214,7 +193,7 @@
             this.btnLamMoi.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLamMoi.ForeColor = System.Drawing.Color.Black;
             this.btnLamMoi.HoverState.FillColor = System.Drawing.Color.LightSeaGreen;
-            this.btnLamMoi.Location = new System.Drawing.Point(575, 11);
+            this.btnLamMoi.Location = new System.Drawing.Point(434, 11);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(135, 33);
             this.btnLamMoi.TabIndex = 2;
@@ -236,7 +215,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.3681F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.6319F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 126F));
             this.tableLayoutPanel1.Controls.Add(this.lbl_MAINTENANCE, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbl_AVAILABLE, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbl_IN_USE, 1, 0);
@@ -256,7 +235,7 @@
             this.lbl_MAINTENANCE.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lbl_MAINTENANCE.Dock = System.Windows.Forms.DockStyle.Left;
             this.lbl_MAINTENANCE.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_MAINTENANCE.Location = new System.Drawing.Point(667, 10);
+            this.lbl_MAINTENANCE.Location = new System.Drawing.Point(666, 10);
             this.lbl_MAINTENANCE.Name = "lbl_MAINTENANCE";
             this.lbl_MAINTENANCE.Size = new System.Drawing.Size(119, 40);
             this.lbl_MAINTENANCE.TabIndex = 2;
@@ -268,7 +247,7 @@
             this.lbl_AVAILABLE.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lbl_AVAILABLE.Dock = System.Windows.Forms.DockStyle.Left;
             this.lbl_AVAILABLE.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_AVAILABLE.Location = new System.Drawing.Point(558, 10);
+            this.lbl_AVAILABLE.Location = new System.Drawing.Point(557, 10);
             this.lbl_AVAILABLE.Name = "lbl_AVAILABLE";
             this.lbl_AVAILABLE.Size = new System.Drawing.Size(99, 40);
             this.lbl_AVAILABLE.TabIndex = 1;
@@ -333,7 +312,6 @@
         private Guna.UI2.WinForms.Guna2Button btnAdd;
         private Guna.UI2.WinForms.Guna2Button btnDelete;
         private Guna.UI2.WinForms.Guna2Button btnRepair;
-        private Guna.UI2.WinForms.Guna2Button btnKetThucPhien;
         private Guna.UI2.WinForms.Guna2Button btnLamMoi;
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;

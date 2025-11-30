@@ -206,10 +206,10 @@ namespace TcpServer.ServerHandler
                     case "ADD_COMPUTER":
                         response = adminComputerHandler.HandleAddComputer(obj.data);
                         break;
-                    case "UPDATE_COMPUTER": // <<< THÊM ACTION NÀY
+                    case "UPDATE_COMPUTER": 
                         response = adminComputerHandler.HandleUpdateComputer(obj.data);
                         break;
-                    case "GET_COMPUTER_DETAILS": // <<< THÊM ACTION NÀY
+                    case "GET_COMPUTER_DETAILS": 
                         response = adminComputerHandler.HandleGetComputerDetails(obj.data);
                         break;
                     default: response = new { status = "error", message = $"Unknown action: {action}" }; break;
