@@ -351,8 +351,9 @@ curl -X POST -H "Content-Type: application/json" -d "{\"action\":\"paid\",\"data
                 http.Start();
                 Console.WriteLine($"http://{localAddress}:{httpPort}/");
                 Console.WriteLine($"HTTP server started on port {httpPort} (prefix: {prefix})");
-                Console.WriteLine("Để test HTTP notification ta xài thử lệnh như sau:");
+                Console.WriteLine("\nĐể test HTTP notification và chat notification ta xài thử lệnh như sau:");
                 Console.WriteLine("curl -X POST -H \"Content-Type: application/json\" -d \"{\\\"action\\\":\\\"paid\\\",\\\"data\\\":{\\\"amount\\\":1000,\\\"accountName\\\":\\\"NhatAnh\\\",\\\"addInfo\\\":\\\"Số hóa đơn\\\"}}\" http://localhost:5000/");
+                Console.WriteLine("\n");
             }
             catch (HttpListenerException hlex)
             {

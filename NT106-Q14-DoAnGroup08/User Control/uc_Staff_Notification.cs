@@ -34,6 +34,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                 {
                     myControls.Remove(thisItem);
                     additionalMethod?.Invoke();
+                    thisItem.Dispose();
                     Render();
                 }
             };

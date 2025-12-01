@@ -12,10 +12,18 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 {
     public partial class uc_Staff_Chat_Window : UserControl
     {
+        private int willBeDeleted = -1;
         public uc_Staff_Chat_Window(string UserId)
         {
             InitializeComponent();
             this.Load += uc_Staff_Chat_Load;
+            this.GotFocus += (s, e) =>
+            {
+                lst_Chat.ForeColor = Color.Black;
+                if (willBeDeleted != -1)
+                    lst_Chat.Items.RemoveAt(willBeDeleted);
+                willBeDeleted = -1;
+            };
         }
 
         private void uc_Staff_Chat_Load(object sender, EventArgs e)
@@ -60,6 +68,18 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
             txt_Chat.Clear();
             txt_Chat.Focus();
+        }
+
+        public void ReceiveMessage(string userName, string message)
+        {
+            string entry = $"[{DateTime.Now:dd/MM/yyyy HH:mm}] {userName}: {message}";
+            if (willBeDeleted == -1)
+            {
+                lst_Chat.Items.Add("New message received:");
+                willBeDeleted = lst_Chat.Items.Count;
+            }
+            lst_Chat.Items.Add(entry);
+            lst_Chat.ForeColor = Color.Red;
         }
     }
 }

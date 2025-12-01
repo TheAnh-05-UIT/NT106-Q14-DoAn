@@ -19,7 +19,6 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
         public uc_Staff_Chat()
         {
             InitializeComponent();
-            UserPanel.FlowDirection = FlowDirection.LeftToRight;
             createTab("Tổng quát", new uc_Staff_Chat_Overview(createChatWindow), false);
             this.Load += (s, e) =>
             {
@@ -27,6 +26,37 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                 UserPanel.AutoSize = false;
                 Render();
             };
+        }
+
+        public void receiveMessage(string userId, string userName, string message)
+        {
+            createChatWindow(userId, userName);
+            foreach (uc_Staff_Chat_Tab tab in chatTabs)
+            {
+                if (tab.Title == userName)
+                {
+                    int index = chatTabs.IndexOf(tab);
+                    uc_Staff_Chat_Window chatWindow = Windows[index] as uc_Staff_Chat_Window;
+                    if (chatWindow != null)
+                    {
+                        chatWindow.ReceiveMessage(userName, message);
+                        notifyNewMessage(userId, userName);
+                    }
+                    return;
+                }
+            }
+        }
+
+        public void notifyNewMessage(string userId, string userName)
+        {
+            foreach (uc_Staff_Chat_Tab tab in chatTabs)
+            {
+                if (tab.Title == userName)
+                {
+                    tab.NotifyNewMessage();
+                    return;
+                }
+            }
         }
 
         private void createChatWindow(string userId, string userName)
@@ -121,11 +151,9 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             this.Focus();
             UserPanel.Controls.Clear();
             this.Focus();
-            //int availableWidth = UserPanel.ClientSize.Width - UserPanel.Padding.Horizontal;
             foreach (Control tab in chatTabs)
             {
                 UserPanel.Controls.Add(tab);
-                //tab.Width = availableWidth - tab.Margin.Horizontal;
             }
             UserPanel.ResumeLayout();
         }

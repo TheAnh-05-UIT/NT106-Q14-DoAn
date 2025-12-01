@@ -13,6 +13,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
     public partial class uc_Staff_Chat_Tab : UserControl
     {
         bool active = false;
+        bool isNewMessageNotified = false;
 
         public string Title { get => label1.Text; }
 
@@ -24,8 +25,8 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             {
                 try
                 {
-                    panel2.Click += (s, e) => direct(s, e);
-                    label1.Click += (s, e) => direct(s, e);
+                    panel2.Click += (s, e) => { ClearNewMessageNotification(); direct(s, e); };
+                    label1.Click += (s, e) => { ClearNewMessageNotification(); direct(s, e); };
                 }
                 catch (Exception ex)
                 { }
@@ -45,13 +46,16 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
         public void SetActive(bool isActive)
         {
             active = isActive;
-            if (active)
+            if (!isNewMessageNotified)
             {
-                this.BackColor = Color.LightBlue;
-            }
-            else
-            {
-                this.BackColor = SystemColors.Control;
+                if (active)
+                {
+                    this.BackColor = Color.LightBlue;
+                }
+                else
+                {
+                    this.BackColor = SystemColors.Control;
+                }
             }
         }
 
@@ -60,14 +64,28 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             return active;
         }
 
+        public void ClearNewMessageNotification()
+        {
+            isNewMessageNotified = false;
+            this.BackColor = active ? Color.LightBlue : SystemColors.Control;
+        }
+
         private void uc_Staff_Chat_Tab_MouseHover(object sender, EventArgs e)
         {
-            this.BackColor = active ? Color.LightBlue : Color.LightGray;
+            if (!isNewMessageNotified)
+                this.BackColor = active ? Color.LightBlue : Color.LightGray;
         }
 
         private void uc_Staff_Chat_Tab_MouseLeave(object sender, EventArgs e)
         {
-            this.BackColor = active ? Color.LightBlue : SystemColors.Control;
+            if (!isNewMessageNotified)
+                this.BackColor = active ? Color.LightBlue : SystemColors.Control;
+        }
+
+        public void NotifyNewMessage()
+        {
+            this.BackColor = Color.OrangeRed;
+            isNewMessageNotified = true;
         }
     }
 }

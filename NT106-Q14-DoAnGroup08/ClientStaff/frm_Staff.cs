@@ -47,8 +47,9 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             updateNotificationCount();
 
             StartNotificationClient();
-
+            ShowUserControl(Account, btnTaiKhoan);
             this.FormClosing += Frm_Staff_FormClosing;
+            this.GotFocus += (s, e) => { InvokeGotFocus(Chat, e); };
         }
 
         private void updateNotificationCount()
@@ -174,6 +175,9 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
                 groupBox1.BackColor = Color.Red;
                 groupBox1.ForeColor = Color.White;
             }
+            this.WindowState = FormWindowState.Minimized;
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void UserPanel_Enter(object sender, EventArgs e)
@@ -215,6 +219,15 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
                 }
             }
             catch { }
+        }
+
+        private void receiveMessage(string fromUser, string toUser, string message)
+        {
+            Chat.receiveMessage(fromUser, toUser, message);
+            ShowUserControl(Chat, btnChat);
+            this.WindowState = FormWindowState.Minimized;
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void NotificationWorker()
@@ -265,6 +278,8 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
                                             this.BeginInvoke(new Action(() =>
                                             {
                                                 receiveNotification(title, content, "OK", time);
+                                                receiveMessage("SYSTEM", "system", content);
+                                                receiveMessage("SYSTEM1", "system1", content);
                                             }));
                                         }
                                         catch {}
