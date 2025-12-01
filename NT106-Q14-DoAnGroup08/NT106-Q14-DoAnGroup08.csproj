@@ -366,6 +366,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="User Control\uc_Staff_Chat_Overview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\uc_Staff_Chat_Overview.Designer.cs">
+      <DependentUpon>uc_Staff_Chat_Overview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\uc_Staff_Chat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\uc_Staff_Chat.Designer.cs">
+      <DependentUpon>uc_Staff_Chat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\uc_Staff_Chat_Window.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\uc_Staff_Chat_Window.Designer.cs">
+      <DependentUpon>uc_Staff_Chat_Window.cs</DependentUpon>
+    </Compile>
     <Compile Include="User Control\uc_Staff_Notification.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -400,11 +418,11 @@
     <Compile Include="User Control\uc_Staff_Bills.Designer.cs">
       <DependentUpon>uc_Staff_Bills.cs</DependentUpon>
     </Compile>
-    <Compile Include="User Control\uc_Staff_Chat.cs">
+    <Compile Include="User Control\uc_Staff_Chat_Tab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User Control\uc_Staff_Chat.Designer.cs">
-      <DependentUpon>uc_Staff_Chat.cs</DependentUpon>
+    <Compile Include="User Control\uc_Staff_Chat_Tab.Designer.cs">
+      <DependentUpon>uc_Staff_Chat_Tab.cs</DependentUpon>
     </Compile>
     <Compile Include="User Control\uc_Staff_ImportGood.cs">
       <SubType>UserControl</SubType>
@@ -527,8 +545,17 @@
     <EmbeddedResource Include="ClientStaff\frm_Staff.resx">
       <DependentUpon>frm_Staff.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="User Control\uc_Staff_Chat_Overview.resx">
+      <DependentUpon>uc_Staff_Chat_Overview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User Control\uc_Staff_Chat.resx">
       <DependentUpon>uc_Staff_Chat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\uc_Staff_Chat_Window.resx">
+      <DependentUpon>uc_Staff_Chat_Window.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\uc_Staff_Chat_Tab.resx">
+      <DependentUpon>uc_Staff_Chat_Tab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User Control\uc_Staff_ImportGood.resx">
       <DependentUpon>uc_Staff_ImportGood.cs</DependentUpon>

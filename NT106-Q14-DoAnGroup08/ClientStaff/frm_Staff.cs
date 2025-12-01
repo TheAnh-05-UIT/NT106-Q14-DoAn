@@ -15,6 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.UI.Design.WebControls;
 using System.Windows.Forms;
+using System.Text.Json.Serialization;
 
 namespace NT106_Q14_DoAnGroup08.ClientStaff
 {
@@ -44,7 +45,6 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             Account = new Uc_Staff.uc_Staff_Account();
             Notification = new Uc_Staff.uc_Staff_Notification();
             updateNotificationCount();
-            ShowUserControl(ImportGood);
 
             StartNotificationClient();
 
@@ -54,15 +54,59 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
         private void updateNotificationCount()
         {
             groupBox1.Text = Notification.GetAllItems().Count().ToString();
-        }   
+        }
 
-        private void ShowUserControl(UserControl newControl)
+        private void refreshButton(object sender)
+        {
+            foreach (var button in ButtonGroup.Controls)
+            {
+                if (button is Button)
+                {
+                    if (button == sender)
+                    {
+                        ((Button)button).BackColor = Color.IndianRed;
+                        ((Button)button).ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        ((Button)button).BackColor = Color.LightSalmon;
+                        ((Button)button).ForeColor = SystemColors.ControlText;
+                    }
+                }
+                else
+                {
+                    if (button is GroupBox)
+                    {
+                        foreach (var gbButton in ((GroupBox)button).Controls)
+                        {
+                            if (gbButton is Button)
+                            {
+                                if (gbButton == sender)
+                                {
+                                    ((Button)gbButton).BackColor = Color.IndianRed;
+                                    ((Button)gbButton).ForeColor = Color.White;
+                                }
+                                else
+                                {
+                                    ((Button)gbButton).BackColor = Color.LightSalmon;
+                                    ((Button)gbButton).ForeColor = SystemColors.ControlText;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void ShowUserControl(UserControl newControl, object sender)
         {
             UserPanel.Controls.Clear();
 
             newControl.Dock = DockStyle.Fill;
 
             UserPanel.Controls.Add(newControl);
+
+            refreshButton(sender);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -76,12 +120,12 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
 
         private void ImportGoodButton_Click(object sender, EventArgs e)
         {
-            ShowUserControl(ImportGood);
+            ShowUserControl(ImportGood, sender);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ShowUserControl(Menu);
+            ShowUserControl(Menu, sender);
         }
 
         private void btnQuanLyMay_Click(object sender, EventArgs e)
@@ -93,26 +137,27 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             UserPanel.Controls.Clear();
             UserPanel.Controls.Add(f);
             f.Show();
+            refreshButton(sender);
         }
 
         private void btnHoaDon_Click(object sender, EventArgs e)
         {
-            ShowUserControl(Bills);
+            ShowUserControl(Bills, sender);
         }
 
         private void btnChat_Click(object sender, EventArgs e)
         {
-            ShowUserControl(Chat);
+            ShowUserControl(Chat, sender);
         }
 
         private void btnTaiKhoan_Click(object sender, EventArgs e)
         {
-            ShowUserControl(Account);
+            ShowUserControl(Account, sender);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ShowUserControl(Notification);
+            ShowUserControl(Notification, sender);
             groupBox1.BackColor = Color.White;
             Notification.Render();
             Notification.Focus();

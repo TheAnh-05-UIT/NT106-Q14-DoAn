@@ -1,6 +1,6 @@
 ﻿namespace NT106_Q14_DoAnGroup08.Uc_Staff
 {
-    partial class uc_Staff_Chat
+    partial class uc_Staff_Chat_Overview
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,52 +29,50 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.UserPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.UserPanel);
+            this.panel1.Controls.Add(this.listBox1);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(599, 502);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // UserPanel
+            // label1
             // 
-            this.UserPanel.AutoScroll = true;
-            this.UserPanel.AutoSize = true;
-            this.UserPanel.BackColor = System.Drawing.Color.White;
-            this.UserPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.UserPanel.Location = new System.Drawing.Point(0, 0);
-            this.UserPanel.Name = "UserPanel";
-            this.UserPanel.Size = new System.Drawing.Size(599, 0);
-            this.UserPanel.TabIndex = 6;
-            this.UserPanel.WrapContents = false;
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Merriweather", 10F);
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(10, 10, 0, 0);
+            this.label1.Size = new System.Drawing.Size(565, 33);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nhấn đúp trong các người dùng dưới để khởi tạo cuộc trò chuyện:";
             // 
-            // panel2
+            // listBox1
             // 
-            this.panel2.BackColor = System.Drawing.Color.LightGray;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(599, 502);
-            this.panel2.TabIndex = 7;
+            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(0, 33);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(599, 469);
+            this.listBox1.TabIndex = 1;
             // 
-            // uc_Staff_Chat
+            // uc_Staff_Chat_Overview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "uc_Staff_Chat";
+            this.Name = "uc_Staff_Chat_Overview";
             this.Size = new System.Drawing.Size(599, 502);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -85,7 +83,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.FlowLayoutPanel UserPanel;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

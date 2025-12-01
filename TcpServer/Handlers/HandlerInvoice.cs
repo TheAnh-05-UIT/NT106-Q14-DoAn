@@ -23,9 +23,25 @@ namespace TcpServer.Handlers
 
         public object HandleGetAllInvoices()
         {
-            string query = @"SELECT *
-                             FROM Invoices i 
-                             INNER JOIN InvoiceDetails d ON i.InvoiceId = d.InvoiceId";
+            // Select explicit columns from Invoices and InvoiceDetails and include product/service names
+            string query = @"SELECT i.InvoiceId,
+                                    i.SessionId,
+                                    i.CustomerId,
+                                    i.CreatedAt,
+                                    i.TotalAmount,
+                                    d.InvoiceDetailId,
+                                    d.FoodId,
+                                    f.FoodName AS FoodName,
+                                    d.ServiceId,
+                                    s.ServiceName AS ServiceName,
+                                    d.Quantity,
+                                    d.Price,
+                                    d.Status AS DetailStatus,
+                                    d.Note
+                             FROM Invoices i
+                             LEFT JOIN InvoiceDetails d ON i.InvoiceId = d.InvoiceId
+                             LEFT JOIN FoodAndDrink f ON d.FoodId = f.FoodId
+                             LEFT JOIN Services s ON d.ServiceId = s.ServiceId";
 
             DataTable dt = db.ExecuteQuery(query);
             return new { status = "success", data = ConvertDataTableToJson(dt) };

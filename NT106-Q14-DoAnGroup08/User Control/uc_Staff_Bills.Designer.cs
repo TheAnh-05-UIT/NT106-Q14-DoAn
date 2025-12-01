@@ -354,10 +354,12 @@
             // 
             // textBox4
             // 
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(32, 14);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(172, 28);
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(172, 21);
             this.textBox4.TabIndex = 0;
             this.textBox4.Text = "Lịch sử thanh toán";
             // 
