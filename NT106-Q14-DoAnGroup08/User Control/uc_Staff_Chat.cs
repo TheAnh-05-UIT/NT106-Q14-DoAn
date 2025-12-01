@@ -13,7 +13,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 {
     public partial class uc_Staff_Chat : UserControl
     {
-        // Cần làm: Kiểm tra UserId đang chat còn hoạt động không. Hiện thông báo mới cho chat. Tối ưu tốc độ. Kiểm tra có trùng chat không.
+        // Cần làm: Kiểm tra UserId đang chat còn hoạt động không. Hiện thông báo mới cho chat. Tối ưu tốc độ. Kiểm tra có trùng chat không. Nếu máy off phải dispose.
         List<uc_Staff_Chat_Tab> chatTabs = new List<uc_Staff_Chat_Tab>();
         List<UserControl> Windows = new List<UserControl>();
         public uc_Staff_Chat()
@@ -26,6 +26,18 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                 UserPanel.AutoSize = false;
                 Render();
             };
+        }
+
+        private void clearNewMessageNotification(string userName)
+        {
+            foreach (uc_Staff_Chat_Tab tab in chatTabs)
+            {
+                if (tab.Title == userName)
+                {
+                    tab.ClearNewMessageNotification();
+                    return;
+                }
+            }
         }
 
         public void receiveMessage(string userId, string userName, string message)
@@ -71,7 +83,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                     return;
                 }
             }
-            uc_Staff_Chat_Window chatWindow = new uc_Staff_Chat_Window(userId);
+            uc_Staff_Chat_Window chatWindow = new uc_Staff_Chat_Window(userId, ()=>clearNewMessageNotification(userName));
             createTab(userName, chatWindow);
         }
 

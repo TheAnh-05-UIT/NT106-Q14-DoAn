@@ -13,17 +13,23 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
     public partial class uc_Staff_Chat_Window : UserControl
     {
         private int willBeDeleted = -1;
-        public uc_Staff_Chat_Window(string UserId)
+        private Action stopNoti;
+        public uc_Staff_Chat_Window(string UserId, Action stopNoti)
         {
             InitializeComponent();
             this.Load += uc_Staff_Chat_Load;
-            this.GotFocus += (s, e) =>
-            {
-                lst_Chat.ForeColor = Color.Black;
-                if (willBeDeleted != -1)
-                    lst_Chat.Items.RemoveAt(willBeDeleted);
-                willBeDeleted = -1;
-            };
+            this.stopNoti = stopNoti;
+            lst_Chat.MouseDown += actionStopNoti;
+            txt_Chat.MouseDown += actionStopNoti;
+            btn_SendMessage.MouseDown += actionStopNoti;
+        }
+        public void actionStopNoti(object s, EventArgs e)
+        {
+            lst_Chat.ForeColor = Color.Black;
+            if (willBeDeleted != -1)
+                lst_Chat.Items.RemoveAt(willBeDeleted);
+            stopNoti();
+            willBeDeleted = -1;
         }
 
         private void uc_Staff_Chat_Load(object sender, EventArgs e)
@@ -76,7 +82,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             if (willBeDeleted == -1)
             {
                 lst_Chat.Items.Add("New message received:");
-                willBeDeleted = lst_Chat.Items.Count;
+                willBeDeleted = lst_Chat.Items.Count - 1;
             }
             lst_Chat.Items.Add(entry);
             lst_Chat.ForeColor = Color.Red;
