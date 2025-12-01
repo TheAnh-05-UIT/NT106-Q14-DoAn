@@ -442,13 +442,18 @@
             // 
             // dataGridViewBills
             // 
+            this.dataGridViewBills.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridViewBills.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
+            this.dataGridViewBills.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewBills.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBills.Location = new System.Drawing.Point(11, 174);
             this.dataGridViewBills.Name = "dataGridViewBills";
             this.dataGridViewBills.RowHeadersWidth = 51;
             this.dataGridViewBills.RowTemplate.Height = 24;
             this.dataGridViewBills.Size = new System.Drawing.Size(717, 388);
+            this.dataGridViewBills.StandardTab = true;
             this.dataGridViewBills.TabIndex = 10;
+            this.dataGridViewBills.Visible = false;
             this.dataGridViewBills.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBills_CellContentClick);
             // 
             // uc_Staff_Bills

@@ -27,6 +27,7 @@ namespace TcpServer.ServerHandler
         private readonly HandlerAdminComputerManagementcs adminComputerHandler;
         private readonly HandlerNotification handlerNotification;
         private readonly HandlerRevenue handlerRevenue;
+        private readonly HandlerInvoice handlerInvoice;
         public ServerHandler(string connStr)
         {
             db = new DatabaseHelper(connStr);
@@ -39,6 +40,7 @@ namespace TcpServer.ServerHandler
             adminComputerHandler = new HandlerAdminComputerManagementcs(db);
             handlerNotification = new HandlerNotification(db);
             handlerRevenue = new HandlerRevenue(db);
+            handlerInvoice = new HandlerInvoice(db);
         }
 
         public void Start(int port)
@@ -217,6 +219,9 @@ namespace TcpServer.ServerHandler
                         break;
                     case "FILTER_REVENUE":
                         response = handlerRevenue.HandleRevenueFilter(obj.data);
+                        break;
+                    case "GET_ALL_INVOICES":
+                        response = handlerInvoice.HandleGetAllInvoices();
                         break;
                     default: response = new { status = "error", message = $"Unknown action: {action}" }; break;
                 }

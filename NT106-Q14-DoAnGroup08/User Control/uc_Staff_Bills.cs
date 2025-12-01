@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using NT106_Q14_DoAnGroup08.ClientCustomer;
+using NT106_Q14_DoAnGroup08.ConnectionServser;
+using System;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using TcpServer;
+using TcpServer.Handlers;
 
 namespace NT106_Q14_DoAnGroup08.Uc_Staff
 {
@@ -18,10 +23,10 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
         private void Uc_Staff_Bills_Load(object sender, EventArgs e)
         {
-            InitializeSampleData();
-            PopulateStaffFilter();
+            LoadBills();
+            //PopulateStaffFilter();
 
-            if (billsTable.Rows.Count > 0)
+            if (billsTable != null && billsTable.Rows.Count > 0)
             {
                 var minDate = billsTable.AsEnumerable().Min(r => r.Field<DateTime>("Date"));
                 var maxDate = billsTable.AsEnumerable().Max(r => r.Field<DateTime>("Date"));
@@ -42,36 +47,111 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             ApplyFilter();
         }
 
-        private void InitializeSampleData()
+        private void LoadBills()
         {
-            billsTable = new DataTable();
-            billsTable.Columns.Add("Id", typeof(string));
-            billsTable.Columns.Add("Date", typeof(DateTime));
-            billsTable.Columns.Add("Staff", typeof(string));
-            billsTable.Columns.Add("Type", typeof(string)); // "Thu" or "Chi"
-            billsTable.Columns.Add("Amount", typeof(decimal));
-            billsTable.Columns.Add("Description", typeof(string));
+            try
+            {
+                var request = new { action = "GET_ALL_INVOICES" };
+                string jsonResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(request));
+                dynamic response = JsonConvert.DeserializeObject(jsonResponse);
 
-            // Sample rows
-            billsTable.Rows.Add("HD001", DateTime.Today.AddDays(-1), "Nguyen A", "Thu", 120000m, "Thanh toán dịch vụ");
-            billsTable.Rows.Add("HD002", DateTime.Today.AddDays(-2), "Tran B", "Thu", 80000m, "Order đồ ăn");
-            billsTable.Rows.Add("HD003", DateTime.Today.AddMonths(-1).AddDays(2), "Nguyen A", "Chi", 30000m, "Mua vật tư");
-            billsTable.Rows.Add("HD004", DateTime.Today.AddMonths(-1).AddDays(5), "Le C", "Thu", 150000m, "Thanh toán");
-            billsTable.Rows.Add("HD005", DateTime.Today.AddMonths(-2), "Tran B", "Chi", 50000m, "Chi phí");
-            billsTable.Rows.Add("HD006", DateTime.Today, "Nguyen A", "Thu", 60000m, "Topup");
-            billsTable.Rows.Add("HD007", DateTime.Today.AddDays(-10), "Le C", "Chi", 20000m, "Hoàn trả");
-            billsTable.Rows.Add("HD008", DateTime.Today.AddDays(-20), "Tran B", "Thu", 90000m, "Thanh toán dịch vụ");
+                if (response.status == "success")
+                {
+                    // Build a DataTable tailored to the Invoice schema while keeping friendly column names for the UI
+                    billsTable = new DataTable();
+                    billsTable.Columns.Add("Id", typeof(string)); // InvoiceId
+                    billsTable.Columns.Add("Date", typeof(DateTime)); // CreatedAt
+                    billsTable.Columns.Add("Staff", typeof(string)); // SessionId (staff/session)
+                    billsTable.Columns.Add("CustomerId", typeof(string));
+                    billsTable.Columns.Add("Status", typeof(string));
+                    billsTable.Columns.Add("Amount", typeof(decimal)); // TotalAmount
+                    billsTable.Columns.Add("FoodId", typeof(string));
+                    billsTable.Columns.Add("ServiceId", typeof(string));
+                    billsTable.Columns.Add("Quantity", typeof(int));
+                    billsTable.Columns.Add("Price", typeof(decimal));
+                    billsTable.Columns.Add("Note", typeof(string));
 
-            dataGridViewBills.DataSource = billsTable.Copy();
+                    // response.data may be a DataTable, array of objects, or JArray - try to convert to DataTable first
+                    DataTable dt = null;
+                    try
+                    {
+                        dt = response.data.ToObject<DataTable>();
+                    }
+                    catch
+                    {
+                        // fall through - try to read as dynamic array
+                    }
+
+                    if (dt != null)
+                    {
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            var row = dt.Rows[i];
+                            billsTable.Rows.Add(
+                                row.Table.Columns.Contains("InvoiceId") ? Convert.ToString(row["InvoiceId"]) : string.Empty,
+                                row.Table.Columns.Contains("CreatedAt") && row["CreatedAt"] != DBNull.Value ? Convert.ToDateTime(row["CreatedAt"]) : DateTime.MinValue,
+                                row.Table.Columns.Contains("SessionId") ? Convert.ToString(row["SessionId"]) : string.Empty,
+                                row.Table.Columns.Contains("CustomerId") ? Convert.ToString(row["CustomerId"]) : string.Empty,
+                                row.Table.Columns.Contains("Status") ? Convert.ToString(row["Status"]) : string.Empty,
+                                row.Table.Columns.Contains("TotalAmount") && row["TotalAmount"] != DBNull.Value ? Convert.ToDecimal(row["TotalAmount"]) : 0m,
+                                row.Table.Columns.Contains("FoodId") ? Convert.ToString(row["FoodId"]) : string.Empty,
+                                row.Table.Columns.Contains("ServiceId") ? Convert.ToString(row["ServiceId"]) : string.Empty,
+                                row.Table.Columns.Contains("Quantity") && row["Quantity"] != DBNull.Value ? Convert.ToInt32(row["Quantity"]) : 1,
+                                row.Table.Columns.Contains("Price") && row["Price"] != DBNull.Value ? Convert.ToDecimal(row["Price"]) : 0m,
+                                row.Table.Columns.Contains("Note") ? Convert.ToString(row["Note"]) : string.Empty
+                            );
+                        }
+                    }
+                    else
+                    {
+                        // try dynamic enumeration (e.g., JArray)
+                        foreach (var item in response.data)
+                        {
+                            string invoiceId = item.InvoiceId != null ? (string)item.InvoiceId : string.Empty;
+                            DateTime createdAt = item.CreatedAt != null ? (DateTime)item.CreatedAt : DateTime.MinValue;
+                            string sessionId = item.SessionId != null ? (string)item.SessionId : string.Empty;
+                            string customerId = item.CustomerId != null ? (string)item.CustomerId : string.Empty;
+                            decimal totalAmount = item.TotalAmount != null ? (decimal)item.TotalAmount : 0m;
+                            string foodId = item.FoodId != null ? (string)item.FoodId : string.Empty;
+                            string serviceId = item.ServiceId != null ? (string)item.ServiceId : string.Empty;
+                            int quantity = item.Quantity != null ? (int)item.Quantity : 1;
+                            decimal price = item.Price != null ? (decimal)item.Price : 0m;
+                            string status = item.Status != null ? (string)item.Status : string.Empty;
+                            string note = item.Note != null ? (string)item.Note : string.Empty;
+
+                            billsTable.Rows.Add(invoiceId, createdAt, sessionId, customerId, totalAmount, foodId, serviceId, quantity, price, status, note);
+                        }
+                    }
+
+                    dataGridViewBills.DataSource = billsTable.Copy();
+                    dataGridViewBills.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi tải danh sách hóa đơn: " + response.message);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi kết nối: " + ex.Message);
+            }
         }
 
         private void PopulateStaffFilter()
         {
+            if (billsTable == null) return;
+
             cmbStaff.Items.Clear();
             cmbStaff.Items.Add("Tất cả");
-            var staffs = billsTable.AsEnumerable().Select(r => r.Field<string>("Staff")).Distinct().OrderBy(s => s);
+            var staffs = billsTable.AsEnumerable()
+                .Select(r => r.Field<string>("Staff"))
+                .Where(s => !string.IsNullOrEmpty(s))
+                .Distinct()
+                .OrderBy(s => s);
+
             foreach (var s in staffs)
                 cmbStaff.Items.Add(s);
+
             cmbStaff.SelectedIndex = 0;
         }
 
@@ -83,31 +163,28 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             DateTime end = dtpRangeTo.Value.Date.AddDays(1).AddSeconds(-1);
 
             string selectedStaff = cmbStaff.SelectedItem == null ? "Tất cả" : cmbStaff.SelectedItem.ToString();
-            bool typeFilterActive = rbThu.Checked || rbChi.Checked;
-            string typeFilter = rbThu.Checked ? "Thu" : rbChi.Checked ? "Chi" : null;
 
             var baseQuery = billsTable.AsEnumerable()
                 .Where(r => r.Field<DateTime>("Date") >= start && r.Field<DateTime>("Date") <= end);
 
             if (selectedStaff != "Tất cả")
-            {
                 baseQuery = baseQuery.Where(r => r.Field<string>("Staff") == selectedStaff);
-            }
 
-            decimal totalThu = baseQuery.Where(r => r.Field<string>("Type") == "Thu").Sum(r => r.Field<decimal>("Amount"));
-            decimal totalChi = baseQuery.Where(r => r.Field<string>("Type") == "Chi").Sum(r => r.Field<decimal>("Amount"));
+            // Compute totals: treat PAID/COMPLETED as revenue (Thu), others as outstanding/cost (Chi)
+            var paidStatuses = new[] { "PAID", "COMPLETED" };
+            decimal totalPaid = baseQuery
+                .Where(r => paidStatuses.Contains((r.Field<string>("Status") ?? string.Empty).ToUpperInvariant()))
+                .Sum(r => r.Field<decimal>("Amount"));
 
-            txtRangeTotalThu.Text = totalThu.ToString("N0");
-            txtRangeTotalChi.Text = totalChi.ToString("N0");
-            txtRangeProfit.Text = (totalThu - totalChi).ToString("N0");
+            decimal totalOther = baseQuery
+                .Where(r => !paidStatuses.Contains((r.Field<string>("Status") ?? string.Empty).ToUpperInvariant()))
+                .Sum(r => r.Field<decimal>("Amount"));
 
-            var viewQuery = baseQuery;
-            if (typeFilterActive && typeFilter != null)
-            {
-                viewQuery = viewQuery.Where(r => r.Field<string>("Type") == typeFilter);
-            }
+            txtRangeTotalThu.Text = totalPaid.ToString("N0");
+            txtRangeTotalChi.Text = totalOther.ToString("N0");
+            txtRangeProfit.Text = (totalPaid - totalOther).ToString("N0");
 
-            DataTable dt = viewQuery.Any() ? viewQuery.CopyToDataTable() : billsTable.Clone();
+            DataTable dt = baseQuery.Any() ? baseQuery.CopyToDataTable() : billsTable.Clone();
             dataGridViewBills.DataSource = dt;
         }
 
@@ -118,10 +195,13 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             var monthQuery = billsTable.AsEnumerable()
                 .Where(r => r.Field<DateTime>("Date").Year == value.Year && r.Field<DateTime>("Date").Month == value.Month);
 
-            decimal totalThu = monthQuery.Where(r => r.Field<string>("Type") == "Thu").Sum(r => r.Field<decimal>("Amount"));
-            decimal totalChi = monthQuery.Where(r => r.Field<string>("Type") == "Chi").Sum(r => r.Field<decimal>("Amount"));
+            var paidStatuses = new[] { "PAID", "COMPLETED" };
+            decimal totalPaid = monthQuery.Where(r => paidStatuses.Contains((r.Field<string>("Status") ?? string.Empty).ToUpperInvariant()))
+                                          .Sum(r => r.Field<decimal>("Amount"));
+            decimal totalOther = monthQuery.Where(r => !paidStatuses.Contains((r.Field<string>("Status") ?? string.Empty).ToUpperInvariant()))
+                                           .Sum(r => r.Field<decimal>("Amount"));
 
-            txtProfit.Text = (totalThu - totalChi).ToString("N0");
+            txtProfit.Text = (totalPaid - totalOther).ToString("N0");
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -190,6 +270,8 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
         private void ShowMonthInGrid(DateTime month)
         {
+            if (billsTable == null) return;
+
             var monthQuery = billsTable.AsEnumerable()
                 .Where(r => r.Field<DateTime>("Date").Year == month.Year && r.Field<DateTime>("Date").Month == month.Month);
             DataTable dt = monthQuery.Any() ? monthQuery.CopyToDataTable() : billsTable.Clone();
@@ -198,7 +280,8 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
         private void FilterChanged(object sender, EventArgs e)
         {
-            ApplyFilter();
+            // If you want real-time filtering when radio buttons change, uncomment next line
+             ApplyFilter();
         }
 
         private void dataGridViewBills_CellContentClick(object sender, DataGridViewCellEventArgs e)

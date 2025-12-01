@@ -59,6 +59,7 @@
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="Handlers\HandlerAdminComputerManagementcs.cs" />
     <Compile Include="Handlers\HandlerAdminCustomer.cs" />
+    <Compile Include="Handlers\HandlerInvoice.cs" />
     <Compile Include="Handlers\HandlerNotification.cs" />
     <Compile Include="Handlers\HandlerComputerManagement.cs" />
     <Compile Include="Handlers\HandlerCustomer.cs" />

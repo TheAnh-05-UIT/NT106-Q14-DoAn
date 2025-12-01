@@ -33,5 +33,10 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
         {
 
         }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -127,6 +127,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             {
                 SystemSounds.Asterisk.Play();
                 groupBox1.BackColor = Color.Red;
+                groupBox1.ForeColor = Color.White;
             }
         }
 
@@ -136,6 +137,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             if (focusedControl?.GetType().ToString() == "NT106_Q14_DoAnGroup08.Uc_Staff.uc_Staff_Notification")
             {
                 groupBox1.BackColor = Color.White;
+                groupBox1.ForeColor = Color.Black;
             }
         }
 
