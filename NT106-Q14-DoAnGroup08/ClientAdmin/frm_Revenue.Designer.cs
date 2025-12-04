@@ -78,7 +78,7 @@
             this.cboMode.Name = "cboMode";
             this.cboMode.Size = new System.Drawing.Size(160, 36);
             this.cboMode.TabIndex = 1;
-            this.cboMode.SelectedIndexChanged += new System.EventHandler(this.cbMode_SelectedIndexChanged);
+            this.cboMode.SelectedIndexChanged += new System.EventHandler(this.cboMode_SelectedIndexChanged);
             // 
             // dtMonth
             // 

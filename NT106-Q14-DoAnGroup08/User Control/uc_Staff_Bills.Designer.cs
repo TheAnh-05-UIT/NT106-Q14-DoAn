@@ -354,10 +354,12 @@
             // 
             // textBox4
             // 
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(32, 14);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(172, 28);
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(172, 21);
             this.textBox4.TabIndex = 0;
             this.textBox4.Text = "Lịch sử thanh toán";
             // 
@@ -442,13 +444,18 @@
             // 
             // dataGridViewBills
             // 
+            this.dataGridViewBills.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridViewBills.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
+            this.dataGridViewBills.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewBills.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBills.Location = new System.Drawing.Point(11, 174);
             this.dataGridViewBills.Name = "dataGridViewBills";
             this.dataGridViewBills.RowHeadersWidth = 51;
             this.dataGridViewBills.RowTemplate.Height = 24;
             this.dataGridViewBills.Size = new System.Drawing.Size(717, 388);
+            this.dataGridViewBills.StandardTab = true;
             this.dataGridViewBills.TabIndex = 10;
+            this.dataGridViewBills.Visible = false;
             this.dataGridViewBills.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBills_CellContentClick);
             // 
             // uc_Staff_Bills

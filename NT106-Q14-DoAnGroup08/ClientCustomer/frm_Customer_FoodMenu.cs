@@ -216,7 +216,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             }
 
 
-            string customerId = "KH001";
+            string customerId = "CUS001";
 
             decimal totalAmount = 0;
             foreach (DataGridViewRow row in guna2DataGridView1.Rows)

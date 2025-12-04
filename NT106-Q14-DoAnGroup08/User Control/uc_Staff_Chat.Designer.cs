@@ -45,7 +45,6 @@
             this.lst_Chat.Name = "lst_Chat";
             this.lst_Chat.Size = new System.Drawing.Size(898, 723);
             this.lst_Chat.TabIndex = 0;
-            this.lst_Chat.SelectedIndexChanged += new System.EventHandler(this.lst_Chat_SelectedIndexChanged);
             // 
             // panelBottom
             // 

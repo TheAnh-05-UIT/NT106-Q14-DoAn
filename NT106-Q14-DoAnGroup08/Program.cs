@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace NT106_Q14_DoAnGroup08
 {
-    internal static class Program 
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
@@ -19,14 +19,25 @@ namespace NT106_Q14_DoAnGroup08
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_Login());
+            //Application.Run(new frm_Revenue());
+            frm_Staff newForm = new frm_Staff();
+            newForm.Show();
+            //frm_Customer_TopUp newForm1 = new frm_Customer_TopUp();
+            //newForm1.Show();
+            //frm_AddCustomer newForm2 = new frm_AddCustomer();
+            //newForm2.Show();
+            //frm_Staff newForm = new frm_Staff();
+            //newForm.Show();
+            //frm_Customer_TopUp newForm1 = new frm_Customer_TopUp();
+            //newForm1.Show();
+            Application.Run();
             Form nextform = DTO.UserSession.NextForm;
             if (nextform != null)
             {
                 DTO.UserSession.NextForm = null;
                 Application.Run(nextform);
             }
-            
+
         }
     }
 }

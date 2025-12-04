@@ -111,6 +111,7 @@
             this.btnLogout.TabIndex = 7;
             this.btnLogout.Text = "Đăng xuất";
             this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.BtnLogout_Click);
             // 
             // uc_Staff_Account
             // 
