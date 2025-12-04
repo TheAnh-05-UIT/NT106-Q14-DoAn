@@ -1,6 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using NT106_Q14_DoAnGroup08.ConnectionServser;
+using QuanLyQuanNet.DTOs;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -133,7 +134,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             var req = new
             {
                 action = "update_session",
-                sessionId = _sessionId
+                sessionId = _sessionId,
             };
 
             string res = ServerConnection.SendRequest(JsonConvert.SerializeObject(req));
@@ -176,7 +177,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         }
         private void btn_Chat_Click(object sender, EventArgs e)
         {
-            frm_Customer_Chat f = new frm_Customer_Chat();
+            frm_Customer_Chat f = new frm_Customer_Chat(_userId);
             f.Show();
         }
 

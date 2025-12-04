@@ -13,6 +13,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TcpServer;
 
 namespace NT106_Q14_DoAnGroup08
 {
@@ -71,14 +72,22 @@ namespace NT106_Q14_DoAnGroup08
 
                         string role = obj.role;
                         MessageBox.Show($"Đăng nhập thành công với quyền: {role}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        
+
                         // Mở form theo role
                         if (role == "ADMIN")
                         {
                             new ClientAdmin.Admin().Show();
-                        }   
+                        }
                         else if (role == "EMPLOYEE")
-                            new ClientStaff.frm_Staff().Show();
+                        {
+                            new ClientStaff.frm_Staff(obj.userId).Show();
+
+                            ApiClient.Client.Send(new
+                            {
+                                action = "staff_online",
+                                staffId = obj.userId
+                            });
+                        }
                         else
                             new ClientCustomer.frm_Customer(obj.userId).Show();
                         LoginSuccess?.Invoke();

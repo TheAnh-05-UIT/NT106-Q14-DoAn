@@ -467,6 +467,9 @@
     <EmbeddedResource Include="ClientStaff\frm_Staff_ComputerManagement.resx">
       <DependentUpon>frm_Staff_ComputerManagement.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="User Control\uc_Staff_Account.resx">
+      <DependentUpon>uc_Staff_Account.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User Control\uc_Staff_Bills.resx">
       <DependentUpon>uc_Staff_Bills.cs</DependentUpon>
     </EmbeddedResource>

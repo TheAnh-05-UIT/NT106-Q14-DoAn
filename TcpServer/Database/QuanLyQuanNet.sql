@@ -66,7 +66,6 @@ CREATE TABLE Computers (
     ComputerId NVARCHAR(20) PRIMARY KEY,   
     ComputerName NVARCHAR(50),
     [Status] NVARCHAR(20) CHECK ([Status] IN ('AVAILABLE', 'IN_USE', 'MAINTENANCE')) DEFAULT 'AVAILABLE',
-    IpAddress NVARCHAR(50),
     PricePerHour DECIMAL(10,2)
 );
 --EXEC sp_helpconstraint 'Computers';
@@ -140,6 +139,16 @@ CREATE TABLE FoodAndDrink (
     CreatedAt DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (CategoryId) REFERENCES Category(CategoryId)
 );
+
+CREATE TABLE ChatMessage (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    FromId NVARCHAR(50) NOT NULL,
+    ToId NVARCHAR(50) NOT NULL,
+    Content NVARCHAR(MAX) NOT NULL,
+    IsRead BIT DEFAULT 0,
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
 
 -- Hiển thị của bảng Employees
 CREATE VIEW EmployeesView AS

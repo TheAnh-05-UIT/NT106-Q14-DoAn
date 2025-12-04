@@ -44,26 +44,25 @@
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblTitle.Location = new System.Drawing.Point(12, 12);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(240, 21);
+            this.lblTitle.Size = new System.Drawing.Size(469, 45);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Thông tin tài khoản nhân viên";
-            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // lblUsernameLabel
             // 
             this.lblUsernameLabel.AutoSize = true;
             this.lblUsernameLabel.Location = new System.Drawing.Point(14, 50);
             this.lblUsernameLabel.Name = "lblUsernameLabel";
-            this.lblUsernameLabel.Size = new System.Drawing.Size(84, 13);
+            this.lblUsernameLabel.Size = new System.Drawing.Size(163, 25);
             this.lblUsernameLabel.TabIndex = 1;
             this.lblUsernameLabel.Text = "Tên đăng nhập:";
             // 
             // lblCurrentUser
             // 
             this.lblCurrentUser.AutoSize = true;
-            this.lblCurrentUser.Location = new System.Drawing.Point(110, 50);
+            this.lblCurrentUser.Location = new System.Drawing.Point(183, 50);
             this.lblCurrentUser.Name = "lblCurrentUser";
-            this.lblCurrentUser.Size = new System.Drawing.Size(43, 13);
+            this.lblCurrentUser.Size = new System.Drawing.Size(85, 25);
             this.lblCurrentUser.TabIndex = 2;
             this.lblCurrentUser.Text = "(không)";
             // 
@@ -72,16 +71,16 @@
             this.lblFullNameLabel.AutoSize = true;
             this.lblFullNameLabel.Location = new System.Drawing.Point(14, 75);
             this.lblFullNameLabel.Name = "lblFullNameLabel";
-            this.lblFullNameLabel.Size = new System.Drawing.Size(57, 13);
+            this.lblFullNameLabel.Size = new System.Drawing.Size(110, 25);
             this.lblFullNameLabel.TabIndex = 3;
             this.lblFullNameLabel.Text = "Họ và tên:";
             // 
             // lblFullName
             // 
             this.lblFullName.AutoSize = true;
-            this.lblFullName.Location = new System.Drawing.Point(110, 75);
+            this.lblFullName.Location = new System.Drawing.Point(130, 75);
             this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(10, 13);
+            this.lblFullName.Size = new System.Drawing.Size(19, 25);
             this.lblFullName.TabIndex = 4;
             this.lblFullName.Text = "-";
             // 
@@ -90,25 +89,25 @@
             this.lblRoleLabel.AutoSize = true;
             this.lblRoleLabel.Location = new System.Drawing.Point(14, 100);
             this.lblRoleLabel.Name = "lblRoleLabel";
-            this.lblRoleLabel.Size = new System.Drawing.Size(40, 13);
+            this.lblRoleLabel.Size = new System.Drawing.Size(80, 25);
             this.lblRoleLabel.TabIndex = 5;
             this.lblRoleLabel.Text = "Vai trò:";
             // 
             // lblRole
             // 
             this.lblRole.AutoSize = true;
-            this.lblRole.Location = new System.Drawing.Point(110, 100);
+            this.lblRole.Location = new System.Drawing.Point(100, 100);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(10, 13);
+            this.lblRole.Size = new System.Drawing.Size(19, 25);
             this.lblRole.TabIndex = 6;
             this.lblRole.Text = "-";
             // 
             // btnLogout
             // 
             this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogout.Location = new System.Drawing.Point(680, 10);
+            this.btnLogout.Location = new System.Drawing.Point(679, 12);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(80, 28);
+            this.btnLogout.Size = new System.Drawing.Size(87, 45);
             this.btnLogout.TabIndex = 7;
             this.btnLogout.Text = "Đăng xuất";
             this.btnLogout.UseVisualStyleBackColor = true;

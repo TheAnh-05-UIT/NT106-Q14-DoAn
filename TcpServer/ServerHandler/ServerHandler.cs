@@ -22,6 +22,7 @@ namespace TcpServer.ServerHandler
         private readonly HandlerAdminCustomer handlerCustomerHandler;
         private readonly HandlerFood handlerFood;
         private readonly HandlerCustomer handlerCustomer;
+        private readonly HandlerChat handlerChat;
 
         public ServerHandler(string connStr)
         {
@@ -31,6 +32,7 @@ namespace TcpServer.ServerHandler
             handlerCustomerHandler = new HandlerAdminCustomer(db);
             handlerFood = new HandlerFood(db);
             handlerCustomer = new HandlerCustomer(db);
+            handlerChat = new HandlerChat(db);
         }
 
         public void Start(int port)
@@ -187,6 +189,31 @@ namespace TcpServer.ServerHandler
                         break;
                     case "end_session":
                         response = handlerCustomer.HandleEndSession(obj);
+                        break;
+                    case "send_message_staff":
+                        response = handlerChat.HandleSendMessageStaff(obj);
+                        break;
+
+                    case "send_message_customer":
+                        response = handlerChat.HandleSendMessageCustomer(obj);
+                        break;
+
+                    case "get_unread_messages_staff":
+                        response = handlerChat.HandleGetUnreadForStaff(obj);
+                        break;
+
+                    case "get_unread_messages_customer":
+                        response = handlerChat.HandleGetUnreadForCustomer(obj);
+                        break;
+
+                    case "staff_online":
+                        OnlineStaffManager.Add(obj.staffId.ToString());
+                        response = new { status = "ok" };
+                        break;
+
+                    case "staff_offline":
+                        OnlineStaffManager.Remove(obj.staffId.ToString());
+                        response = new { status = "ok" };
                         break;
                     default: response = new { status = "error", message = $"Unknown action: {action}" }; break;
                 }

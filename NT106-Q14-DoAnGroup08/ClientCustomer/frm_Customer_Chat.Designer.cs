@@ -30,7 +30,7 @@
         {
             this.lst_Chat = new System.Windows.Forms.ListBox();
             this.txt_Chat = new System.Windows.Forms.MaskedTextBox();
-            this.btn_SendMessage = new System.Windows.Forms.Button();
+            this.btn_Send = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lst_Chat
@@ -50,27 +50,27 @@
             this.txt_Chat.Size = new System.Drawing.Size(674, 44);
             this.txt_Chat.TabIndex = 1;
             // 
-            // btn_SendMessage
+            // btn_Send
             // 
-            this.btn_SendMessage.Location = new System.Drawing.Point(704, 635);
-            this.btn_SendMessage.Name = "btn_SendMessage";
-            this.btn_SendMessage.Size = new System.Drawing.Size(153, 44);
-            this.btn_SendMessage.TabIndex = 2;
-            this.btn_SendMessage.Text = "button1";
-            this.btn_SendMessage.UseVisualStyleBackColor = true;
-            this.btn_SendMessage.Click += new System.EventHandler(this.btn_SendMessage_Click);
+            this.btn_Send.Location = new System.Drawing.Point(704, 635);
+            this.btn_Send.Name = "btn_Send";
+            this.btn_Send.Size = new System.Drawing.Size(153, 44);
+            this.btn_Send.TabIndex = 2;
+            this.btn_Send.Text = "Gửi";
+            this.btn_Send.UseVisualStyleBackColor = true;
             // 
-            // Customer_Chat
+            // frm_Customer_Chat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(869, 693);
-            this.Controls.Add(this.btn_SendMessage);
+            this.Controls.Add(this.btn_Send);
             this.Controls.Add(this.txt_Chat);
             this.Controls.Add(this.lst_Chat);
-            this.Name = "Customer_Chat";
+            this.Name = "frm_Customer_Chat";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer_Chat";
+            this.Load += new System.EventHandler(this.frm_Customer_Chat_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -80,6 +80,6 @@
 
         private System.Windows.Forms.ListBox lst_Chat;
         private System.Windows.Forms.MaskedTextBox txt_Chat;
-        private System.Windows.Forms.Button btn_SendMessage;
+        private System.Windows.Forms.Button btn_Send;
     }
 }

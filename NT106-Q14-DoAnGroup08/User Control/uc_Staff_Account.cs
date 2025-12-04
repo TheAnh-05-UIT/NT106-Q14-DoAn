@@ -8,11 +8,18 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
     {
         public event EventHandler LogoutClicked;
 
+        private string staffId;
+
         public uc_Staff_Account()
         {
             InitializeComponent();
             this.Load += Uc_Staff_Account_Load;
             btnLogout.Click += BtnLogout_Click;
+        }
+
+        public void SetStaffId(string id)
+        {
+            staffId = id;
         }
 
         private void Uc_Staff_Account_Load(object sender, EventArgs e)
@@ -34,20 +41,34 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
         private void BtnLogout_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var res = MessageBox.Show(
+                "Bạn có chắc chắn muốn đăng xuất?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
             if (res == DialogResult.Yes)
             {
+                try
+                {
+                    ApiClient.Client.Send(new
+                    {
+                        action = "staff_offline",
+                        staffId = staffId
+                    });
+                }
+                catch { }
+
                 SessionManager.Clear();
+
                 LogoutClicked?.Invoke(this, EventArgs.Empty);
             }
         }
+
         public void changeLblTitle(string title)
         {
             lblTitle.Text = title;
-        }
-        private void lblTitle_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -12,6 +12,12 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 {
     public partial class uc_Staff_Chat : UserControl
     {
+        string fromId; // nhân viên
+        string toId;   // khách hàng
+
+        public event Action<string, string, string> OnSendMessage;
+
+
         public uc_Staff_Chat()
         {
             InitializeComponent();
@@ -57,15 +63,34 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             string text = txt_Chat.Text?.Trim();
             if (string.IsNullOrEmpty(text)) return;
 
-            // In this simple UI-only implementation we show messages with timestamp and a simple sender label.
-            string senderName = "Nhân viên"; // you can replace with current user name variable
-            string entry = $"[{DateTime.Now:dd/MM/yyyy HH:mm}] {senderName}: {text}";
-
+            string entry = $"[{DateTime.Now:HH:mm}] Tôi: {text}";
             lst_Chat.Items.Add(entry);
-            lst_Chat.TopIndex = lst_Chat.Items.Count - 1; // autoscroll
+            lst_Chat.TopIndex = lst_Chat.Items.Count - 1;
+
+            // Gửi ra ngoài cho Form Staff xử lý server
+            OnSendMessage?.Invoke(fromId, toId, text);
 
             txt_Chat.Clear();
             txt_Chat.Focus();
+        }
+
+        public void AddMessage(string msg)
+        {
+            lst_Chat.Items.Add($"[{DateTime.Now:HH:mm}] {msg}");
+            lst_Chat.TopIndex = lst_Chat.Items.Count - 1;
+        }
+
+
+        public void SetUser(string from, string to)
+        {
+            fromId = from;
+            toId = to;
+        }
+
+
+        private void lst_Chat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

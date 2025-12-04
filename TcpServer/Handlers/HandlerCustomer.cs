@@ -54,6 +54,9 @@ namespace TcpServer.Handlers
                 new SqlParameter("@customerId", customerId),
                 new SqlParameter("@computerId", computerId));
 
+            string sql = @"UPDATE Computers SET Status = 'IN_USE' WHERE ComputerId = @cid";
+            _db.ExecuteNonQuery(sql, new SqlParameter("@cid", computerId));
+
             return new
             {
                 status = "success",
@@ -264,6 +267,8 @@ namespace TcpServer.Handlers
                 decimal balance = Convert.ToDecimal(dt.Rows[0]["Balance"]);
                 string customerId = dt.Rows[0]["CustomerId"].ToString();
                 decimal pricePerHour = Convert.ToDecimal(dt.Rows[0]["PricePerHour"]);
+                string computerId = dt.Rows[0]["ComputerId"].ToString();
+
 
                 int timeUsed = (int)(DateTime.Now - startTime).TotalSeconds;
                 decimal pricePerSecond = pricePerHour / 3600m;
@@ -291,6 +296,9 @@ namespace TcpServer.Handlers
                 _db.ExecuteNonQuery(sqlUpdateBalance,
                     new SqlParameter("@newBalance", newBalance),
                     new SqlParameter("@customerId", customerId));
+
+                string sql = @"UPDATE Computers SET Status = 'AVAILABLE' WHERE ComputerId = @cid";
+                _db.ExecuteNonQuery(sql, new SqlParameter("@cid", computerId));
 
                 return new
                 {

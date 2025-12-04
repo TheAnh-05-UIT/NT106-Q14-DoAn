@@ -47,9 +47,8 @@
             // lbl_Username
             // 
             this.lbl_Username.AutoSize = true;
-            this.lbl_Username.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbl_Username.Font = new System.Drawing.Font("Times New Roman", 13.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Username.Location = new System.Drawing.Point(0, 0);
+            this.lbl_Username.Location = new System.Drawing.Point(153, 0);
             this.lbl_Username.Name = "lbl_Username";
             this.lbl_Username.Size = new System.Drawing.Size(167, 42);
             this.lbl_Username.TabIndex = 0;
@@ -181,9 +180,9 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.lbl_Username);
-            this.panel1.Location = new System.Drawing.Point(168, 62);
+            this.panel1.Location = new System.Drawing.Point(18, 62);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(199, 52);
+            this.panel1.Size = new System.Drawing.Size(471, 50);
             this.panel1.TabIndex = 12;
             // 
             // frm_Customer
