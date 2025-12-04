@@ -28,64 +28,74 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.UserPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.lst_Chat = new System.Windows.Forms.ListBox();
+            this.panelBottom = new System.Windows.Forms.Panel();
+            this.txt_Chat = new System.Windows.Forms.TextBox();
+            this.btn_SendMessage = new System.Windows.Forms.Button();
+            this.panelBottom.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // lst_Chat
             // 
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.UserPanel);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(599, 502);
-            this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.lst_Chat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lst_Chat.FormattingEnabled = true;
+            this.lst_Chat.ItemHeight = 16;
+            this.lst_Chat.Location = new System.Drawing.Point(0, 0);
+            this.lst_Chat.Margin = new System.Windows.Forms.Padding(2);
+            this.lst_Chat.Name = "lst_Chat";
+            this.lst_Chat.Size = new System.Drawing.Size(599, 462);
+            this.lst_Chat.TabIndex = 0;
             // 
-            // UserPanel
+            // panelBottom
             // 
-            this.UserPanel.AutoScroll = true;
-            this.UserPanel.AutoSize = true;
-            this.UserPanel.BackColor = System.Drawing.Color.White;
-            this.UserPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.UserPanel.Location = new System.Drawing.Point(0, 0);
-            this.UserPanel.Name = "UserPanel";
-            this.UserPanel.Size = new System.Drawing.Size(599, 0);
-            this.UserPanel.TabIndex = 6;
-            this.UserPanel.WrapContents = false;
+            this.panelBottom.Controls.Add(this.txt_Chat);
+            this.panelBottom.Controls.Add(this.btn_SendMessage);
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBottom.Location = new System.Drawing.Point(0, 462);
+            this.panelBottom.Name = "panelBottom";
+            this.panelBottom.Size = new System.Drawing.Size(599, 40);
+            this.panelBottom.TabIndex = 1;
             // 
-            // panel2
+            // txt_Chat
             // 
-            this.panel2.BackColor = System.Drawing.Color.LightGray;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(599, 502);
-            this.panel2.TabIndex = 7;
+            this.txt_Chat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txt_Chat.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_Chat.Location = new System.Drawing.Point(0, 0);
+            this.txt_Chat.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_Chat.Name = "txt_Chat";
+            this.txt_Chat.Size = new System.Drawing.Size(497, 30);
+            this.txt_Chat.TabIndex = 0;
+            // 
+            // btn_SendMessage
+            // 
+            this.btn_SendMessage.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btn_SendMessage.Location = new System.Drawing.Point(497, 0);
+            this.btn_SendMessage.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_SendMessage.Name = "btn_SendMessage";
+            this.btn_SendMessage.Size = new System.Drawing.Size(102, 40);
+            this.btn_SendMessage.TabIndex = 1;
+            this.btn_SendMessage.Text = "Gửi";
+            this.btn_SendMessage.UseVisualStyleBackColor = true;
             // 
             // uc_Staff_Chat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Controls.Add(this.lst_Chat);
+            this.Controls.Add(this.panelBottom);
             this.Name = "uc_Staff_Chat";
             this.Size = new System.Drawing.Size(599, 502);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelBottom.ResumeLayout(false);
+            this.panelBottom.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.FlowLayoutPanel UserPanel;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ListBox lst_Chat;
+        private System.Windows.Forms.Panel panelBottom;
+        private System.Windows.Forms.Button btn_SendMessage;
+        private System.Windows.Forms.TextBox txt_Chat;
     }
 }
