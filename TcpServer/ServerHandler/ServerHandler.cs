@@ -25,6 +25,11 @@ namespace TcpServer.ServerHandler
         private readonly HandlerCustomer handlerCustomer;
         private readonly HandlerChat handlerChat;
 
+        private readonly HandlerComputerManagement computerHandler;
+        private readonly HandlerAdminComputerManagementcs adminComputerHandler;
+        private readonly HandlerNotification handlerNotification;
+        private readonly HandlerRevenue handlerRevenue;
+        private readonly HandlerInvoice handlerInvoice;
         public ServerHandler(string connStr)
         {
             db = new DatabaseHelper(connStr);
@@ -34,6 +39,11 @@ namespace TcpServer.ServerHandler
             handlerFood = new HandlerFood(db);
             handlerCustomer = new HandlerCustomer(db);
             handlerChat = new HandlerChat(db);
+            computerHandler = new HandlerComputerManagement(db);
+            adminComputerHandler = new HandlerAdminComputerManagementcs(db);
+            handlerNotification = new HandlerNotification(db);
+            handlerRevenue = new HandlerRevenue(db);
+            handlerInvoice = new HandlerInvoice(db);
         }
 
         public void Start(int port)
@@ -216,6 +226,31 @@ namespace TcpServer.ServerHandler
                     case "staff_offline":
                         OnlineStaffManager.Remove(obj.staffId.ToString());
                         response = new { status = "ok" };
+                        break;
+
+                    case "GET_ALL_COMPUTERS":
+                        response = computerHandler.HandleGetAllComputers();
+                        break;
+                    case "UPDATE_COMPUTER_STATUS":
+                        response = computerHandler.HandleUpdateStatus(obj.data);
+                        break;
+                    case "DELETE_COMPUTER":
+                        response = adminComputerHandler.HandleDeleteComputer(obj.data);
+                        break;
+                    case "ADD_COMPUTER":
+                        response = adminComputerHandler.HandleAddComputer(obj.data);
+                        break;
+                    case "UPDATE_COMPUTER": 
+                        response = adminComputerHandler.HandleUpdateComputer(obj.data);
+                        break;
+                    case "GET_COMPUTER_DETAILS": 
+                        response = adminComputerHandler.HandleGetComputerDetails(obj.data);
+                        break;
+                    case "FILTER_REVENUE":
+                        response = handlerRevenue.HandleRevenueFilter(obj.data);
+                        break;
+                    case "GET_ALL_INVOICES":
+                        response = handlerInvoice.HandleGetAllInvoices();
                         break;
                     default: response = new { status = "error", message = $"Unknown action: {action}" }; break;
                 }

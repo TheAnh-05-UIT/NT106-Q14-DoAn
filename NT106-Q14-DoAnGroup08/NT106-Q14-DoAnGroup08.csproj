@@ -789,12 +789,6 @@
     <None Include="Resources\search.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TcpServer\TcpServer.csproj">
-      <Project>{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}</Project>
-      <Name>TcpServer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="AxWMPLib">
       <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
       <VersionMajor>1</VersionMajor>
