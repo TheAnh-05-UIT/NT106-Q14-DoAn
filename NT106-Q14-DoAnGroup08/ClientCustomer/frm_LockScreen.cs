@@ -9,7 +9,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TcpServer.Handlers;
 
 namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {

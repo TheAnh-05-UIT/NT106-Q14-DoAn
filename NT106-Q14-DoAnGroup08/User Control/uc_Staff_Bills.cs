@@ -6,8 +6,6 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using TcpServer;
-using TcpServer.Handlers;
 
 namespace NT106_Q14_DoAnGroup08.Uc_Staff
 {

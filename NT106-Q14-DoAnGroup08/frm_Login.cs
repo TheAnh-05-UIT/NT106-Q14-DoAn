@@ -13,7 +13,6 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TcpServer;
 
 namespace NT106_Q14_DoAnGroup08
 {
@@ -91,6 +90,7 @@ namespace NT106_Q14_DoAnGroup08
                         else
                             new ClientCustomer.frm_Customer(obj.userId).Show();
                         LoginSuccess?.Invoke();
+                        this.Close();
                     }
                     else
                     {

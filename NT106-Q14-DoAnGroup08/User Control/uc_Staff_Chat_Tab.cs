@@ -28,7 +28,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                     panel2.Click += (s, e) => { ClearNewMessageNotification(); direct(s, e); };
                     label1.Click += (s, e) => { ClearNewMessageNotification(); direct(s, e); };
                 }
-                catch (Exception ex)
+                catch
                 { }
             }
             if (closeMethod != null)
@@ -39,7 +39,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                     button1.Visible = true;
                     button1.Enabled = true;
                 }
-                catch (Exception ex)
+                catch
                 { }
             }
         }

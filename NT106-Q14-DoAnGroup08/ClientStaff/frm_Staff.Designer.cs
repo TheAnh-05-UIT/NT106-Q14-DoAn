@@ -51,11 +51,11 @@
             this.ButtonGroup.Controls.Add(this.btnHoaDon);
             this.ButtonGroup.Controls.Add(this.btnThucDon);
             this.ButtonGroup.Controls.Add(this.btnQuanLyMay);
-            this.ButtonGroup.Location = new System.Drawing.Point(18, 19);
-            this.ButtonGroup.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonGroup.Location = new System.Drawing.Point(12, 12);
+            this.ButtonGroup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ButtonGroup.Name = "ButtonGroup";
-            this.ButtonGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.ButtonGroup.Size = new System.Drawing.Size(140, 983);
+            this.ButtonGroup.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ButtonGroup.Size = new System.Drawing.Size(93, 629);
             this.ButtonGroup.TabIndex = 1;
             this.ButtonGroup.TabStop = false;
             this.ButtonGroup.Text = "Trang";
@@ -98,10 +98,17 @@
             // 
             // ImportGoodButton
             // 
-            this.ImportGoodButton.Location = new System.Drawing.Point(8, 35);
-            this.ImportGoodButton.Margin = new System.Windows.Forms.Padding(4);
+            this.ImportGoodButton.BackColor = System.Drawing.Color.LightSalmon;
+            this.ImportGoodButton.FlatAppearance.BorderSize = 0;
+            this.ImportGoodButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.ImportGoodButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Tomato;
+            this.ImportGoodButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Tomato;
+            this.ImportGoodButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ImportGoodButton.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ImportGoodButton.Location = new System.Drawing.Point(5, 22);
+            this.ImportGoodButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ImportGoodButton.Name = "ImportGoodButton";
-            this.ImportGoodButton.Size = new System.Drawing.Size(112, 94);
+            this.ImportGoodButton.Size = new System.Drawing.Size(75, 60);
             this.ImportGoodButton.TabIndex = 2;
             this.ImportGoodButton.Text = " Nhập hàng";
             this.ImportGoodButton.UseVisualStyleBackColor = false;
@@ -109,10 +116,17 @@
             // 
             // btnTaiKhoan
             // 
-            this.btnTaiKhoan.Location = new System.Drawing.Point(8, 548);
-            this.btnTaiKhoan.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTaiKhoan.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnTaiKhoan.FlatAppearance.BorderSize = 0;
+            this.btnTaiKhoan.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnTaiKhoan.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Tomato;
+            this.btnTaiKhoan.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Tomato;
+            this.btnTaiKhoan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTaiKhoan.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTaiKhoan.Location = new System.Drawing.Point(5, 351);
+            this.btnTaiKhoan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTaiKhoan.Name = "btnTaiKhoan";
-            this.btnTaiKhoan.Size = new System.Drawing.Size(112, 94);
+            this.btnTaiKhoan.Size = new System.Drawing.Size(75, 60);
             this.btnTaiKhoan.TabIndex = 5;
             this.btnTaiKhoan.Text = "Tài khoản";
             this.btnTaiKhoan.UseVisualStyleBackColor = false;
@@ -120,10 +134,17 @@
             // 
             // btnChat
             // 
-            this.btnChat.Location = new System.Drawing.Point(8, 446);
-            this.btnChat.Margin = new System.Windows.Forms.Padding(4);
+            this.btnChat.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnChat.FlatAppearance.BorderSize = 0;
+            this.btnChat.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnChat.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Tomato;
+            this.btnChat.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Tomato;
+            this.btnChat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChat.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChat.Location = new System.Drawing.Point(5, 286);
+            this.btnChat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnChat.Name = "btnChat";
-            this.btnChat.Size = new System.Drawing.Size(112, 94);
+            this.btnChat.Size = new System.Drawing.Size(75, 60);
             this.btnChat.TabIndex = 4;
             this.btnChat.Text = "Chat";
             this.btnChat.UseVisualStyleBackColor = false;
@@ -131,10 +152,17 @@
             // 
             // btnHoaDon
             // 
-            this.btnHoaDon.Location = new System.Drawing.Point(8, 342);
-            this.btnHoaDon.Margin = new System.Windows.Forms.Padding(4);
+            this.btnHoaDon.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnHoaDon.FlatAppearance.BorderSize = 0;
+            this.btnHoaDon.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnHoaDon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Tomato;
+            this.btnHoaDon.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Tomato;
+            this.btnHoaDon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHoaDon.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHoaDon.Location = new System.Drawing.Point(5, 219);
+            this.btnHoaDon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHoaDon.Name = "btnHoaDon";
-            this.btnHoaDon.Size = new System.Drawing.Size(112, 94);
+            this.btnHoaDon.Size = new System.Drawing.Size(75, 60);
             this.btnHoaDon.TabIndex = 3;
             this.btnHoaDon.Text = "Hóa đơn";
             this.btnHoaDon.UseVisualStyleBackColor = false;
@@ -142,10 +170,17 @@
             // 
             // btnThucDon
             // 
-            this.btnThucDon.Location = new System.Drawing.Point(8, 137);
-            this.btnThucDon.Margin = new System.Windows.Forms.Padding(4);
+            this.btnThucDon.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnThucDon.FlatAppearance.BorderSize = 0;
+            this.btnThucDon.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnThucDon.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Tomato;
+            this.btnThucDon.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Tomato;
+            this.btnThucDon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThucDon.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThucDon.Location = new System.Drawing.Point(5, 87);
+            this.btnThucDon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnThucDon.Name = "btnThucDon";
-            this.btnThucDon.Size = new System.Drawing.Size(112, 94);
+            this.btnThucDon.Size = new System.Drawing.Size(75, 60);
             this.btnThucDon.TabIndex = 1;
             this.btnThucDon.Text = "Thực đơn";
             this.btnThucDon.UseVisualStyleBackColor = false;
@@ -153,10 +188,17 @@
             // 
             // btnQuanLyMay
             // 
-            this.btnQuanLyMay.Location = new System.Drawing.Point(8, 238);
-            this.btnQuanLyMay.Margin = new System.Windows.Forms.Padding(4);
+            this.btnQuanLyMay.BackColor = System.Drawing.Color.LightSalmon;
+            this.btnQuanLyMay.FlatAppearance.BorderSize = 0;
+            this.btnQuanLyMay.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.btnQuanLyMay.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Tomato;
+            this.btnQuanLyMay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Tomato;
+            this.btnQuanLyMay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQuanLyMay.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQuanLyMay.Location = new System.Drawing.Point(5, 153);
+            this.btnQuanLyMay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnQuanLyMay.Name = "btnQuanLyMay";
-            this.btnQuanLyMay.Size = new System.Drawing.Size(112, 94);
+            this.btnQuanLyMay.Size = new System.Drawing.Size(75, 60);
             this.btnQuanLyMay.TabIndex = 0;
             this.btnQuanLyMay.Text = "Quản lý máy";
             this.btnQuanLyMay.UseVisualStyleBackColor = false;
@@ -164,26 +206,27 @@
             // 
             // UserPanel
             // 
-            this.UserPanel.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.UserPanel.Location = new System.Drawing.Point(166, 19);
-            this.UserPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.UserPanel.BackColor = System.Drawing.Color.LightGray;
+            this.UserPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UserPanel.Location = new System.Drawing.Point(111, 12);
+            this.UserPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.UserPanel.Name = "UserPanel";
-            this.UserPanel.Size = new System.Drawing.Size(1550, 1000);
+            this.UserPanel.Size = new System.Drawing.Size(1033, 640);
             this.UserPanel.TabIndex = 2;
             this.UserPanel.Enter += new System.EventHandler(this.UserPanel_Enter);
             // 
             // frm_Staff
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1734, 1038);
+            this.ClientSize = new System.Drawing.Size(1156, 665);
             this.Controls.Add(this.UserPanel);
             this.Controls.Add(this.ButtonGroup);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frm_Staff";
             this.Text = "Staff App";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.Activated += new System.EventHandler(this.frm_Staff_Activated);
             this.Load += new System.EventHandler(this.Staff_Load);
             this.ButtonGroup.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

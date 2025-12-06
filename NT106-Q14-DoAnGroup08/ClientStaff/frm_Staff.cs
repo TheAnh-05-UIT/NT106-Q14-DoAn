@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using NT106_Q14_DoAnGroup08.ConnectionServser;
+using QuanLyQuanNet.Utils;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -19,18 +21,25 @@ using System.Text.Json.Serialization;
 
 namespace NT106_Q14_DoAnGroup08.ClientStaff
 {
+    // Tại sao cần timer trong form staff
     public partial class frm_Staff : Form
     {
         private Uc_Staff.uc_Staff_ImportGood ImportGood;
         private Uc_Staff.uc_Staff_Menu Menu;
         private Uc_Staff.uc_Staff_Bills Bills;
         private Uc_Staff.uc_Staff_Account Account;
+        private Uc_Staff.uc_Staff_Notification Notification;
         private TabControl tabChat;
         private Dictionary<string, Uc_Staff.uc_Staff_Chat> chatTabs
     = new Dictionary<string, Uc_Staff.uc_Staff_Chat>();
-        private Timer chatTimer;
+        private System.Windows.Forms.Timer chatTimer;
 
-        private string staffId;
+        private TcpClient notifyClient;
+        private Thread notifyThread;
+        private volatile bool notifyRunning;
+        private readonly string notifyServerIp = "127.0.0.1";
+        private readonly int notifyServerPort = 8080;
+        private string staffId = "Staff";
 
         public frm_Staff(string staffId)
         {
@@ -41,20 +50,73 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             Menu = new Uc_Staff.uc_Staff_Menu();
             Bills = new Uc_Staff.uc_Staff_Bills();
             Account = new Uc_Staff.uc_Staff_Account();
+            Notification = new Uc_Staff.uc_Staff_Notification();
+
+            updateNotificationCount();
 
             Account.SetStaffId(staffId);
             Account.LogoutClicked += Account_LogoutClicked;
 
-            ShowUserControl(ImportGood);
+            StartNotificationClient();
+            ShowUserControl(Account, btnTaiKhoan);
             StartChatPolling();
+            this.Show();
         }
+
+        private void refreshButton(object sender)
+        {
+            foreach (var button in ButtonGroup.Controls)
+            {
+                if (button is Button)
+                {
+                    if (button == sender)
+                    {
+                        ((Button)button).BackColor = Color.IndianRed;
+                        ((Button)button).ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        ((Button)button).BackColor = Color.LightSalmon;
+                        ((Button)button).ForeColor = SystemColors.ControlText;
+                    }
+                }
+                else
+                {
+                    if (button is GroupBox)
+                    {
+                        foreach (var gbButton in ((GroupBox)button).Controls)
+                        {
+                            if (gbButton is Button)
+                            {
+                                if (gbButton == sender)
+                                {
+                                    ((Button)gbButton).BackColor = Color.IndianRed;
+                                    ((Button)gbButton).ForeColor = Color.White;
+                                }
+                                else
+                                {
+                                    ((Button)gbButton).BackColor = Color.LightSalmon;
+                                    ((Button)gbButton).ForeColor = SystemColors.ControlText;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void updateNotificationCount()
+        {
+            groupBox1.Text = Notification.GetAllItems().Count.ToString();
+        }
+
 
         private void ShowUserControl(UserControl newControl, object sender)
         {
             UserPanel.Controls.Clear();
             newControl.Dock = DockStyle.Fill;
             UserPanel.Controls.Add(newControl);
-            newControl.BringToFront();
+            refreshButton(sender);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -96,6 +158,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
         private void btnChat_Click(object sender, EventArgs e)
         {
             ShowChatPanel();
+            refreshButton(sender);
         }
 
         private void ShowChatPanel()
@@ -158,7 +221,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
 
         private void StartChatPolling()
         {
-            chatTimer = new Timer();
+            chatTimer = new System.Windows.Forms.Timer();
             chatTimer.Interval = 1500; // 1.5 giây
             chatTimer.Tick += ChatTimer_Tick;
             chatTimer.Start();
@@ -259,11 +322,11 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
 
         private void receiveMessage(string fromUser, string toUser, string message)
         {
-            Chat.receiveMessage(fromUser, toUser, message);
-            ShowUserControl(Chat, btnChat);
-            this.WindowState = FormWindowState.Minimized;
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
+            //Chat.receiveMessage(fromUser, toUser, message);
+            //ShowUserControl(Chat, btnChat);
+            //this.WindowState = FormWindowState.Minimized;
+            //this.Show();
+            //this.WindowState = FormWindowState.Normal;
         }
 
         private void NotificationWorker()
@@ -277,7 +340,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
 
                     using (var ns = notifyClient.GetStream())
                     {
-                        byte[] nameBytes = Encoding.UTF8.GetBytes(notifyClientName);
+                        byte[] nameBytes = Encoding.UTF8.GetBytes(staffId);
                         ns.Write(nameBytes, 0, nameBytes.Length);
 
                         byte[] buffer = new byte[8192];
@@ -314,8 +377,8 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
                                             this.BeginInvoke(new Action(() =>
                                             {
                                                 receiveNotification(title, content, "OK", time);
-                                                receiveMessage("SYSTEM", "system", content);
-                                                receiveMessage("SYSTEM1", "system1", content);
+                                                OnReceiveMessage("system", content);
+                                                OnReceiveMessage("system1", content);
                                             }));
                                         }
                                         catch {}

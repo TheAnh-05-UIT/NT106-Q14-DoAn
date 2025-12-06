@@ -24,7 +24,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                 try {
                     button1.Click += (s, e) => meth(s, e); 
                 }
-                catch (Exception ex)
+                catch
                 {}
             }
         }

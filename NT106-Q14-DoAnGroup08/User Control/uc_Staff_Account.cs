@@ -13,8 +13,6 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
         public uc_Staff_Account()
         {
             InitializeComponent();
-            this.Load += Uc_Staff_Account_Load;
-            btnLogout.Click += BtnLogout_Click;
         }
 
         public void SetStaffId(string id)

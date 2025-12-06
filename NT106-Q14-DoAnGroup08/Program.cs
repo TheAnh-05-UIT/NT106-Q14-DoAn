@@ -20,8 +20,10 @@ namespace NT106_Q14_DoAnGroup08
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new frm_Revenue());
-            frm_Staff newForm = new frm_Staff();
+            frm_Login newForm = new frm_Login();
             newForm.Show();
+            frm_Login newForm1 = new frm_Login();
+            newForm1.Show();
             //frm_Customer_TopUp newForm1 = new frm_Customer_TopUp();
             //newForm1.Show();
             //frm_AddCustomer newForm2 = new frm_AddCustomer();
