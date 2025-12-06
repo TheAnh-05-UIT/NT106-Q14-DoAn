@@ -92,7 +92,8 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                     txt_BalanceUsed.Text = _moneyUsed.ToString("N0") + " đ";
                     txt_BalanceRemain.Text = _moneyLeft.ToString("N0") + " đ";
 
-                    lbl_Username.Text = obj.customerId;
+
+                    lbl_Username.Text = obj.userName;
                 }
                 else
                 {
@@ -215,6 +216,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             public string computerName { get; set; }
 
             public string customerId { get; set; }
+            public string userName { get; set; }
         }
     }
 }

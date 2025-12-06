@@ -58,12 +58,15 @@ VALUES
 -- Bảng Customers (Khách hàng)
 
 CREATE TABLE Customers (
-    CustomerId NVARCHAR(20) PRIMARY KEY,   
+    CustomerId NVARCHAR(20) PRIMARY KEY,
     Balance DECIMAL(12,2) DEFAULT 0,
     RegisterDate DATETIME DEFAULT GETDATE(),
     Vip BIT DEFAULT 0,
     FOREIGN KEY (CustomerId) REFERENCES Users(UserId)
 );
+
+INSERT INTO Customers (CustomerId, Balance, RegisterDate, Vip) VALUES
+('U003', 0.00, '2025-11-15', 1);
 
 
 -- Bảng Computers (Máy trạm)

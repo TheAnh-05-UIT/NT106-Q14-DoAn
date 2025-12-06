@@ -179,6 +179,10 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
         public void OpenChatTab(string customerId)
         {
             ShowChatPanel();
+            this.Hide();
+            this.WindowState = FormWindowState.Minimized;
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
 
             if (chatTabs.ContainsKey(customerId))
             {
@@ -318,15 +322,6 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
                 }
             }
             catch { }
-        }
-
-        private void receiveMessage(string fromUser, string toUser, string message)
-        {
-            //Chat.receiveMessage(fromUser, toUser, message);
-            //ShowUserControl(Chat, btnChat);
-            //this.WindowState = FormWindowState.Minimized;
-            //this.Show();
-            //this.WindowState = FormWindowState.Normal;
         }
 
         private void NotificationWorker()

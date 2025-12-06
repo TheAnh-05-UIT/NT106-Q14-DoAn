@@ -17,7 +17,7 @@ namespace TcpServer.Handlers
         }
 
         // --- HÀM TẠO SESSION MỚI (ĐÃ SỬA LỖI SINH ID) ---
-        private object CreateNewSession(string customerId, string computerId, decimal balance, decimal pricePerSecond)
+        private object CreateNewSession(string customerId, string computerId, decimal balance, decimal pricePerSecond, string username)
         {
             // Sinh SessionId kiểu S001, S002...
             // SỬA: Dùng CAST để sắp xếp đúng theo số
@@ -67,6 +67,7 @@ namespace TcpServer.Handlers
                 moneyLeft = balance,
                 timeLeft = initialTimeLeft,
                 customerId = customerId,
+                userName = username
             };
         }
 
@@ -80,19 +81,30 @@ namespace TcpServer.Handlers
                 string computerIdNew = data.computerId;
 
                 // Lấy thông tin khách hàng và giá máy tính
-                string sqlCustomer = @"SELECT c.Balance, t.PricePerHour 
-                                       FROM Customers c
-                                       JOIN Computers t ON t.ComputerId = @computerIdNew
-                                       WHERE c.CustomerId=@customerId";
+                string sqlCustomer = @"SELECT Balance
+                                       FROM Customers
+                                       WHERE CustomerId=@customerId";
                 var dtCustomer = _db.ExecuteQuery(sqlCustomer,
-                    new SqlParameter("@customerId", customerId),
+                    new SqlParameter("@customerId", customerId));
+
+                string sqlComputer = @"SELECT PricePerHour 
+                                       FROM Computers
+                                       WHERE ComputerId = @computerIdNew";
+                var dtComputer = _db.ExecuteQuery(sqlComputer,
                     new SqlParameter("@computerIdNew", computerIdNew));
 
-                if (dtCustomer.Rows.Count == 0)
-                    return new { status = "error", message = "Customer or computer not found" };
+                string sqlUsername = @"SELECT Username
+                                       FROM Users
+                                       WHERE UserId=@customerId";
+                var dtUsername = _db.ExecuteQuery(sqlUsername,
+                    new SqlParameter("@customerId", customerId));
 
+                if (dtCustomer.Rows.Count == 0 || dtComputer.Rows.Count == 0 || dtUsername.Rows.Count == 0)
+                    return new { status = "error", message = $"Customer or computer not found. Insert {computerIdNew} (Tên máy) vào database để tránh lỗi này. Thêm chức năng cài app vào máy sau." };
+
+                string username = dtUsername.Rows[0]["Username"].ToString();
                 decimal balance = Convert.ToDecimal(dtCustomer.Rows[0]["Balance"]);
-                decimal pricePerHour = Convert.ToDecimal(dtCustomer.Rows[0]["PricePerHour"]);
+                decimal pricePerHour = Convert.ToDecimal(dtComputer.Rows[0]["PricePerHour"]);
                 decimal pricePerSecond = pricePerHour / 3600m;
 
                 // 1. Kiểm tra session đang mở (dùng sqlSession đã đúng)
@@ -140,13 +152,14 @@ namespace TcpServer.Handlers
                             moneyUsed = moneyUsed,
                             moneyLeft = moneyLeft,
                             timeLeft = timeLeft,
-                            customerId = customerId
+                            customerId = customerId,
+                            userName = username
                         };
                     }
                 }
 
                 // 2. Nếu chưa có session → tạo mới
-                return CreateNewSession(customerId, computerIdNew, balance, pricePerSecond);
+                return CreateNewSession(customerId, computerIdNew, balance, pricePerSecond, username);
             }
             catch (Exception ex)
             {

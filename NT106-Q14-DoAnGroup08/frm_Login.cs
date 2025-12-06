@@ -13,6 +13,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLyQuanNet.Utils;
 
 namespace NT106_Q14_DoAnGroup08
 {
@@ -59,7 +60,11 @@ namespace NT106_Q14_DoAnGroup08
 
                     if (obj.status == "success")
                     {
-                        
+
+                        SessionManager.Username = obj.userId;
+                        SessionManager.Role = obj.role;
+                        SessionManager.FullName = obj.fullName;
+
                         DTO.UserSession.UserId = obj.userId;
                         DTO.UserSession.Role = obj.role;
                         DTO.UserSession.FullName = obj.fullName;
