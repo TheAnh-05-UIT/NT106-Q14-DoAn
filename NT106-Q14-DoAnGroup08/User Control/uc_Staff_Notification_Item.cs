@@ -12,7 +12,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 {
     public partial class uc_Staff_Notification_Item : UserControl
     {
-        public uc_Staff_Notification_Item(string title, string a, string b, string c, Action<object,EventArgs> meth = null)
+        public uc_Staff_Notification_Item(string title, string a, string b, string c, Action<object,EventArgs> meth = null, Action<object, EventArgs> rmv = null)
         {
             InitializeComponent();
             label1.Text = title;
@@ -27,6 +27,12 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                 catch
                 {}
             }
+            button2.Click += (s, e) => rmv(s, e);
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -35,6 +41,16 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }

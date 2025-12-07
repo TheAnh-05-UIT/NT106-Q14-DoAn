@@ -299,6 +299,8 @@
     <Compile Include="DAO\BillDTO.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="ConnectionServer\ServerConnection.cs" />
+    <Compile Include="DAO\NotifyClient.cs" />
+    <Compile Include="DAO\ServerConfig.cs" />
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="ClientStaff\frm_AddCustomer.cs">
       <SubType>Form</SubType>

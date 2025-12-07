@@ -39,7 +39,17 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                 }
             };
 
-            thisItem = new uc_Staff_Notification_Item(title, content, Time, buttonContent, defaultRemove);
+            Action<object, EventArgs> buttonRemove = (s, e) =>
+            {
+                if (myControls.Contains(thisItem))
+                {
+                    myControls.Remove(thisItem);
+                    thisItem.Dispose();
+                    Render();
+                }
+            };
+
+            thisItem = new uc_Staff_Notification_Item(title, content, Time, buttonContent, defaultRemove, buttonRemove);
 
             myControls.Insert(0, thisItem);
             Render();

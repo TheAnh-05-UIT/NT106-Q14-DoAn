@@ -223,7 +223,7 @@ CREATE TABLE ChatMessage (
     CreatedAt DATETIME DEFAULT GETDATE()
 );
 
-
+GO
 -- Hiển thị của bảng Employees
 CREATE VIEW EmployeesView AS
 SELECT 

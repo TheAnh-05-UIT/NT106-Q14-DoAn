@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Threading;
+using TcpServer.ServerHandler;
 
 namespace TcpServer
 {
@@ -11,6 +12,7 @@ namespace TcpServer
             Console.WriteLine("Starting TCP Server...");
             string connStr = ConfigurationManager.ConnectionStrings["QuanLyQuanNet"].ConnectionString;
             ServerHandler.ServerHandler server = new ServerHandler.ServerHandler(connStr);
+            var http = new TcpServer.ServerHandler.HttpServer(server, 5000);
             Thread tcpThread = new Thread(() =>
             {
                 try
@@ -29,7 +31,7 @@ namespace TcpServer
             // netsh http add urlacl url=http://+:5000/ user=Everyone
             try
             {
-                server.StartHttp(5000);
+               new Thread(() => http.Start()).Start();
             }
             catch (Exception ex)
             {

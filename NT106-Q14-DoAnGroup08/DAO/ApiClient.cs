@@ -5,7 +5,17 @@ using System.Text;
 
 public class ApiClient
 {
-    public static readonly ApiClient Client = new ApiClient("127.0.0.1", 8080);
+    private static ApiClient _client;
+
+    public static ApiClient Client
+    {
+        get
+        {
+            if (_client == null)
+                _client = new ApiClient(ServerConfig.Host, ServerConfig.Port);
+            return _client;
+        }
+    }
 
     private readonly string host;
     private readonly int port;
@@ -14,6 +24,11 @@ public class ApiClient
     {
         this.host = host;
         this.port = port;
+    }
+
+    internal static void Reconfigure()
+    {
+        _client = new ApiClient(ServerConfig.Host, ServerConfig.Port);
     }
 
     public dynamic Send(object obj)

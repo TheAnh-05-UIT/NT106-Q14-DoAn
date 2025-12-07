@@ -25,7 +25,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
     public partial class frm_Staff : Form
     {
         private Uc_Staff.uc_Staff_ImportGood ImportGood;
-        private Uc_Staff.uc_Staff_Menu Menu;
+        private readonly Uc_Staff.uc_Staff_Menu Menu;
         private Uc_Staff.uc_Staff_Bills Bills;
         private Uc_Staff.uc_Staff_Account Account;
         private Uc_Staff.uc_Staff_Notification Notification;
@@ -34,11 +34,6 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
     = new Dictionary<string, Uc_Staff.uc_Staff_Chat>();
         private System.Windows.Forms.Timer chatTimer;
 
-        private TcpClient notifyClient;
-        private Thread notifyThread;
-        private volatile bool notifyRunning;
-        private readonly string notifyServerIp = "127.0.0.1";
-        private readonly int notifyServerPort = 8080;
         private string staffId = "Staff";
 
         public frm_Staff(string staffId)
@@ -252,6 +247,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
                 string content = msg.Content.ToString();
 
                 OnReceiveMessage(customerId, content);
+                receiveNotification("Tin nhắn mới", $"Tin nhắn từ {customerId}\n{content}", "Xem ngay", null, () => { OpenChatTab(customerId); });
     }
         }
 
@@ -269,9 +265,16 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             Notification.Focus();
         }
 
-        public void receiveNotification(string title, string content, string btnContent, string time = null)
+        public void receiveNotification(string title, string content, string btnContent, string time = null, Action additionalMethod = null)
         {
-            Notification.createItem(title, content, btnContent, time, updateNotificationCount);
+            if (additionalMethod != null) {
+                additionalMethod += updateNotificationCount;
+            }
+            else
+            {
+                additionalMethod = updateNotificationCount;
+            }
+            Notification.createItem(title, content, btnContent, time, additionalMethod);
             updateNotificationCount();
             Control focusedControl = this.ActiveControl;
             if (focusedControl?.GetType().ToString() != "NT106_Q14_DoAnGroup08.Uc_Staff.uc_Staff_Notification")
@@ -301,115 +304,61 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
 
         private void StartNotificationClient()
         {
-            if (notifyThread != null && notifyThread.IsAlive) return;
-            notifyRunning = true;
-            notifyThread = new Thread(NotificationWorker) { IsBackground = true };
-            notifyThread.Start();
+            // Subscribe to NotifyClient events and start it
+            try
+            {
+                NotifyClient.Instance.NotificationReceived += NotifyClient_NotificationReceived;
+                NotifyClient.Instance.MessageReceived += NotifyClient_MessageReceived;
+                NotifyClient.Instance.Start(staffId);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("StartNotificationClient error: " + ex.Message);
+            }
         }
 
         private void StopNotificationClient()
         {
-            notifyRunning = false;
             try
             {
-                try { notifyClient?.Close(); } catch { }
+                NotifyClient.Instance.NotificationReceived -= NotifyClient_NotificationReceived;
+                NotifyClient.Instance.MessageReceived -= NotifyClient_MessageReceived;
+                NotifyClient.Instance.Stop();
             }
-            catch { }
-            try
+            catch (Exception ex)
             {
-                if (notifyThread != null && notifyThread.IsAlive)
-                {
-                    if (!notifyThread.Join(2000))
-                        notifyThread.Abort();
-                }
+                Debug.WriteLine("StopNotificationClient error: " + ex.Message);
             }
-            catch { }
         }
 
-        int a = 0;
-        private void NotificationWorker()
+        private void NotifyClient_NotificationReceived(dynamic notif)
         {
-            while (notifyRunning)
+            if (!this.IsDisposed && !this.Disposing)
             {
                 try
                 {
-                    notifyClient = new TcpClient();
-                    notifyClient.Connect(notifyServerIp, notifyServerPort);
-
-                    using (var ns = notifyClient.GetStream())
+                    this.BeginInvoke(new Action(() =>
                     {
-                        byte[] nameBytes = Encoding.UTF8.GetBytes(staffId);
-                        ns.Write(nameBytes, 0, nameBytes.Length);
+                        string title = notif.title != null ? notif.title.ToString() : "Thông báo";
+                        string content = notif.content != null ? notif.content.ToString() : "";
+                        string time = notif.time != null ? notif.time.ToString() : null;
 
-                        byte[] buffer = new byte[8192];
-                        while (notifyRunning && notifyClient.Connected)
-                        {
-                            int bytesRead = 0;
-                            try
-                            {
-                                bytesRead = ns.Read(buffer, 0, buffer.Length);
-                                if (bytesRead == 0) break;
-                            }
-                            catch (Exception)
-                            {
-                                break;
-                            }
-
-                            string msg = Encoding.UTF8.GetString(buffer, 0, bytesRead).Trim();
-                            if (string.IsNullOrEmpty(msg)) continue;
-
-                            if (msg.StartsWith("NOTIFICATION|"))
-                            {
-                                string payload = msg.Substring("NOTIFICATION|".Length);
-                                try
-                                {
-                                    dynamic notif = JsonConvert.DeserializeObject(payload);
-                                    string title = notif.title != null ? notif.title.ToString() : "Thông báo";
-                                    string content = notif.content != null ? notif.content.ToString() : "";
-                                    string time = notif.time != null ? notif.time.ToString() : null;
-
-                                    if (!this.IsDisposed && !this.Disposing)
-                                    {
-                                        try
-                                        {
-                                            this.BeginInvoke(new Action(() =>
-                                            {
-                                                receiveNotification(title, content, "OK", time);
-                                                OnReceiveMessage($"system{a++}", content);
-                                            }));
-                                        }
-                                        catch {}
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    Debug.WriteLine("Failed parse notification payload: " + ex.Message);
-                                }
-                            }
-                            else
-                            {
-                                Debug.WriteLine("Notification client received: " + msg);
-                            }
-                        }
-                    }
+                        receiveNotification(title, content, "OK", time);
+                    }));
                 }
-                catch (SocketException ex)
+                catch { }
+            }
+        }
+
+        private void NotifyClient_MessageReceived(string from, string content)
+        {
+            if (!this.IsDisposed && !this.Disposing)
+            {
+                try
                 {
-                    Debug.WriteLine("Notification socket error: " + ex.Message);
+                    this.BeginInvoke(new Action(() => OnReceiveMessage(from, content)));
                 }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine("Notification client error: " + ex.Message);
-                }
-                finally
-                {
-                    try { notifyClient?.Close(); } catch { }
-                }
-
-                if (notifyRunning)
-                {
-                    Thread.Sleep(3000);
-                }
+                catch { }
             }
         }
 
