@@ -59,6 +59,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
 
             StartNotificationClient();
             ShowUserControl(Account, btnTaiKhoan);
+            this.FormClosing += Frm_Staff_FormClosing;
             StartChatPolling();
             this.Show();
         }
@@ -168,6 +169,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             if (tabChat == null)
             {
                 tabChat = new TabControl();
+                this.GotFocus += (s, e) => { InvokeGotFocus(tabChat, e); };
                 tabChat.Dock = DockStyle.Fill;
             }
 
@@ -324,6 +326,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             catch { }
         }
 
+        int a = 0;
         private void NotificationWorker()
         {
             while (notifyRunning)
@@ -372,8 +375,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
                                             this.BeginInvoke(new Action(() =>
                                             {
                                                 receiveNotification(title, content, "OK", time);
-                                                OnReceiveMessage("system", content);
-                                                OnReceiveMessage("system1", content);
+                                                OnReceiveMessage($"system{a++}", content);
                                             }));
                                         }
                                         catch {}

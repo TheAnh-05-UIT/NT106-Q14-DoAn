@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace NT106_Q14_DoAnGroup08.Uc_Staff
 {
@@ -14,6 +15,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
     {
         string fromId; // nhân viên
         string toId;   // khách hàng
+        private int willBeDeleted = -1;
 
         public event Action<string, string, string> OnSendMessage;
 
@@ -22,33 +24,40 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
         {
             InitializeComponent();
             this.Load += uc_Staff_Chat_Load;
+            lst_Chat.MouseDown += actionStopNoti;
+            txt_Chat.MouseDown += actionStopNoti;
+            btn_SendMessage.MouseDown += actionStopNoti;
+        }
+
+        public void actionStopNoti(object s, EventArgs e)
+        {
+            lst_Chat.ForeColor = Color.Black;
+            if (willBeDeleted != -1)
+                lst_Chat.Items.RemoveAt(willBeDeleted);
+            willBeDeleted = -1;
         }
 
         private void uc_Staff_Chat_Load(object sender, EventArgs e)
         {
-            // Wire events
             btn_SendMessage.Click += Btn_SendMessage_Click;
             txt_Chat.KeyDown += Txt_Chat_KeyDown;
 
-            // UI tweaks
             lst_Chat.HorizontalScrollbar = true;
             txt_Chat.Focus();
 
-            // Load history if available (placeholder)
             LoadChatHistory();
         }
 
         private void LoadChatHistory()
         {
-            // Placeholder: load chat history from DB if you implement chat persistence.
-            // Keep empty for now so UI shows nothing until user sends messages.
+
         }
 
         private void Txt_Chat_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                e.SuppressKeyPress = true; // prevent ding
+                e.SuppressKeyPress = true;
                 SendMessageFromCurrentUser();
             }
         }
@@ -63,11 +72,10 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             string text = txt_Chat.Text?.Trim();
             if (string.IsNullOrEmpty(text)) return;
 
-            string entry = $"[{DateTime.Now:HH:mm}] Tôi: {text}";
+            string entry = $"[{DateTime.Now:dd/MM/yyyy HH:mm}] Tôi: {text}";
             lst_Chat.Items.Add(entry);
             lst_Chat.TopIndex = lst_Chat.Items.Count - 1;
 
-            // Gửi ra ngoài cho Form Staff xử lý server
             OnSendMessage?.Invoke(fromId, toId, text);
 
             txt_Chat.Clear();
@@ -76,8 +84,14 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
         public void AddMessage(string msg)
         {
-            lst_Chat.Items.Add($"[{DateTime.Now:HH:mm}] {msg}");
-            lst_Chat.TopIndex = lst_Chat.Items.Count - 1;
+            string entry = $"[{DateTime.Now:dd/MM/yyyy HH:mm}] {msg}";
+            if (willBeDeleted == -1)
+            {
+                lst_Chat.Items.Add("New message received:");
+                willBeDeleted = lst_Chat.Items.Count - 1;
+            }
+            lst_Chat.Items.Add(entry);
+            lst_Chat.ForeColor = Color.Red;
         }
 
 

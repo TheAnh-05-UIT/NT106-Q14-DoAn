@@ -26,12 +26,10 @@ public class ApiClient
 
                 using (var ns = client.GetStream())
                 {
-                    // ✅ Gửi JSON + \n để server biết kết thúc gói tin
                     string json = JsonConvert.SerializeObject(obj) + "\n";
                     byte[] data = Encoding.UTF8.GetBytes(json);
                     ns.Write(data, 0, data.Length);
 
-                    // ✅ Đọc cho tới khi hết dữ liệu trả về
                     byte[] buffer = new byte[8192];
                     StringBuilder sb = new StringBuilder();
 
