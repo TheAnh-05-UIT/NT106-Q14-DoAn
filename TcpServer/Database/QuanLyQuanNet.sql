@@ -223,6 +223,14 @@ CREATE TABLE ChatMessage (
     CreatedAt DATETIME DEFAULT GETDATE()
 );
 
+CREATE TABLE ImportGoods (
+    ImportId NVARCHAR(20) PRIMARY KEY,
+    ImportDate DATETIME,
+    ItemName NVARCHAR(200),
+    Quantity INT,
+    Supplier NVARCHAR(200)
+);
+
 GO
 -- Hiển thị của bảng Employees
 CREATE VIEW EmployeesView AS

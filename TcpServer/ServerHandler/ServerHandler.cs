@@ -24,7 +24,8 @@ namespace TcpServer.ServerHandler
         private readonly HandlerFood handlerFood;
         private readonly HandlerCustomer handlerCustomer;
         private readonly HandlerChat handlerChat;
-
+        private readonly HandlerImportGood handlerImportGood;
+        public HandlerNotification NotificationHandler => handlerNotification;
         private readonly HandlerComputerManagement computerHandler;
         private readonly HandlerAdminComputerManagementcs adminComputerHandler;
         private readonly HandlerNotification handlerNotification;
@@ -37,6 +38,7 @@ namespace TcpServer.ServerHandler
             handlerAdminCustomerAcc = new HandlerAdminCustomerAcc(db);
             handlerCustomerHandler = new HandlerAdminCustomer(db);
             handlerFood = new HandlerFood(db);
+            handlerImportGood = new HandlerImportGood(db);
             handlerCustomer = new HandlerCustomer(db);
             handlerChat = new HandlerChat(db);
             computerHandler = new HandlerComputerManagement(db);
@@ -173,6 +175,7 @@ namespace TcpServer.ServerHandler
                     case "login": response = handlerLogin.HandleLogin(obj); break;
                     case "get_all_employees": response = handlerAdminCustomerAcc.HandleGetAllEmployees(); break;
                     case "add_employee": response = handlerAdminCustomerAcc.HandleAddEmployee(obj.data); break;
+                    case "GET_ALL_FOOD": response = handlerFood.HandleGetAllFood(); break;
                     case "update_employee": response = handlerAdminCustomerAcc.HandleUpdateEmployee(obj.data); break;
                     case "delete_employee": response = handlerAdminCustomerAcc.HandleDeleteEmployee(obj.data); break;
                     case "GET_ALL_COMPUTERS_ADMIN": response = adminComputerHandler.HandleGetAllComputers(); break;
@@ -251,6 +254,24 @@ namespace TcpServer.ServerHandler
                         break;
                     case "GET_ALL_INVOICES":
                         response = handlerInvoice.HandleGetAllInvoices();
+                        break;
+                    case "GET_IMPORT_GOODS":
+                        response = handlerImportGood.HandleGetImportGoods();
+                        break;
+                    case "get_import_goods":
+                        response = handlerImportGood.HandleGetImportGoods();
+                        break;
+                    case "ADD_IMPORT_GOOD":
+                        response = handlerImportGood.HandleAddImportGood(obj.data);
+                        break;
+                    case "add_import_good":
+                        response = handlerImportGood.HandleAddImportGood(obj.data);
+                        break;
+                    case "DELETE_IMPORT_GOOD":
+                        response = handlerImportGood.HandleDeleteImportGood(obj.data);
+                        break;
+                    case "delete_import_good":
+                        response = handlerImportGood.HandleDeleteImportGood(obj.data);
                         break;
                     default: response = new { status = "error", message = $"Unknown action: {action}" }; break;
                 }
@@ -354,21 +375,5 @@ namespace TcpServer.ServerHandler
             ns.Write(sendData, 0, sendData.Length);
         }
 
-        // Chia ra project khác sau
-
-        /* Test bằng
-curl -X POST -H "Content-Type: application/json" -d "{\"action\":\"paid\",\"data\":{\"amount\":1000,\"accountName\":\"NhatAnh\",\"addInfo\":\"Số hóa đơn\"}}" http://localhost:5000/
-        */
-
-        // HTTP server responsibilities have been extracted to a separate HttpServer class.
-        // Provide access to notification handler for the HTTP server.
-        public HandlerNotification NotificationHandler => handlerNotification;
-
-        // Simple wrapper to start an HTTP server from outside if needed. Implementation moved to HttpServer class.
-        public void StartHttp(int httpPort)
-        {
-            // Placeholder: actual HTTP server is implemented in HttpServer class.
-            throw new NotImplementedException("StartHttp moved to TcpServer.ServerHandler.HttpServer. Create and call new HttpServer(this).Start(httpPort);");
-        }
     }
 }

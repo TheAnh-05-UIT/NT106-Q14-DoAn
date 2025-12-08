@@ -19,7 +19,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             InitializeComponent();
         }
 
-        public void createItem(string title, string content, string buttonContent, string Time = null, Action additionalMethod = null)
+        public void createItem(string title, string content, string buttonContent, string Time = null, Action additionalMethod = null, Action addRmvBtn = null)
         {
             if (Time == null)
             {
@@ -44,6 +44,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                 if (myControls.Contains(thisItem))
                 {
                     myControls.Remove(thisItem);
+                    addRmvBtn?.Invoke();
                     thisItem.Dispose();
                     Render();
                 }

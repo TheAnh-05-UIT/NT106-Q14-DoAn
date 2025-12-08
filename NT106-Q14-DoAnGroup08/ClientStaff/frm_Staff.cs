@@ -274,7 +274,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             {
                 additionalMethod = updateNotificationCount;
             }
-            Notification.createItem(title, content, btnContent, time, additionalMethod);
+            Notification.createItem(title, content, btnContent, time, additionalMethod, updateNotificationCount);
             updateNotificationCount();
             Control focusedControl = this.ActiveControl;
             if (focusedControl?.GetType().ToString() != "NT106_Q14_DoAnGroup08.Uc_Staff.uc_Staff_Notification")

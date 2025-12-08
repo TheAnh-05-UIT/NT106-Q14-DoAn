@@ -29,9 +29,9 @@ namespace TcpServer.Handlers
 
         public object HandleGetAllFood()
         {
-            string query = @"SELECT f.*, c.CategoryName 
-                             FROM FoodAndDrink f 
-                             INNER JOIN Category c ON f.CategoryId = c.CategoryId";
+            string query = @"SELECT f.FoodId, f.FoodName, f.Price, c.CategoryName
+                             FROM FoodAndDrink f
+                             LEFT JOIN Category c ON f.CategoryId = c.CategoryId";
 
             DataTable dt = db.ExecuteQuery(query);
             return new { status = "success", data = ConvertDataTableToJson(dt) };

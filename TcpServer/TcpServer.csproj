@@ -63,6 +63,7 @@
     <Compile Include="Handlers\HandlerComputerManagement.cs" />
     <Compile Include="Handlers\HandlerCustomer.cs" />
     <Compile Include="Handlers\HandlerFood.cs" />
+    <Compile Include="Handlers\HandlerImportGood.cs" />
     <Compile Include="Handlers\HandlerInvoice.cs" />
     <Compile Include="Handlers\HandlerNotification.cs" />
     <Compile Include="Handlers\HandlerRevenue.cs" />

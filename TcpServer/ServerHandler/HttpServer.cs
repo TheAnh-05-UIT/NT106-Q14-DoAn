@@ -8,6 +8,9 @@ using System.Threading;
 
 namespace TcpServer.ServerHandler
 {
+    /* Test bằng
+curl -X POST -H "Content-Type: application/json" -d "{\"action\":\"paid\",\"data\":{\"amount\":1000,\"accountName\":\"NhatAnh\",\"addInfo\":\"Số hóa đơn\"}}" http://localhost:5000/
+*/
     public class HttpServer
     {
         private readonly ServerHandler serverHandler;

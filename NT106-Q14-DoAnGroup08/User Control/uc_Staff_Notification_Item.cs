@@ -32,7 +32,6 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -51,6 +50,11 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
         }
 
         private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
         {
 
         }
