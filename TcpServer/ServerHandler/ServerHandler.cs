@@ -194,7 +194,7 @@ namespace TcpServer.ServerHandler
                     case "get_max_invoice_id": response = handlerFood.HandleGetMaxInvoiceId(); break;
                     case "get_max_invoice_detail_id": response = handlerFood.HandleGetMaxInvoiceDetailId(); break;
                     case "get_invoices_in_session": response = handlerFood.HandleLoadInvoiceInSession(); break;
-                    case "get_invoices_details": response = handlerFood.HandleLoadInvoiceDetail(); break;
+                    case "get_invoices_details": response = handlerFood.HandleLoadInvoiceDetail(obj.invoiceId.ToString()); break;
                     case "CONTROL_PC": response = HandleComputerControl(obj.data); break;
                     case "END_SESSION": response = HandleComputerControl(obj.data); break;
                     case "create_invoice_detail_top_up": response = handlerFood.HandleCreateInvoiceDetailTopUp(obj.data); break;
