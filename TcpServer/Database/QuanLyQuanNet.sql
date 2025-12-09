@@ -53,8 +53,10 @@ VALUES
 ('U001', 'admin', '123', 'Nguyen Van A', '0372773025', 'a@gmail.com', 'ADMIN',1 ),
 ('U002', 'user1', '123', 'Nguyen Van B', '0352653331', 'b@gmail.com', 'EMPLOYEE', 1),
 ('U003', 'user3', '123', 'Nguyen Van D', '037256789', 'd@gmail.com', 'CUSTOMER', 1);
-
-
+INSERT INTO Users (UserId, Username, [Password], FullName, Phone, Email, [Role], Active)
+VALUES
+('U004', 'admin_manager', 'hashed_pass_123', 'Pham Phu Quang', '090111222', 'admin@company.com', 'ADMIN', 1)
+SELECT * FROM Users;
 -- Bảng Customers (Khách hàng)
 
 CREATE TABLE Customers (
