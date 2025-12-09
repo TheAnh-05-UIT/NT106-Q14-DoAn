@@ -22,8 +22,8 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         private void frm_Customer_BillDetail_Load(object sender, EventArgs e)
         {
-            var res = ApiClient.Client.Send(new { action = "get_invoice_details", invoiceId = this.invoiceId });
-
+            var res = ApiClient.Client.Send(new { action = "get_invoices_details", invoiceId = this.invoiceId });
+            MessageBox.Show(res?.ToString() ?? "res null");
             if (res == null || res.status != "success")
             {
                 MessageBox.Show("Không tải được chi tiết!");
@@ -37,18 +37,26 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             dt.Columns.Add("Quantity");
             dt.Columns.Add("Price");
             dt.Columns.Add("Total");
+            dt.Columns.Add("Note");
+
 
             foreach (var item in arr)
             {
                 dt.Rows.Add(
-                    item["FoodName"].ToString(),
-                    item["Quantity"].ToString(),
-                    item["Price"].ToString(),
-                    item["Total"].ToString()
+                    item["FoodName"]?.ToString() ?? "",
+                    item["Quantity"]?.ToString() ?? "0",
+                    item["Price"]?.ToString() ?? "0",
+                    item["Total"]?.ToString() ?? "0",
+                    item["Note"]?.ToString() ?? ""
                 );
             }
 
             dataGridViewDetail.DataSource = dt;
+        }
+
+        private void guna2PictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

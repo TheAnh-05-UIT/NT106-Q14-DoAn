@@ -48,7 +48,7 @@
             this.guna2Panel2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(32)))), ((int)(((byte)(63)))));
             this.guna2Panel2.Location = new System.Drawing.Point(0, 0);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(793, 144);
+            this.guna2Panel2.Size = new System.Drawing.Size(933, 144);
             this.guna2Panel2.TabIndex = 3;
             // 
             // guna2PictureBox1
@@ -57,13 +57,14 @@
             this.guna2PictureBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(32)))), ((int)(((byte)(63)))));
             this.guna2PictureBox1.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.close;
             this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(648, 29);
+            this.guna2PictureBox1.Location = new System.Drawing.Point(805, 29);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
             this.guna2PictureBox1.Size = new System.Drawing.Size(86, 72);
             this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.guna2PictureBox1.TabIndex = 2;
             this.guna2PictureBox1.TabStop = false;
             this.guna2PictureBox1.UseTransparentBackground = true;
+            this.guna2PictureBox1.Click += new System.EventHandler(this.guna2PictureBox1_Click);
             // 
             // lbl_Menu
             // 
@@ -100,19 +101,20 @@
             this.dataGridViewDetail.Name = "dataGridViewDetail";
             this.dataGridViewDetail.RowHeadersWidth = 82;
             this.dataGridViewDetail.RowTemplate.Height = 33;
-            this.dataGridViewDetail.Size = new System.Drawing.Size(793, 419);
+            this.dataGridViewDetail.Size = new System.Drawing.Size(933, 439);
             this.dataGridViewDetail.TabIndex = 4;
             // 
             // frm_Customer_BillDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(793, 563);
+            this.ClientSize = new System.Drawing.Size(933, 583);
             this.Controls.Add(this.dataGridViewDetail);
             this.Controls.Add(this.guna2Panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frm_Customer_BillDetail";
             this.Text = "frm_Customer_BillDetail";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frm_Customer_BillDetail_Load);
             this.guna2Panel2.ResumeLayout(false);
             this.guna2Panel2.PerformLayout();

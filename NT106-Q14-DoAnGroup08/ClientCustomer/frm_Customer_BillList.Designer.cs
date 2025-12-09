@@ -48,7 +48,7 @@
             this.guna2Panel2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(32)))), ((int)(((byte)(63)))));
             this.guna2Panel2.Location = new System.Drawing.Point(1, 1);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(967, 144);
+            this.guna2Panel2.Size = new System.Drawing.Size(877, 144);
             this.guna2Panel2.TabIndex = 2;
             // 
             // guna2PictureBox1
@@ -57,7 +57,7 @@
             this.guna2PictureBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(32)))), ((int)(((byte)(63)))));
             this.guna2PictureBox1.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.close;
             this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(833, 35);
+            this.guna2PictureBox1.Location = new System.Drawing.Point(766, 35);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
             this.guna2PictureBox1.Size = new System.Drawing.Size(86, 72);
             this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -101,7 +101,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(967, 653);
+            this.dataGridView1.Size = new System.Drawing.Size(877, 653);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -109,7 +109,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(969, 799);
+            this.ClientSize = new System.Drawing.Size(879, 799);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.guna2Panel2);
             this.Name = "frm_Customer_BillList";

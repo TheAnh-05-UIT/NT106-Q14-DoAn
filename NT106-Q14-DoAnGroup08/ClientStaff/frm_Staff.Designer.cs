@@ -59,7 +59,6 @@
             this.ButtonGroup.TabIndex = 1;
             this.ButtonGroup.TabStop = false;
             this.ButtonGroup.Text = "Trang";
-            this.ButtonGroup.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // groupBox1
             // 
@@ -226,8 +225,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frm_Staff";
             this.Text = "Staff App";
-            this.Activated += new System.EventHandler(this.frm_Staff_Activated);
-            this.Load += new System.EventHandler(this.Staff_Load);
             this.ButtonGroup.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

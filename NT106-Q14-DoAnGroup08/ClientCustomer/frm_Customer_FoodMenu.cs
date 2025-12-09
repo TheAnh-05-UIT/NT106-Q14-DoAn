@@ -15,9 +15,12 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         
         private Dictionary<string, string> currentNotes = new Dictionary<string, string>();
 
-        public frm_Customer_FoodMenu()
+        string _cusId;
+
+        public frm_Customer_FoodMenu(string customerId)
         {
             InitializeComponent();
+            _cusId = customerId;
         }
 
         private void frm_Customer_FoodMenu_Load(object sender, EventArgs e)
@@ -77,26 +80,19 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             foreach (var item in arr)
             {
                 string imgPath = item["Image"]?.ToString();
-                Image foodImg = null;
+                Image foodImg;
 
-                try
+                if (!string.IsNullOrEmpty(imgPath))
                 {
-                    if (!string.IsNullOrEmpty(imgPath))
+                    string fullImgPath = Path.Combine(Application.StartupPath, "Images", imgPath);
+                    if (File.Exists(fullImgPath))
                     {
-                        string fullImgPath = Path.Combine(Application.StartupPath, imgPath);
-                        if (File.Exists(fullImgPath))
-                        {
-                            using (var stream = new MemoryStream(File.ReadAllBytes(fullImgPath)))
-                            {
-                                foodImg = Image.FromStream(stream);
-                            }
-                        }
+                        foodImg = Image.FromFile(fullImgPath);
                     }
-
-                    if (foodImg == null)
+                    else
                         foodImg = Properties.Resources.defaultImage;
                 }
-                catch
+                else
                 {
                     foodImg = Properties.Resources.defaultImage;
                 }
@@ -216,7 +212,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             }
 
 
-            string customerId = "CUS001";
+            string customerId = _cusId;
 
             decimal totalAmount = 0;
             foreach (DataGridViewRow row in guna2DataGridView1.Rows)
