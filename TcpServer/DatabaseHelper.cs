@@ -30,7 +30,7 @@ namespace TcpServer
             {
                 Console.WriteLine($"Database not found. Creating database... Error: {ex.Message}");
 
-                string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\Database\QuanLyQuanNet.sql");
+                string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\Database\QuanLyQuanNet.sql");
                 if (!File.Exists(scriptPath))
                 {
                     throw new FileNotFoundException("SQL script file not found!", scriptPath);
