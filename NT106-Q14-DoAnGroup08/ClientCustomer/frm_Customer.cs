@@ -160,6 +160,9 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                 {
                     sessionTimer.Stop();
                     MessageBox.Show("Phiên đã kết thúc do hết tiền!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    EndSessionToServer();
+                    frm_Customer_TopUp f = new frm_Customer_TopUp();
+                    f.Show();
                     this.Close();
                 }
             }

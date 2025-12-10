@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Concurrent;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -197,13 +198,13 @@ namespace TcpServer.ServerHandler
                     case "END_SESSION": response = HandleComputerControl(obj.data); break;
                     case "create_invoice_detail_top_up": response = handlerFood.HandleCreateInvoiceDetailTopUp(obj.data); break;
                     case "start_session":
-                        response = handlerCustomer.HandleStartSession(obj);
+                        response = handlerCustomer.HandleStartSession(obj, this);
                         break;
                     case "update_session":
                         response = handlerCustomer.HandleUpdateSession(obj);
                         break;
                     case "end_session":
-                        response = handlerCustomer.HandleEndSession(obj);
+                        response = handlerCustomer.HandleEndSession(obj, this);
                         break;
                     case "send_message_staff":
                         response = handlerChat.HandleSendMessageStaff(obj);
@@ -344,6 +345,41 @@ namespace TcpServer.ServerHandler
                 Console.WriteLine($"Loi trong qua trinh lang nghe may tram {clientName}: {ex.Message}");
             }
         }
+
+        public object notifyToStaff(dynamic obj)
+        {
+            object handle = handlerNotification.HandleNotification(obj);
+            try
+            {
+                dynamic handleMessage = handle;
+                var notificationObj = handleMessage.notification;
+                string notificationJson = JsonConvert.SerializeObject(notificationObj);
+                string message = "NOTIFICATION|" + notificationJson;
+
+                bool sentToAny = false;
+
+                if (ServerHandler.ClientConnections.ContainsKey("Staff"))
+                {
+                    sentToAny = SendCommandToClientStaff("Staff", message);
+                }
+
+                if (!sentToAny)
+                {
+                    bool any = BroadcastToAllStaff(message);
+                    if (!any)
+                    {
+                        Console.WriteLine("No connected staff clients to deliver notification.");
+                    }
+                }
+                return handle;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error while sending notification to clients: {ex.Message}");
+                return null;
+            }
+        }
+
         public bool SendCommandToClientStaff(string clientName, string command)
         {
             if (ClientConnections.TryGetValue(clientName, out TcpClient client))
@@ -373,6 +409,27 @@ namespace TcpServer.ServerHandler
             string json = JsonConvert.SerializeObject(obj);
             byte[] sendData = Encoding.UTF8.GetBytes(json);
             ns.Write(sendData, 0, sendData.Length);
+        }
+
+        public bool BroadcastToAllStaff(string command)
+        {
+            bool sentAny = false;
+            foreach (var kv in ServerHandler.ClientConnections)
+            {
+                string clientName = kv.Key;
+                try
+                {
+                    if (this.SendCommandToClientStaff(clientName, command))
+                    {
+                        sentAny = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Broadcast error to {clientName}: {ex.Message}");
+                }
+            }
+            return sentAny;
         }
 
     }

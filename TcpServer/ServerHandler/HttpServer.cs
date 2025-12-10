@@ -9,8 +9,7 @@ using System.Threading;
 namespace TcpServer.ServerHandler
 {
     /* Test bằng
-curl -X POST -H "Content-Type: application/json" -d "{\"action\":\"paid\",\"data\":{\"amount\":1000,\"accountName\":\"NhatAnh\",\"addInfo\":\"Số hóa đơn\"}}" http://localhost:5000/
-*/
+curl -X POST -H "Content-Type: application/json" -d "{\"action\":\"paid\",\"type\":\"123\",\"data\":{\"amount\":1000,\"accountName\":\"NhatAnh\",\"addInfo\":\"Số hóa đơn\"}}" http://localhost:5000/*/
     public class HttpServer
     {
         private readonly ServerHandler serverHandler;
@@ -123,37 +122,7 @@ curl -X POST -H "Content-Type: application/json" -d "{\"action\":\"paid\",\"data
                 {
                     case "paid":
                         {
-                            var handlerNotification = serverHandler.NotificationHandler;
-                            object handle = handlerNotification.HandleNotification(obj);
-                            try
-                            {
-                                dynamic handleMessage = handle;
-                                var notificationObj = handleMessage.notification;
-                                string notificationJson = JsonConvert.SerializeObject(notificationObj);
-                                string message = "NOTIFICATION|" + notificationJson;
-
-                                bool sentToAny = false;
-
-                                // Try sending to named Staff connection first
-                                if (ServerHandler.ClientConnections.ContainsKey("Staff"))
-                                {
-                                    sentToAny = serverHandler.SendCommandToClientStaff("Staff", message);
-                                }
-
-                                if (!sentToAny)
-                                {
-                                    bool any = BroadcastToAllStaff(message);
-                                    if (!any)
-                                    {
-                                        Console.WriteLine("No connected staff clients to deliver notification.");
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine($"Error while sending notification to clients: {ex.Message}");
-                            }
-
+                            object handle = serverHandler.notifyToStaff(obj);
                             response = handle;
                         }
                         break;
@@ -168,27 +137,6 @@ curl -X POST -H "Content-Type: application/json" -d "{\"action\":\"paid\",\"data
             {
                 return new { status = "error", message = $"JSON Error: {ex.Message}" };
             }
-        }
-
-        private bool BroadcastToAllStaff(string command)
-        {
-            bool sentAny = false;
-            foreach (var kv in ServerHandler.ClientConnections)
-            {
-                string clientName = kv.Key;
-                try
-                {
-                    if (serverHandler.SendCommandToClientStaff(clientName, command))
-                    {
-                        sentAny = true;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Broadcast error to {clientName}: {ex.Message}");
-                }
-            }
-            return sentAny;
         }
     }
 }

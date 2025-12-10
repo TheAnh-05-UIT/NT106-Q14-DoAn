@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TcpServer.ServerHandler;
 
 namespace TcpServer.Handlers
 {
@@ -73,7 +74,7 @@ namespace TcpServer.Handlers
 
 
         // --- HÀM XỬ LÝ START SESSION (ĐÃ SỬA LỖI LOGIC) ---
-        public object HandleStartSession(dynamic data)
+        public object HandleStartSession(dynamic data, ServerHandler.ServerHandler server)
         {
             try
             {
@@ -132,7 +133,7 @@ namespace TcpServer.Handlers
                     {
                         // Session cũ hết tiền -> Yêu cầu Client đóng form và Server kết thúc session đó
                         // Gọi HandleEndSession để cập nhật DB lần cuối
-                        HandleEndSession(new { sessionId = sessionId });
+                        HandleEndSession(new { sessionId = sessionId }, server);
 
                         return new
                         {
@@ -258,7 +259,7 @@ namespace TcpServer.Handlers
 
 
         // --- HÀM XỬ LÝ END SESSION (ĐÃ SỬA LỖI THIẾU CỘT) ---
-        public object HandleEndSession(dynamic data)
+        public object HandleEndSession(dynamic data, ServerHandler.ServerHandler server)
         {
             try
             {
@@ -312,7 +313,7 @@ namespace TcpServer.Handlers
 
                 string sql = @"UPDATE Computers SET Status = 'AVAILABLE' WHERE ComputerId = @cid";
                 _db.ExecuteNonQuery(sql, new SqlParameter("@cid", computerId));
-
+                server.notifyToStaff(new { type = "generic", data = new { title = "Máy đóng", content = $"Máy {computerId} đã đóng", addInfo = "" } });
                 return new
                 {
                     status = "success",

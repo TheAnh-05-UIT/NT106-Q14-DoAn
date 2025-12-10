@@ -45,10 +45,10 @@
             // txt_Username
             // 
             this.txt_Username.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Username.Location = new System.Drawing.Point(149, 186);
-            this.txt_Username.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_Username.Location = new System.Drawing.Point(199, 229);
+            this.txt_Username.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_Username.Name = "txt_Username";
-            this.txt_Username.Size = new System.Drawing.Size(205, 23);
+            this.txt_Username.Size = new System.Drawing.Size(272, 26);
             this.txt_Username.TabIndex = 3;
             this.txt_Username.TabStop = false;
             this.txt_Username.Tag = "Username";
@@ -60,10 +60,10 @@
             // txt_Password
             // 
             this.txt_Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Password.Location = new System.Drawing.Point(149, 247);
-            this.txt_Password.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_Password.Location = new System.Drawing.Point(199, 304);
+            this.txt_Password.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_Password.Name = "txt_Password";
-            this.txt_Password.Size = new System.Drawing.Size(205, 23);
+            this.txt_Password.Size = new System.Drawing.Size(272, 26);
             this.txt_Password.TabIndex = 4;
             this.txt_Password.TabStop = false;
             this.txt_Password.Tag = "Password";
@@ -75,10 +75,10 @@
             // btn_Login
             // 
             this.btn_Login.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Login.Location = new System.Drawing.Point(192, 312);
-            this.btn_Login.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_Login.Location = new System.Drawing.Point(256, 384);
+            this.btn_Login.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Login.Name = "btn_Login";
-            this.btn_Login.Size = new System.Drawing.Size(104, 34);
+            this.btn_Login.Size = new System.Drawing.Size(139, 42);
             this.btn_Login.TabIndex = 5;
             this.btn_Login.Text = "Login";
             this.btn_Login.UseVisualStyleBackColor = true;
@@ -93,9 +93,10 @@
             // pictureBoxPass
             // 
             this.pictureBoxPass.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.password;
-            this.pictureBoxPass.Location = new System.Drawing.Point(95, 234);
+            this.pictureBoxPass.Location = new System.Drawing.Point(127, 288);
+            this.pictureBoxPass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxPass.Name = "pictureBoxPass";
-            this.pictureBoxPass.Size = new System.Drawing.Size(49, 51);
+            this.pictureBoxPass.Size = new System.Drawing.Size(65, 63);
             this.pictureBoxPass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxPass.TabIndex = 8;
             this.pictureBoxPass.TabStop = false;
@@ -103,9 +104,10 @@
             // pictureUserName
             // 
             this.pictureUserName.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.user;
-            this.pictureUserName.Location = new System.Drawing.Point(95, 174);
+            this.pictureUserName.Location = new System.Drawing.Point(127, 214);
+            this.pictureUserName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureUserName.Name = "pictureUserName";
-            this.pictureUserName.Size = new System.Drawing.Size(49, 45);
+            this.pictureUserName.Size = new System.Drawing.Size(65, 55);
             this.pictureUserName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureUserName.TabIndex = 7;
             this.pictureUserName.TabStop = false;
@@ -113,9 +115,10 @@
             // pictureBoxUser
             // 
             this.pictureBoxUser.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.UserName;
-            this.pictureBoxUser.Location = new System.Drawing.Point(170, 12);
+            this.pictureBoxUser.Location = new System.Drawing.Point(227, 15);
+            this.pictureBoxUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxUser.Name = "pictureBoxUser";
-            this.pictureBoxUser.Size = new System.Drawing.Size(158, 146);
+            this.pictureBoxUser.Size = new System.Drawing.Size(211, 180);
             this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxUser.TabIndex = 6;
             this.pictureBoxUser.TabStop = false;
@@ -125,9 +128,10 @@
             // 
             this.checkBoxVisible.AutoSize = true;
             this.checkBoxVisible.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxVisible.Location = new System.Drawing.Point(359, 251);
+            this.checkBoxVisible.Location = new System.Drawing.Point(479, 309);
+            this.checkBoxVisible.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.checkBoxVisible.Name = "checkBoxVisible";
-            this.checkBoxVisible.Size = new System.Drawing.Size(118, 17);
+            this.checkBoxVisible.Size = new System.Drawing.Size(141, 23);
             this.checkBoxVisible.TabIndex = 9;
             this.checkBoxVisible.Text = "Hiển thị mật khẩu";
             this.checkBoxVisible.UseVisualStyleBackColor = true;
@@ -135,10 +139,10 @@
             // 
             // frm_Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(542, 366);
+            this.ClientSize = new System.Drawing.Size(723, 450);
             this.Controls.Add(this.checkBoxVisible);
             this.Controls.Add(this.pictureBoxPass);
             this.Controls.Add(this.pictureUserName);
@@ -146,10 +150,10 @@
             this.Controls.Add(this.btn_Login);
             this.Controls.Add(this.txt_Password);
             this.Controls.Add(this.txt_Username);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frm_Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "From Login";
+            this.Text = "Login";
             this.Load += new System.EventHandler(this.frm_Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureUserName)).EndInit();
