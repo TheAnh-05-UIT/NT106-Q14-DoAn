@@ -21,7 +21,6 @@ using System.Text.Json.Serialization;
 
 namespace NT106_Q14_DoAnGroup08.ClientStaff
 {
-    // Tại sao cần timer trong form staff
     public partial class frm_Staff : Form
     {
         private Uc_Staff.uc_Staff_ImportGood ImportGood;
@@ -113,15 +112,6 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             newControl.Dock = DockStyle.Fill;
             UserPanel.Controls.Add(newControl);
             refreshButton(sender);
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Staff_Load(object sender, EventArgs e)
-        {
         }
 
         private void ImportGoodButton_Click(object sender, EventArgs e)
@@ -296,10 +286,6 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
                 groupBox1.BackColor = Color.White;
                 groupBox1.ForeColor = Color.Black;
             }
-        }
-
-        private void frm_Staff_Activated(object sender, EventArgs e)
-        {
         }
 
         private void StartNotificationClient()

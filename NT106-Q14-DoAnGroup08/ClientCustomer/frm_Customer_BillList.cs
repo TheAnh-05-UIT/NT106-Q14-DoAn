@@ -31,6 +31,8 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         private void LoadInvoicesInSession()
         {
             var res = ApiClient.Client.Send(new { action = "get_invoices_in_session"});
+            MessageBox.Show(res?.ToString() ?? "res null");
+
             if (res == null || res.status != "success")
             {
                 MessageBox.Show("Không tồn tại hoặc không tải được hóa đơn!");
@@ -38,20 +40,21 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             }
 
             JArray arr = (JArray)res.data;
-            dataGridView1.Controls.Clear();
+            dataGridView1.Columns.Clear();
+            dataGridView1.Rows.Clear();
 
             DataTable dt = new DataTable();
-            dt.Columns.Add("Invoice Id");
-            dt.Columns.Add("Create At");
-            dt.Columns.Add("Total Amount");
+            dt.Columns.Add("InvoiceId");
+            dt.Columns.Add("CreatedAt");
+            dt.Columns.Add("TotalAmount");
 
             foreach (var item in arr)
             {
                 dt.Rows.Add
                 (
-                    item["InvoiceId"].ToString(),
-                    item["CreateAt"].ToString(),
-                    item["TotalAmount"].ToString()
+                    item["InvoiceId"]?.ToString() ?? "",
+                    item["CreatedAt"]?.ToString() ?? "",
+                    item["TotalAmount"]?.ToString() ?? ""
                 );
             }
             dataGridView1.DataSource = dt;
@@ -83,7 +86,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             }
             if(dataGridView1.Columns[e.ColumnIndex].Name == "btnDetail")
             {
-                string invoiceId = dataGridView1.Rows[e.RowIndex].Cells["invoiceId"].Value.ToString();
+                string invoiceId = dataGridView1.Rows[e.RowIndex].Cells["InvoiceId"].Value.ToString();
                 frm_Customer_BillDetail detail = new frm_Customer_BillDetail(invoiceId);
                 detail.ShowDialog();
             }

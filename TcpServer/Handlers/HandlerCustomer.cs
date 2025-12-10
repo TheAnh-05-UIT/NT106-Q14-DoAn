@@ -16,12 +16,9 @@ namespace TcpServer.Handlers
         {
             _db = db;
         }
-
-        // --- HÀM TẠO SESSION MỚI (ĐÃ SỬA LỖI SINH ID) ---
         private object CreateNewSession(string customerId, string computerId, decimal balance, decimal pricePerSecond, string username)
         {
             // Sinh SessionId kiểu S001, S002...
-            // SỬA: Dùng CAST để sắp xếp đúng theo số
             string sqlMax = "SELECT TOP 1 SessionId FROM Sessions ORDER BY CAST(SUBSTRING(SessionId, 2, 10) AS INT) DESC";
             var dtMax = _db.ExecuteQuery(sqlMax);
 
@@ -34,14 +31,12 @@ namespace TcpServer.Handlers
             {
                 string lastId = dtMax.Rows[0]["SessionId"].ToString();
                 int number;
-                // Xử lý lỗi parse nếu ID không đúng format Sxxx
                 if (int.TryParse(lastId.Substring(1), out number))
                 {
                     newSessionId = "S" + (number + 1).ToString("D3");
                 }
                 else
                 {
-                    // Trường hợp ID bị lỗi, reset về S001
                     newSessionId = "S001";
                 }
             }
@@ -167,9 +162,6 @@ namespace TcpServer.Handlers
                 return new { status = "error", message = ex.Message };
             }
         }
-
-
-        // --- HÀM XỬ LÝ UPDATE SESSION (ĐÃ SỬA LỖI THIẾU CỘT) ---
         public object HandleUpdateSession(dynamic data)
         {
             try

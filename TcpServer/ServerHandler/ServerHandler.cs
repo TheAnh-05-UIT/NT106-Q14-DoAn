@@ -32,6 +32,7 @@ namespace TcpServer.ServerHandler
         private readonly HandlerNotification handlerNotification;
         private readonly HandlerRevenue handlerRevenue;
         private readonly HandlerInvoice handlerInvoice;
+        private readonly HandlerAdmin handlerAdmin;
         public ServerHandler(string connStr)
         {
             db = new DatabaseHelper(connStr);
@@ -47,6 +48,7 @@ namespace TcpServer.ServerHandler
             handlerNotification = new HandlerNotification(db);
             handlerRevenue = new HandlerRevenue(db);
             handlerInvoice = new HandlerInvoice(db);
+            handlerAdmin = new HandlerAdmin(db);
         }
 
         public void Start(int port)
@@ -193,7 +195,7 @@ namespace TcpServer.ServerHandler
                     case "get_max_invoice_id": response = handlerFood.HandleGetMaxInvoiceId(); break;
                     case "get_max_invoice_detail_id": response = handlerFood.HandleGetMaxInvoiceDetailId(); break;
                     case "get_invoices_in_session": response = handlerFood.HandleLoadInvoiceInSession(); break;
-                    case "get_invoices_details": response = handlerFood.HandleLoadInvoiceDetail(); break;
+                    case "get_invoices_details": response = handlerFood.HandleLoadInvoiceDetail(obj.invoiceId.ToString()); break;
                     case "CONTROL_PC": response = HandleComputerControl(obj.data); break;
                     case "END_SESSION": response = HandleComputerControl(obj.data); break;
                     case "create_invoice_detail_top_up": response = handlerFood.HandleCreateInvoiceDetailTopUp(obj.data); break;
@@ -273,6 +275,9 @@ namespace TcpServer.ServerHandler
                         break;
                     case "delete_import_good":
                         response = handlerImportGood.HandleDeleteImportGood(obj.data);
+                        break;
+                    case "GET_INFO_ADMIN":
+                        response = handlerAdmin.HandleGetAdminInfo(obj.data);
                         break;
                     default: response = new { status = "error", message = $"Unknown action: {action}" }; break;
                 }

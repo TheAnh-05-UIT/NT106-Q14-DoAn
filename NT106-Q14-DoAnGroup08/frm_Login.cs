@@ -80,7 +80,10 @@ namespace NT106_Q14_DoAnGroup08
                         // Mở form theo role
                         if (role == "ADMIN")
                         {
-                            new ClientAdmin.Admin().Show();
+
+                            ClientAdmin.Admin adminForm = new ClientAdmin.Admin(obj.userId, obj.fullName);
+                            DTO.UserSession.NextForm = adminForm; // Gán form Admin cho NextForm
+                            //this.Close();
                         }
                         else if (role == "EMPLOYEE")
                         {

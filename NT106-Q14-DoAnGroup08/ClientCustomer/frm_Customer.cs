@@ -24,6 +24,15 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         private decimal _moneyUsed;
 
         private Timer sessionTimer;
+
+        private int _initialTimeLeft;
+
+        private bool notified15 = false;
+        private bool notified5 = false;
+        private bool notified3 = false;
+        private bool notified2 = false;
+        private bool notified1 = false;
+
         public frm_Customer(string userId)
         {
             InitializeComponent();
@@ -84,6 +93,13 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                     _timeUsed = obj.timeUsed;
                     _moneyLeft = obj.moneyLeft;
                     _moneyUsed = obj.moneyUsed;
+                    _initialTimeLeft = _timeLeft;
+
+                    notified15 = false;
+                    notified5 = false;
+                    notified3 = false;
+                    notified2 = false;
+                    notified1 = false;
 
                     lbl_CName.Text = obj.computerName;
 
@@ -117,16 +133,57 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         {
             if (seconds < 0) seconds = 0;
             TimeSpan t = TimeSpan.FromSeconds(seconds);
-            return t.ToString(@"hh\:mm");
+            return $"{(int)t.TotalHours:00}:{t.Minutes:00}";
+
         }
 
         private void StartUpdateTimer()
         {
             sessionTimer = new Timer();
-            sessionTimer.Interval = 60000; // 1 giây
+            sessionTimer.Interval = 60000; // 1 phút
             sessionTimer.Tick += SessionTimer_Tick;
             sessionTimer.Start();
         }
+
+        private void CheckLowTimeWarning()
+        {
+            if (_initialTimeLeft > 900)
+            {
+                if (_timeLeft <= 900 && !notified15)
+                {
+                    notified15 = true;
+                    MessageBox.Show("Bạn còn 15 phút sử dụng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+
+            if (_initialTimeLeft > 300 && _initialTimeLeft < 899)
+            {
+                if (_timeLeft <= 300 && !notified5)
+                {
+                    notified5 = true;
+                    MessageBox.Show("Bạn còn 5 phút sử dụng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+
+            if (_timeLeft <= 180 && !notified3)  // 3 phút
+            {
+                notified3 = true;
+                MessageBox.Show("Bạn còn 3 phút sử dụng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            if (_timeLeft <= 120 && !notified2)  // 2 phút
+            {
+                notified2 = true;
+                MessageBox.Show("Bạn còn 2 phút sử dụng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            if (_timeLeft <= 60 && !notified1)  // 1 phút
+            {
+                notified1 = true;
+                MessageBox.Show("Bạn còn 1 phút sử dụng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
 
         private void SessionTimer_Tick(object sender, EventArgs e)
         {
@@ -155,6 +212,8 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                 txt_TimeRemain.Text = FormatTime(_timeLeft);
                 txt_BalanceUsed.Text = _moneyUsed.ToString("N0") + " đ";
                 txt_BalanceRemain.Text = _moneyLeft.ToString("N0") + " đ";
+
+                CheckLowTimeWarning();
 
                 if (obj.status == "ended")
                 {
@@ -187,7 +246,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         private void btn_FoodMenu_Click(object sender, EventArgs e)
         {
-            frm_Customer_FoodMenu f = new frm_Customer_FoodMenu();
+            frm_Customer_FoodMenu f = new frm_Customer_FoodMenu(_userId);
             f.TopMost = true;
             f.WindowState = FormWindowState.Normal;
             f.Show();

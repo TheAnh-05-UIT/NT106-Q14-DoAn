@@ -43,9 +43,15 @@ namespace TcpServer.Handlers
             string customerId = data["customerId"].ToString();
             decimal totalAmount = data["totalAmount"].ToObject<decimal>();
 
+            string machineId = Environment.MachineName;
+            string sessionQuery = "SELECT TOP 1 SessionId FROM Sessions WHERE ComputerId = @MachineId AND EndTime IS NULL";
+            DataTable sessionDt = db.ExecuteQuery(sessionQuery, new SqlParameter("@MachineId", machineId));
+
+            string sessionId = sessionDt.Rows[0]["SessionId"].ToString();
+
             string query = $@"
-                INSERT INTO Invoices (InvoiceId, CustomerId, TotalAmount)
-                VALUES ('{invoiceId}', '{customerId}', {totalAmount})";
+            INSERT INTO Invoices (InvoiceId, SessionId, CustomerId, TotalAmount)
+            VALUES ('{invoiceId}', '{sessionId}', '{customerId}', {totalAmount})";
 
             int result = db.ExecuteNonQuery(query);
             return new { status = result > 0 ? "success" : "fail" };
@@ -87,7 +93,7 @@ namespace TcpServer.Handlers
         {
             string machineId = Environment.MachineName;
 
-            string sessionQuery = "SELECT TOP 1 SessionId FROM Sessions WHERE MachineId = @MachineId AND Status='Active'";
+            string sessionQuery = "SELECT TOP 1 SessionId FROM Sessions WHERE ComputerId = @MachineId AND EndTime IS NULL";
             DataTable sessionDt = db.ExecuteQuery(sessionQuery, new SqlParameter("@MachineId", machineId));
 
             if (sessionDt.Rows.Count == 0)
@@ -121,50 +127,15 @@ namespace TcpServer.Handlers
                 data = invoices
             };
         }
-        public object HandleLoadInvoiceDetail()
+        public object HandleLoadInvoiceDetail(string invoiceId)
         {
-            // 1. Detect current machine
-            string machineId = Environment.MachineName; // or MAC address for uniqueness
-
-            // 2. Get active session for this machine
-            string sessionQuery = @"
-        SELECT TOP 1 SessionId 
-        FROM Sessions 
-        WHERE MachineId = @MachineId AND Status = 'Active'
-        ORDER BY StartTime DESC
-    ";
-            DataTable sessionDt = db.ExecuteQuery(sessionQuery, new SqlParameter("@MachineId", machineId));
-
-            if (sessionDt == null || sessionDt.Rows.Count == 0)
-            {
-                return new { status = "fail", message = "No active session for this machine." };
-            }
-
-            string sessionId = sessionDt.Rows[0]["SessionId"].ToString();
-
-            // 3. Get invoice for the session
-            string invoiceQuery = @"
-        SELECT TOP 1 InvoiceId 
-        FROM Invoices 
-        WHERE SessionId = @SessionId 
-        ORDER BY CreatedAt DESC
-    ";
-            DataTable invoiceDt = db.ExecuteQuery(invoiceQuery, new SqlParameter("@SessionId", sessionId));
-
-            if (invoiceDt == null || invoiceDt.Rows.Count == 0)
-            {
-                return new { status = "fail", message = "No invoice found for this session." };
-            }
-
-            string invoiceId = invoiceDt.Rows[0]["InvoiceId"].ToString();
-
-            // 4. Get invoice details
             string detailsQuery = @"
-        SELECT f.FoodName, id.Quantity, id.Price, (id.Quantity * id.Price) AS Total
+        SELECT f.FoodName, id.Quantity, id.Price, (id.Quantity * id.Price) AS Total, id.Note
         FROM InvoiceDetails id
-        INNER JOIN Food f ON id.FoodId = f.FoodId
+        INNER JOIN FoodAndDrink f ON id.FoodId = f.FoodId
         WHERE id.InvoiceId = @InvoiceId
     ";
+
             DataTable detailsDt = db.ExecuteQuery(detailsQuery, new SqlParameter("@InvoiceId", invoiceId));
 
             if (detailsDt == null || detailsDt.Rows.Count == 0)
@@ -177,7 +148,8 @@ namespace TcpServer.Handlers
                 FoodName = r["FoodName"].ToString(),
                 Quantity = Convert.ToInt32(r["Quantity"]),
                 Price = Convert.ToDecimal(r["Price"]).ToString("F2"),
-                Total = Convert.ToDecimal(r["Total"]).ToString("F2")
+                Total = Convert.ToDecimal(r["Total"]).ToString("F2"),
+                Note = r["Note"] == DBNull.Value ? "" : r["Note"].ToString()
             }).ToList();
 
             return new
@@ -186,6 +158,7 @@ namespace TcpServer.Handlers
                 data = details
             };
         }
+
         public object HandleCreateInvoiceDetailTopUp(JObject data)
         {
             string detailId = data["detailId"].ToString();
