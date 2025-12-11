@@ -80,25 +80,25 @@ namespace NT106_Q14_DoAnGroup08
                         // Mở form theo role
                         if (role == "ADMIN")
                         {
-
                             ClientAdmin.Admin adminForm = new ClientAdmin.Admin(obj.userId, obj.fullName);
-                            DTO.UserSession.NextForm = adminForm; // Gán form Admin cho NextForm
-                            //this.Close();
+                            DTO.UserSession.NextForm = adminForm;
                         }
                         else if (role == "EMPLOYEE")
                         {
-                            new ClientStaff.frm_Staff(obj.userId).Show();
-
+                            ClientStaff.frm_Staff staffForm = new ClientStaff.frm_Staff(obj.userId);
+                            DTO.UserSession.NextForm = staffForm;
                             ApiClient.Client.Send(new
                             {
                                 action = "staff_online",
                                 staffId = obj.userId
                             });
                         }
-                        else
-                            new ClientCustomer.frm_Customer(obj.userId).Show();
-                        LoginSuccess?.Invoke();
-                        this.Close();
+                        else {
+                            ClientCustomer.frm_Customer customerForm = new ClientCustomer.frm_Customer(obj.userId);
+                            DTO.UserSession.NextForm = customerForm;
+                        }
+                        //LoginSuccess?.Invoke();
+                        this.Hide();
                     }
                     else
                     {

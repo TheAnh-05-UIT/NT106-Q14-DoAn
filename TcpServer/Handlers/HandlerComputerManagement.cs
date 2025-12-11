@@ -18,7 +18,7 @@ namespace TcpServer.Handlers
         {
             try
             {
-                string query = "SELECT ComputerId, ComputerName, [Status], IpAddress FROM Computers";
+                string query = "SELECT ComputerId, ComputerName, [Status] FROM Computers";
                 DataTable dt = db.ExecuteQuery(query);
                 return new { status = "success", data = dt };
             }

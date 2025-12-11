@@ -290,7 +290,6 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
 
         private void StartNotificationClient()
         {
-            // Subscribe to NotifyClient events and start it
             try
             {
                 NotifyClient.Instance.NotificationReceived += NotifyClient_NotificationReceived;

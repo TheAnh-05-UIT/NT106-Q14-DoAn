@@ -14,25 +14,25 @@ namespace QuanLyQuanNet.DAO
         }
         private BillDAO() { }
 
-        // L?y danh sách nhân viên ?? fill combobox filter
+        // L?y danh sï¿½ch nhï¿½n viï¿½n ?? fill combobox filter
         public DataTable GetStaffList()
         {
             string query = "SELECT ID, FullName FROM Staff";
             return DataProvider.Instance.ExecuteQuery(query);
         }
 
-        // L?y danh sách hóa ??n theo filter, tr? v? DataTable ?? bind tr?c ti?p
+        // L?y danh sï¿½ch hï¿½a ??n theo filter, tr? v? DataTable ?? bind tr?c ti?p
         public DataTable GetBills(DateTime from, DateTime to, int? staffId = null, int? type = null)
         {
             string sql = @"
 SELECT b.ID,
-       b.DateCheckout AS [Ngày thanh toán],
-       ISNULL(s.FullName, '') AS [Nhân viên],
-       CASE WHEN b.Type = 1 THEN 'Thu' ELSE 'Chi' END AS [Ki?u hóa ??n],
-       ISNULL(b.TotalFromMachine,0) AS [Thu t? máy],
-       ISNULL(b.MaintenanceFee,0) AS [Phí b?o trì],
-       ISNULL(b.FoodTotal,0) AS [T?ng thu/chi ?? ?n],
-       (ISNULL(b.TotalFromMachine,0)+ISNULL(b.MaintenanceFee,0)+ISNULL(b.FoodTotal,0)) AS [T?ng thu/chi]
+       b.DateCheckout AS [NgÃ y thanh toÃ¡n],
+       ISNULL(s.FullName, '') AS [NhÃ¢n viÃªn],
+       CASE WHEN b.Type = 1 THEN 'Thu' ELSE 'Chi' END AS [Kiá»ƒu hÃ³a Ä‘Æ¡n],
+       ISNULL(b.TotalFromMachine,0) AS [Thu tá»« mÃ¡y],
+       ISNULL(b.MaintenanceFee,0) AS [PhÃ­ báº£o trÃ¬],
+       ISNULL(b.FoodTotal,0) AS [Tá»•ng thu/chi thá»©c Äƒn],
+       (ISNULL(b.TotalFromMachine,0)+ISNULL(b.MaintenanceFee,0)+ISNULL(b.FoodTotal,0)) AS [Tá»•ng thu/chi]
 FROM Bill b
 LEFT JOIN Staff s ON b.StaffID = s.ID
 WHERE b.DateCheckout >= @fromDate AND b.DateCheckout <= @toDate
@@ -54,7 +54,7 @@ WHERE b.DateCheckout >= @fromDate AND b.DateCheckout <= @toDate
             return DataProvider.Instance.ExecuteQuery(sql, parameters.ToArray());
         }
 
-        // L?y t?ng Thu/Chi ?? th?ng kê
+        // L?y t?ng Thu/Chi ?? th?ng kï¿½
         public DataTable GetAggregates(DateTime from, DateTime to, int? staffId = null)
         {
             string sql = @"
