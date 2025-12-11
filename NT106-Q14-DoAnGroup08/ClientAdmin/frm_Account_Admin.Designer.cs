@@ -33,7 +33,6 @@
             this.lblUserNameVer2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblFullName = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.lblFullNameVer2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.btnLogout = new Guna.UI2.WinForms.Guna2Button();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -87,29 +86,12 @@
             this.lblFullNameVer2.TabIndex = 5;
             this.lblFullNameVer2.Text = "trống";
             // 
-            // btnLogout
-            // 
-            this.btnLogout.BackColor = System.Drawing.Color.Wheat;
-            this.btnLogout.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnLogout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnLogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnLogout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnLogout.FillColor = System.Drawing.Color.PeachPuff;
-            this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.ForeColor = System.Drawing.Color.Black;
-            this.btnLogout.Location = new System.Drawing.Point(656, 12);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(110, 56);
-            this.btnLogout.TabIndex = 6;
-            this.btnLogout.Text = "Đăng xuất";
-            // 
             // frm_Account_Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnLogout);
+            this.ClientSize = new System.Drawing.Size(1245, 450);
             this.Controls.Add(this.lblFullNameVer2);
             this.Controls.Add(this.lblFullName);
             this.Controls.Add(this.lblUserNameVer2);
@@ -130,6 +112,5 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel lblUserNameVer2;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblFullName;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblFullNameVer2;
-        private Guna.UI2.WinForms.Guna2Button btnLogout;
     }
 }
