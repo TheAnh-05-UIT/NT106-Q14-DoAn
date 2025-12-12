@@ -78,6 +78,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerHandler\HttpServer.cs" />
+    <Compile Include="ServerHandler\HttpServerOptions.cs" />
     <Compile Include="ServerHandler\ServerHandler.cs" />
     <Compile Include="Handlers\HandlerAdminCustomerAcc.cs" />
     <Compile Include="Handlers\HandlerLogin.cs" />

@@ -35,6 +35,17 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
 
         private string staffId = "Staff";
 
+        private const int CP_NOCLOSE_BUTTON = 0x200;
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
+                return myCp;
+            }
+        }
+
         public frm_Staff(string staffId)
         {
             InitializeComponent();

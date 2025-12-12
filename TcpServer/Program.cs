@@ -12,7 +12,15 @@ namespace TcpServer
             Console.WriteLine("Starting TCP Server...");
             string connStr = ConfigurationManager.ConnectionStrings["QuanLyQuanNet"].ConnectionString;
             ServerHandler.ServerHandler server = new ServerHandler.ServerHandler(connStr);
-            var http = new TcpServer.ServerHandler.HttpServer(server, 5000);
+            // Example options: enable HTTPS (requires cert bound with netsh), set an API key, and tighten limits.
+            var httpOptions = new HttpServerOptions
+            {
+                UseHttps = false, // set to true if you have bound a certificate for the port
+                ApiKey = "NET56784516723", // set your API key here to require clients to send X-Api-Key
+                MaxRequestBodyBytes = 16 * 1024,
+                RequireContentTypeJson = true
+            };
+            var http = new TcpServer.ServerHandler.HttpServer(server, 5000, httpOptions);
             Thread tcpThread = new Thread(() =>
             {
                 try
