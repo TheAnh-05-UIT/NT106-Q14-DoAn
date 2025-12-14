@@ -102,8 +102,8 @@ namespace NT106_Q14_DoAnGroup08
                             ClientCustomer.frm_Customer customerForm = new ClientCustomer.frm_Customer(obj.userId);
                             DTO.UserSession.NextForm = customerForm;
                         }
-                        LoginSuccess?.Invoke();
-                        this.Close();
+                        //LoginSuccess?.Invoke();
+                        this.Hide();
                     }
                     else
                     {
