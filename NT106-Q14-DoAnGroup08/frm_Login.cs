@@ -82,6 +82,11 @@ namespace NT106_Q14_DoAnGroup08
                         {
                             ClientAdmin.Admin adminForm = new ClientAdmin.Admin(obj.userId, obj.fullName);
                             DTO.UserSession.NextForm = adminForm;
+                            //ApiClient.Client.Send(new
+                            //{
+                            //    action = "admin_online",
+                            //    adminId = obj.userId
+                            //});
                         }
                         else if (role == "EMPLOYEE")
                         {
@@ -97,8 +102,8 @@ namespace NT106_Q14_DoAnGroup08
                             ClientCustomer.frm_Customer customerForm = new ClientCustomer.frm_Customer(obj.userId);
                             DTO.UserSession.NextForm = customerForm;
                         }
-                        //LoginSuccess?.Invoke();
-                        this.Hide();
+                        LoginSuccess?.Invoke();
+                        this.Close();
                     }
                     else
                     {
