@@ -29,21 +29,19 @@
         private void InitializeComponent()
         {
             this.panelMenuAdmin = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnComPuMa = new Guna.UI2.WinForms.Guna2Button();
             this.btnAccount = new Guna.UI2.WinForms.Guna2Button();
             this.btnDoanhThu = new Guna.UI2.WinForms.Guna2Button();
             this.btnManagerStaff = new Guna.UI2.WinForms.Guna2Button();
             this.btnManagerCPT = new Guna.UI2.WinForms.Guna2Button();
             this.btnNhapHang = new Guna.UI2.WinForms.Guna2Button();
             this.panelContainerAdmin = new Guna.UI2.WinForms.Guna2Panel();
-            this.btnLogout = new Guna.UI2.WinForms.Guna2Button();
+            this.btnComPuMa = new Guna.UI2.WinForms.Guna2Button();
             this.panelMenuAdmin.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenuAdmin
             // 
             this.panelMenuAdmin.AutoScroll = true;
-            this.panelMenuAdmin.Controls.Add(this.btnLogout);
             this.panelMenuAdmin.Controls.Add(this.btnComPuMa);
             this.panelMenuAdmin.Controls.Add(this.btnAccount);
             this.panelMenuAdmin.Controls.Add(this.btnDoanhThu);
@@ -56,23 +54,6 @@
             this.panelMenuAdmin.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
             this.panelMenuAdmin.Size = new System.Drawing.Size(100, 487);
             this.panelMenuAdmin.TabIndex = 0;
-            // 
-            // btnComPuMa
-            // 
-            this.btnComPuMa.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnComPuMa.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnComPuMa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnComPuMa.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnComPuMa.FillColor = System.Drawing.Color.Gold;
-            this.btnComPuMa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnComPuMa.ForeColor = System.Drawing.Color.Black;
-            this.btnComPuMa.Location = new System.Drawing.Point(0, 224);
-            this.btnComPuMa.Name = "btnComPuMa";
-            this.btnComPuMa.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.btnComPuMa.Size = new System.Drawing.Size(100, 50);
-            this.btnComPuMa.TabIndex = 7;
-            this.btnComPuMa.Text = "Quản lý máy";
-            this.btnComPuMa.Click += new System.EventHandler(this.btnComPuMa_Click);
             // 
             // btnAccount
             // 
@@ -167,22 +148,22 @@
             this.panelContainerAdmin.Size = new System.Drawing.Size(813, 487);
             this.panelContainerAdmin.TabIndex = 1;
             // 
-            // btnLogout
+            // btnComPuMa
             // 
-            this.btnLogout.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnLogout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnLogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnLogout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnLogout.FillColor = System.Drawing.Color.Gold;
-            this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogout.ForeColor = System.Drawing.Color.Black;
-            this.btnLogout.Location = new System.Drawing.Point(0, 345);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.btnLogout.Size = new System.Drawing.Size(100, 50);
-            this.btnLogout.TabIndex = 8;
-            this.btnLogout.Text = "Đăng xuất";
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            this.btnComPuMa.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnComPuMa.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnComPuMa.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnComPuMa.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnComPuMa.FillColor = System.Drawing.Color.Gold;
+            this.btnComPuMa.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnComPuMa.ForeColor = System.Drawing.Color.Black;
+            this.btnComPuMa.Location = new System.Drawing.Point(0, 224);
+            this.btnComPuMa.Name = "btnComPuMa";
+            this.btnComPuMa.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.btnComPuMa.Size = new System.Drawing.Size(100, 50);
+            this.btnComPuMa.TabIndex = 7;
+            this.btnComPuMa.Text = "Quản lý máy";
+            this.btnComPuMa.Click += new System.EventHandler(this.btnComPuMa_Click);
             // 
             // Admin
             // 
@@ -211,6 +192,5 @@
         private Guna.UI2.WinForms.Guna2Button btnManagerStaff;
         private Guna.UI2.WinForms.Guna2Panel panelContainerAdmin;
         private Guna.UI2.WinForms.Guna2Button btnComPuMa;
-        private Guna.UI2.WinForms.Guna2Button btnLogout;
     }
 }

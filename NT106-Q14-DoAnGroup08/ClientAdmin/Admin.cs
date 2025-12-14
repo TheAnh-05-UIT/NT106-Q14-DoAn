@@ -129,35 +129,5 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
         {
             openChildForm(new frm_Admin_ComputerManagement());
         }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            var res = MessageBox.Show(
-                "Bạn có chắc chắn muốn đăng xuất?",
-                "Xác nhận",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (res == DialogResult.Yes)
-            {
-                try
-                {
-                    ClientCustomer.frm_LockScreen f  = new ClientCustomer.frm_LockScreen();
-                    this.Hide();
-                    f.ShowDialog();
-                    this.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(
-                        $"Lỗi khi đăng xuất: {ex.Message}",
-                        "Lỗi",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
-                }
-            }
-        }
     }
 }
