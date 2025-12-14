@@ -87,6 +87,8 @@ namespace NT106_Q14_DoAnGroup08
                             //    action = "admin_online",
                             //    adminId = obj.userId
                             //});
+                            LoginSuccess?.Invoke();
+                            this.Close();
                         }
                         else if (role == "EMPLOYEE")
                         {
@@ -97,13 +99,14 @@ namespace NT106_Q14_DoAnGroup08
                                 action = "staff_online",
                                 staffId = obj.userId
                             });
+                            this.Hide();
                         }
                         else {
                             ClientCustomer.frm_Customer customerForm = new ClientCustomer.frm_Customer(obj.userId);
                             DTO.UserSession.NextForm = customerForm;
+                            LoginSuccess?.Invoke();
+                            this.Close();
                         }
-                        LoginSuccess?.Invoke();
-                        this.Close();
                     }
                     else
                     {
