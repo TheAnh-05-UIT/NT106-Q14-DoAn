@@ -16,7 +16,6 @@ namespace TcpServer.Handlers
         {
             db = databaseHelper;
         }
-
         public object HandleGetAdminInfo(dynamic data)
         {
             try
