@@ -8,13 +8,13 @@ namespace NT106_Q14_DoAnGroup08.ConnectionServser
 {
     public static class ServerConnection
     {
-        private const string ServerIp = "127.0.0.1";
+        private const string ServerIp = "192.168.1.119";
         private const int ServerPort = 8080;
         public static string SendRequest(string jsonRequest)
         {
             try
             {
-                using (TcpClient client = new TcpClient(ServerIp, ServerPort))
+                using (TcpClient client = new TcpClient(ServerConfig.Host.ToString(), ServerConfig.Port))
                 {
                     using (NetworkStream stream = client.GetStream())
                     {
