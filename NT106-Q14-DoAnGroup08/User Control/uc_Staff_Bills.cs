@@ -24,7 +24,6 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             LoadBills();
             PopulateStaffFilter();
 
-            // add a quick text filter box to panelFilter at runtime (if not present)
             if (panelFilter.Controls.OfType<TextBox>().All(t => t.Name != "txtGlobalFilter"))
             {
                 var txt = new TextBox { Name = "txtGlobalFilter", Width = 250, Left = 220, Top = 16 };
@@ -44,11 +43,9 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             UpdateMonthProfit(dtpMonthA, txtMonthAProfit);
             UpdateMonthProfit(dtpMonthB, txtMonthBProfit);
 
-            // wire radio buttons to trigger filter
             rbThu.CheckedChanged += FilterChanged;
             rbChi.CheckedChanged += FilterChanged;
 
-            // also ensure staff selection updates the view
             cmbStaff.SelectedIndexChanged += (s, ev) => ApplyFilter();
 
             ApplyFilter();
@@ -56,6 +53,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
         private void LoadBills()
         {
+            dataGridViewBills.SuspendLayout();
             try
             {
                 var request = new { action = "GET_ALL_INVOICES" };
@@ -64,14 +62,13 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
                 if (response.status == "success")
                 {
-                    // Build a DataTable tailored to the Invoice schema while keeping friendly column names for the UI
                     billsTable = new DataTable();
-                    billsTable.Columns.Add("Id", typeof(string)); // InvoiceId
-                    billsTable.Columns.Add("Date", typeof(DateTime)); // CreatedAt
-                    billsTable.Columns.Add("Staff", typeof(string)); // SessionId
+                    billsTable.Columns.Add("Id", typeof(string));
+                    billsTable.Columns.Add("Date", typeof(DateTime));
+                    billsTable.Columns.Add("Staff", typeof(string));
                     billsTable.Columns.Add("CustomerId", typeof(string));
-                    billsTable.Columns.Add("Status", typeof(string)); // Detail status
-                    billsTable.Columns.Add("Amount", typeof(decimal)); // TotalAmount
+                    billsTable.Columns.Add("Status", typeof(string));
+                    billsTable.Columns.Add("Amount", typeof(decimal));
                     billsTable.Columns.Add("FoodId", typeof(string));
                     billsTable.Columns.Add("FoodName", typeof(string));
                     billsTable.Columns.Add("ServiceId", typeof(string));
@@ -79,8 +76,8 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                     billsTable.Columns.Add("Quantity", typeof(int));
                     billsTable.Columns.Add("Price", typeof(decimal));
                     billsTable.Columns.Add("Note", typeof(string));
+                    billsTable.Columns.Add("  ", typeof(string));
 
-                    // response.data may be a DataTable, array of objects, or JArray - try to convert to DataTable first
                     DataTable dt = null;
                     try
                     {
@@ -88,7 +85,6 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                     }
                     catch
                     {
-                        // fall through - try to read as dynamic array
                     }
 
                     if (dt != null)
@@ -101,7 +97,6 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                                 row.Table.Columns.Contains("CreatedAt") && row["CreatedAt"] != DBNull.Value ? Convert.ToDateTime(row["CreatedAt"]) : DateTime.MinValue,
                                 row.Table.Columns.Contains("SessionId") ? Convert.ToString(row["SessionId"]) : string.Empty,
                                 row.Table.Columns.Contains("CustomerId") ? Convert.ToString(row["CustomerId"]) : string.Empty,
-                                // DetailStatus column in handler
                                 row.Table.Columns.Contains("DetailStatus") ? Convert.ToString(row["DetailStatus"]) : (row.Table.Columns.Contains("Status") ? Convert.ToString(row["Status"]) : string.Empty),
                                 row.Table.Columns.Contains("TotalAmount") && row["TotalAmount"] != DBNull.Value ? Convert.ToDecimal(row["TotalAmount"]) : 0m,
                                 row.Table.Columns.Contains("FoodId") ? Convert.ToString(row["FoodId"]) : string.Empty,
@@ -116,7 +111,6 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                     }
                     else
                     {
-                        // try dynamic enumeration (e.g., JArray)
                         foreach (var item in response.data)
                         {
                             string invoiceId = item.InvoiceId != null ? (string)item.InvoiceId : string.Empty;
@@ -138,6 +132,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                     }
 
                     dataGridViewBills.DataSource = billsTable.Copy();
+
                     dataGridViewBills.Visible = true;
                 }
                 else
@@ -149,6 +144,8 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             {
                 MessageBox.Show("Lỗi kết nối: " + ex.Message);
             }
+            dataGridViewBills.ResumeLayout(true);
+            dataGridViewBills.Refresh();
         }
 
         private void PopulateStaffFilter()
@@ -196,20 +193,17 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                 ));
             }
 
-            // filter by radio if set
             if (rbThu.Checked || rbChi.Checked)
             {
                 var paidStatuses = new[] { "PAID", "COMPLETED" };
-                if (rbThu.Checked)
+                if (rbChi.Checked)
                     baseQuery = baseQuery.Where(r => paidStatuses.Contains(((r.Field<string>("Status") ?? string.Empty).ToUpperInvariant())));
-                else if (rbChi.Checked)
+                else if (rbThu.Checked)
                     baseQuery = baseQuery.Where(r => !new[] { "PAID", "COMPLETED" }.Contains(((r.Field<string>("Status") ?? string.Empty).ToUpperInvariant())));
             }
 
-            // Compute totals: treat PAID/COMPLETED as revenue (Thu), others as outstanding/cost (Chi)
             var paidStatusesFinal = new[] { "PAID", "COMPLETED" };
 
-            // Sum distinct invoices to avoid double-counting when invoice has multiple details
             var invoicesGrouped = baseQuery
                 .GroupBy(r => r.Field<string>("Id"))
                 .Select(g => new
@@ -225,9 +219,9 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             decimal totalPaid = invoicesGrouped.Where(x => x.IsPaid).Sum(x => x.Amount);
             decimal totalOther = invoicesGrouped.Where(x => !x.IsPaid).Sum(x => x.Amount);
 
-            txtRangeTotalThu.Text = totalPaid.ToString("N0");
-            txtRangeTotalChi.Text = totalOther.ToString("N0");
-            txtRangeProfit.Text = (totalPaid - totalOther).ToString("N0");
+            txtRangeTotalThu.Text = totalOther.ToString("N0");
+            txtRangeTotalChi.Text = totalPaid.ToString("N0");
+            txtRangeProfit.Text = (totalOther - totalPaid).ToString("N0");
 
             DataTable dt = baseQuery.Any() ? baseQuery.CopyToDataTable() : billsTable.Clone();
             dataGridViewBills.DataSource = dt;
@@ -250,8 +244,8 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                     IsPaid = g.Any(x => paidStatuses.Contains((x.Field<string>("Status") ?? string.Empty).ToUpperInvariant()))
                 });
 
-            decimal totalPaid = invoicesGrouped.Where(x => x.IsPaid).Sum(x => x.Amount);
-            decimal totalOther = invoicesGrouped.Where(x => !x.IsPaid).Sum(x => x.Amount);
+            decimal totalPaid = invoicesGrouped.Where(x => !x.IsPaid).Sum(x => x.Amount);
+            decimal totalOther = invoicesGrouped.Where(x => x.IsPaid).Sum(x => x.Amount);
 
             txtProfit.Text = (totalPaid - totalOther).ToString("N0");
         }
@@ -332,13 +326,11 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
         private void FilterChanged(object sender, EventArgs e)
         {
-            // If you want real-time filtering when radio buttons change, uncomment next line
              ApplyFilter();
         }
 
         private void dataGridViewBills_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // placeholder for future detail view
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -357,7 +349,6 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             ApplyFilter();
         }
 
-        // Designer label handlers (if wired)
         private void labelFrom_Click(object sender, EventArgs e) { }
         private void labelStaff_Click(object sender, EventArgs e) { }
         private void labelRangeTo_Click(object sender, EventArgs e) { }

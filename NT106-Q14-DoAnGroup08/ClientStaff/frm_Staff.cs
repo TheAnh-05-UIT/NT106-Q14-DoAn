@@ -36,6 +36,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
         private string staffId = "Staff";
 
         private const int CP_NOCLOSE_BUTTON = 0x200;
+        
         protected override CreateParams CreateParams
         {
             get
@@ -45,10 +46,13 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
                 return myCp;
             }
         }
+        
 
         public frm_Staff(string staffId)
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.staffId = staffId;
 
             ImportGood = new Uc_Staff.uc_Staff_ImportGood();

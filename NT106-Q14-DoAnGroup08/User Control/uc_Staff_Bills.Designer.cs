@@ -54,21 +54,21 @@
             this.panelRight = new System.Windows.Forms.Panel();
             this.panelFilter = new System.Windows.Forms.Panel();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.panelLeft = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.cmbStaff = new System.Windows.Forms.ComboBox();
-            this.rbThu = new System.Windows.Forms.RadioButton();
-            this.labelStaff = new System.Windows.Forms.Label();
-            this.rbChi = new System.Windows.Forms.RadioButton();
             this.dataGridViewBills = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbChi = new System.Windows.Forms.RadioButton();
+            this.labelStaff = new System.Windows.Forms.Label();
+            this.rbThu = new System.Windows.Forms.RadioButton();
+            this.cmbStaff = new System.Windows.Forms.ComboBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.panelLeft = new System.Windows.Forms.Panel();
             this.groupBoxMonthStats.SuspendLayout();
             this.groupBoxRangeStats.SuspendLayout();
             this.panelRight.SuspendLayout();
             this.panelFilter.SuspendLayout();
-            this.panelLeft.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBills)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.panelLeft.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -330,15 +330,14 @@
             // 
             // panelRight
             // 
-            this.panelRight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelRight.Controls.Add(this.groupBoxRangeStats);
             this.panelRight.Controls.Add(this.groupBoxMonthStats);
             this.panelRight.Controls.Add(this.btnPrint);
-            this.panelRight.Location = new System.Drawing.Point(765, 6);
+            this.panelRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelRight.Location = new System.Drawing.Point(767, 0);
             this.panelRight.Margin = new System.Windows.Forms.Padding(2);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(347, 557);
+            this.panelRight.Size = new System.Drawing.Size(347, 565);
             this.panelRight.TabIndex = 1;
             // 
             // panelFilter
@@ -349,7 +348,7 @@
             this.panelFilter.Location = new System.Drawing.Point(7, 6);
             this.panelFilter.Margin = new System.Windows.Forms.Padding(2);
             this.panelFilter.Name = "panelFilter";
-            this.panelFilter.Size = new System.Drawing.Size(1115, 60);
+            this.panelFilter.Size = new System.Drawing.Size(1154, 60);
             this.panelFilter.TabIndex = 0;
             // 
             // textBox4
@@ -363,19 +362,19 @@
             this.textBox4.TabIndex = 0;
             this.textBox4.Text = "Lịch sử thanh toán";
             // 
-            // panelLeft
+            // dataGridViewBills
             // 
-            this.panelLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelLeft.Controls.Add(this.groupBox1);
-            this.panelLeft.Controls.Add(this.dataGridViewBills);
-            this.panelLeft.Controls.Add(this.panelFilter);
-            this.panelLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelLeft.Margin = new System.Windows.Forms.Padding(2);
-            this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(728, 565);
-            this.panelLeft.TabIndex = 0;
+            this.dataGridViewBills.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridViewBills.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewBills.Location = new System.Drawing.Point(11, 174);
+            this.dataGridViewBills.Name = "dataGridViewBills";
+            this.dataGridViewBills.RowHeadersWidth = 51;
+            this.dataGridViewBills.RowTemplate.Height = 24;
+            this.dataGridViewBills.Size = new System.Drawing.Size(747, 388);
+            this.dataGridViewBills.StandardTab = true;
+            this.dataGridViewBills.TabIndex = 10;
+            this.dataGridViewBills.Visible = false;
+            this.dataGridViewBills.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBills_CellContentClick);
             // 
             // groupBox1
             // 
@@ -386,50 +385,10 @@
             this.groupBox1.Controls.Add(this.rbChi);
             this.groupBox1.Location = new System.Drawing.Point(11, 73);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(717, 89);
+            this.groupBox1.Size = new System.Drawing.Size(747, 89);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bộ lọc";
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Location = new System.Drawing.Point(484, 30);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(2);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(136, 39);
-            this.btnRefresh.TabIndex = 4;
-            this.btnRefresh.Text = "Làm mới bộ lọc";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // cmbStaff
-            // 
-            this.cmbStaff.FormattingEnabled = true;
-            this.cmbStaff.Location = new System.Drawing.Point(108, 37);
-            this.cmbStaff.Name = "cmbStaff";
-            this.cmbStaff.Size = new System.Drawing.Size(214, 24);
-            this.cmbStaff.TabIndex = 11;
-            // 
-            // rbThu
-            // 
-            this.rbThu.AutoSize = true;
-            this.rbThu.Location = new System.Drawing.Point(348, 39);
-            this.rbThu.Margin = new System.Windows.Forms.Padding(2);
-            this.rbThu.Name = "rbThu";
-            this.rbThu.Size = new System.Drawing.Size(51, 20);
-            this.rbThu.TabIndex = 2;
-            this.rbThu.Text = "Thu";
-            this.rbThu.UseVisualStyleBackColor = true;
-            // 
-            // labelStaff
-            // 
-            this.labelStaff.AutoSize = true;
-            this.labelStaff.Location = new System.Drawing.Point(25, 37);
-            this.labelStaff.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelStaff.Name = "labelStaff";
-            this.labelStaff.Size = new System.Drawing.Size(67, 16);
-            this.labelStaff.TabIndex = 5;
-            this.labelStaff.Text = "Nhân viên";
             // 
             // rbChi
             // 
@@ -442,21 +401,57 @@
             this.rbChi.Text = "Chi";
             this.rbChi.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewBills
+            // labelStaff
             // 
-            this.dataGridViewBills.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.dataGridViewBills.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
-            this.dataGridViewBills.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridViewBills.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewBills.Location = new System.Drawing.Point(11, 174);
-            this.dataGridViewBills.Name = "dataGridViewBills";
-            this.dataGridViewBills.RowHeadersWidth = 51;
-            this.dataGridViewBills.RowTemplate.Height = 24;
-            this.dataGridViewBills.Size = new System.Drawing.Size(717, 388);
-            this.dataGridViewBills.StandardTab = true;
-            this.dataGridViewBills.TabIndex = 10;
-            this.dataGridViewBills.Visible = false;
-            this.dataGridViewBills.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBills_CellContentClick);
+            this.labelStaff.AutoSize = true;
+            this.labelStaff.Location = new System.Drawing.Point(25, 37);
+            this.labelStaff.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelStaff.Name = "labelStaff";
+            this.labelStaff.Size = new System.Drawing.Size(67, 16);
+            this.labelStaff.TabIndex = 5;
+            this.labelStaff.Text = "Nhân viên";
+            // 
+            // rbThu
+            // 
+            this.rbThu.AutoSize = true;
+            this.rbThu.Location = new System.Drawing.Point(348, 39);
+            this.rbThu.Margin = new System.Windows.Forms.Padding(2);
+            this.rbThu.Name = "rbThu";
+            this.rbThu.Size = new System.Drawing.Size(51, 20);
+            this.rbThu.TabIndex = 2;
+            this.rbThu.Text = "Thu";
+            this.rbThu.UseVisualStyleBackColor = true;
+            // 
+            // cmbStaff
+            // 
+            this.cmbStaff.FormattingEnabled = true;
+            this.cmbStaff.Location = new System.Drawing.Point(108, 37);
+            this.cmbStaff.Name = "cmbStaff";
+            this.cmbStaff.Size = new System.Drawing.Size(214, 24);
+            this.cmbStaff.TabIndex = 11;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(484, 30);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(136, 39);
+            this.btnRefresh.TabIndex = 4;
+            this.btnRefresh.Text = "Làm mới bộ lọc";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // panelLeft
+            // 
+            this.panelLeft.Controls.Add(this.groupBox1);
+            this.panelLeft.Controls.Add(this.dataGridViewBills);
+            this.panelLeft.Controls.Add(this.panelFilter);
+            this.panelLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelLeft.Margin = new System.Windows.Forms.Padding(2);
+            this.panelLeft.Name = "panelLeft";
+            this.panelLeft.Size = new System.Drawing.Size(767, 565);
+            this.panelLeft.TabIndex = 0;
             // 
             // uc_Staff_Bills
             // 
@@ -475,10 +470,10 @@
             this.panelRight.ResumeLayout(false);
             this.panelFilter.ResumeLayout(false);
             this.panelFilter.PerformLayout();
-            this.panelLeft.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBills)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBills)).EndInit();
+            this.panelLeft.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -510,13 +505,13 @@
         private System.Windows.Forms.Panel panelRight;
         private System.Windows.Forms.Panel panelFilter;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Panel panelLeft;
+        private System.Windows.Forms.DataGridView dataGridViewBills;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.ComboBox cmbStaff;
         private System.Windows.Forms.RadioButton rbThu;
         private System.Windows.Forms.Label labelStaff;
         private System.Windows.Forms.RadioButton rbChi;
-        private System.Windows.Forms.DataGridView dataGridViewBills;
+        private System.Windows.Forms.Panel panelLeft;
     }
 }
