@@ -14,7 +14,7 @@ namespace NT106_Q14_DoAnGroup08.ConnectionServser
         {
             try
             {
-                using (TcpClient client = new TcpClient(ServerIp, ServerPort))
+                using (TcpClient client = new TcpClient(ServerConfig.Host.ToString(), ServerConfig.Port))
                 {
                     using (NetworkStream stream = client.GetStream())
                     {
