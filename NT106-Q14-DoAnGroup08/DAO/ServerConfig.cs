@@ -1,6 +1,6 @@
 public static class ServerConfig
 {
-    private static string host = "192.168.1.121";
+    private static string host = "192.168.112.171";
     private static int port = 8080;
 
     public static string Host => host;
