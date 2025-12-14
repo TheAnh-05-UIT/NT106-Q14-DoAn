@@ -127,7 +127,7 @@ namespace TcpServer.Handlers
                             {
                                 try
                                 {
-                                    string updateBalance = "UPDATE Customers SET Balance = ISNULL(Balance,0) + @amount WHERE CustomerId = @customerId";
+                                    string updateBalance = "UPDATE Customers SET Balance = ISNULL(Balance,0) + @amount WHERE CustomerId = '@customerId'";
                                     db.ExecuteNonQuery(updateBalance,
                                         new SqlParameter("@amount", amount),
                                         new SqlParameter("@customerId", customerId));

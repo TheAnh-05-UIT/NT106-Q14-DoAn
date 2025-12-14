@@ -335,6 +335,8 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            LoadBills();
+            PopulateStaffFilter();
             if (billsTable == null) return;
             cmbStaff.SelectedIndex = 0;
             rbThu.Checked = false;

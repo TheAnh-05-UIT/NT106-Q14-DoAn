@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NT106_Q14_DoAnGroup08.ConnectionServser;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -23,12 +24,14 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
         {
             InitializeOrderTable();
             LoadMenu();
+            LoadCategories();
             textBox1.TextChanged += (s, ev) => ApplyFilter();
             button3.Click += BtnExport_Click;
             button4.Click += BtnCalculate_Click;
             button1.Click += BtnAddSelectedItem_Click;
             button2.Click += BtnCategory_Click;
             dataGridView2.CellDoubleClick += DataGridView2_CellDoubleClick;
+            comboBoxCategories.SelectedIndexChanged += ComboBoxCategories_SelectedIndexChanged;
         }
 
         private void InitializeOrderTable()
@@ -93,6 +96,29 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                 else
                 {
                     MessageBox.Show("Lỗi tải menu: " + response.message);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi kết nối: " + ex.Message);
+            }
+        }
+
+        private void LoadCategories()
+        {
+            try
+            {
+                var request = new { action = "GET_ALL_CATEGORIES" };
+                string jsonResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(request));
+                dynamic response = JsonConvert.DeserializeObject(jsonResponse);
+                if (response.status == "success")
+                {
+                    var categories = response.data.ToObject<List<string>>();
+                    comboBoxCategories.DataSource = categories;
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi tải danh mục: " + response.message);
                 }
             }
             catch (Exception ex)
@@ -207,6 +233,19 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             string sel = cats.First();
             var qry = menuTable.AsEnumerable().Where(r => r.Field<string>("CategoryName") == sel);
             dataGridView2.DataSource = qry.Any() ? qry.CopyToDataTable() : menuTable.Clone();
+        }
+
+        private void ComboBoxCategories_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (menuTable == null) return;
+            string selectedCategory = comboBoxCategories.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(selectedCategory)) return;
+
+            var filteredMenu = menuTable.AsEnumerable()
+                .Where(row => row.Field<string>("CategoryName") == selectedCategory);
+
+            DataTable dt = filteredMenu.Any() ? filteredMenu.CopyToDataTable() : menuTable.Clone();
+            dataGridView2.DataSource = dt;
         }
 
         private void BtnRefresh_Click(object sender, EventArgs e)

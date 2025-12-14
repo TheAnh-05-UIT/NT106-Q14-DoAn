@@ -19,11 +19,10 @@ namespace NT106_Q14_DoAnGroup08
         [STAThread]
         static void Main()
         {
-            ServerConfig.Configure("192.168.1.121", 8080);
+            ServerConfig.Configure("192.168.112.171", 8080);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-           // Application.Run(new frm_Login());
-            Application.Run(new frm_LockScreen());
+            Application.Run(new frm_Login());
             Form nextform = DTO.UserSession.NextForm;
             if (nextform != null)
             {
