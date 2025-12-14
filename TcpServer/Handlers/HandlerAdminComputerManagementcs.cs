@@ -23,7 +23,7 @@ namespace TcpServer.Handlers
             {
                 string id = ((string)data.ComputerId).Trim();
 
-                string query = "SELECT ComputerId, ComputerName, [Status], IpAddress, PricePerHour FROM Computers WHERE ComputerId = @Id";
+                string query = "SELECT ComputerId, ComputerName, [Status], PricePerHour FROM Computers WHERE ComputerId = @Id";
                 DataTable dt = db.ExecuteQuery(query, new SqlParameter("@Id", id));
                 DataRow row = (dt.Rows.Count > 0) ? dt.Rows[0] : null;
 
@@ -34,7 +34,6 @@ namespace TcpServer.Handlers
                         ComputerId = row["ComputerId"].ToString(),
                         ComputerName = row["ComputerName"].ToString(),
                         Status = row["Status"].ToString(),
-                        IpAddress = row["IpAddress"].ToString(),
                         PricePerHour = (decimal)row["PricePerHour"] 
                     };
                     return new { status = "success", data = computerDetails };
@@ -50,7 +49,7 @@ namespace TcpServer.Handlers
         {
             try
             {
-                string query = "SELECT ComputerId, ComputerName, [Status], IpAddress FROM Computers";
+                string query = "SELECT ComputerId, ComputerName, [Status] FROM Computers";
                 DataTable dt = db.ExecuteQuery(query);
                 return new { status = "success", data = dt };
             }
@@ -67,14 +66,12 @@ namespace TcpServer.Handlers
             {
                 string id = ((string)data.ComputerId).Trim();
                 string name = ((string)data.ComputerName).Trim();
-                string ipAddress = ((string)data.IpAddress).Trim();
                 string status = ((string)data.Status).Trim().ToUpper();
                 decimal pricePerHour = (decimal)data.PricePerHour;
 
                 string query = "UPDATE Computers SET " +
                                "ComputerName = @Name, " +
                                "[Status] = @Status, " +
-                               "IpAddress = @IpAddress, " +
                                "PricePerHour = @Price " +
                                "WHERE ComputerId = @Id";
 
@@ -82,7 +79,6 @@ namespace TcpServer.Handlers
                     new SqlParameter("@Id", id),
                     new SqlParameter("@Name", name),
                     new SqlParameter("@Status", status),
-                    new SqlParameter("@IpAddress", ipAddress),
                     new SqlParameter("@Price", pricePerHour));
 
                 if (rows > 0) return new { status = "success" };
@@ -99,16 +95,14 @@ namespace TcpServer.Handlers
             {
                 string id = (string)data.ComputerId;
                 string name = (string)data.ComputerName;
-                string ipAddress = (string)data.IpAddress;
                 string status = (string)data.Status;
                 decimal pricePerHour = (decimal)data.PricePerHour;
-                string query = "INSERT INTO Computers (ComputerId, ComputerName, [Status], IpAddress, PricePerHour) " +
-                               "VALUES (@Id, @Name, @Status, @IpAddress, @price)";
+                string query = "INSERT INTO Computers (ComputerId, ComputerName, [Status], PricePerHour) " +
+                               "VALUES (@Id, @Name, @Status, @price)";
                 int rows = db.ExecuteNonQuery(query,
                     new SqlParameter("@Id", id),
                     new SqlParameter("@Name", name),
                     new SqlParameter("@Status", status),
-                    new SqlParameter("@IpAddress", ipAddress),
                     new SqlParameter("@price", pricePerHour));
                 if (rows > 0) return new { status = "success" };
                 return new { status = "error", message = "Failed to add computer" };

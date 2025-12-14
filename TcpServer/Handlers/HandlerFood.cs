@@ -43,11 +43,12 @@ namespace TcpServer.Handlers
             string customerId = data["customerId"].ToString();
             decimal totalAmount = data["totalAmount"].ToObject<decimal>();
 
-            string machineId = Environment.MachineName;
-            string sessionQuery = "SELECT TOP 1 SessionId FROM Sessions WHERE ComputerId = @MachineId AND EndTime IS NULL";
+            string machineId = customerId;
+            string sessionQuery = "SELECT TOP 1 SessionId FROM Sessions WHERE customerId = @MachineId AND EndTime IS NULL";
             DataTable sessionDt = db.ExecuteQuery(sessionQuery, new SqlParameter("@MachineId", machineId));
-
+            Console.WriteLine(sessionDt.Rows.Count);
             string sessionId = sessionDt.Rows[0]["SessionId"].ToString();
+            Console.WriteLine(sessionId);
 
             string query = $@"
             INSERT INTO Invoices (InvoiceId, SessionId, CustomerId, TotalAmount)

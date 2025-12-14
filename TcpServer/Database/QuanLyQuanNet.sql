@@ -191,7 +191,8 @@ INSERT INTO Customers (CustomerId, Balance, RegisterDate, Vip) VALUES
 
 -- INSERT Computers
 INSERT INTO Computers (ComputerId, ComputerName, [Status], PricePerHour)
-VALUES 
+VALUES
+('MAY100', 'LAPTOP-D942BILL', 'AVAILABLE', 10000);
 ('MAY01', 'Máy 01', 'AVAILABLE', 5000),
 ('MAY02', 'Máy 02', 'IN_USE', 5000),
 ('MAY03', 'Máy 03', 'MAINTENANCE', 5000),
@@ -200,9 +201,8 @@ VALUES
 -- INSERT Services
 INSERT INTO Services
 VALUES
-('1', 'Dịch vụ 1'),
-('2', 'Dịch vụ 2'),
-('3', 'Dịch vụ 3');
+('1', 'FoodDrink'),
+('2', 'Nạp tiền')
 
 -- INSERT Sessions (Chú ý: U001 và U004 là ADMIN, không phải CUSTOMER, nhưng dữ liệu gốc của bạn đang dùng họ cho Session. 
 -- Tôi giữ nguyên dữ liệu, nhưng trong thực tế, chỉ Customer mới có Session chơi game)
@@ -249,7 +249,28 @@ INSERT INTO Invoices (InvoiceId, SessionId, CustomerId, CreatedAt, TotalAmount) 
 
 
 GO
+insert into Category(CategoryId, CategoryName) values 
+('1', 'Mì'),
+('2', 'Nước'),
+('3', 'Cơm')
 
+INSERT INTO FoodAndDrink 
+(FoodId, FoodName, Price, CategoryId, Image, Available)
+VALUES
+-- ===== MÌ =====
+('F001', N'Mì bò',35000, '1', N'Images/mi_xao.jpg', 1),
+('F002', N'Mì gà',30000, '1', N'Images/mi_ga.jpg', 1),
+
+-- ===== NƯỚC =====
+('D001', N'Nước cam',5000, '2', N'Images/nuoc_cam.jpg', 1),
+('D003', N'Nước chanh',20000, '2', N'Images/nuoc_chanh.jpg', 0),
+
+-- ===== CƠM =====
+('R001', N'Cơm tấm',40000, '3', N'Images/com_tam.jpg', 1),
+('R002', N'Cơm rang',45000, '3', N'Images/com_ran.jpg', 1)
+
+
+insert into FoodAndDrink()
 -- ==========================================================
 -- VIEW (Khung nhìn)
 -- Lệnh CREATE VIEW phải nằm đầu một batch sau GO
