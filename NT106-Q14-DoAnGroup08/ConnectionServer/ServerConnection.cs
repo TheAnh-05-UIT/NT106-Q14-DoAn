@@ -8,7 +8,7 @@ namespace NT106_Q14_DoAnGroup08.ConnectionServser
 {
     public static class ServerConnection
     {
-        private const string ServerIp = "127.0.0.1";
+        private const string ServerIp = "192.168.1.121";
         private const int ServerPort = 8080;
         public static string SendRequest(string jsonRequest)
         {
