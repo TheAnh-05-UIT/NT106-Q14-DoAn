@@ -258,16 +258,16 @@ INSERT INTO FoodAndDrink
 (FoodId, FoodName, Price, CategoryId, Image, Available)
 VALUES
 -- ===== MÌ =====
-('F001', N'Mì bò',35000, '1', N'Images/mi_xao.jpg', 1),
-('F002', N'Mì gà',30000, '1', N'Images/mi_ga.jpg', 1),
+('1', N'Mì bò',35000, '1', 'mi_xao', 1),
+('2', N'Mì gà',30000, '1', 'mi_ga', 1),
 
 -- ===== NƯỚC =====
-('D001', N'Nước cam',5000, '2', N'Images/nuoc_cam.jpg', 1),
-('D003', N'Nước chanh',20000, '2', N'Images/nuoc_chanh.jpg', 1),
+('3', N'Nước cam',5000, '2', 'nuoc_cam', 1),
+('4', N'Nước chanh',20000, '2', 'nuoc_chanh', 1),
 
 -- ===== CƠM =====
-('R001', N'Cơm tấm',40000, '3', N'Images/com_tam.jpg', 1),
-('R002', N'Cơm rang',45000, '3', N'Images/com_ran.jpg', 1)
+('5', N'Cơm tấm',40000, '3', 'com_tam', 1),
+('6', N'Cơm rang',45000, '3', 'com_ran', 1)
 
 
 insert into FoodAndDrink()
