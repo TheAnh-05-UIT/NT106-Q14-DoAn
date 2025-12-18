@@ -2,16 +2,19 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Runtime.Remoting.Contexts;
+using TcpServer.Handlers; // Add this at the top
 
 namespace TcpServer.Handlers
 {
     public class HandlerNotification
     {
         private readonly DatabaseHelper db;
+        private readonly HandlerInvoice invoiceHandler;
 
         public HandlerNotification(DatabaseHelper database)
         {
             db = database;
+            invoiceHandler = new HandlerInvoice(db);
         }
 
         private object genericNotificationHandler(dynamic data)
@@ -65,6 +68,50 @@ namespace TcpServer.Handlers
             };
         }
 
+        private object acceptPaidNotificationHandler(dynamic data)
+        {
+            string title = "Yêu cầu nạp tiền";
+            string content = string.Empty;
+            string time = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            string messages = string.Empty;
+
+            decimal amount = 0;
+            string accountName = null;
+            string addInfo = null;
+            if (data != null)
+            {
+                var d = data;
+
+                if (d.amount != null)
+                {
+                    decimal.TryParse(d.amount.ToString(), out amount);
+                }
+
+                if (d.accountName != null)
+                {
+                    accountName = d.accountName.ToString();
+                }
+
+                if (d.addInfo != null)
+                {
+                    addInfo = d.addInfo;
+                }
+
+                var parts = new System.Text.StringBuilder();
+                if (amount > 0) parts.AppendFormat("Số tiền: {0} ", amount);
+                if (!string.IsNullOrEmpty(accountName)) parts.AppendFormat("Tài khoản: {0} ", accountName);
+                if (parts.Length > 0)
+                    content = parts.ToString();
+            }
+
+            return new
+            {
+                status = "success",
+                message = messages,
+                notification = new { title = title, content = content + "\n" + messages, time = time, actionType = "accept_paid", addInfo = addInfo }
+            };
+        }
+
         private object bankNotificationHandler(dynamic data)
         {
             string title = "Bank payment";
@@ -101,67 +148,15 @@ namespace TcpServer.Handlers
                     content = parts.ToString();
             }
 
+            dynamic paidCheck = new { status = "", messages = "" };
             if (!string.IsNullOrEmpty(addInfo) && amount > 0)
             {
-                try
-                {
-                    string getInvoiceSql = "SELECT InvoiceId, CustomerId FROM Invoices WHERE InvoiceId = @invoiceId";
-                    var dt = db.ExecuteQuery(getInvoiceSql, new SqlParameter("@invoiceId", addInfo));
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        string invoiceId = dt.Rows[0]["InvoiceId"].ToString();
-                        string customerId = dt.Rows[0]["CustomerId"].ToString();
-                        try
-                        {
-                            string checkPaid = "SELECT Status FROM InvoiceDetails WHERE InvoiceId = @invoiceId";
-                            var paidCheck = db.ExecuteQuery(checkPaid, new SqlParameter("@invoiceId", addInfo));
-                            if (paidCheck.Rows[0]["Status"].ToString() == "PENDING")
-                            {
-                                string updateDetails = "UPDATE InvoiceDetails SET Status = 'PAID' WHERE InvoiceId = @invoiceId";
-                                db.ExecuteNonQuery(updateDetails, new SqlParameter("@invoiceId", invoiceId));
-                                messages = "Đơn hàng đã được cập nhật trạng thái 'ĐÃ THANH TOÁN'.";
-                            }
-                            string checkComplete = "SELECT Status FROM InvoiceDetails WHERE InvoiceId = @invoiceId";
-                            var completeCheck = db.ExecuteQuery(checkComplete, new SqlParameter("@invoiceId", addInfo));
-                            if (completeCheck.Rows[0]["Status"].ToString() == "PAID")
-                            {
-                                try
-                                {
-                                    string updateBalance = "UPDATE Customers SET Balance = ISNULL(Balance,0) + @amount WHERE CustomerId = '@customerId'";
-                                    db.ExecuteNonQuery(updateBalance,
-                                        new SqlParameter("@amount", amount),
-                                        new SqlParameter("@customerId", customerId));
-                                    string updateDetail = "UPDATE InvoiceDetails SET Status = 'COMPLETED' WHERE InvoiceId = @invoiceId";
-                                    db.ExecuteNonQuery(updateDetail, new SqlParameter("@invoiceId", invoiceId));
-                                    messages = "Đơn hàng đã được hoàn thành và cập nhật số dư khách hàng.";
-                                }
-                                catch (Exception exBal)
-                                {
-                                    Console.WriteLine($"Warning: cannot update customer balance: {exBal.Message}");
-                                }
-                            }
-                            else
-                            {
-                                messages += " Đơn hàng đã được hoàn thành trước đó rồi.";
-                            }
-                        }
-                        catch (Exception exDet)
-                        {
-                            Console.WriteLine($"Warning: cannot update InvoiceDetails status: {exDet.Message}");
-                            messages += " Không thể cập nhật thông tin hóa đơn";
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine($"HandlerNotification: invoice '{addInfo}' not found in DB.");
-                        messages += " Không tìm thấy mã hóa đơn";
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error while processing DB update in HandlerNotification: {ex.Message}");
-                    messages = "Không xử lý được thông tin.";
-                }
+                dynamic obj = new { data = new { invoiceId = addInfo } };
+                paidCheck = invoiceHandler.HandleAcceptPayment(obj.data);
+            }
+            if (paidCheck != null && paidCheck.status == "success")
+            {
+                messages += paidCheck.messages;
             }
 
             return new
@@ -188,6 +183,9 @@ namespace TcpServer.Handlers
                         {
                             case "paid":
                                 message = bankNotificationHandler(data.data);
+                                break;
+                            case "accept_paid":
+                                message = acceptPaidNotificationHandler(data.data);
                                 break;
                             default:
                                 message = genericNotificationHandler(data.data);

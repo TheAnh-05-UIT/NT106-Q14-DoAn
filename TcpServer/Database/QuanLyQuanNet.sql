@@ -12,6 +12,9 @@ GO
 USE QuanLyQuanNet;
 GO
 
+SELECT *
+FROM Sessions
+SELECT TOP 1 SessionId FROM Sessions WHERE CustomerId = 'U003' AND EndTime IS NULL
 -- ==========================================================
 -- BẢNG USERS (Người dùng)
 -- ==========================================================
@@ -187,16 +190,17 @@ VALUES
 
 -- INSERT Customers (Phải có User tương ứng)
 INSERT INTO Customers (CustomerId, Balance, RegisterDate, Vip) VALUES
-('U003', 0.00, '2025-11-15', 1);
+('U003', 1000.00, '2025-11-15', 1);
 
 -- INSERT Computers
 INSERT INTO Computers (ComputerId, ComputerName, [Status], PricePerHour)
 VALUES
-('MAY100', 'LAPTOP-D942BILL', 'AVAILABLE', 10000);
+('MAY100', 'LAPTOP-D942BILL', 'AVAILABLE', 10000),
 ('MAY01', 'Máy 01', 'AVAILABLE', 5000),
 ('MAY02', 'Máy 02', 'IN_USE', 5000),
 ('MAY03', 'Máy 03', 'MAINTENANCE', 5000),
-('MAY04', 'Máy 04', 'AVAILABLE', 6000);
+('MAY04', 'Máy 04', 'AVAILABLE', 6000),
+('DESKTOP-KKGPUHE', 'DESKTOP-KKGPUHE', 'AVAILABLE', 10000);
 
 -- INSERT Services
 INSERT INTO Services
@@ -204,8 +208,8 @@ VALUES
 ('1', 'FoodDrink'),
 ('2', 'Nạp tiền')
 
--- INSERT Sessions (Chú ý: U001 và U004 là ADMIN, không phải CUSTOMER, nhưng dữ liệu gốc của bạn đang dùng họ cho Session. 
--- Tôi giữ nguyên dữ liệu, nhưng trong thực tế, chỉ Customer mới có Session chơi game)
+-- INSERT Sessions
+/*
 INSERT INTO Sessions (SessionId, CustomerId, ComputerId, StartTime, EndTime, TotalCost) VALUES
 ('S001', 'U003', 'MAY01', '2025-11-30 14:00:00', '2025-11-30 15:30:00', 50.00), -- Đã sửa CustomerId
 ('S002', 'U003', 'MAY02', '2025-11-30 16:00:00', '2025-11-30 17:00:00', 30.00), -- Đã sửa CustomerId
@@ -224,9 +228,9 @@ INSERT INTO Sessions (SessionId, CustomerId, ComputerId, StartTime, EndTime, Tot
 ('S015', 'U003', 'MAY02', '2024-12-29 18:30:00', '2024-12-29 20:30:00', 60.00),
 ('S016', 'U003', 'MAY01', '2024-12-31 22:00:00', '2025-01-01 01:00:00', 90.00), -- Phiên giao thừa
 ('S017', 'U003', 'MAY03', '2024-12-30 13:00:00', '2024-12-30 14:30:00', 45.00);
-
+*/
 -- INSERT Invoices (Đã sửa CustomerId)
-INSERT INTO Invoices (InvoiceId, SessionId, CustomerId, CreatedAt, TotalAmount) VALUES
+/*INSERT INTO Invoices (InvoiceId, SessionId, CustomerId, CreatedAt, TotalAmount) VALUES
 ('HD001', 'S001', 'U003', '2025-11-30 15:31:00', 50.00),
 ('HD002', 'S002', 'U003', '2025-11-30 17:01:00', 30.00),
 ('HD003', 'S003', 'U003', '2025-11-30 16:01:00', 45.00),
@@ -245,13 +249,13 @@ INSERT INTO Invoices (InvoiceId, SessionId, CustomerId, CreatedAt, TotalAmount) 
 ('HD016', 'S015', 'U003', '2024-12-29 20:31:00', 60.00),
 ('HD017', 'S016', 'U003', '2025-01-01 01:01:00', 90.00),
 ('HD018', 'S017', 'U003', '2024-12-30 14:31:00', 45.00),
-('HD019', NULL, 'U003', '2024-12-27 10:00:00', 150.00);
+('HD019', NULL, 'U003', '2024-12-27 10:00:00', 150.00);*/
 
 
 GO
 insert into Category(CategoryId, CategoryName) values 
 ('1', 'Mì'),
-('2', 'Nước'),
+('2', N'Nước'),
 ('3', 'Cơm')
 
 INSERT INTO FoodAndDrink 
@@ -270,7 +274,7 @@ VALUES
 ('R002', N'Cơm rang',45000, '3', N'Images/com_ran.jpg', 1)
 
 
-insert into FoodAndDrink()
+GO
 -- ==========================================================
 -- VIEW (Khung nhìn)
 -- Lệnh CREATE VIEW phải nằm đầu một batch sau GO

@@ -69,6 +69,7 @@
     <Compile Include="Handlers\HandlerChat.cs" />
     <Compile Include="Handlers\HandlerComputerManagement.cs" />
     <Compile Include="Handlers\HandlerCustomer.cs" />
+    <Compile Include="Handlers\HandlerCustomerBalance.cs" />
     <Compile Include="Handlers\HandlerFood.cs" />
     <Compile Include="Handlers\HandlerImportGood.cs" />
     <Compile Include="Handlers\HandlerInvoice.cs" />

@@ -29,7 +29,7 @@ namespace TcpServer.Handlers
 
         public object HandleGetAllFood()
         {
-            string query = @"SELECT f.FoodId, f.FoodName, f.Price, c.CategoryName
+            string query = @"SELECT f.FoodId, f.FoodName, f.Price, c.CategoryName, c.CategoryId
                              FROM FoodAndDrink f
                              LEFT JOIN Category c ON f.CategoryId = c.CategoryId";
 
@@ -43,12 +43,9 @@ namespace TcpServer.Handlers
             string customerId = data["customerId"].ToString();
             decimal totalAmount = data["totalAmount"].ToObject<decimal>();
 
-            string machineId = customerId;
-            string sessionQuery = "SELECT TOP 1 SessionId FROM Sessions WHERE customerId = @MachineId AND EndTime IS NULL";
-            DataTable sessionDt = db.ExecuteQuery(sessionQuery, new SqlParameter("@MachineId", machineId));
-            Console.WriteLine(sessionDt.Rows.Count);
+            string sessionQuery = "SELECT TOP 1 SessionId FROM Sessions WHERE CustomerId = @CustomerId AND EndTime IS NULL";
+            DataTable sessionDt = db.ExecuteQuery(sessionQuery, new SqlParameter("@CustomerId", customerId));
             string sessionId = sessionDt.Rows[0]["SessionId"].ToString();
-            Console.WriteLine(sessionId);
 
             string query = $@"
             INSERT INTO Invoices (InvoiceId, SessionId, CustomerId, TotalAmount)
@@ -160,7 +157,7 @@ namespace TcpServer.Handlers
             };
         }
 
-        public object HandleCreateInvoiceDetailTopUp(JObject data)
+        public object HandleCreateInvoiceDetailTopUp(JObject data, ServerHandler.ServerHandler server)
         {
             string detailId = data["detailId"].ToString();
             string invoiceId = data["invoiceId"].ToString();
@@ -175,7 +172,10 @@ namespace TcpServer.Handlers
                 VALUES
                 ('{detailId}', '{invoiceId}', '{serviceId}', {quantity}, {price}, 'PENDING', N'{note}')";
 
+
             int result = db.ExecuteNonQuery(query);
+            server.notifyToStaff(new { type = "accept_paid", data = new { accountName = "", amount = price, addInfo = invoiceId } });
+
             return new { status = result > 0 ? "success" : "fail" };
         }
     }

@@ -175,7 +175,7 @@ namespace TcpServer.ServerHandler
 
                 switch (action)
                 {
-                    case "login": response = handlerLogin.HandleLogin(obj); break;
+                    case "LOGIN": response = handlerLogin.HandleLogin(obj); break;
                     case "get_all_employees": response = handlerAdminCustomerAcc.HandleGetAllEmployees(); break;
                     case "add_employee": response = handlerAdminCustomerAcc.HandleAddEmployee(obj.data); break;
                     case "GET_ALL_FOOD": response = handlerFood.HandleGetAllFood(); break;
@@ -198,7 +198,7 @@ namespace TcpServer.ServerHandler
                     case "get_invoices_details": response = handlerFood.HandleLoadInvoiceDetail(obj.invoiceId.ToString()); break;
                     case "CONTROL_PC": response = HandleComputerControl(obj.data); break;
                     case "END_SESSION": response = HandleComputerControl(obj.data); break;
-                    case "create_invoice_detail_top_up": response = handlerFood.HandleCreateInvoiceDetailTopUp(obj.data); break;
+                    case "create_invoice_detail_top_up": response = handlerFood.HandleCreateInvoiceDetailTopUp(obj.data, this); break;
                     case "start_session":
                         response = handlerCustomer.HandleStartSession(obj, this);
                         break;
@@ -278,6 +278,15 @@ namespace TcpServer.ServerHandler
                         break;
                     case "GET_INFO_ADMIN":
                         response = handlerAdmin.HandleGetAdminInfo(obj.data);
+                        break;
+                    case "GET_INVOICES_BY_CUSTOMER":
+                        response = handlerInvoice.HandleGetInvoicesByCustomer(obj.data);
+                        break;
+                    case "GET_INVOICE_DETAILS":
+                        response = handlerInvoice.HandleGetInvoiceDetails(obj.data);
+                        break;
+                    case "accept_paid":
+                        response = handlerInvoice.HandleAcceptPayment(obj);
                         break;
                     default: response = new { status = "error", message = $"Unknown action: {action}" }; break;
                 }
