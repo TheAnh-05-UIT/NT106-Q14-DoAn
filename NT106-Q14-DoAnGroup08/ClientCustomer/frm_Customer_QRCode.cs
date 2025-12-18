@@ -15,15 +15,16 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {
     public partial class frm_Customer_QRCode : Form
     {
-        
+        string _userid;
         private string base64QR;
         int amount;
 
-        public frm_Customer_QRCode(string base64, int Amount)
+        public frm_Customer_QRCode(string base64, int Amount, string userId)
         {
             InitializeComponent();
             base64QR = base64;
             amount = Amount;
+            _userid = userId;
         }
 
         private void frm_Customer_QRCode_Load(object sender, EventArgs e)
@@ -56,7 +57,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             }
 
 
-            string customerId = "CUS001";
+            string customerId = _userid;
 
             decimal totalAmount = Convert.ToDecimal(amount);
 

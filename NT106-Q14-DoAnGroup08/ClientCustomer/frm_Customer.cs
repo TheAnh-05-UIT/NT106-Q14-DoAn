@@ -140,7 +140,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         private void StartUpdateTimer()
         {
             sessionTimer = new Timer();
-            sessionTimer.Interval = 60000; // 1 phút
+            sessionTimer.Interval = 10000; // 10 giây
             sessionTimer.Tick += SessionTimer_Tick;
             sessionTimer.Start();
         }
@@ -220,7 +220,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                     sessionTimer.Stop();
                     MessageBox.Show("Phiên đã kết thúc do hết tiền!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     EndSessionToServer();
-                    frm_Customer_TopUp f = new frm_Customer_TopUp();
+                    frm_Customer_TopUp f = new frm_Customer_TopUp(_userId);
                     f.Show();
                     this.Close();
                 }
@@ -286,7 +286,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         private void btn_TopUp_Click(object sender, EventArgs e)
         {
-            frm_Customer_TopUp f = new frm_Customer_TopUp();
+            frm_Customer_TopUp f = new frm_Customer_TopUp(_userId);
             f.Show();
         }
 

@@ -34,7 +34,7 @@ namespace NT106_Q14_DoAnGroup08
             // Tạo request JSON
             var req = new
             {
-                action = "login",
+                action = "LOGIN",
                 username = username,
                 password = password
             };

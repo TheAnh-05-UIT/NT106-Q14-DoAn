@@ -62,33 +62,39 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
 
         private void btnThemNV_Click(object sender, EventArgs e)
         {
-            var newEmployee = new
+            try
             {
-                maNV = txtMaNV.Text,
-                hoTen = txtHoTen.Text,
-                gioiTinh = cboGioiTinh.Text,
-                ngaySinh = dtpNgaySinh.Value.ToString("yyyy-MM-dd"),
-                soDienThoai = txtSDT.Text,
-                ngayVaoLam = dtpNgayVaoLam.Value.ToString("yyyy-MM-dd"),
-                soNgayLam = (int)numSoNgayLam.Value,
-                luongCoBan = decimal.Parse(txtLuongCoBan.Text),
-                luongThang = decimal.Parse(txtLuongThang.Text)
-            };
+                var newEmployee = new
+                {
+                    maNV = txtMaNV.Text,
+                    hoTen = txtHoTen.Text,
+                    gioiTinh = cboGioiTinh.Text,
+                    ngaySinh = dtpNgaySinh.Value.ToString("yyyy-MM-dd"),
+                    soDienThoai = txtSDT.Text,
+                    ngayVaoLam = dtpNgayVaoLam.Value.ToString("yyyy-MM-dd"),
+                    soNgayLam = (int)numSoNgayLam.Value,
+                    luongCoBan = decimal.Parse(txtLuongCoBan.Text),
+                    luongThang = decimal.Parse(txtLuongThang.Text)
+                };
 
-            var request = new
-            {
-                action = "add_employee",
-                data = newEmployee
-            };
+                var request = new
+                {
+                    action = "add_employee",
+                    data = newEmployee
+                };
 
-            string jsonRequest = JsonConvert.SerializeObject(request);
-            string jsonResponse = ServerConnection.SendRequest(jsonRequest);
+                string jsonRequest = JsonConvert.SerializeObject(request);
+                string jsonResponse = ServerConnection.SendRequest(jsonRequest);
 
-            var result = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
-            MessageBox.Show(result.message.ToString(), result.status.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            if (result.status == "success")
-                LoadEmployeeData();
+                var result = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
+                MessageBox.Show(result.message.ToString(), result.status.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (result.status == "success")
+                    LoadEmployeeData();
+            }
+            catch {
+                MessageBox.Show("Vui lòng điền đầy đủ thông tin");
+                return;
+            }
         }
 
         private void BTNSuaNV_Click(object sender, EventArgs e)

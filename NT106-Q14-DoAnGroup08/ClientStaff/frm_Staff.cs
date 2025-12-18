@@ -337,13 +337,40 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             {
                 try
                 {
+                    Action action = null;
                     this.BeginInvoke(new Action(() =>
                     {
                         string title = notif.title != null ? notif.title.ToString() : "Thông báo";
                         string content = notif.content != null ? notif.content.ToString() : "";
                         string time = notif.time != null ? notif.time.ToString() : null;
+                        switch (notif.actionType != null ? notif.actionType.ToString() : "")
+                        {
+                            case "accept_paid":
+                                action = () => {
+                                    var res = ApiClient.Client.Send(new
+                                    {
+                                        action = "accept_paid",
+                                        invoiceId = notif.addInfo != null ? notif.addInfo.ToString() : ""
+                                    });
+                                    if (res?.status == "error")
+                                    {
+                                        MessageBox.Show(res.message.ToString(), "Thông báo",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Đã chấp nhận yêu cầu nạp tiền.", "Thông báo",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                };
+                                break;
+                            default:
+                                action = null;
+                                break;
+                        }
 
-                        receiveNotification(title, content, "OK", time);
+                        receiveNotification(title, content, "OK", time, action);
                     }));
                 }
                 catch { }

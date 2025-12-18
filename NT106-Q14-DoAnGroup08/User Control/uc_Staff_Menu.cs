@@ -25,13 +25,20 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             InitializeOrderTable();
             LoadMenu();
             LoadCategories();
+            LoadInvoices(); // Load invoices on menu load
             textBox1.TextChanged += (s, ev) => ApplyFilter();
             button3.Click += BtnExport_Click;
             button4.Click += BtnCalculate_Click;
             button1.Click += BtnAddSelectedItem_Click;
             button2.Click += BtnCategory_Click;
             dataGridView2.CellDoubleClick += DataGridView2_CellDoubleClick;
-            comboBoxCategories.SelectedIndexChanged += ComboBoxCategories_SelectedIndexChanged;
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            LoadCustomers();
+            LoadInvoices();
         }
 
         private void InitializeOrderTable()
@@ -57,6 +64,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                     menuTable = new DataTable();
                     menuTable.Columns.Add("FoodId", typeof(string));
                     menuTable.Columns.Add("FoodName", typeof(string));
+                    menuTable.Columns.Add("CategoryId", typeof(string)); // Add CategoryId for filtering
                     menuTable.Columns.Add("CategoryName", typeof(string));
                     menuTable.Columns.Add("Price", typeof(decimal));
 
@@ -74,6 +82,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                             menuTable.Rows.Add(
                                 row.Table.Columns.Contains("FoodId") ? Convert.ToString(row["FoodId"]) : string.Empty,
                                 row.Table.Columns.Contains("FoodName") ? Convert.ToString(row["FoodName"]) : string.Empty,
+                                row.Table.Columns.Contains("CategoryId") ? Convert.ToString(row["CategoryId"]) : string.Empty, // Include CategoryId
                                 row.Table.Columns.Contains("CategoryName") ? Convert.ToString(row["CategoryName"]) : string.Empty,
                                 row.Table.Columns.Contains("Price") && row["Price"] != DBNull.Value ? Convert.ToDecimal(row["Price"]) : 0m
                             );
@@ -85,13 +94,14 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                         {
                             string id = item.FoodId != null ? (string)item.FoodId : string.Empty;
                             string name = item.FoodName != null ? (string)item.FoodName : string.Empty;
-                            string cat = item.CategoryName != null ? (string)item.CategoryName : string.Empty;
+                            string catId = item.CategoryId != null ? (string)item.CategoryId : string.Empty; // Include CategoryId
+                            string catName = item.CategoryName != null ? (string)item.CategoryName : string.Empty;
                             decimal price = item.Price != null ? (decimal)item.Price : 0m;
-                            menuTable.Rows.Add(id, name, cat, price);
+                            menuTable.Rows.Add(id, name, catId, catName, price);
                         }
                     }
 
-                    dataGridView2.DataSource = menuTable.Copy();
+                    dataGridView2.DataSource = menuTable.DefaultView.ToTable(false, "FoodId", "FoodName", "CategoryName", "Price"); // Exclude CategoryId from view
                 }
                 else
                 {
@@ -108,13 +118,29 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
         {
             try
             {
-                var request = new { action = "GET_ALL_CATEGORIES" };
+                var request = new { action = "get_all_categories" };
                 string jsonResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(request));
                 dynamic response = JsonConvert.DeserializeObject(jsonResponse);
                 if (response.status == "success")
                 {
-                    var categories = response.data.ToObject<List<string>>();
-                    comboBoxCategories.DataSource = categories;
+                    groupBox8.Controls.Clear();
+
+                    int yOffset = 10;
+                    foreach (var category in response.data)
+                    {
+                        string categoryName = category.CategoryName.ToString();
+
+
+                        Button button = new Button
+                        {
+                            Text = categoryName,
+                            AutoSize = true,
+                            Location = new System.Drawing.Point(groupBox8.Location.X, yOffset),
+                        };
+                        button.Click += (s, e) => FilterMenuByCategory(category.CategoryId.ToString());
+                        groupBox8.Controls.Add(button);
+                        yOffset += 35;
+                    }
                 }
                 else
                 {
@@ -125,6 +151,113 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             {
                 MessageBox.Show("Lỗi kết nối: " + ex.Message);
             }
+        }
+
+        private void LoadCustomers()
+        {
+            try
+            {
+                var request = new { action = "GET_ALL_CUSTOMERS" };
+                string jsonResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(request));
+                dynamic response = JsonConvert.DeserializeObject(jsonResponse);
+
+                if (response.status == "success")
+                {
+                    DataTable customerTable = response.data.ToObject<DataTable>();
+                    comboBox1.DataSource = customerTable;
+                    comboBox1.DisplayMember = "Họ tên"; // Assuming "Họ tên" is the column for customer names
+                    comboBox1.ValueMember = "CustomerID"; // Assuming "CustomerID" is the unique identifier
+
+                    if (customerTable.Rows.Count > 0)
+                    {
+                        comboBox1.SelectedIndex = 0; // Set default to the first item if available
+                    }
+                    else
+                    {
+                        comboBox1.SelectedIndex = -1; // Set default to -1 if no items are available
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi tải danh sách khách hàng: " + response.message);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi kết nối: " + ex.Message);
+            }
+        }
+
+        private void LoadInvoices()
+        {
+            try
+            {
+                string customerId = comboBox1.SelectedValue?.ToString();
+                if (string.IsNullOrEmpty(customerId))
+                {
+                    comboBox2.DataSource = null;
+                    return;
+                }
+
+                var request = new { action = "GET_INVOICES_BY_CUSTOMER", data = new { customerId } };
+                string jsonResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(request));
+                dynamic response = JsonConvert.DeserializeObject(jsonResponse);
+
+                if (response.status == "success")
+                {
+                    DataTable invoiceTable = response.data.ToObject<DataTable>();
+
+                    // Filter invoices to include only those with ServiceId = 1 in InvoiceDetails
+                    var filteredInvoices = invoiceTable.AsEnumerable()
+                        .Where(row =>
+                        {
+                            string invoiceId = row.Field<string>("InvoiceId");
+                            var detailRequest = new { action = "GET_INVOICE_DETAILS", data = new { invoiceId } };
+                            string detailResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(detailRequest));
+                            dynamic detailData = JsonConvert.DeserializeObject(detailResponse);
+
+                            if (detailData.status == "success")
+                            {
+                                DataTable detailsTable = detailData.data.ToObject<DataTable>();
+                                return detailsTable.AsEnumerable().Any(detailRow => detailRow.Field<int>("ServiceId") == 1);
+                            }
+
+                            return false;
+                        });
+
+                    if (filteredInvoices.Any())
+                    {
+                        DataTable filteredTable = filteredInvoices.CopyToDataTable();
+                        comboBox2.DataSource = filteredTable;
+                        comboBox2.DisplayMember = "InvoiceId"; // Only show InvoiceId
+                        comboBox2.ValueMember = "InvoiceId";
+                        comboBox2.SelectedIndex = -1; // Set default to -1
+                    }
+                    else
+                    {
+                        comboBox2.DataSource = null;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi tải danh sách hóa đơn: " + response.message);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi kết nối: " + ex.Message);
+            }
+        }
+
+        private void FilterMenuByCategory(string categoryId)
+        {
+            if (menuTable == null) return;
+
+            var filteredMenu = menuTable.AsEnumerable()
+                .Where(row => row.Field<string>("CategoryId") == categoryId);
+
+            DataTable dt = filteredMenu.Any() ? filteredMenu.CopyToDataTable() : menuTable.Clone();
+            dataGridView2.DataSource = dt;
         }
 
         private void ApplyFilter()
@@ -202,27 +335,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
         private void BtnExport_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var dt = dataGridView2.DataSource as DataTable ?? (dataGridView2.DataSource as DataView)?.ToTable();
-                if (dt == null || dt.Rows.Count == 0)
-                {
-                    MessageBox.Show("Không có dữ liệu để xuất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-                using (SaveFileDialog sfd = new SaveFileDialog())
-                {
-                    sfd.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
-                    sfd.FileName = $"Menu_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
-                    if (sfd.ShowDialog() != DialogResult.OK) return;
-                    ExportDataTableToCsv(dt, sfd.FileName);
-                    MessageBox.Show("Xuất dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi xuất: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
         }
 
         private void BtnCategory_Click(object sender, EventArgs e)
@@ -233,19 +346,6 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             string sel = cats.First();
             var qry = menuTable.AsEnumerable().Where(r => r.Field<string>("CategoryName") == sel);
             dataGridView2.DataSource = qry.Any() ? qry.CopyToDataTable() : menuTable.Clone();
-        }
-
-        private void ComboBoxCategories_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (menuTable == null) return;
-            string selectedCategory = comboBoxCategories.SelectedItem?.ToString();
-            if (string.IsNullOrEmpty(selectedCategory)) return;
-
-            var filteredMenu = menuTable.AsEnumerable()
-                .Where(row => row.Field<string>("CategoryName") == selectedCategory);
-
-            DataTable dt = filteredMenu.Any() ? filteredMenu.CopyToDataTable() : menuTable.Clone();
-            dataGridView2.DataSource = dt;
         }
 
         private void BtnRefresh_Click(object sender, EventArgs e)
@@ -274,6 +374,147 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
         private void groupBox3_Enter(object sender, EventArgs e)
         {
+        }
+
+        private void BtnCreateInvoice_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string customerId = comboBox1.SelectedValue?.ToString();
+                if (string.IsNullOrEmpty(customerId))
+                {
+                    MessageBox.Show("Vui lòng chọn khách hàng trước khi tạo hóa đơn mới.");
+                    return;
+                }
+
+                // Get the latest active session for the customer
+                var sessionResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(new
+                {
+                    action = "get_latest_active_session",
+                    data = new { customerId }
+                }));
+
+                dynamic sessionData = JsonConvert.DeserializeObject(sessionResponse);
+                string sessionId = sessionData?.status == "success" ? sessionData.sessionId?.ToString() : string.Empty;
+
+                // Generate new invoice ID
+                var maxInv = ServerConnection.SendRequest(JsonConvert.SerializeObject(new { action = "get_max_invoice_id" }));
+                dynamic maxInvResponse = JsonConvert.DeserializeObject(maxInv);
+                string lastId = maxInvResponse?.maxId?.ToString();
+
+                string invoiceId;
+                if (string.IsNullOrEmpty(lastId))
+                    invoiceId = "HD001";
+                else
+                {
+                    int num = int.Parse(lastId.Substring(2)) + 1;
+                    invoiceId = "HD" + num.ToString("D3");
+                }
+
+                // Create the new invoice
+                var createInvoiceResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(new
+                {
+                    action = "create_invoice",
+                    data = new
+                    {
+                        invoiceId,
+                        customerId,
+                        sessionId,
+                        totalAmount = 0 // Default total amount
+                    }
+                }));
+
+                dynamic createResponse = JsonConvert.DeserializeObject(createInvoiceResponse);
+                if (createResponse.status == "success")
+                {
+                    var maxDetail = ApiClient.Client.Send(new { action = "get_max_invoice_detail_id" });
+
+                    string detailId;
+                    if (maxDetail?.maxId == null || maxDetail.maxId == "")
+                        detailId = "CTHD001";
+                    else
+                    {
+                        int num = int.Parse(maxDetail.maxId.ToString().Substring(4)) + 1;
+                        detailId = "CTHD" + num.ToString("D3");
+                    }
+                    // Add a default service with ServiceId = 1 and a valid FoodId
+                    var addServiceResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(new
+                    {
+                        action = "create_invoice_detail",
+                        data = new
+                        {
+                            detailId,
+                            invoiceId,
+                            serviceId = 1,
+                        }
+                    }));
+
+                    dynamic serviceResponse = JsonConvert.DeserializeObject(addServiceResponse);
+                    if (serviceResponse.status == "success")
+                    {
+                        MessageBox.Show("Hóa đơn mới đã được tạo thành công.");
+                        LoadInvoices(); // Refresh the invoice list
+                        comboBox2.SelectedValue = invoiceId; // Automatically select the new invoice
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tạo hóa đơn thất bại khi thêm dịch vụ: " + serviceResponse.message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Tạo hóa đơn thất bại: " + createResponse.message);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tạo hóa đơn mới: " + ex.Message);
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string invoiceId = comboBox2.SelectedValue?.ToString();
+            if (string.IsNullOrEmpty(invoiceId) || invoiceId == "-1")
+            {
+                orderTable.Rows.Clear();
+                dataGridView1.DataSource = orderTable.Copy();
+                return;
+            }
+
+            try
+            {
+                var request = new { action = "GET_INVOICE_DETAILS", data = new { invoiceId } };
+                string jsonResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(request));
+                dynamic response = JsonConvert.DeserializeObject(jsonResponse);
+
+                if (response.status == "success")
+                {
+                    DataTable invoiceDetails = response.data.ToObject<DataTable>();
+                    orderTable.Rows.Clear();
+
+                    foreach (DataRow row in invoiceDetails.Rows)
+                    {
+                        var newRow = orderTable.NewRow();
+                        newRow["FoodId"] = row["FoodId"];
+                        newRow["FoodName"] = row["FoodName"];
+                        newRow["Quantity"] = row["Quantity"];
+                        newRow["Price"] = row["Price"];
+                        newRow["Total"] = row["Total"];
+                        orderTable.Rows.Add(newRow);
+                    }
+
+                    dataGridView1.DataSource = orderTable.Copy();
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi tải chi tiết hóa đơn: " + response.message);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi kết nối: " + ex.Message);
+            }
         }
     }
 }

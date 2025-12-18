@@ -20,9 +20,11 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {
     public partial class frm_Customer_TopUp : Form
     {
-        public frm_Customer_TopUp()
+        string _userid = string.Empty;
+        public frm_Customer_TopUp(string userId)
         {
             InitializeComponent();
+            _userid = userId;
         }
 
         private void btn_TopUp_5000_Click(object sender, EventArgs e)
@@ -105,7 +107,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                 return;
             } 
             string base64QR = dataResult.data.qrDataURL.Replace("data:image/png;base64,", ""); 
-            frm_Customer_QRCode f = new frm_Customer_QRCode(base64QR, Amount); 
+            frm_Customer_QRCode f = new frm_Customer_QRCode(base64QR, Amount, _userid); 
             f.ShowDialog(); 
         }
 
@@ -125,7 +127,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             }
 
 
-            string customerId = "CUS001";
+            string customerId = _userid;
 
             decimal totalAmount = Convert.ToDecimal(txt_TopUp.Text);
 
