@@ -14,6 +14,21 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -539,7 +554,7 @@
     <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.Uc_Staff.uc_Staff_ImportGood.resources" />
     <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.Uc_Staff.uc_Staff_Menu.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -764,28 +779,15 @@
     <Content Include="bin\Debug\tr\Microsoft.Data.SqlClient.resources.dll" />
     <Content Include="bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll" />
     <Content Include="bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll" />
-    <Content Include="Images\com_ran.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\com_tam.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\mi_ga.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\mi_xao.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\nuoc_cam.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\nuoc_chanh.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.exe" />
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <None Include="Resources\nuoc_chanh.jpg" />
+    <None Include="Resources\nuoc_cam.png" />
+    <None Include="Resources\mi_xao.jpg" />
+    <None Include="Resources\mi_ga.png" />
+    <None Include="Resources\Image1.png" />
     <None Include="Resources\ViewVer3.jpg" />
     <None Include="Resources\View1.jpg" />
     <None Include="Resources\password.jpg" />
@@ -798,6 +800,8 @@
     <None Include="Resources\confirmation.png" />
     <None Include="Resources\checkout.png" />
     <None Include="Resources\close.png" />
+    <None Include="Resources\com_ran.jpg" />
+    <None Include="Resources\com_tam.jpg" />
     <Content Include="Resources\defaultImage.jpg" />
     <None Include="Resources\search.png" />
   </ItemGroup>
@@ -819,6 +823,21 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Choose>

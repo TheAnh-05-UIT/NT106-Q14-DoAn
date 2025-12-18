@@ -208,4 +208,22 @@
   <data name="ViewVer3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ViewVer3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="com_ran" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\com_ran.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="com_tam" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\com_tam.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mi_ga" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mi_ga.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mi_xao" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mi_xao.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nuoc_cam" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nuoc_cam.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nuoc_chanh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nuoc_chanh.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

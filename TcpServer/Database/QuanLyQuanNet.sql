@@ -263,7 +263,7 @@ VALUES
 
 -- ===== NƯỚC =====
 ('D001', N'Nước cam',5000, '2', N'Images/nuoc_cam.jpg', 1),
-('D003', N'Nước chanh',20000, '2', N'Images/nuoc_chanh.jpg', 0),
+('D003', N'Nước chanh',20000, '2', N'Images/nuoc_chanh.jpg', 1),
 
 -- ===== CƠM =====
 ('R001', N'Cơm tấm',40000, '3', N'Images/com_tam.jpg', 1),

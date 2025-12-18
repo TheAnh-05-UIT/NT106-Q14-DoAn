@@ -79,23 +79,21 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
             foreach (var item in arr)
             {
-                string imgPath = item["Image"]?.ToString();
+                string imgName = item["Image"]?.ToString();
                 Image foodImg;
+                MessageBox.Show($"'{imgName}'");
 
-                if (!string.IsNullOrEmpty(imgPath))
+
+                if (!string.IsNullOrEmpty(imgName))
                 {
-                    string fullImgPath = Path.Combine(Application.StartupPath, "Images", imgPath);
-                    if (File.Exists(fullImgPath))
-                    {
-                        foodImg = Image.FromFile(fullImgPath);
-                    }
-                    else
-                        foodImg = Properties.Resources.defaultImage;
+                    object imgres = Properties.Resources.ResourceManager.GetObject(imgName);
+                    foodImg = imgres != null ? (Image)imgres : Properties.Resources.defaultImage;
                 }
                 else
                 {
                     foodImg = Properties.Resources.defaultImage;
                 }
+
 
                 AddItems(
                     item["FoodId"].ToString(),
@@ -125,7 +123,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                 int foodId = pro.Id;
                 double itemPrice = double.Parse(price);
                 bool found = false;
-
+               
                 foreach (DataGridViewRow row in guna2DataGridView1.Rows)
                 {
                     if (row.Cells["dgvid"].Value != null &&
@@ -134,6 +132,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                         int qty = Convert.ToInt32(row.Cells["dgvQty"].Value) + 1;
                         row.Cells["dgvQty"].Value = qty;
                         row.Cells["dgvAmount"].Value = qty * itemPrice;
+                        
                         found = true;
                         break;
                     }
@@ -141,9 +140,10 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
                 if (!found)
                 {
+                    int sno = guna2DataGridView1.Rows.Count - 1;
                     guna2DataGridView1.Rows.Add(new object[]
                     {
-                        0, foodId, name, 1, itemPrice, itemPrice
+                        sno + 1, foodId, name, 1, itemPrice, itemPrice
                     });
                 }
 
