@@ -22,7 +22,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NT106_Q14_DoAnGroup08.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _1 {
+        public static System.Drawing.Bitmap _1 {
             get {
                 object obj = ResourceManager.GetObject("1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _2 {
+        public static System.Drawing.Bitmap _2 {
             get {
                 object obj = ResourceManager.GetObject("2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bill {
+        public static System.Drawing.Bitmap bill {
             get {
                 object obj = ResourceManager.GetObject("bill", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap chat__1___1___1___1_ {
+        public static System.Drawing.Bitmap chat__1___1___1___1_ {
             get {
                 object obj = ResourceManager.GetObject("chat (1) (1) (1) (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +103,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap checkout {
+        public static System.Drawing.Bitmap checkout {
             get {
                 object obj = ResourceManager.GetObject("checkout", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +113,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap close {
+        public static System.Drawing.Bitmap close {
             get {
                 object obj = ResourceManager.GetObject("close", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +123,27 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap com_tron {
+        public static System.Drawing.Bitmap com_ran {
+            get {
+                object obj = ResourceManager.GetObject("com_ran", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap com_tam {
+            get {
+                object obj = ResourceManager.GetObject("com_tam", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap com_tron {
             get {
                 object obj = ResourceManager.GetObject("com_tron", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +153,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap confirmation {
+        public static System.Drawing.Bitmap confirmation {
             get {
                 object obj = ResourceManager.GetObject("confirmation", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +163,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap defaultImage {
+        public static System.Drawing.Bitmap defaultImage {
             get {
                 object obj = ResourceManager.GetObject("defaultImage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +173,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap delete {
+        public static System.Drawing.Bitmap delete {
             get {
                 object obj = ResourceManager.GetObject("delete", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,7 +183,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap food__1_ {
+        public static System.Drawing.Bitmap food__1_ {
             get {
                 object obj = ResourceManager.GetObject("food (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -173,7 +193,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap invoice {
+        public static System.Drawing.Bitmap invoice {
             get {
                 object obj = ResourceManager.GetObject("invoice", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -183,7 +203,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap kinh_nghiem_kinh_doanh_quan_net_thanh_cong_toi_uu_chi_phi {
+        public static System.Drawing.Bitmap kinh_nghiem_kinh_doanh_quan_net_thanh_cong_toi_uu_chi_phi {
             get {
                 object obj = ResourceManager.GetObject("kinh-nghiem-kinh-doanh-quan-net-thanh-cong-toi-uu-chi-phi", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,7 +213,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logout__1_ {
+        public static System.Drawing.Bitmap logout__1_ {
             get {
                 object obj = ResourceManager.GetObject("logout (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -203,7 +223,17 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mi_kho_trung {
+        public static System.Drawing.Bitmap mi_ga {
+            get {
+                object obj = ResourceManager.GetObject("mi_ga", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap mi_kho_trung {
             get {
                 object obj = ResourceManager.GetObject("mi_kho_trung", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -213,7 +243,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mi_nuoc {
+        public static System.Drawing.Bitmap mi_nuoc {
             get {
                 object obj = ResourceManager.GetObject("mi_nuoc", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -223,7 +253,17 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap notes {
+        public static System.Drawing.Bitmap mi_xao {
+            get {
+                object obj = ResourceManager.GetObject("mi_xao", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap notes {
             get {
                 object obj = ResourceManager.GetObject("notes", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -233,7 +273,27 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap password {
+        public static System.Drawing.Bitmap nuoc_cam {
+            get {
+                object obj = ResourceManager.GetObject("nuoc_cam", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap nuoc_chanh {
+            get {
+                object obj = ResourceManager.GetObject("nuoc_chanh", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap password {
             get {
                 object obj = ResourceManager.GetObject("password", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -243,7 +303,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap power_button {
+        public static System.Drawing.Bitmap power_button {
             get {
                 object obj = ResourceManager.GetObject("power-button", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -253,7 +313,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap restaurant_icon_design_vector {
+        public static System.Drawing.Bitmap restaurant_icon_design_vector {
             get {
                 object obj = ResourceManager.GetObject("restaurant-icon-design-vector", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -263,7 +323,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Screenshot_1 {
+        public static System.Drawing.Bitmap Screenshot_1 {
             get {
                 object obj = ResourceManager.GetObject("Screenshot_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -273,7 +333,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap search {
+        public static System.Drawing.Bitmap search {
             get {
                 object obj = ResourceManager.GetObject("search", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -283,7 +343,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap shopping {
+        public static System.Drawing.Bitmap shopping {
             get {
                 object obj = ResourceManager.GetObject("shopping", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -293,7 +353,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sting_vang {
+        public static System.Drawing.Bitmap sting_vang {
             get {
                 object obj = ResourceManager.GetObject("sting_vang", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -303,7 +363,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap top_up__1___2_ {
+        public static System.Drawing.Bitmap top_up__1___2_ {
             get {
                 object obj = ResourceManager.GetObject("top-up (1) (2)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -313,7 +373,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap user {
+        public static System.Drawing.Bitmap user {
             get {
                 object obj = ResourceManager.GetObject("user", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -323,7 +383,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap UserName {
+        public static System.Drawing.Bitmap UserName {
             get {
                 object obj = ResourceManager.GetObject("UserName", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -333,7 +393,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap View {
+        public static System.Drawing.Bitmap View {
             get {
                 object obj = ResourceManager.GetObject("View", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -343,7 +403,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap View1 {
+        public static System.Drawing.Bitmap View1 {
             get {
                 object obj = ResourceManager.GetObject("View1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -353,7 +413,7 @@ namespace NT106_Q14_DoAnGroup08.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ViewVer3 {
+        public static System.Drawing.Bitmap ViewVer3 {
             get {
                 object obj = ResourceManager.GetObject("ViewVer3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
