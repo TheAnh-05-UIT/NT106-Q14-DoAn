@@ -59,6 +59,12 @@
     <Reference Include="Azure.Identity, Version=1.18.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
       <HintPath>..\packages\Azure.Identity.1.18.0-beta.2\lib\netstandard2.0\Azure.Identity.dll</HintPath>
     </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=3.3.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.3.3.0\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml.Framework, Version=3.3.0.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.Framework.3.3.0\lib\net46\DocumentFormat.OpenXml.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="EPPlus, Version=8.4.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.8.4.0\lib\net462\EPPlus.dll</HintPath>
     </Reference>
@@ -297,12 +303,6 @@
     <Compile Include="ClientCustomer\frm_LockScreen.Designer.cs">
       <DependentUpon>frm_LockScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="ClientCustomer\frm_LockScreenVer2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ClientCustomer\frm_LockScreenVer2.Designer.cs">
-      <DependentUpon>frm_LockScreenVer2.cs</DependentUpon>
-    </Compile>
     <Compile Include="DAO\ApiClient.cs" />
     <Compile Include="DAO\ApiRequest.cs" />
     <Compile Include="ClientCustomer\frm_Customer_Note.cs">
@@ -506,9 +506,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClientCustomer\frm_LockScreen.resx">
       <DependentUpon>frm_LockScreen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ClientCustomer\frm_LockScreenVer2.resx">
-      <DependentUpon>frm_LockScreenVer2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClientStaff\frm_AddCustomer.resx">
       <DependentUpon>frm_AddCustomer.cs</DependentUpon>
