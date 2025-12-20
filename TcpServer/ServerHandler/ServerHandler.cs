@@ -1,12 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Concurrent;
-using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using TcpServer.Handlers;
@@ -185,7 +182,7 @@ namespace TcpServer.ServerHandler
                     case "delete_employee": response = handlerAdminCustomerAcc.HandleDeleteEmployee(obj.data); break;
 
                     case "GET_ALL_FOOD": response = handlerFood.HandleGetAllFood(); break;
-                   
+
                     case "GET_ALL_COMPUTERS_ADMIN": response = adminComputerHandler.HandleGetAllComputers(); break;
 
                     case "GET_ALL_CUSTOMERS": response = handlerCustomerHandler.HandleGetAllCustomers(); break;
@@ -234,7 +231,7 @@ namespace TcpServer.ServerHandler
 
                     case "DELETE_COMPUTER": response = adminComputerHandler.HandleDeleteComputer(obj.data); break;
                     case "ADD_COMPUTER": response = adminComputerHandler.HandleAddComputer(obj.data); break;
-                    case "UPDATE_COMPUTER": response = adminComputerHandler.HandleUpdateComputer(obj.data); break;
+                    case "UPDATE_COMPUTER": response = adminComputerHandler.HandleUpdateComputer(obj.data); break;
                     case "GET_COMPUTER_DETAILS": response = adminComputerHandler.HandleGetComputerDetails(obj.data); break;
 
                     case "FILTER_REVENUE": response = handlerRevenue.HandleRevenueFilter(obj.data); break;
@@ -244,7 +241,7 @@ namespace TcpServer.ServerHandler
                     case "ADD_IMPORT_GOOD": response = handlerImportGood.HandleAddImportGood(obj.data); break;
                     case "add_import_good": response = handlerImportGood.HandleAddImportGood(obj.data); break;
                     case "DELETE_IMPORT_GOOD": response = handlerImportGood.HandleDeleteImportGood(obj.data); break;
-                    case "delete_import_good": response = handlerImportGood.HandleDeleteImportGood(obj.data);  break;
+                    case "delete_import_good": response = handlerImportGood.HandleDeleteImportGood(obj.data); break;
                     case "GET_INFO_ADMIN": response = handlerAdmin.HandleGetAdminInfo(obj.data); break;
                     case "GET_INVOICES_BY_CUSTOMER": response = handlerInvoice.HandleGetInvoicesByCustomerAndService(obj.data); break;
                     case "GET_INVOICE_DETAILS": response = handlerInvoice.HandleGetInvoiceDetails(obj.data); break;

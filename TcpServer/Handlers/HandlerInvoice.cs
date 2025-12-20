@@ -3,9 +3,6 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Xml.Linq;
-using static Guna.UI2.Native.WinApi;
 
 namespace TcpServer.Handlers
 {
@@ -83,7 +80,7 @@ namespace TcpServer.Handlers
                     Console.WriteLine($"HandlerNotification: invoice '{addInfo}' not found in DB.");
                     messages += " Không tìm thấy mã hóa đơn";
                 }
-                
+
                 return new { status = "success", data = ConvertDataTableToJson(dt), messages = messages };
             }
             catch (Exception ex)

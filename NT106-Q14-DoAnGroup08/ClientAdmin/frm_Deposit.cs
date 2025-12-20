@@ -1,6 +1,6 @@
-﻿using Newtonsoft.Json;
-using NewNet_Manager.ConnectionServser;
+﻿using NewNet_Manager.ConnectionServser;
 using NewNet_Manager.DTO;
+using Newtonsoft.Json;
 using System;
 using System.Drawing;
 using System.Windows.Forms;

@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using NewNet_Customer.ConnectionServser;
+﻿using NewNet_Customer.ConnectionServser;
+using Newtonsoft.Json;
 using QuanLyQuanNet.Utils;
 using System;
 using System.Drawing;

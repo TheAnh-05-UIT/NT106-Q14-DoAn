@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using TcpServer;
 
 namespace TcpServer.Handlers
 {
@@ -101,7 +99,7 @@ namespace TcpServer.Handlers
             return new RevenueResponse
             {
                 Details = details,
-                ChartData = details, 
+                ChartData = details,
                 ChartTitle = $"Doanh thu ngày {date.ToShortDateString()}",
                 StartDate = date.Date,
                 EndDate = date.Date,
@@ -127,7 +125,7 @@ namespace TcpServer.Handlers
                             WHERE CreatedAt >= @NgayBatDau
                               AND CreatedAt < DATEADD(day, 1, @NgayKetThuc)
                             ORDER BY CreatedAt";
-            DataTable details = db.ExecuteQuery(queryDetails, prmsDetails); 
+            DataTable details = db.ExecuteQuery(queryDetails, prmsDetails);
             SqlParameter[] prmsChart = {
         new SqlParameter("@NgayBatDau", startOfWeek.ToString("yyyy-MM-dd")),
         new SqlParameter("@NgayKetThuc", endOfWeek.ToString("yyyy-MM-dd"))
@@ -139,7 +137,7 @@ namespace TcpServer.Handlers
                             AND CreatedAt < DATEADD(day, 1, @NgayKetThuc)
                           GROUP BY CAST(CreatedAt AS DATE)
                           ORDER BY [Ngày]";
-            DataTable chartData = db.ExecuteQuery(queryChart, prmsChart); 
+            DataTable chartData = db.ExecuteQuery(queryChart, prmsChart);
 
             decimal totalRevenue = details.AsEnumerable().Sum(row => row.Field<decimal>("Số tiền (VND)"));
 
@@ -168,7 +166,7 @@ namespace TcpServer.Handlers
                             WHERE YEAR(CreatedAt) = @nam
                               AND MONTH(CreatedAt) = @thang
                             ORDER BY CreatedAt";
-            DataTable details = db.ExecuteQuery(queryDetails, prmsDetails); 
+            DataTable details = db.ExecuteQuery(queryDetails, prmsDetails);
 
             SqlParameter[] prmsChart = {
         new SqlParameter("@thang", date.Month),
@@ -181,7 +179,7 @@ namespace TcpServer.Handlers
                             AND MONTH(CreatedAt) = @thang
                           GROUP BY DAY(CreatedAt)
                           ORDER BY [Ngày]";
-            DataTable chartData = db.ExecuteQuery(queryChart, prmsChart); 
+            DataTable chartData = db.ExecuteQuery(queryChart, prmsChart);
 
             decimal totalRevenue = details.AsEnumerable().Sum(row => row.Field<decimal>("Số tiền (VND)"));
 
@@ -206,7 +204,7 @@ namespace TcpServer.Handlers
                             FROM Invoices
                             WHERE YEAR(CreatedAt) = @nam
                             ORDER BY CreatedAt";
-            DataTable details = db.ExecuteQuery(queryDetails, prmsDetails); 
+            DataTable details = db.ExecuteQuery(queryDetails, prmsDetails);
             SqlParameter[] prmsChart = { new SqlParameter("@nam", date.Year) };
             string queryChart = @"SELECT MONTH(CreatedAt) AS [Tháng],
                                  SUM(TotalAmount) AS [Tổng tiền]
@@ -214,7 +212,7 @@ namespace TcpServer.Handlers
                           WHERE YEAR(CreatedAt) = @nam
                           GROUP BY MONTH(CreatedAt)
                           ORDER BY [Tháng]";
-            DataTable chartData = db.ExecuteQuery(queryChart, prmsChart); 
+            DataTable chartData = db.ExecuteQuery(queryChart, prmsChart);
 
             decimal totalRevenue = details.AsEnumerable().Sum(row => row.Field<decimal>("Số tiền (VND)"));
 

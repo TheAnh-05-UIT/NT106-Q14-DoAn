@@ -32,7 +32,7 @@ namespace TcpServer.Handlers
             string query = @"SELECT f.FoodId, f.FoodName, f.Price, f.Image, c.CategoryName, c.CategoryId
                              FROM FoodAndDrink f
                              LEFT JOIN Category c ON f.CategoryId = c.CategoryId";
-            
+
             DataTable dt = db.ExecuteQuery(query);
             return new { status = "success", data = ConvertDataTableToJson(dt) };
         }
@@ -52,7 +52,7 @@ namespace TcpServer.Handlers
             VALUES ('{invoiceId}', '{sessionId}', '{customerId}', {totalAmount})";
 
             int result = db.ExecuteNonQuery(query);
-            server.notifyToStaff(new { type = "accept_paid_food", data = new { accountName = customerId, amount = totalAmount, addInfo = invoiceId, session = sessionId} });
+            server.notifyToStaff(new { type = "accept_paid_food", data = new { accountName = customerId, amount = totalAmount, addInfo = invoiceId, session = sessionId } });
 
             return new { status = result > 0 ? "success" : "fail" };
         }

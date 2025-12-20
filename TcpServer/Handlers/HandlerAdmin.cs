@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TcpServer.Handlers
 {
@@ -20,7 +15,7 @@ namespace TcpServer.Handlers
         {
             try
             {
-                string userid = ((string)data.userId).Trim();                
+                string userid = ((string)data.userId).Trim();
                 string query = $"SELECT Username, FullName FROM Users WHERE UserId = '{userid}'";
                 DataTable dt = db.ExecuteQuery(query);
                 DataRow row = (dt.Rows.Count > 0) ? dt.Rows[0] : null;
@@ -30,7 +25,7 @@ namespace TcpServer.Handlers
                     {
                         UserName = row["Username"].ToString(),
                         FullName = row["FullName"].ToString(),
-                       // AdminRole = row["Role"].ToString()
+                        // AdminRole = row["Role"].ToString()
                     };
                     return new { status = "success", data = adminDetails };
                 }

@@ -13,7 +13,7 @@ namespace TcpServer.ServerHandler
         public string CertificateThumbprint { get; set; } = null;
 
         // Optional API key required in header "X-Api-Key" (or "Authorization: ApiKey <key>"). If null or empty, API key is not required.
-        public string ApiKey { get; set; } = null ;
+        public string ApiKey { get; set; } = null;
 
         // Maximum request body size in bytes (default 10KB)
         public int MaxRequestBodyBytes { get; set; } = 10 * 1024;
