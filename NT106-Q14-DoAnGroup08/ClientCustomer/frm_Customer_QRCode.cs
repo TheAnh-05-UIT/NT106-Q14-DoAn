@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NT106_Q14_DoAnGroup08.ClientCustomer
@@ -21,7 +13,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         public frm_Customer_QRCode(string base64, int Amount, string userId)
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             base64QR = base64;
             amount = Amount;
             _userid = userId;

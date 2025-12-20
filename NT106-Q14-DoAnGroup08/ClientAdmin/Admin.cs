@@ -1,17 +1,9 @@
-﻿using Guna.UI2.WinForms;
-using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
+﻿using NT106_Q14_DoAnGroup08.ConnectionServser;
 using NT106_Q14_DoAnGroup08.Uc_Staff;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace NT106_Q14_DoAnGroup08.ClientAdmin
 {
@@ -20,10 +12,10 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
         private string adminUserId;
         private string adminFullName;
         private string adminUserName;
-       // private string RoleUser;
+        // private string RoleUser;
         public Admin(string userId, string fullName)
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             adminUserId = userId;
             adminFullName = fullName;
             getAdminInfo(adminUserId);
@@ -47,7 +39,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                 if (response.status == "success")
                 {
                     dynamic adminData = response.data;
-                    adminUserName = adminData.UserName; 
+                    adminUserName = adminData.UserName;
                     adminFullName = adminData.FullName;
                     //RoleUser = adminData.AdminRole;
                 }
@@ -65,7 +57,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
         private void Admin_Load(object sender, EventArgs e)
         {
             frm_Account_Admin f = new frm_Account_Admin();
-             f.changeLblTitle(adminUserName, adminFullName);
+            f.changeLblTitle(adminUserName, adminFullName);
             openChildForm(f);
         }
         private void openChildForm(Form childForm)
@@ -115,7 +107,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
 
         private void btnChat_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnAccount_Click(object sender, EventArgs e)
@@ -143,7 +135,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
             {
                 try
                 {
-                    ClientCustomer.frm_LockScreen f  = new ClientCustomer.frm_LockScreen();
+                    ClientCustomer.frm_LockScreen f = new ClientCustomer.frm_LockScreen();
                     this.Hide();
                     f.ShowDialog();
                     this.Close();

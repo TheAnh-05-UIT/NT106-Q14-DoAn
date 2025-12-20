@@ -1,14 +1,7 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using NT106_Q14_DoAnGroup08.ConnectionServser;
 using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
-using QuanLyQuanNet.DTOs;
 using System;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NT106_Q14_DoAnGroup08.ClientCustomer
@@ -35,7 +28,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         public frm_Customer(string userId)
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             _userId = userId;
         }
 

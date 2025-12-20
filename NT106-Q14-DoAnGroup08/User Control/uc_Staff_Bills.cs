@@ -1,6 +1,5 @@
-﻿using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ClientCustomer;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
+﻿using NT106_Q14_DoAnGroup08.ConnectionServser;
+using Newtonsoft.Json;
 using System;
 using System.Data;
 using System.IO;
@@ -313,7 +312,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
         private void FilterChanged(object sender, EventArgs e)
         {
-             ApplyFilter();
+            ApplyFilter();
         }
 
         private void dataGridViewBills_CellContentClick(object sender, DataGridViewCellEventArgs e)

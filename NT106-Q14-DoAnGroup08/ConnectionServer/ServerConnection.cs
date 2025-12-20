@@ -30,7 +30,7 @@ namespace NT106_Q14_DoAnGroup08.ConnectionServser
                                 ms.Write(buffer, 0, bytesRead);
                             }
 
-    
+
                             return Encoding.UTF8.GetString(ms.ToArray());
                         }
                     }

@@ -1,14 +1,8 @@
-﻿using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
-using QuanLyQuanNet.DTOs;
+﻿using NT106_Q14_DoAnGroup08.ConnectionServser;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NT106_Q14_DoAnGroup08.ClientAdmin
@@ -18,9 +12,9 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
         private string selectedComputerId = "";
         public frm_Admin_ComputerManagement()
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         }
-       
+
         private void BtnComputer_Click(object sender, EventArgs e)
         {
             Button clickedBtn = sender as Button;
@@ -28,8 +22,8 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
         }
         private void UpdateStatistics(DataTable dt)
         {
-            int countInUse = 0;      
-            int countAvailable = 0;  
+            int countInUse = 0;
+            int countAvailable = 0;
             int countMaintenance = 0;
             foreach (DataRow row in dt.Rows)
             {
@@ -56,7 +50,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
         private void GenerateComputerControls(DataTable dt)
         {
             flpComputers.Controls.Clear();
-            selectedComputerId = ""; 
+            selectedComputerId = "";
 
             foreach (DataRow row in dt.Rows)
             {
@@ -64,7 +58,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                 btn.Width = 100;
                 btn.Height = 100;
                 btn.Text = row["ComputerName"].ToString() + "\n" + row["Status"].ToString();
-                btn.Tag = row["ComputerId"].ToString(); 
+                btn.Tag = row["ComputerId"].ToString();
                 btn.Font = new Font("Arial", 10, FontStyle.Bold);
                 btn.FlatStyle = FlatStyle.Flat;
                 string status = row["Status"].ToString();
@@ -161,7 +155,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                 MessageBox.Show("Vui lòng chọn máy để xóa.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(MessageBox.Show("Bạn muốn XÓA máy này ra khỏi hệ thống máy?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn muốn XÓA máy này ra khỏi hệ thống máy?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 DeleteComputer(selectedComputerId);
             }

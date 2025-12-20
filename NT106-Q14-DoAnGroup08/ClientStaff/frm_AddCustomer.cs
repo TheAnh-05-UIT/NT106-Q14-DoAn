@@ -1,16 +1,8 @@
-﻿using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
+﻿using NT106_Q14_DoAnGroup08.ConnectionServser;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {
@@ -19,7 +11,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         private bool isEditMode = false;
         public frm_AddCustomer()
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             isEditMode = false;
             this.Text = "Thêm khách hàng mới";
         }

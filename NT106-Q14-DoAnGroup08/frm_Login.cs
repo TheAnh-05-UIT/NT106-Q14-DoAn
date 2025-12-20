@@ -1,19 +1,9 @@
-﻿using Azure;
+﻿using NT106_Q14_DoAnGroup08.ConnectionServser;
 using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ClientAdmin;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
-using QuanLyQuanNet.DAO;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using QuanLyQuanNet.Utils;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace NT106_Q14_DoAnGroup08
 {
@@ -23,7 +13,7 @@ namespace NT106_Q14_DoAnGroup08
         public event LoginSuccessHandler LoginSuccess;
         public frm_Login()
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         }
 
         private void btn_Login_Click(object sender, EventArgs e)
@@ -101,7 +91,8 @@ namespace NT106_Q14_DoAnGroup08
                             });
                             this.Hide();
                         }
-                        else {
+                        else
+                        {
                             ClientCustomer.frm_Customer customerForm = new ClientCustomer.frm_Customer(obj.userId);
                             DTO.UserSession.NextForm = customerForm;
                             LoginSuccess?.Invoke();
@@ -192,7 +183,7 @@ namespace NT106_Q14_DoAnGroup08
 
         private void frm_Login_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void txt_Password_TextChanged(object sender, EventArgs e)

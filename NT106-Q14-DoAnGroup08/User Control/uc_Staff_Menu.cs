@@ -1,10 +1,7 @@
-﻿using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
-using NT106_Q14_DoAnGroup08.DAO;
+﻿using NT106_Q14_DoAnGroup08.ConnectionServser;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -206,7 +203,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             }
             catch (Exception ex)
             {
-                 MessageBox.Show("Lỗi tải hóa đơn: " + ex.Message);
+                MessageBox.Show("Lỗi tải hóa đơn: " + ex.Message);
             }
         }
 

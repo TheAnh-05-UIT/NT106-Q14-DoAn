@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuanLyQuanNet.DTOs
 {
@@ -37,7 +34,7 @@ namespace QuanLyQuanNet.DTOs
         public string CustomerId { get => this.customerId; set => this.customerId = value; }
         public DateTime CreateAt { get => this.createdAt; set => this.createdAt = value; }
         public double Total { get => this.total; set => this.total = value; }
-        public List<Service> Services { get => this.services;}
+        public List<Service> Services { get => this.services; }
     }
 
 }

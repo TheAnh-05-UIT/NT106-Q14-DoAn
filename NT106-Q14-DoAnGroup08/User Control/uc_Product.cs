@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NT106_Q14_DoAnGroup08.Uc_Staff
@@ -20,7 +14,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
         public event EventHandler onselect = null;
 
-        public int Id {get;set;}
+        public int Id { get; set; }
         public string FoodName
         {
             get { return lblName.Text; }
@@ -30,8 +24,8 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
         public string FoodCategory { get; set; }
 
-        public Image FoodImage 
-        { 
+        public Image FoodImage
+        {
             get { return txtImage.Image; }
             set { txtImage.Image = value; }
         }

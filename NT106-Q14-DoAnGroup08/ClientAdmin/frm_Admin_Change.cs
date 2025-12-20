@@ -1,14 +1,7 @@
-﻿using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
-using QuanLyQuanNet.DTOs;
+﻿using NT106_Q14_DoAnGroup08.ConnectionServser;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NT106_Q14_DoAnGroup08.ClientAdmin
@@ -18,7 +11,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
         private string _computerId;
         public frm_Admin_Change(string computerId)
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             _computerId = computerId.Trim();
             txtID.Text = _computerId;
             txtID.ReadOnly = true;
@@ -53,7 +46,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                 else
                 {
                     MessageBox.Show("Lỗi tải thông tin máy: " + response.message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.Close(); 
+                    this.Close();
                 }
             }
             catch (Exception ex)
@@ -63,17 +56,17 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
             }
         }
 
-     
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-              
+
                 decimal pricePerHourValue;
                 if (!decimal.TryParse(txtPrice.Text.Trim(), out pricePerHourValue))
                 {
                     MessageBox.Show("Giá tiền không hợp lệ. Vui lòng kiểm tra lại.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; 
+                    return;
                 }
 
                 var request = new
@@ -85,7 +78,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                         ComputerName = txtName.Text.Trim(),
                         Status = cobStatus.Text.Trim(),
                         IpAddress = txtIP.Text.Trim(),
-                        PricePerHour = pricePerHourValue 
+                        PricePerHour = pricePerHourValue
                     }
                 };
 
