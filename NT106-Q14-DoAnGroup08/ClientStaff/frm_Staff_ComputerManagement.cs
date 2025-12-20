@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
+using NewNet_Manager.ConnectionServser;
 using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NT106_Q14_DoAnGroup08.ClientStaff
+namespace NewNet_Manager.ClientStaff
 {
     public partial class frm_Staff_ComputerManagement : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace NT106_Q14_DoAnGroup08.ClientCustomer
+﻿namespace NewNet_Customer.ClientCustomer
 {
     partial class frm_Customer_TopUp
     {

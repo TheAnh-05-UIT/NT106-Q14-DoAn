@@ -1,4 +1,4 @@
-﻿namespace NT106_Q14_DoAnGroup08.Uc_Staff
+﻿namespace NewNet_Manager.Uc_Staff
 {
     partial class uc_Staff_Account
     {

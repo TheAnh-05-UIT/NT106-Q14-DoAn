@@ -1,4 +1,4 @@
-﻿namespace NT106_Q14_DoAnGroup08.Uc_Staff
+﻿namespace NewNet_Customer.Uc_Staff
 {
     partial class uc_Product
     {
@@ -82,7 +82,7 @@
             // 
             // txtImage
             // 
-            this.txtImage.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.mi_nuoc;
+            this.txtImage.Image = global::NewNet_Customer.Properties.Resources.mi_nuoc;
             this.txtImage.ImageRotate = 0F;
             this.txtImage.Location = new System.Drawing.Point(22, 19);
             this.txtImage.Name = "txtImage";

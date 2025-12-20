@@ -1,4 +1,4 @@
-﻿namespace NT106_Q14_DoAnGroup08.ClientCustomer
+﻿namespace NewNet_Customer.ClientCustomer
 {
     partial class frm_LockScreen
     {
@@ -56,7 +56,7 @@
             // pictureBoxNet
             // 
             this.pictureBoxNet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxNet.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.kinh_nghiem_kinh_doanh_quan_net_thanh_cong_toi_uu_chi_phi;
+            this.pictureBoxNet.Image = global::NewNet_Customer.Properties.Resources.kinh_nghiem_kinh_doanh_quan_net_thanh_cong_toi_uu_chi_phi;
             this.pictureBoxNet.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxNet.Name = "pictureBoxNet";
             this.pictureBoxNet.Size = new System.Drawing.Size(1251, 450);

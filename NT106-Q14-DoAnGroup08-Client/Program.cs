@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace NT106_Q14_DoAnGroup08
+namespace NewNet_Customer
 {
     internal static class Program
     {

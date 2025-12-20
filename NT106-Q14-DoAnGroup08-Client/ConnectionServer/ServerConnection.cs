@@ -4,7 +4,7 @@ using System.IO;
 using System.Net.Sockets;
 using System.Text;
 
-namespace NT106_Q14_DoAnGroup08.ConnectionServser
+namespace NewNet_Customer.ConnectionServser
 {
     public static class ServerConnection
     {

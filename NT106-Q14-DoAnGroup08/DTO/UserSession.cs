@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace NT106_Q14_DoAnGroup08.DTO
+namespace NewNet_Manager.DTO
 {
     public static class UserSession
     {

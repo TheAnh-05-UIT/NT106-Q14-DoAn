@@ -1,4 +1,4 @@
-﻿namespace NT106_Q14_DoAnGroup08.ClientAdmin
+﻿namespace NewNet_Manager.ClientAdmin
 {
     partial class Admin_CustomerAccountManagement
     {
@@ -128,7 +128,7 @@
             // pb_TimKiem
             // 
             this.pb_TimKiem.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pb_TimKiem.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources._1;
+            this.pb_TimKiem.Image = global::NewNet_Manager.Properties.Resources._1;
             this.pb_TimKiem.Location = new System.Drawing.Point(1288, 28);
             this.pb_TimKiem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pb_TimKiem.Name = "pb_TimKiem";

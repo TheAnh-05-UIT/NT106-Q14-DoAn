@@ -1,4 +1,4 @@
-﻿namespace NT106_Q14_DoAnGroup08.ClientStaff
+﻿namespace NewNet_Manager.ClientStaff
 {
     partial class frm_Staff
     {

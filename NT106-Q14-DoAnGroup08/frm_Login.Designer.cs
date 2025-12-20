@@ -1,4 +1,4 @@
-﻿namespace NT106_Q14_DoAnGroup08
+﻿namespace NewNet_Manager
 {
     partial class frm_Login
     {
@@ -92,7 +92,7 @@
             // 
             // pictureBoxPass
             // 
-            this.pictureBoxPass.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.password;
+            this.pictureBoxPass.Image = global::NewNet_Manager.Properties.Resources.password;
             this.pictureBoxPass.Location = new System.Drawing.Point(127, 288);
             this.pictureBoxPass.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxPass.Name = "pictureBoxPass";
@@ -103,7 +103,7 @@
             // 
             // pictureUserName
             // 
-            this.pictureUserName.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.user;
+            this.pictureUserName.Image = global::NewNet_Manager.Properties.Resources.user;
             this.pictureUserName.Location = new System.Drawing.Point(127, 214);
             this.pictureUserName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureUserName.Name = "pictureUserName";
@@ -114,7 +114,7 @@
             // 
             // pictureBoxUser
             // 
-            this.pictureBoxUser.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.UserName;
+            this.pictureBoxUser.Image = global::NewNet_Manager.Properties.Resources.UserName;
             this.pictureBoxUser.Location = new System.Drawing.Point(227, 15);
             this.pictureBoxUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxUser.Name = "pictureBoxUser";

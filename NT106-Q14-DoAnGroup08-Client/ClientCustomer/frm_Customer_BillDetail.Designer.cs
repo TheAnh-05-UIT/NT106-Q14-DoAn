@@ -1,4 +1,4 @@
-﻿namespace NT106_Q14_DoAnGroup08.ClientCustomer
+﻿namespace NewNet_Customer.ClientCustomer
 {
     partial class frm_Customer_BillDetail
     {
@@ -55,7 +55,7 @@
             // 
             this.guna2PictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.guna2PictureBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(32)))), ((int)(((byte)(63)))));
-            this.guna2PictureBox1.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.close;
+            this.guna2PictureBox1.Image = global::NewNet_Customer.Properties.Resources.close;
             this.guna2PictureBox1.ImageRotate = 0F;
             this.guna2PictureBox1.Location = new System.Drawing.Point(805, 29);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
@@ -81,7 +81,7 @@
             // guna2CirclePictureBox1
             // 
             this.guna2CirclePictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2CirclePictureBox1.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.invoice;
+            this.guna2CirclePictureBox1.Image = global::NewNet_Customer.Properties.Resources.invoice;
             this.guna2CirclePictureBox1.ImageRotate = 0F;
             this.guna2CirclePictureBox1.Location = new System.Drawing.Point(28, 12);
             this.guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";

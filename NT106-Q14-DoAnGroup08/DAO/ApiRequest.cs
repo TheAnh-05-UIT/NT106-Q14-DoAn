@@ -1,4 +1,4 @@
-﻿namespace NT106_Q14_DoAnGroup08
+﻿namespace NewNet_Manager
 {
     public class ApiRequest
     {

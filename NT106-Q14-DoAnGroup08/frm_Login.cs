@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
+using NewNet_Manager.ConnectionServser;
 using QuanLyQuanNet.Utils;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NT106_Q14_DoAnGroup08
+namespace NewNet_Manager
 {
     public partial class frm_Login : Form
     {

@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
+using NewNet_Manager.ConnectionServser;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace NT106_Q14_DoAnGroup08.ClientAdmin
+namespace NewNet_Manager.ClientAdmin
 {
     public class RevenueDataResponse
     {

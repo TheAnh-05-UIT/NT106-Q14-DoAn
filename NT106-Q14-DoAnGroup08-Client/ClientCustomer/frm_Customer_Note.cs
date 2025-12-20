@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NT106_Q14_DoAnGroup08.ClientCustomer
+namespace NewNet_Customer.ClientCustomer
 {
     public partial class frm_Customer_Note : CustomForm
     {

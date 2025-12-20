@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace NT106_Q14_DoAnGroup08
+namespace NewNet_Customer
 {
     public class CustomForm : Form
     {

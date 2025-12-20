@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A41B922C-EA65-420B-816C-A112C1AAF59B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>NT106_Q14_DoAnGroup08</RootNamespace>
-    <AssemblyName>NT106_Q14_DoAnGroup08</AssemblyName>
+    <RootNamespace>NewNet_Customer</RootNamespace>
+    <AssemblyName>NewNet_Customer</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

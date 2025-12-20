@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
 
-namespace NT106_Q14_DoAnGroup08.ClientStaff
+namespace NewNet_Manager.ClientStaff
 {
     public partial class frm_Staff : Form
     {
@@ -269,7 +269,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
             Notification.createItem(title, content, btnContent, time, additionalMethod, updateNotificationCount);
             updateNotificationCount();
             Control focusedControl = this.ActiveControl;
-            if (focusedControl?.GetType().ToString() != "NT106_Q14_DoAnGroup08.Uc_Staff.uc_Staff_Notification")
+            if (focusedControl?.GetType().ToString() != "NewNet_Manager.Uc_Staff.uc_Staff_Notification")
             {
                 SystemSounds.Asterisk.Play();
                 groupBox1.BackColor = Color.Red;
@@ -283,7 +283,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
         private void UserPanel_Enter(object sender, EventArgs e)
         {
             Control focusedControl = this.ActiveControl;
-            if (focusedControl?.GetType().ToString() == "NT106_Q14_DoAnGroup08.Uc_Staff.uc_Staff_Notification")
+            if (focusedControl?.GetType().ToString() == "NewNet_Manager.Uc_Staff.uc_Staff_Notification")
             {
                 groupBox1.BackColor = Color.White;
                 groupBox1.ForeColor = Color.Black;

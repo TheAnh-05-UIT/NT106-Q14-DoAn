@@ -1,4 +1,4 @@
-﻿namespace NT106_Q14_DoAnGroup08.ClientCustomer
+﻿namespace NewNet_Customer.ClientCustomer
 {
     partial class frm_Customer_Note
     {
@@ -105,7 +105,7 @@
             this.btn_Confirm.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(239)))), ((int)(((byte)(209)))));
             this.btn_Confirm.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btn_Confirm.ForeColor = System.Drawing.Color.Black;
-            this.btn_Confirm.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.confirmation;
+            this.btn_Confirm.Image = global::NewNet_Customer.Properties.Resources.confirmation;
             this.btn_Confirm.ImageSize = new System.Drawing.Size(22, 22);
             this.btn_Confirm.Location = new System.Drawing.Point(413, 410);
             this.btn_Confirm.Name = "btn_Confirm";
@@ -127,7 +127,7 @@
             this.btn_Cancel.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(239)))), ((int)(((byte)(209)))));
             this.btn_Cancel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btn_Cancel.ForeColor = System.Drawing.Color.Black;
-            this.btn_Cancel.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.delete;
+            this.btn_Cancel.Image = global::NewNet_Customer.Properties.Resources.delete;
             this.btn_Cancel.ImageSize = new System.Drawing.Size(22, 22);
             this.btn_Cancel.Location = new System.Drawing.Point(43, 410);
             this.btn_Cancel.Name = "btn_Cancel";
@@ -139,7 +139,7 @@
             // guna2CirclePictureBox1
             // 
             this.guna2CirclePictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2CirclePictureBox1.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.restaurant_icon_design_vector;
+            this.guna2CirclePictureBox1.Image = global::NewNet_Customer.Properties.Resources.restaurant_icon_design_vector;
             this.guna2CirclePictureBox1.ImageRotate = 0F;
             this.guna2CirclePictureBox1.Location = new System.Drawing.Point(28, 12);
             this.guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";

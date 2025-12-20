@@ -1,4 +1,4 @@
-﻿namespace NT106_Q14_DoAnGroup08.ClientAdmin
+﻿namespace NewNet_Manager.ClientAdmin
 {
     partial class frm_Deposit
     {

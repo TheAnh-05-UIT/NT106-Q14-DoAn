@@ -1,4 +1,4 @@
-﻿namespace NT106_Q14_DoAnGroup08.ClientCustomer
+﻿namespace NewNet_Customer.ClientCustomer
 {
     partial class frm_Customer_FoodMenu
     {
@@ -313,7 +313,7 @@
             this.txt_Search.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txt_Search.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txt_Search.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txt_Search.IconLeft = global::NT106_Q14_DoAnGroup08.Properties.Resources.search;
+            this.txt_Search.IconLeft = global::NewNet_Customer.Properties.Resources.search;
             this.txt_Search.Location = new System.Drawing.Point(268, 191);
             this.txt_Search.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.txt_Search.Name = "txt_Search";
@@ -327,7 +327,7 @@
             // 
             this.btn_Exit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Exit.BackColor = System.Drawing.Color.Transparent;
-            this.btn_Exit.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.power_button;
+            this.btn_Exit.Image = global::NewNet_Customer.Properties.Resources.power_button;
             this.btn_Exit.ImageRotate = 0F;
             this.btn_Exit.Location = new System.Drawing.Point(2060, 21);
             this.btn_Exit.Name = "btn_Exit";
@@ -342,7 +342,7 @@
             // guna2CirclePictureBox1
             // 
             this.guna2CirclePictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2CirclePictureBox1.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.restaurant_icon_design_vector;
+            this.guna2CirclePictureBox1.Image = global::NewNet_Customer.Properties.Resources.restaurant_icon_design_vector;
             this.guna2CirclePictureBox1.ImageRotate = 0F;
             this.guna2CirclePictureBox1.Location = new System.Drawing.Point(28, 12);
             this.guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
@@ -366,7 +366,7 @@
             this.btn_Order.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(239)))), ((int)(((byte)(209)))));
             this.btn_Order.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btn_Order.ForeColor = System.Drawing.Color.Black;
-            this.btn_Order.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.checkout;
+            this.btn_Order.Image = global::NewNet_Customer.Properties.Resources.checkout;
             this.btn_Order.ImageSize = new System.Drawing.Size(22, 22);
             this.btn_Order.Location = new System.Drawing.Point(1573, 30);
             this.btn_Order.Name = "btn_Order";
@@ -388,7 +388,7 @@
             this.btn_Bill.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(239)))), ((int)(((byte)(209)))));
             this.btn_Bill.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btn_Bill.ForeColor = System.Drawing.Color.Black;
-            this.btn_Bill.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.bill;
+            this.btn_Bill.Image = global::NewNet_Customer.Properties.Resources.bill;
             this.btn_Bill.ImageSize = new System.Drawing.Size(25, 25);
             this.btn_Bill.Location = new System.Drawing.Point(853, 30);
             this.btn_Bill.Name = "btn_Bill";
@@ -411,7 +411,7 @@
             this.btn_New.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(239)))), ((int)(((byte)(209)))));
             this.btn_New.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btn_New.ForeColor = System.Drawing.Color.Black;
-            this.btn_New.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.shopping;
+            this.btn_New.Image = global::NewNet_Customer.Properties.Resources.shopping;
             this.btn_New.ImageSize = new System.Drawing.Size(28, 28);
             this.btn_New.Location = new System.Drawing.Point(1095, 30);
             this.btn_New.Name = "btn_New";
@@ -434,7 +434,7 @@
             this.btn_Note.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(239)))), ((int)(((byte)(209)))));
             this.btn_Note.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btn_Note.ForeColor = System.Drawing.Color.Black;
-            this.btn_Note.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.notes;
+            this.btn_Note.Image = global::NewNet_Customer.Properties.Resources.notes;
             this.btn_Note.ImageSize = new System.Drawing.Size(22, 22);
             this.btn_Note.Location = new System.Drawing.Point(1335, 30);
             this.btn_Note.Name = "btn_Note";

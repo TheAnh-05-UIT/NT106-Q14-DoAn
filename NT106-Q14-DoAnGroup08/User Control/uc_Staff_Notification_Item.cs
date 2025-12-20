@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace NT106_Q14_DoAnGroup08.Uc_Staff
+namespace NewNet_Manager.Uc_Staff
 {
     public partial class uc_Staff_Notification_Item : UserControl
     {

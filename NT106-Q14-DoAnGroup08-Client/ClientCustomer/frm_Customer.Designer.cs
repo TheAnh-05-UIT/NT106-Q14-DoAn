@@ -1,4 +1,4 @@
-﻿namespace NT106_Q14_DoAnGroup08.ClientCustomer
+﻿namespace NewNet_Customer.ClientCustomer
 {
     partial class frm_Customer
     {
@@ -121,7 +121,7 @@
             // 
             // btn_TopUp
             // 
-            this.btn_TopUp.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.top_up__1___2_;
+            this.btn_TopUp.Image = global::NewNet_Customer.Properties.Resources.top_up__1___2_;
             this.btn_TopUp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btn_TopUp.Location = new System.Drawing.Point(9, 245);
             this.btn_TopUp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -136,7 +136,7 @@
             // 
             // btnLogOut
             // 
-            this.btnLogOut.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.logout__1_;
+            this.btnLogOut.Image = global::NewNet_Customer.Properties.Resources.logout__1_;
             this.btnLogOut.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnLogOut.Location = new System.Drawing.Point(174, 169);
             this.btnLogOut.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -151,7 +151,7 @@
             // 
             // btn_FoodMenu
             // 
-            this.btn_FoodMenu.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.food__1_;
+            this.btn_FoodMenu.Image = global::NewNet_Customer.Properties.Resources.food__1_;
             this.btn_FoodMenu.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btn_FoodMenu.Location = new System.Drawing.Point(89, 169);
             this.btn_FoodMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -166,7 +166,7 @@
             // 
             // btn_Chat
             // 
-            this.btn_Chat.Image = global::NT106_Q14_DoAnGroup08.Properties.Resources.chat__1___1___1___1_;
+            this.btn_Chat.Image = global::NewNet_Customer.Properties.Resources.chat__1___1___1___1_;
             this.btn_Chat.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btn_Chat.Location = new System.Drawing.Point(9, 169);
             this.btn_Chat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);

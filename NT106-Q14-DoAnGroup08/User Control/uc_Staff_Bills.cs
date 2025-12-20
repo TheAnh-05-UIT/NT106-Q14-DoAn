@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
+using NewNet_Manager.ConnectionServser;
 using System;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace NT106_Q14_DoAnGroup08.Uc_Staff
+namespace NewNet_Manager.Uc_Staff
 {
     public partial class uc_Staff_Bills : UserControl
     {

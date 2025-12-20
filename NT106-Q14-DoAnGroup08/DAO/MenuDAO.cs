@@ -1,4 +1,4 @@
-﻿namespace NT106_Q14_DoAnGroup08.DAO
+﻿namespace NewNet_Manager.DAO
 {
     internal class MenuDAO
     {

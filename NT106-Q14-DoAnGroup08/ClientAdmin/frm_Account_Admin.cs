@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NT106_Q14_DoAnGroup08.ClientAdmin
+namespace NewNet_Manager.ClientAdmin
 {
     public partial class frm_Account_Admin : Form
     {

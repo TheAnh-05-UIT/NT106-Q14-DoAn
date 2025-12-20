@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json.Linq;
-using NT106_Q14_DoAnGroup08.Uc_Staff;
+using NewNet_Customer.Uc_Staff;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NT106_Q14_DoAnGroup08.ClientCustomer
+namespace NewNet_Customer.ClientCustomer
 {
     public partial class frm_Customer_FoodMenu : CustomForm
     {
