@@ -23,7 +23,6 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         private void frm_Customer_BillDetail_Load(object sender, EventArgs e)
         {
             var res = ApiClient.Client.Send(new { action = "get_invoices_details", invoiceId = this.invoiceId });
-            MessageBox.Show(res?.ToString() ?? "res null");
             if (res == null || res.status != "success")
             {
                 MessageBox.Show("Không tải được chi tiết!");

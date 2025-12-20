@@ -95,7 +95,6 @@ namespace TcpServer.Handlers
 
         public object HandleGetAllInvoices()
         {
-            // Select explicit columns from Invoices and InvoiceDetails and include product/service names
             string query = @"SELECT i.InvoiceId,
                                     i.SessionId,
                                     i.CustomerId,

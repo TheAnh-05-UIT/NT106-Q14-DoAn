@@ -65,7 +65,6 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                     billsTable = new DataTable();
                     billsTable.Columns.Add("Id", typeof(string));
                     billsTable.Columns.Add("Date", typeof(DateTime));
-                    billsTable.Columns.Add("Staff", typeof(string));
                     billsTable.Columns.Add("CustomerId", typeof(string));
                     billsTable.Columns.Add("Status", typeof(string));
                     billsTable.Columns.Add("Amount", typeof(decimal));
@@ -95,7 +94,6 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                             billsTable.Rows.Add(
                                 row.Table.Columns.Contains("InvoiceId") ? Convert.ToString(row["InvoiceId"]) : string.Empty,
                                 row.Table.Columns.Contains("CreatedAt") && row["CreatedAt"] != DBNull.Value ? Convert.ToDateTime(row["CreatedAt"]) : DateTime.MinValue,
-                                row.Table.Columns.Contains("SessionId") ? Convert.ToString(row["SessionId"]) : string.Empty,
                                 row.Table.Columns.Contains("CustomerId") ? Convert.ToString(row["CustomerId"]) : string.Empty,
                                 row.Table.Columns.Contains("DetailStatus") ? Convert.ToString(row["DetailStatus"]) : (row.Table.Columns.Contains("Status") ? Convert.ToString(row["Status"]) : string.Empty),
                                 row.Table.Columns.Contains("TotalAmount") && row["TotalAmount"] != DBNull.Value ? Convert.ToDecimal(row["TotalAmount"]) : 0m,
@@ -115,7 +113,6 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                         {
                             string invoiceId = item.InvoiceId != null ? (string)item.InvoiceId : string.Empty;
                             DateTime createdAt = item.CreatedAt != null ? (DateTime)item.CreatedAt : DateTime.MinValue;
-                            string sessionId = item.SessionId != null ? (string)item.SessionId : string.Empty;
                             string customerId = item.CustomerId != null ? (string)item.CustomerId : string.Empty;
                             decimal totalAmount = item.TotalAmount != null ? (decimal)item.TotalAmount : 0m;
                             string foodId = item.FoodId != null ? (string)item.FoodId : string.Empty;
@@ -127,7 +124,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                             string status = item.DetailStatus != null ? (string)item.DetailStatus : (item.Status != null ? (string)item.Status : string.Empty);
                             string note = item.Note != null ? (string)item.Note : string.Empty;
 
-                            billsTable.Rows.Add(invoiceId, createdAt, sessionId, customerId, status, totalAmount, foodId, foodName, serviceId, serviceName, quantity, price, note);
+                            billsTable.Rows.Add(invoiceId, createdAt, customerId, status, totalAmount, foodId, foodName, serviceId, serviceName, quantity, price, note);
                         }
                     }
 
@@ -155,7 +152,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             cmbStaff.Items.Clear();
             cmbStaff.Items.Add("Tất cả");
             var staffs = billsTable.AsEnumerable()
-                .Select(r => r.Field<string>("Staff"))
+                .Select(r => r.Field<string>("CustomerId"))
                 .Where(s => !string.IsNullOrEmpty(s))
                 .Distinct()
                 .OrderBy(s => s);
@@ -172,82 +169,72 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
             DateTime start = dtpRangeFrom.Value.Date;
             DateTime end = dtpRangeTo.Value.Date.AddDays(1).AddSeconds(-1);
+            string selectedCustomer = cmbStaff.SelectedItem?.ToString() ?? "Tất cả";
 
-            string selectedStaff = cmbStaff.SelectedItem == null ? "Tất cả" : cmbStaff.SelectedItem.ToString();
-            string textFilter = panelFilter.Controls.OfType<TextBox>().FirstOrDefault(t => t.Name == "txtGlobalFilter")?.Text?.Trim() ?? string.Empty;
+            var txtFilter = panelFilter.Controls.OfType<TextBox>().FirstOrDefault(t => t.Name == "txtGlobalFilter");
+            string tf = txtFilter?.Text?.Trim().ToUpperInvariant() ?? string.Empty;
 
-            var baseQuery = billsTable.AsEnumerable()
-                .Where(r => r.Field<DateTime>("Date") >= start && r.Field<DateTime>("Date") <= end);
+            var validStatuses = new[] { "PAID", "COMPLETED" };
 
-            if (selectedStaff != "Tất cả")
-                baseQuery = baseQuery.Where(r => r.Field<string>("Staff") == selectedStaff);
+            var baseQuery = billsTable.AsEnumerable().Where(r =>
+                r.Field<DateTime>("Date") >= start &&
+                r.Field<DateTime>("Date") <= end &&
+                (selectedCustomer == "Tất cả" || r.Field<string>("CustomerId") == selectedCustomer) &&
+                (string.IsNullOrEmpty(tf) ||
+                    (r.Field<string>("Id") ?? "").ToUpperInvariant().Contains(tf) ||
+                    (r.Field<string>("FoodName") ?? "").ToUpperInvariant().Contains(tf) ||
+                    (r.Field<string>("ServiceName") ?? "").ToUpperInvariant().Contains(tf))
+            );
 
-            if (!string.IsNullOrEmpty(textFilter))
+            decimal totalThu = baseQuery
+                .Where(r => (r.Field<string>("ServiceId") ?? "") != "3" &&
+                            validStatuses.Contains((r.Field<string>("Status") ?? "").ToUpperInvariant()))
+                .Sum(r => r.Field<decimal>("Amount"));
+
+            decimal totalChi = baseQuery
+                .Where(r => (r.Field<string>("ServiceId") ?? "") == "3" &&
+                            validStatuses.Contains((r.Field<string>("Status") ?? "").ToUpperInvariant()))
+                .Sum(r => r.Field<decimal>("Amount"));
+
+            var displayQuery = baseQuery;
+
+            if (rbThu.Checked)
             {
-                string tf = textFilter.ToUpperInvariant();
-                baseQuery = baseQuery.Where(r => (
-                    (r.Field<string>("Id") ?? string.Empty).ToUpperInvariant().Contains(tf) ||
-                    (r.Field<string>("CustomerId") ?? string.Empty).ToUpperInvariant().Contains(tf) ||
-                    (r.Field<string>("ServiceName") ?? string.Empty).ToUpperInvariant().Contains(tf) ||
-                    (r.Field<string>("FoodName") ?? string.Empty).ToUpperInvariant().Contains(tf)
-                ));
+                displayQuery = displayQuery.Where(r =>
+                    (r.Field<string>("ServiceId") ?? "") != "3" &&
+                    validStatuses.Contains((r.Field<string>("Status") ?? "").ToUpperInvariant()));
+            }
+            else if (rbChi.Checked)
+            {
+                displayQuery = displayQuery.Where(r =>
+                    (r.Field<string>("ServiceId") ?? "") == "3" &&
+                    validStatuses.Contains((r.Field<string>("Status") ?? "").ToUpperInvariant()));
             }
 
-            if (rbThu.Checked || rbChi.Checked)
-            {
-                var paidStatuses = new[] { "PAID", "COMPLETED" };
-                if (rbChi.Checked)
-                    baseQuery = baseQuery.Where(r => paidStatuses.Contains(((r.Field<string>("Status") ?? string.Empty).ToUpperInvariant())));
-                else if (rbThu.Checked)
-                    baseQuery = baseQuery.Where(r => !new[] { "PAID", "COMPLETED" }.Contains(((r.Field<string>("Status") ?? string.Empty).ToUpperInvariant())));
-            }
+            txtRangeTotalThu.Text = totalThu.ToString("N0");
+            txtRangeTotalChi.Text = totalChi.ToString("N0");
+            txtRangeProfit.Text = (totalThu - totalChi).ToString("N0");
 
-            var paidStatusesFinal = new[] { "PAID", "COMPLETED" };
-
-            var invoicesGrouped = baseQuery
-                .GroupBy(r => r.Field<string>("Id"))
-                .Select(g => new
-                {
-                    Id = g.Key,
-                    Date = g.First().Field<DateTime>("Date"),
-                    Staff = g.First().Field<string>("Staff"),
-                    CustomerId = g.First().Field<string>("CustomerId"),
-                    Amount = g.First().Field<decimal>("Amount"),
-                    IsPaid = g.Any(x => paidStatusesFinal.Contains((x.Field<string>("Status") ?? string.Empty).ToUpperInvariant()))
-                }).ToList();
-
-            decimal totalPaid = invoicesGrouped.Where(x => x.IsPaid).Sum(x => x.Amount);
-            decimal totalOther = invoicesGrouped.Where(x => !x.IsPaid).Sum(x => x.Amount);
-
-            txtRangeTotalThu.Text = totalOther.ToString("N0");
-            txtRangeTotalChi.Text = totalPaid.ToString("N0");
-            txtRangeProfit.Text = (totalOther - totalPaid).ToString("N0");
-
-            DataTable dt = baseQuery.Any() ? baseQuery.CopyToDataTable() : billsTable.Clone();
-            dataGridViewBills.DataSource = dt;
+            dataGridViewBills.DataSource = displayQuery.Any() ? displayQuery.CopyToDataTable() : billsTable.Clone();
         }
 
         private void UpdateMonthProfit(DateTimePicker dtp, TextBox txtProfit)
         {
             if (billsTable == null) return;
-            DateTime value = dtp.Value;
-            var monthQuery = billsTable.AsEnumerable()
-                .Where(r => r.Field<DateTime>("Date").Year == value.Year && r.Field<DateTime>("Date").Month == value.Month);
 
-            var paidStatuses = new[] { "PAID", "COMPLETED" };
+            var validStatuses = new[] { "PAID", "COMPLETED" };
+            DateTime val = dtp.Value;
 
-            var invoicesGrouped = monthQuery
-                .GroupBy(r => r.Field<string>("Id"))
-                .Select(g => new
-                {
-                    Amount = g.First().Field<decimal>("Amount"),
-                    IsPaid = g.Any(x => paidStatuses.Contains((x.Field<string>("Status") ?? string.Empty).ToUpperInvariant()))
-                });
+            var monthRows = billsTable.AsEnumerable().Where(r =>
+                r.Field<DateTime>("Date").Year == val.Year &&
+                r.Field<DateTime>("Date").Month == val.Month &&
+                validStatuses.Contains((r.Field<string>("Status") ?? "").ToUpperInvariant())
+            );
 
-            decimal totalPaid = invoicesGrouped.Where(x => !x.IsPaid).Sum(x => x.Amount);
-            decimal totalOther = invoicesGrouped.Where(x => x.IsPaid).Sum(x => x.Amount);
+            decimal thu = monthRows.Where(r => (r.Field<string>("ServiceId") ?? "") != "3").Sum(r => r.Field<decimal>("Amount"));
+            decimal chi = monthRows.Where(r => (r.Field<string>("ServiceId") ?? "") == "3").Sum(r => r.Field<decimal>("Amount"));
 
-            txtProfit.Text = (totalPaid - totalOther).ToString("N0");
+            txtProfit.Text = (thu - chi).ToString("N0");
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -358,5 +345,10 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
         private void labelRangeProfit_Click(object sender, EventArgs e) { }
         private void label1_Click(object sender, EventArgs e) { }
         private void labelMonthB_Click(object sender, EventArgs e) { }
+
+        private void cmbStaff_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

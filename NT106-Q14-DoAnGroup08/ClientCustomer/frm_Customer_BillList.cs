@@ -31,11 +31,9 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         private void LoadInvoicesInSession()
         {
             var res = ApiClient.Client.Send(new { action = "get_invoices_in_session"});
-            MessageBox.Show(res?.ToString() ?? "res null");
 
             if (res == null || res.status != "success")
             {
-                MessageBox.Show("Không tồn tại hoặc không tải được hóa đơn!");
                 return;
             }
 

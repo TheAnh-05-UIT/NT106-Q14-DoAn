@@ -81,7 +81,6 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
             {
                 string imgName = item["Image"]?.ToString();
                 Image foodImg;
-                MessageBox.Show($"'{imgName}'");
 
 
                 if (!string.IsNullOrEmpty(imgName))

@@ -33,23 +33,23 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -116,12 +116,24 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Nội dung";
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(35, 425);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(139, 31);
+            this.button6.TabIndex = 2;
+            this.button6.Text = "Xác nhận";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(8, 23);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(402, 380);
@@ -158,6 +170,25 @@
             this.groupBox3.Text = "Khách hàng";
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(326, 19);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(81, 31);
+            this.button5.TabIndex = 2;
+            this.button5.Text = "Thêm";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.BtnCreateInvoice_Click);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(207, 21);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(113, 24);
+            this.comboBox2.TabIndex = 1;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -190,10 +221,13 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(7, 88);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(477, 497);
@@ -209,6 +243,15 @@
             this.groupBox9.TabIndex = 0;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Tìm kiếm";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(376, 21);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(77, 28);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Thêm";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
@@ -226,15 +269,6 @@
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Lọc";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(376, 21);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(77, 28);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Thêm";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // groupBox8
             // 
@@ -254,34 +288,6 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Nhóm 1";
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(207, 21);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(113, 24);
-            this.comboBox2.TabIndex = 1;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(326, 19);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(81, 31);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "Thêm";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.BtnCreateInvoice_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(35, 425);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(139, 31);
-            this.button6.TabIndex = 2;
-            this.button6.Text = "Xác nhận";
-            this.button6.UseVisualStyleBackColor = true;
             // 
             // uc_Staff_Menu
             // 

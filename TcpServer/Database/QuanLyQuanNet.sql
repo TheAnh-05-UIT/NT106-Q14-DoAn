@@ -12,9 +12,6 @@ GO
 USE QuanLyQuanNet;
 GO
 
-SELECT *
-FROM Sessions
-SELECT TOP 1 SessionId FROM Sessions WHERE CustomerId = 'U003' AND EndTime IS NULL
 -- ==========================================================
 -- BẢNG USERS (Người dùng)
 -- ==========================================================
@@ -206,7 +203,8 @@ VALUES
 INSERT INTO Services
 VALUES
 ('1', 'FoodDrink'),
-('2', 'Nạp tiền')
+('2', N'Nạp tiền'),
+('3', N'Nhập hàng');
 
 -- INSERT Sessions
 /*

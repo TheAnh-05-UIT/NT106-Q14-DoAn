@@ -56,11 +56,11 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.dataGridViewBills = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbChi = new System.Windows.Forms.RadioButton();
-            this.labelStaff = new System.Windows.Forms.Label();
-            this.rbThu = new System.Windows.Forms.RadioButton();
-            this.cmbStaff = new System.Windows.Forms.ComboBox();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.cmbStaff = new System.Windows.Forms.ComboBox();
+            this.rbThu = new System.Windows.Forms.RadioButton();
+            this.labelStaff = new System.Windows.Forms.Label();
+            this.rbChi = new System.Windows.Forms.RadioButton();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.groupBoxMonthStats.SuspendLayout();
             this.groupBoxRangeStats.SuspendLayout();
@@ -364,10 +364,13 @@
             // 
             // dataGridViewBills
             // 
+            this.dataGridViewBills.AllowUserToAddRows = false;
+            this.dataGridViewBills.AllowUserToDeleteRows = false;
             this.dataGridViewBills.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewBills.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBills.Location = new System.Drawing.Point(11, 174);
             this.dataGridViewBills.Name = "dataGridViewBills";
+            this.dataGridViewBills.ReadOnly = true;
             this.dataGridViewBills.RowHeadersWidth = 51;
             this.dataGridViewBills.RowTemplate.Height = 24;
             this.dataGridViewBills.Size = new System.Drawing.Size(747, 388);
@@ -390,26 +393,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bộ lọc";
             // 
-            // rbChi
+            // btnRefresh
             // 
-            this.rbChi.AutoSize = true;
-            this.rbChi.Location = new System.Drawing.Point(419, 39);
-            this.rbChi.Margin = new System.Windows.Forms.Padding(2);
-            this.rbChi.Name = "rbChi";
-            this.rbChi.Size = new System.Drawing.Size(47, 20);
-            this.rbChi.TabIndex = 3;
-            this.rbChi.Text = "Chi";
-            this.rbChi.UseVisualStyleBackColor = true;
+            this.btnRefresh.Location = new System.Drawing.Point(484, 30);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(136, 39);
+            this.btnRefresh.TabIndex = 4;
+            this.btnRefresh.Text = "Làm mới bộ lọc";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // labelStaff
+            // cmbStaff
             // 
-            this.labelStaff.AutoSize = true;
-            this.labelStaff.Location = new System.Drawing.Point(25, 37);
-            this.labelStaff.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelStaff.Name = "labelStaff";
-            this.labelStaff.Size = new System.Drawing.Size(67, 16);
-            this.labelStaff.TabIndex = 5;
-            this.labelStaff.Text = "Nhân viên";
+            this.cmbStaff.FormattingEnabled = true;
+            this.cmbStaff.Location = new System.Drawing.Point(108, 37);
+            this.cmbStaff.Name = "cmbStaff";
+            this.cmbStaff.Size = new System.Drawing.Size(214, 24);
+            this.cmbStaff.TabIndex = 11;
+            this.cmbStaff.SelectedIndexChanged += new System.EventHandler(this.cmbStaff_SelectedIndexChanged);
             // 
             // rbThu
             // 
@@ -422,24 +424,26 @@
             this.rbThu.Text = "Thu";
             this.rbThu.UseVisualStyleBackColor = true;
             // 
-            // cmbStaff
+            // labelStaff
             // 
-            this.cmbStaff.FormattingEnabled = true;
-            this.cmbStaff.Location = new System.Drawing.Point(108, 37);
-            this.cmbStaff.Name = "cmbStaff";
-            this.cmbStaff.Size = new System.Drawing.Size(214, 24);
-            this.cmbStaff.TabIndex = 11;
+            this.labelStaff.AutoSize = true;
+            this.labelStaff.Location = new System.Drawing.Point(25, 37);
+            this.labelStaff.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelStaff.Name = "labelStaff";
+            this.labelStaff.Size = new System.Drawing.Size(77, 16);
+            this.labelStaff.TabIndex = 5;
+            this.labelStaff.Text = "Khách hàng";
             // 
-            // btnRefresh
+            // rbChi
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(484, 30);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(2);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(136, 39);
-            this.btnRefresh.TabIndex = 4;
-            this.btnRefresh.Text = "Làm mới bộ lọc";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            this.rbChi.AutoSize = true;
+            this.rbChi.Location = new System.Drawing.Point(419, 39);
+            this.rbChi.Margin = new System.Windows.Forms.Padding(2);
+            this.rbChi.Name = "rbChi";
+            this.rbChi.Size = new System.Drawing.Size(47, 20);
+            this.rbChi.TabIndex = 3;
+            this.rbChi.Text = "Chi";
+            this.rbChi.UseVisualStyleBackColor = true;
             // 
             // panelLeft
             // 

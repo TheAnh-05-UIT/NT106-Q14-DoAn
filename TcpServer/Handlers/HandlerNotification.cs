@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Runtime.Remoting.Contexts;
@@ -78,6 +79,7 @@ namespace TcpServer.Handlers
             decimal amount = 0;
             string accountName = null;
             string addInfo = null;
+            string session = null;
             if (data != null)
             {
                 var d = data;
@@ -97,9 +99,15 @@ namespace TcpServer.Handlers
                     addInfo = d.addInfo;
                 }
 
+                if (d.session != null)
+                {
+                    session = d.session;
+                }
+
                 var parts = new System.Text.StringBuilder();
                 if (amount > 0) parts.AppendFormat("Số tiền: {0} ", amount);
                 if (!string.IsNullOrEmpty(accountName)) parts.AppendFormat("Tài khoản: {0} ", accountName);
+                if (!string.IsNullOrEmpty(accountName)) parts.AppendFormat("Mã phiên: {0} ", session);
                 if (parts.Length > 0)
                     content = parts.ToString();
             }
@@ -122,6 +130,7 @@ namespace TcpServer.Handlers
             decimal amount = 0m;
             string accountName = null;
             string addInfo = null;
+            string session = null;
             if (data != null)
             {
                 var d = data;
@@ -141,9 +150,15 @@ namespace TcpServer.Handlers
                     addInfo = d.addInfo;
                 }
 
+                if (d.session != null)
+                {
+                    session = d.session;
+                }
+
                 var parts = new System.Text.StringBuilder();
                 if (amount > 0) parts.AppendFormat("Số tiền: {0} ", amount);
                 if (!string.IsNullOrEmpty(accountName)) parts.AppendFormat("Tài khoản: {0} ", accountName);
+                if (!string.IsNullOrEmpty(accountName)) parts.AppendFormat("Mã phiên: {0} ", session);
                 if (parts.Length > 0)
                     content = parts.ToString();
             }
@@ -151,8 +166,9 @@ namespace TcpServer.Handlers
             dynamic paidCheck = new { status = "", messages = "" };
             if (!string.IsNullOrEmpty(addInfo) && amount > 0)
             {
-                dynamic obj = new { data = new { invoiceId = addInfo } };
-                paidCheck = invoiceHandler.HandleAcceptPayment(obj.data);
+                String jsonString = $"{{ \"invoiceId\": \"{addInfo}\" }}";
+                JObject obj = JObject.Parse(jsonString);
+                paidCheck = invoiceHandler.HandleAcceptPayment(obj);
             }
             if (paidCheck != null && paidCheck.status == "success")
             {

@@ -102,7 +102,7 @@ namespace TcpServer.Handlers
             string sessionId = sessionDt.Rows[0]["SessionId"].ToString();
 
 
-            string query = "SELECT InvoiceId, CreatedAt, TotalAmount FROM Invoices WHERE SessionId=@SessionId ORDER BY CreatedAt DESC";
+            string query = "SELECT DISTINCT i.InvoiceId, CreatedAt, TotalAmount FROM Invoices i JOIN InvoiceDetails id ON i.InvoiceId = id.InvoiceId WHERE id.ServiceId = '1' AND SessionId=@SessionId ORDER BY CreatedAt DESC";
 
             DataTable dt = db.ExecuteQuery(query, new SqlParameter("@SessionId", sessionId));
 
@@ -174,7 +174,15 @@ namespace TcpServer.Handlers
 
 
             int result = db.ExecuteNonQuery(query);
-            server.notifyToStaff(new { type = "accept_paid", data = new { accountName = "", amount = price, addInfo = invoiceId } });
+
+            string query_info = $@"
+                SELECT DISTINCT s.CustomerId, s.SessionId
+                FROM Invoices i JOIN Sessions s ON i.SessionId = s.SessionId
+                WHERE InvoiceId = '{invoiceId}'";
+
+
+            DataTable result_info = db.ExecuteQuery(query_info);
+            server.notifyToStaff(new { type = "accept_paid", data = new { accountName = result_info.Rows[0]["CustomerId"], amount = price, addInfo = invoiceId, session = result_info.Rows[0]["SessionId"] } });
 
             return new { status = result > 0 ? "success" : "fail" };
         }
