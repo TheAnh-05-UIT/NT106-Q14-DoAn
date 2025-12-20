@@ -783,7 +783,6 @@
     <Content Include="bin\Debug\tr\Microsoft.Data.SqlClient.resources.dll" />
     <Content Include="bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll" />
     <Content Include="bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll" />
-    <Content Include="favicon.ico" />
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.exe" />
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.pdb" />
