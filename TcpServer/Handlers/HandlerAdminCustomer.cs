@@ -54,7 +54,6 @@ namespace TcpServer.Handlers
 
                 try
                 {
-                    // LOGIC TẠO MÃ TỰ ĐỘNG TĂNG (CUS001, CUS002...)
                     string userId = "CUS001"; // Mặc định là người đầu tiên
 
                     // Tìm mã lớn nhất hiện tại
@@ -76,7 +75,8 @@ namespace TcpServer.Handlers
                     string password = (string)data.password;
                     bool isActive = ((string)data.status) == "Active";
                     decimal balance = (decimal)data.balance;
-
+                    Console.WriteLine(userId);
+                    Console.WriteLine(username);
                     // INSERT vào bảng Users
                     string userQuery = @"INSERT INTO Users 
                                          (UserId, Username, [Password], FullName, [Role], Active) 
@@ -109,7 +109,8 @@ namespace TcpServer.Handlers
                     transaction.Rollback();
                     if (sqlEx.Number == 2627) // Lỗi Unique key (tên đăng nhập bị trùng)
                     {
-                        return new { status = "error", message = "Lỗi: Tên đăng nhập đã tồn tại." };
+                        //return new { status = "error", message = "Lỗi: Tên đăng nhập đã tồn tại." };
+                        return new { status = "error", message = "Lỗi SQL: " + sqlEx.Message };
                     }
                     Console.WriteLine($"Error in HandleAddCustomer: {sqlEx.Message}");
                     return new { status = "error", message = "Lỗi SQL: " + sqlEx.Message };

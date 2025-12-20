@@ -87,11 +87,11 @@ namespace TcpServer.Handlers
             return new { status = "success", maxId = result?.ToString() };
         }
 
-        public object HandleLoadInvoiceInSession()
+        public object HandleLoadInvoiceInSession(JObject data)
         {
-            string machineId = Environment.MachineName;
+            string machineId = data["customerId"].ToString();
 
-            string sessionQuery = "SELECT TOP 1 SessionId FROM Sessions WHERE ComputerId = @MachineId AND EndTime IS NULL";
+            string sessionQuery = "SELECT TOP 1 SessionId FROM Sessions WHERE CustomerId = @MachineId AND EndTime IS NULL";
             DataTable sessionDt = db.ExecuteQuery(sessionQuery, new SqlParameter("@MachineId", machineId));
 
             if (sessionDt.Rows.Count == 0)
