@@ -1,12 +1,4 @@
-﻿using NT106_Q14_DoAnGroup08.ClientAdmin;
-using NT106_Q14_DoAnGroup08.ClientCustomer;
-using NT106_Q14_DoAnGroup08.ClientStaff;
-using NT106_Q14_DoAnGroup08.Uc_Staff;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls;
+﻿using System;
 using System.Windows.Forms;
 
 namespace NT106_Q14_DoAnGroup08
@@ -30,8 +22,8 @@ namespace NT106_Q14_DoAnGroup08
             {
                 DTO.UserSession.NextForm = null;
                 frm_Login newForm = new frm_Login();
-                newForm.Show();
-                Application.Run(nextform);
+                //newForm.Show();
+                //Application.Run(nextform);
             }
 
         }

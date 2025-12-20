@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuanLyQuanNet.DTOs
 {
@@ -15,8 +11,8 @@ namespace QuanLyQuanNet.DTOs
         {
         }
 
-        public Admin(string userId, string username, string password, 
-                    string fullName, string phone, string email, 
+        public Admin(string userId, string username, string password,
+                    string fullName, string phone, string email,
                     string role, bool isActive, string adminId, DateTime createAd)
                     : base(userId, username, password, fullName, phone, email, role, isActive)
         {

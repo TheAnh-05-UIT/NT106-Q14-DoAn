@@ -1,23 +1,9 @@
-﻿using Guna.UI2.WinForms;
-using NT106_Q14_DoAnGroup08.Uc_Staff;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
-using QuanLyQuanNet.Utils;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.Media;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web.UI.Design.WebControls;
 using System.Windows.Forms;
-using System.Text.Json.Serialization;
 
 namespace NT106_Q14_DoAnGroup08.ClientStaff
 {
@@ -36,7 +22,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
         private string staffId = "Staff";
 
         private const int CP_NOCLOSE_BUTTON = 0x200;
-        
+
         protected override CreateParams CreateParams
         {
             get
@@ -46,11 +32,11 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
                 return myCp;
             }
         }
-        
+
 
         public frm_Staff(string staffId)
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.staffId = staffId;
@@ -253,7 +239,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
 
                 OnReceiveMessage(customerId, content);
                 receiveNotification("Tin nhắn mới", $"Tin nhắn từ {customerId}\n{content}", "Xem ngay", null, () => { OpenChatTab(customerId); });
-    }
+            }
         }
 
 
@@ -272,7 +258,8 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
 
         public void receiveNotification(string title, string content, string btnContent, string time = null, Action additionalMethod = null)
         {
-            if (additionalMethod != null) {
+            if (additionalMethod != null)
+            {
                 additionalMethod += updateNotificationCount;
             }
             else
@@ -346,7 +333,8 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
                         switch (notif.actionType != null ? notif.actionType.ToString() : "")
                         {
                             case "accept_paid":
-                                action = () => {
+                                action = () =>
+                                {
                                     var res = ApiClient.Client.Send(new
                                     {
                                         action = "accept_paid",
@@ -398,12 +386,12 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
         {
             try
             {
-                chatTimer?.Stop(); 
+                chatTimer?.Stop();
             }
             catch { }
 
-            this.Close();         
-            new frm_Login().Show(); 
+            this.Close();
+            new frm_Login().Show();
         }
 
     }

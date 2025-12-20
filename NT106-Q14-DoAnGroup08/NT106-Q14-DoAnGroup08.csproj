@@ -7,7 +7,7 @@
     <ProjectGuid>{D49C3A9D-3903-4F79-AC23-667551669AE5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>NT106_Q14_DoAnGroup08</RootNamespace>
-    <AssemblyName>NT106-Q14-DoAnGroup08</AssemblyName>
+    <AssemblyName>NT106_Q14_DoAnGroup08</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -48,6 +48,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Icon\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Azure.Core, Version=1.50.0.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
@@ -478,6 +481,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClientAdmin\Admin_CustomerAccountManagement.resx">
       <DependentUpon>Admin_CustomerAccountManagement.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ClientAdmin\frm_Account_Admin.resx">
       <DependentUpon>frm_Account_Admin.cs</DependentUpon>
@@ -779,10 +783,12 @@
     <Content Include="bin\Debug\tr\Microsoft.Data.SqlClient.resources.dll" />
     <Content Include="bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll" />
     <Content Include="bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll" />
+    <Content Include="favicon.ico" />
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.exe" />
     <Content Include="obj\Debug\NT106-Q14-DoAnGroup08.pdb" />
     <Content Include="obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="Resources\Icon\favicon.ico" />
     <None Include="Resources\nuoc_chanh.jpg" />
     <None Include="Resources\nuoc_cam.png" />
     <None Include="Resources\mi_xao.jpg" />
@@ -824,9 +830,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>

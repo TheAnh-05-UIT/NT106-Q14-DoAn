@@ -1,28 +1,16 @@
-﻿using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
-using QuanLyQuanNet.DTOs;
+﻿using NT106_Q14_DoAnGroup08.ConnectionServser;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Security;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 namespace NT106_Q14_DoAnGroup08.ClientAdmin
 {
     public partial class frm_Admin_Employee_management : Form
     {
         public frm_Admin_Employee_management()
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         }
         private void frm_Admin_Employee_management_Load(object sender, EventArgs e)
         {
@@ -91,7 +79,8 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                 if (result.status == "success")
                     LoadEmployeeData();
             }
-            catch {
+            catch
+            {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin");
                 return;
             }

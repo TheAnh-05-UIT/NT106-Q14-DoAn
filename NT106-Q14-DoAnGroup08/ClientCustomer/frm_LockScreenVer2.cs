@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NT106_Q14_DoAnGroup08.ClientCustomer
@@ -15,14 +9,14 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         private const string STAFF_UNLOCK_PASSWORD = "staff_secret";
         public frm_LockScreenVer2()
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            
+
             if (keyData == (Keys.Control | Keys.Shift | Keys.Q))
             {
-                
+
                 AllowClose();
                 return true;
             }
@@ -40,7 +34,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
         public void AllowClose()
         {
             _canClose = true;
-            this.DialogResult = DialogResult.OK; 
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
@@ -60,7 +54,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         private void btnUnlock_Click(object sender, EventArgs e)
         {
-             if (txtUnlockPassword.Text == STAFF_UNLOCK_PASSWORD)
+            if (txtUnlockPassword.Text == STAFF_UNLOCK_PASSWORD)
             {
                 AllowClose();
             }
@@ -69,7 +63,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                 MessageBox.Show("Mật khẩu nhân viên không đúng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtUnlockPassword.Clear();
             }
-            
+
         }
     }
 }

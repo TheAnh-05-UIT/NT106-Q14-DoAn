@@ -1,6 +1,6 @@
-﻿using System;
+﻿using QuanLyQuanNet.Utils;
+using System;
 using System.Windows.Forms;
-using QuanLyQuanNet.Utils;
 
 namespace NT106_Q14_DoAnGroup08.Uc_Staff
 {

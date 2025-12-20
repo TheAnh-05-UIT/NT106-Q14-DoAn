@@ -17,7 +17,7 @@
 //        frm_Login f = new frm_Login();
 //        public frm_LockScreen()
 //        {
-//            InitializeComponent();
+//            InitializeComponent();this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
 //            f.LoginSuccess += HandleLoginSuccess;
 //        }
 //        private void HandleLoginSuccess()
@@ -103,7 +103,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         public frm_LockScreen()
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             f = new frm_Login();
             f.LoginSuccess += HandleLoginSuccess;
         }

@@ -1,18 +1,12 @@
-﻿using OfficeOpenXml;
+﻿using NT106_Q14_DoAnGroup08.ConnectionServser;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using Excel = Microsoft.Office.Interop.Excel;
-using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
 
 namespace NT106_Q14_DoAnGroup08.ClientAdmin
 {
@@ -31,7 +25,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
 
         public frm_Revenue()
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             excelExportService = new ExcelExportService();
         }
 
@@ -49,9 +43,9 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
 
         private void UpdateDatePickerVisibility()
         {
-            dtWeekDate.Visible = cboMode.SelectedIndex <= 1; 
-            dtMonth.Visible = cboMode.SelectedIndex == 2; 
-            dtYear.Visible = cboMode.SelectedIndex == 3; 
+            dtWeekDate.Visible = cboMode.SelectedIndex <= 1;
+            dtMonth.Visible = cboMode.SelectedIndex == 2;
+            dtYear.Visible = cboMode.SelectedIndex == 3;
         }
 
         private void btnFilter_Click(object sender, EventArgs e)
@@ -160,7 +154,8 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
             var result = new Dictionary<string, int>();
             var groupedData = dt.AsEnumerable()
                                 .GroupBy(row => row.Field<DateTime>("Ngày").Hour)
-                                .Select(g => new {
+                                .Select(g => new
+                                {
                                     Gio = g.Key,
                                     TongTien = g.Sum(row => Convert.ToInt32(row["Số tiền (VND)"]))
                                 })

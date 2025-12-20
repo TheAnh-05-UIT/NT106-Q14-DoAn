@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QuanLyQuanNet.DTOs
+﻿namespace QuanLyQuanNet.DTOs
 {
     class Computer
     {
@@ -28,9 +22,9 @@ namespace QuanLyQuanNet.DTOs
         }
 
         public string ComputerId { get => this.computerId; set => this.computerId = value; }
-        public string ComputerName { get => this.computerName; set => this.computerName = value;}
+        public string ComputerName { get => this.computerName; set => this.computerName = value; }
         public string Status { get => this.status; set => this.status = value; }
-        public string IpAddress { get => this.ipAddress; set => this.ipAddress = value;}
-        public double PricePerHour { get => this.pricePerHour; set => this.pricePerHour = value;}
+        public string IpAddress { get => this.ipAddress; set => this.ipAddress = value; }
+        public double PricePerHour { get => this.pricePerHour; set => this.pricePerHour = value; }
     }
 }

@@ -1,16 +1,10 @@
-﻿using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ClientCustomer;
+﻿using NT106_Q14_DoAnGroup08.ClientCustomer;
 using NT106_Q14_DoAnGroup08.ConnectionServser;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.Design;
 
 namespace NT106_Q14_DoAnGroup08.ClientAdmin
 {
@@ -18,7 +12,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
     {
         public Admin_CustomerAccountManagement()
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         }
 
         private void LoadCustomerData()

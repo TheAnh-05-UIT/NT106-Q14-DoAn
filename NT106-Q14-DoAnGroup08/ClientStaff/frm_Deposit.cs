@@ -1,16 +1,8 @@
-﻿using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ClientAdmin;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
+﻿using NT106_Q14_DoAnGroup08.ConnectionServser;
 using NT106_Q14_DoAnGroup08.DTO;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NT106_Q14_DoAnGroup08.ClientCustomer
@@ -21,12 +13,12 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         public frm_Deposit()
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         }
 
         public frm_Deposit(dynamic data)
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             this.customerData = data;
         }
 
@@ -49,7 +41,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                 {
                     username = username,
                     amount = amountToDeposit,
-                    employeeId= UserSession.UserId
+                    employeeId = UserSession.UserId
                 }
             };
             string jsonRequest = JsonConvert.SerializeObject(request);

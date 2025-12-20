@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuanLyQuanNet.DTOs
 {
@@ -16,10 +12,10 @@ namespace QuanLyQuanNet.DTOs
         {
         }
 
-        public EmployeeDTO(string userId, string username, string password, 
-                        string fullName, string phone, string email, 
+        public EmployeeDTO(string userId, string username, string password,
+                        string fullName, string phone, string email,
                         string role, bool isActive, string employeeId,
-                        DateTime hiredDate, double salary) 
+                        DateTime hiredDate, double salary)
                         : base(userId, username, password, fullName, phone, email, role, isActive)
         {
             this.employeeId = employeeId;

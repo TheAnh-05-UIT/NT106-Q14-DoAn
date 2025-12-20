@@ -1,25 +1,22 @@
-﻿using Newtonsoft.Json.Linq;
-using NT106_Q14_DoAnGroup08.Uc_Staff;
+﻿using NT106_Q14_DoAnGroup08.Uc_Staff;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {
     public partial class frm_Customer_FoodMenu : CustomForm
     {
-        
+
         private Dictionary<string, string> currentNotes = new Dictionary<string, string>();
 
         string _cusId;
 
         public frm_Customer_FoodMenu(string customerId)
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             _cusId = customerId;
         }
 
@@ -122,7 +119,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                 int foodId = pro.Id;
                 double itemPrice = double.Parse(price);
                 bool found = false;
-               
+
                 foreach (DataGridViewRow row in guna2DataGridView1.Rows)
                 {
                     if (row.Cells["dgvid"].Value != null &&
@@ -131,7 +128,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                         int qty = Convert.ToInt32(row.Cells["dgvQty"].Value) + 1;
                         row.Cells["dgvQty"].Value = qty;
                         row.Cells["dgvAmount"].Value = qty * itemPrice;
-                        
+
                         found = true;
                         break;
                     }
@@ -198,7 +195,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
 
             var maxInv = ApiClient.Client.Send(new { action = "get_max_invoice_id" });
-            string lastId = maxInv?["maxId"]?.ToString(); 
+            string lastId = maxInv?["maxId"]?.ToString();
 
             string invoiceId;
 
@@ -220,7 +217,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                     totalAmount += Convert.ToDecimal(row.Cells["dgvAmount"].Value);
             }
 
-            
+
             var invoiceRes = ApiClient.Client.Send(new
             {
                 action = "create_invoice",
@@ -238,7 +235,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
                 return;
             }
 
-           
+
             foreach (DataGridViewRow row in guna2DataGridView1.Rows)
             {
                 if (row.IsNewRow) continue;

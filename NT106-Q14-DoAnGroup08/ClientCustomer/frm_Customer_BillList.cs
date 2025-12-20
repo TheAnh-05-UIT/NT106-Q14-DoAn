@@ -1,12 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NT106_Q14_DoAnGroup08.ClientCustomer
@@ -15,7 +10,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
     {
         public frm_Customer_BillList()
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         }
 
         private void guna2PictureBox1_Click_1(object sender, EventArgs e)
@@ -30,7 +25,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         private void LoadInvoicesInSession()
         {
-            var res = ApiClient.Client.Send(new { action = "get_invoices_in_session"});
+            var res = ApiClient.Client.Send(new { action = "get_invoices_in_session" });
 
             if (res == null || res.status != "success")
             {
@@ -78,11 +73,11 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex < 0)
+            if (e.RowIndex < 0)
             {
                 return;
             }
-            if(dataGridView1.Columns[e.ColumnIndex].Name == "btnDetail")
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "btnDetail")
             {
                 string invoiceId = dataGridView1.Rows[e.RowIndex].Cells["InvoiceId"].Value.ToString();
                 frm_Customer_BillDetail detail = new frm_Customer_BillDetail(invoiceId);

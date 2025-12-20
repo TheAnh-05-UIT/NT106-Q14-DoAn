@@ -1,21 +1,9 @@
-﻿using Guna.UI2.WinForms;
+﻿using NT106_Q14_DoAnGroup08.ConnectionServser;
 using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ClientCustomer;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Timer = System.Threading.Timer;
 
 namespace NT106_Q14_DoAnGroup08.ClientStaff
 {
@@ -24,7 +12,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
         private string selectedComputerId = "";
         public frm_Staff_ComputerManagement()
         {
-            InitializeComponent();
+            InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
         }
 
         private void frm_Staff_ComputerManagement_Load(object sender, EventArgs e)
@@ -67,7 +55,7 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
 
             lbl_IN_USE.Text = $"IN USE: {countInUse}";
             lbl_AVAILABLE.Text = $"AVAILABLE: {countAvailable}";
-            lbl_MAINTENANCE.Text= $"MAINTENANCE: {countMaintenance}";
+            lbl_MAINTENANCE.Text = $"MAINTENANCE: {countMaintenance}";
         }
 
         // Hàm chung để gọi Server update trạng thái
