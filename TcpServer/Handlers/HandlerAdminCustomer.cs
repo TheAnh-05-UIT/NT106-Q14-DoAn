@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -55,10 +55,10 @@ namespace TcpServer.Handlers
                 try
                 {
                     // LOGIC TẠO MÃ TỰ ĐỘNG TĂNG (CUS001, CUS002...)
-                    string userId = "CUS001"; // Mặc định là người đầu tiên
+                    string userId = "U001"; // Mặc định là người đầu tiên
 
                     // Tìm mã lớn nhất hiện tại
-                    string getMaxIdQuery = "SELECT TOP 1 UserId FROM Users WHERE UserId LIKE 'CUS%' ORDER BY UserId DESC";
+                    string getMaxIdQuery = "SELECT TOP 1 UserId FROM Users WHERE UserId LIKE 'U%' ORDER BY UserId DESC";
                     using (SqlCommand cmdGetMax = new SqlCommand(getMaxIdQuery, conn, transaction))
                     {
                         object result = cmdGetMax.ExecuteScalar();
@@ -67,7 +67,7 @@ namespace TcpServer.Handlers
                             string lastId = result.ToString();
                             if (int.TryParse(lastId.Substring(3), out int number))
                             {
-                                userId = "CUS" + (number + 1).ToString("D3");
+                                userId = "U" + (number + 1).ToString("D3");
                             }
                         }
                     }
