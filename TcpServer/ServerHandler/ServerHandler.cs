@@ -175,19 +175,26 @@ namespace TcpServer.ServerHandler
 
                 switch (action)
                 {
+                    // Action API Form Login
                     case "LOGIN": response = handlerLogin.HandleLogin(obj); break;
+
+
                     case "get_all_employees": response = handlerAdminCustomerAcc.HandleGetAllEmployees(); break;
                     case "add_employee": response = handlerAdminCustomerAcc.HandleAddEmployee(obj.data); break;
-                    case "GET_ALL_FOOD": response = handlerFood.HandleGetAllFood(); break;
                     case "update_employee": response = handlerAdminCustomerAcc.HandleUpdateEmployee(obj.data); break;
                     case "delete_employee": response = handlerAdminCustomerAcc.HandleDeleteEmployee(obj.data); break;
+
+                    case "GET_ALL_FOOD": response = handlerFood.HandleGetAllFood(); break;
+                   
                     case "GET_ALL_COMPUTERS_ADMIN": response = adminComputerHandler.HandleGetAllComputers(); break;
+
                     case "GET_ALL_CUSTOMERS": response = handlerCustomerHandler.HandleGetAllCustomers(); break;
                     case "ADD_CUSTOMER": response = handlerCustomerHandler.HandleAddCustomer(obj.data); break;
                     case "UPDATE_CUSTOMER": response = handlerCustomerHandler.HandleUpdateCustomer(obj.data); break;
                     case "DELETE_CUSTOMER": response = handlerCustomerHandler.HandleDeleteCustomer(obj.data); break;
                     case "DEPOSIT_FUNDS": response = handlerCustomerHandler.HandleDeposit(obj.data); break;
                     case "SEARCH_CUSTOMER": response = handlerCustomerHandler.HandleSearchCustomer(obj.data); break;
+
                     case "get_all_categories": response = handlerFood.HandleGetAllCategories(); break;
                     case "get_all_food": response = handlerFood.HandleGetAllFood(); break;
                     case "create_invoice": response = handlerFood.HandleCreateInvoice(obj.data); break;
@@ -196,33 +203,21 @@ namespace TcpServer.ServerHandler
                     case "get_max_invoice_detail_id": response = handlerFood.HandleGetMaxInvoiceDetailId(); break;
                     case "get_invoices_in_session": response = handlerFood.HandleLoadInvoiceInSession(); break;
                     case "get_invoices_details": response = handlerFood.HandleLoadInvoiceDetail(obj.invoiceId.ToString()); break;
+
+
                     case "CONTROL_PC": response = HandleComputerControl(obj.data); break;
                     case "END_SESSION": response = HandleComputerControl(obj.data); break;
                     case "create_invoice_detail_top_up": response = handlerFood.HandleCreateInvoiceDetailTopUp(obj.data, this); break;
-                    case "start_session":
-                        response = handlerCustomer.HandleStartSession(obj, this);
-                        break;
-                    case "update_session":
-                        response = handlerCustomer.HandleUpdateSession(obj);
-                        break;
-                    case "end_session":
-                        response = handlerCustomer.HandleEndSession(obj, this);
-                        break;
-                    case "send_message_staff":
-                        response = handlerChat.HandleSendMessageStaff(obj);
-                        break;
+                    case "start_session": response = handlerCustomer.HandleStartSession(obj, this); break;
+                    case "update_session": response = handlerCustomer.HandleUpdateSession(obj); break;
+                    case "end_session": response = handlerCustomer.HandleEndSession(obj, this); break;
+                    case "send_message_staff": response = handlerChat.HandleSendMessageStaff(obj); break;
 
-                    case "send_message_customer":
-                        response = handlerChat.HandleSendMessageCustomer(obj);
-                        break;
+                    case "send_message_customer": response = handlerChat.HandleSendMessageCustomer(obj); break;
 
-                    case "get_unread_messages_staff":
-                        response = handlerChat.HandleGetUnreadForStaff(obj);
-                        break;
+                    case "get_unread_messages_staff": response = handlerChat.HandleGetUnreadForStaff(obj); break;
 
-                    case "get_unread_messages_customer":
-                        response = handlerChat.HandleGetUnreadForCustomer(obj);
-                        break;
+                    case "get_unread_messages_customer": response = handlerChat.HandleGetUnreadForCustomer(obj); break;
 
                     case "staff_online":
                         OnlineStaffManager.Add(obj.staffId.ToString());
@@ -234,63 +229,27 @@ namespace TcpServer.ServerHandler
                         response = new { status = "ok" };
                         break;
 
-                    case "GET_ALL_COMPUTERS":
-                        response = computerHandler.HandleGetAllComputers();
-                        break;
-                    case "UPDATE_COMPUTER_STATUS":
-                        response = computerHandler.HandleUpdateStatus(obj.data);
-                        break;
-                    case "DELETE_COMPUTER":
-                        response = adminComputerHandler.HandleDeleteComputer(obj.data);
-                        break;
-                    case "ADD_COMPUTER":
-                        response = adminComputerHandler.HandleAddComputer(obj.data);
-                        break;
-                    case "UPDATE_COMPUTER": 
-                        response = adminComputerHandler.HandleUpdateComputer(obj.data);
-                        break;
-                    case "GET_COMPUTER_DETAILS": 
-                        response = adminComputerHandler.HandleGetComputerDetails(obj.data);
-                        break;
-                    case "FILTER_REVENUE":
-                        response = handlerRevenue.HandleRevenueFilter(obj.data);
-                        break;
-                    case "GET_ALL_INVOICES":
-                        response = handlerInvoice.HandleGetAllInvoices();
-                        break;
-                    case "GET_IMPORT_GOODS":
-                        response = handlerImportGood.HandleGetImportGoods();
-                        break;
-                    case "get_import_goods":
-                        response = handlerImportGood.HandleGetImportGoods();
-                        break;
-                    case "ADD_IMPORT_GOOD":
-                        response = handlerImportGood.HandleAddImportGood(obj.data);
-                        break;
-                    case "add_import_good":
-                        response = handlerImportGood.HandleAddImportGood(obj.data);
-                        break;
-                    case "DELETE_IMPORT_GOOD":
-                        response = handlerImportGood.HandleDeleteImportGood(obj.data);
-                        break;
-                    case "delete_import_good":
-                        response = handlerImportGood.HandleDeleteImportGood(obj.data);
-                        break;
-                    case "GET_INFO_ADMIN":
-                        response = handlerAdmin.HandleGetAdminInfo(obj.data);
-                        break;
-                    case "GET_INVOICES_BY_CUSTOMER":
-                        response = handlerInvoice.HandleGetInvoicesByCustomerAndService(obj.data);
-                        break;
-                    case "GET_INVOICE_DETAILS":
-                        response = handlerInvoice.HandleGetInvoiceDetails(obj.data);
-                        break;
-                    case "accept_paid":
-                        response = handlerInvoice.HandleAcceptPayment(obj);
-                        break;
-                    case "update_invoice_status":
-                        response = handlerInvoice.HandleUpdateInvoiceStatus(obj);
-                        break;
+                    case "GET_ALL_COMPUTERS": response = computerHandler.HandleGetAllComputers(); break;
+                    case "UPDATE_COMPUTER_STATUS": response = computerHandler.HandleUpdateStatus(obj.data); break;
+
+                    case "DELETE_COMPUTER": response = adminComputerHandler.HandleDeleteComputer(obj.data); break;
+                    case "ADD_COMPUTER": response = adminComputerHandler.HandleAddComputer(obj.data); break;
+                    case "UPDATE_COMPUTER": response = adminComputerHandler.HandleUpdateComputer(obj.data); break;
+                    case "GET_COMPUTER_DETAILS": response = adminComputerHandler.HandleGetComputerDetails(obj.data); break;
+
+                    case "FILTER_REVENUE": response = handlerRevenue.HandleRevenueFilter(obj.data); break;
+                    case "GET_ALL_INVOICES": response = handlerInvoice.HandleGetAllInvoices(); break;
+                    case "GET_IMPORT_GOODS": response = handlerImportGood.HandleGetImportGoods(); break;
+                    case "get_import_goods": response = handlerImportGood.HandleGetImportGoods(); break;
+                    case "ADD_IMPORT_GOOD": response = handlerImportGood.HandleAddImportGood(obj.data); break;
+                    case "add_import_good": response = handlerImportGood.HandleAddImportGood(obj.data); break;
+                    case "DELETE_IMPORT_GOOD": response = handlerImportGood.HandleDeleteImportGood(obj.data); break;
+                    case "delete_import_good": response = handlerImportGood.HandleDeleteImportGood(obj.data);  break;
+                    case "GET_INFO_ADMIN": response = handlerAdmin.HandleGetAdminInfo(obj.data); break;
+                    case "GET_INVOICES_BY_CUSTOMER": response = handlerInvoice.HandleGetInvoicesByCustomerAndService(obj.data); break;
+                    case "GET_INVOICE_DETAILS": response = handlerInvoice.HandleGetInvoiceDetails(obj.data); break;
+                    case "accept_paid": response = handlerInvoice.HandleAcceptPayment(obj); break;
+                    case "update_invoice_status": response = handlerInvoice.HandleUpdateInvoiceStatus(obj); break;
                     default: response = new { status = "error", message = $"Unknown action: {action}" }; break;
                 }
 
