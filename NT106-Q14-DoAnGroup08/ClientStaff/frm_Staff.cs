@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using NT106_Q14_DoAnGroup08.ConnectionServser;
+using QuanLyQuanNet.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -349,6 +352,27 @@ namespace NT106_Q14_DoAnGroup08.ClientStaff
                                     else
                                     {
                                         MessageBox.Show("Đã chấp nhận yêu cầu nạp tiền.", "Thông báo",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                };
+                                break;
+                            case "accept_food_paid":
+                                action = () =>
+                                {
+                                    var res = ApiClient.Client.Send(new
+                                    {
+                                        action = "accept_paid",
+                                        invoiceId = notif.addInfo != null ? notif.addInfo.ToString() : ""
+                                    });
+                                    if (res?.status == "error")
+                                    {
+                                        MessageBox.Show(res.message.ToString(), "Thông báo",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Đã chấp nhận order.", "Thông báo",
                                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
                                 };

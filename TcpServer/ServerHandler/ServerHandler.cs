@@ -197,7 +197,7 @@ namespace TcpServer.ServerHandler
 
                     case "get_all_categories": response = handlerFood.HandleGetAllCategories(); break;
                     case "get_all_food": response = handlerFood.HandleGetAllFood(); break;
-                    case "create_invoice": response = handlerFood.HandleCreateInvoice(obj.data); break;
+                    case "create_invoice": response = handlerFood.HandleCreateInvoice(obj.data, this); break;
                     case "create_invoice_detail": response = handlerFood.HandleCreateInvoiceDetail(obj.data); break;
                     case "get_max_invoice_id": response = handlerFood.HandleGetMaxInvoiceId(); break;
                     case "get_max_invoice_detail_id": response = handlerFood.HandleGetMaxInvoiceDetailId(); break;

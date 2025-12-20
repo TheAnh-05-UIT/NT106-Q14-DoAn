@@ -294,7 +294,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         private void btn_Bill_Click(object sender, EventArgs e)
         {
-            frm_Customer_BillList f = new frm_Customer_BillList();
+            frm_Customer_BillList f = new frm_Customer_BillList(_cusId);
             f.ShowDialog();
         }
     }

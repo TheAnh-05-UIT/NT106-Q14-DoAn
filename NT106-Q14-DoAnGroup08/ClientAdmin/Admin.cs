@@ -135,7 +135,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
             {
                 try
                 {
-                    ClientCustomer.frm_LockScreen f = new ClientCustomer.frm_LockScreen();
+                    frm_Login f = new frm_Login();
                     this.Hide();
                     f.ShowDialog();
                     this.Close();

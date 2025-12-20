@@ -11,9 +11,6 @@ GO
 -- Sử dụng database vừa tạo
 USE QuanLyQuanNet;
 GO
-SELECT TOP 1 SessionId FROM Sessions WHERE CustomerId = 'CUS001' AND EndTime IS NULL
-SELECT DISTINCT i.InvoiceId, CreatedAt, TotalAmount FROM Invoices i JOIN InvoiceDetails id ON i.InvoiceId = id.InvoiceId WHERE id.ServiceId = '1' AND SessionId='S001' ORDER BY CreatedAt DESC
-
 
 -- ==========================================================
 -- BẢNG USERS (Người dùng)
@@ -183,24 +180,11 @@ GO
 -- INSERT Users
 INSERT INTO Users (UserId, Username, [Password], FullName, Phone, Email, [Role], Active)
 VALUES
-('ADMIN', 'admin', '123', 'Nguyen Van A', '0372773025', 'a@gmail.com', 'ADMIN',1 );/*,
-('U002', 'user1', '123', 'Nguyen Van B', '0352653331', 'b@gmail.com', 'EMPLOYEE', 1),
-('U003', 'user3', '123', 'Nguyen Van D', '037256789', 'd@gmail.com', 'CUSTOMER', 1),
-('U004', 'admin_manager', 'hashed_pass_123', 'Pham Phu Quang', '090111222', 'admin@company.com', 'ADMIN', 1);*/
-
--- INSERT Customers (Phải có User tương ứng)
-/*
-INSERT INTO Customers (CustomerId, Balance, RegisterDate, Vip) VALUES
-('U003', 1000.00, '2025-11-15', 1);*/
+('ADMIN', 'admin', '123', 'Nguyen Van A', '0372773025', 'a@gmail.com', 'ADMIN',1 );
 
 -- INSERT Computers
 INSERT INTO Computers (ComputerId, ComputerName, [Status], PricePerHour)
 VALUES
-('MAY100', 'LAPTOP-D942BILL', 'AVAILABLE', 10000),
-('MAY01', 'Máy 01', 'AVAILABLE', 5000),
-('MAY02', 'Máy 02', 'IN_USE', 5000),
-('MAY03', 'Máy 03', 'MAINTENANCE', 5000),
-('MAY04', 'Máy 04', 'AVAILABLE', 6000),
 ('DESKTOP-KKGPUHE', 'DESKTOP-KKGPUHE', 'AVAILABLE', 10000);
 
 -- INSERT Services

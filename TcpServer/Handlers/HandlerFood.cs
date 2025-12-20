@@ -37,7 +37,7 @@ namespace TcpServer.Handlers
             return new { status = "success", data = ConvertDataTableToJson(dt) };
         }
 
-        public object HandleCreateInvoice(JObject data)
+        public object HandleCreateInvoice(JObject data, ServerHandler.ServerHandler server)
         {
             string invoiceId = data["invoiceId"].ToString();
             string customerId = data["customerId"].ToString();
@@ -52,6 +52,8 @@ namespace TcpServer.Handlers
             VALUES ('{invoiceId}', '{sessionId}', '{customerId}', {totalAmount})";
 
             int result = db.ExecuteNonQuery(query);
+            server.notifyToStaff(new { type = "accept_paid_food", data = new { accountName = customerId, amount = totalAmount, addInfo = invoiceId, session = sessionId} });
+
             return new { status = result > 0 ? "success" : "fail" };
         }
 

@@ -8,9 +8,11 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 {
     public partial class frm_Customer_BillList : CustomForm
     {
-        public frm_Customer_BillList()
+        private string _userId;
+        public frm_Customer_BillList(string userId)
         {
             InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            _userId = userId;
         }
 
         private void guna2PictureBox1_Click_1(object sender, EventArgs e)
@@ -25,7 +27,7 @@ namespace NT106_Q14_DoAnGroup08.ClientCustomer
 
         private void LoadInvoicesInSession()
         {
-            var res = ApiClient.Client.Send(new { action = "get_invoices_in_session" });
+            var res = ApiClient.Client.Send(new { action = "get_invoices_in_session", customerId = _userId });
 
             if (res == null || res.status != "success")
             {
