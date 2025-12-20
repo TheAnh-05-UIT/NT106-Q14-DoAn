@@ -4,6 +4,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Xml.Linq;
 using static Guna.UI2.Native.WinApi;
 
 namespace TcpServer.Handlers
@@ -145,6 +146,33 @@ namespace TcpServer.Handlers
             }
         }
 
+        public object HandleGetInvoicesByCustomerAndService(JObject data)
+        {
+            try
+            {
+                string customerId = data["customerId"].ToString();
+
+                string query = @"
+                    SELECT DISTINCT i.InvoiceId, i.CustomerId, i.CreatedAt, i.TotalAmount, d.Status
+                    FROM Invoices i
+                    LEFT JOIN InvoiceDetails d ON i.InvoiceId = d.InvoiceId
+                    WHERE i.CustomerId = @customerId 
+                    AND (d.ServiceId = 1 OR d.ServiceId IS NULL)
+                    AND d.Status != 'PAID'";
+
+                SqlParameter[] parameters = {
+                    new SqlParameter("@customerId", customerId)
+                };
+
+                DataTable dt = db.ExecuteQuery(query, parameters);
+                return new { status = "success", data = ConvertDataTableToJson(dt) };
+            }
+            catch (Exception ex)
+            {
+                return new { status = "error", message = ex.Message };
+            }
+        }
+
         public object HandleGetInvoiceDetails(JObject data)
         {
             try
@@ -154,7 +182,7 @@ namespace TcpServer.Handlers
                 string query = @"SELECT id.FoodId, f.FoodName, id.Quantity, id.Price, (id.Quantity * id.Price) AS Total
                                  FROM InvoiceDetails id
                                  INNER JOIN FoodAndDrink f ON id.FoodId = f.FoodId
-                                 WHERE id.InvoiceId = @InvoiceId AND id.ServiceId = 1"; // Only include ServiceId = 1 (FoodDrink)
+                                 WHERE id.InvoiceId = @InvoiceId AND id.ServiceId = 1";
 
                 DataTable dt = db.ExecuteQuery(query, new SqlParameter("@InvoiceId", invoiceId));
 
@@ -169,6 +197,58 @@ namespace TcpServer.Handlers
             {
                 Console.WriteLine($"Error in HandleGetInvoiceDetails: {ex.Message}");
                 return new { status = "error", message = "An error occurred while fetching invoice details." };
+            }
+        }
+
+        public object HandleUpdateInvoiceStatus(JObject requestObj)
+        {
+            try
+            {
+                var data = requestObj["data"];
+                if (data == null) return new { status = "error", message = "Dữ liệu không hợp lệ." };
+
+                string invoiceId = data["invoiceId"]?.ToString();
+                string newStatus = data["status"]?.ToString();
+                decimal totalAmount = data["totalAmount"]?.Value<decimal>() ?? 0;
+
+                string checkQuery = "SELECT TOP 1 Status FROM InvoiceDetails WHERE InvoiceId = @InvoiceId";
+                SqlParameter[] checkParams = { new SqlParameter("@InvoiceId", invoiceId) };
+
+                object currentStatusObj = db.ExecuteScalar(checkQuery, checkParams);
+
+                if (currentStatusObj != null)
+                {
+                    string currentStatus = currentStatusObj.ToString().ToUpper();
+                    if (currentStatus == "COMPLETED")
+                    {
+                        return new
+                        {
+                            status = "fail",
+                            message = $"Hóa đơn này đã ở trạng thái '{currentStatus}', không thể thay đổi thêm."
+                        };
+                    }
+                }
+
+                string queryDetails = "UPDATE InvoiceDetails SET Status = @Status WHERE InvoiceId = @InvoiceId";
+                SqlParameter[] paramsDetails = {
+            new SqlParameter("@Status", newStatus),
+            new SqlParameter("@InvoiceId", invoiceId)
+        };
+
+                string queryInvoice = "UPDATE Invoices SET TotalAmount = @TotalAmount WHERE InvoiceId = @InvoiceId";
+                SqlParameter[] paramsInvoice = {
+            new SqlParameter("@TotalAmount", totalAmount),
+            new SqlParameter("@InvoiceId", invoiceId)
+        };
+
+                db.ExecuteNonQuery(queryDetails, paramsDetails);
+                db.ExecuteNonQuery(queryInvoice, paramsInvoice);
+
+                return new { status = "success", message = "Cập nhật thành công." };
+            }
+            catch (Exception ex)
+            {
+                return new { status = "error", message = ex.Message };
             }
         }
     }

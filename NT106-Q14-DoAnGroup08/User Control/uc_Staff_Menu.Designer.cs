@@ -38,7 +38,6 @@
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button5 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -50,6 +49,7 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -94,6 +94,7 @@
             this.button4.TabIndex = 1;
             this.button4.Text = "Tính tiền";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button3
             // 
@@ -103,6 +104,7 @@
             this.button3.TabIndex = 0;
             this.button3.Text = "Reset";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // groupBox4
             // 
@@ -124,6 +126,7 @@
             this.button6.TabIndex = 2;
             this.button6.Text = "Xác nhận";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // dataGridView1
             // 
@@ -168,17 +171,6 @@
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Khách hàng";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(326, 19);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(81, 31);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "Thêm";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.BtnCreateInvoice_Click);
             // 
             // comboBox2
             // 
@@ -289,6 +281,16 @@
             this.button2.Text = "Nhóm 1";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(326, 19);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(81, 31);
+            this.button5.TabIndex = 2;
+            this.button5.Text = "Trở lại";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.BtnCreateInvoice_Click);
+            // 
             // uc_Staff_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -337,7 +339,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
     }
 }

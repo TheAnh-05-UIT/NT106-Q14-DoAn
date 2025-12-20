@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NT106_Q14_DoAnGroup08.ConnectionServser;
+using NT106_Q14_DoAnGroup08.DAO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,6 +14,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
     {
         private DataTable menuTable;
         private DataTable orderTable;
+        private string currentInvoiceStatus = "NONE";
 
         public uc_Staff_Menu()
         {
@@ -25,20 +27,23 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             InitializeOrderTable();
             LoadMenu();
             LoadCategories();
-            LoadInvoices(); // Load invoices on menu load
+            LoadCustomers();
+            LoadInvoices();
+
             textBox1.TextChanged += (s, ev) => ApplyFilter();
-            button3.Click += BtnExport_Click;
-            button4.Click += BtnCalculate_Click;
             button1.Click += BtnAddSelectedItem_Click;
             button2.Click += BtnCategory_Click;
             dataGridView2.CellDoubleClick += DataGridView2_CellDoubleClick;
-        }
 
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            LoadCustomers();
-            LoadInvoices();
+            if (comboBox1 != null)
+            {
+                comboBox1.SelectedIndexChanged += (s, ev) => LoadInvoices();
+            }
+
+            if (comboBox2 != null)
+            {
+                comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            }
         }
 
         private void InitializeOrderTable()
@@ -59,21 +64,18 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                 var request = new { action = "GET_ALL_FOOD" };
                 string jsonResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(request));
                 dynamic response = JsonConvert.DeserializeObject(jsonResponse);
+
                 if (response.status == "success")
                 {
                     menuTable = new DataTable();
                     menuTable.Columns.Add("FoodId", typeof(string));
                     menuTable.Columns.Add("FoodName", typeof(string));
-                    menuTable.Columns.Add("CategoryId", typeof(string)); // Add CategoryId for filtering
+                    menuTable.Columns.Add("CategoryId", typeof(string));
                     menuTable.Columns.Add("CategoryName", typeof(string));
                     menuTable.Columns.Add("Price", typeof(decimal));
 
                     DataTable dt = null;
-                    try
-                    {
-                        dt = response.data.ToObject<DataTable>();
-                    }
-                    catch { }
+                    try { dt = response.data.ToObject<DataTable>(); } catch { }
 
                     if (dt != null)
                     {
@@ -82,7 +84,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                             menuTable.Rows.Add(
                                 row.Table.Columns.Contains("FoodId") ? Convert.ToString(row["FoodId"]) : string.Empty,
                                 row.Table.Columns.Contains("FoodName") ? Convert.ToString(row["FoodName"]) : string.Empty,
-                                row.Table.Columns.Contains("CategoryId") ? Convert.ToString(row["CategoryId"]) : string.Empty, // Include CategoryId
+                                row.Table.Columns.Contains("CategoryId") ? Convert.ToString(row["CategoryId"]) : string.Empty,
                                 row.Table.Columns.Contains("CategoryName") ? Convert.ToString(row["CategoryName"]) : string.Empty,
                                 row.Table.Columns.Contains("Price") && row["Price"] != DBNull.Value ? Convert.ToDecimal(row["Price"]) : 0m
                             );
@@ -94,18 +96,13 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                         {
                             string id = item.FoodId != null ? (string)item.FoodId : string.Empty;
                             string name = item.FoodName != null ? (string)item.FoodName : string.Empty;
-                            string catId = item.CategoryId != null ? (string)item.CategoryId : string.Empty; // Include CategoryId
+                            string catId = item.CategoryId != null ? (string)item.CategoryId : string.Empty;
                             string catName = item.CategoryName != null ? (string)item.CategoryName : string.Empty;
                             decimal price = item.Price != null ? (decimal)item.Price : 0m;
                             menuTable.Rows.Add(id, name, catId, catName, price);
                         }
                     }
-
-                    dataGridView2.DataSource = menuTable.DefaultView.ToTable(false, "FoodId", "FoodName", "CategoryName", "Price"); // Exclude CategoryId from view
-                }
-                else
-                {
-                    MessageBox.Show("Lỗi tải menu: " + response.message);
+                    dataGridView2.DataSource = menuTable.DefaultView.ToTable(false, "FoodId", "FoodName", "CategoryName", "Price");
                 }
             }
             catch (Exception ex)
@@ -124,32 +121,28 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                 if (response.status == "success")
                 {
                     groupBox8.Controls.Clear();
-
-                    int yOffset = 10;
+                    int yOffset = 15;
                     foreach (var category in response.data)
                     {
                         string categoryName = category.CategoryName.ToString();
-
+                        string categoryId = category.CategoryId.ToString();
 
                         Button button = new Button
                         {
                             Text = categoryName,
-                            AutoSize = true,
-                            Location = new System.Drawing.Point(groupBox8.Location.X, yOffset),
+                            Width = groupBox8.Width - 20,
+                            Height = 30,
+                            Location = new System.Drawing.Point(10, yOffset),
                         };
-                        button.Click += (s, e) => FilterMenuByCategory(category.CategoryId.ToString());
+                        button.Click += (s, e) => FilterMenuByCategory(categoryId);
                         groupBox8.Controls.Add(button);
                         yOffset += 35;
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Lỗi tải danh mục: " + response.message);
-                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi kết nối: " + ex.Message);
+                MessageBox.Show("Lỗi tải danh mục: " + ex.Message);
             }
         }
 
@@ -165,26 +158,16 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                 {
                     DataTable customerTable = response.data.ToObject<DataTable>();
                     comboBox1.DataSource = customerTable;
-                    comboBox1.DisplayMember = "Họ tên"; // Assuming "Họ tên" is the column for customer names
-                    comboBox1.ValueMember = "CustomerID"; // Assuming "CustomerID" is the unique identifier
+                    comboBox1.DisplayMember = "Họ tên";
+                    comboBox1.ValueMember = "CustomerID";
 
-                    if (customerTable.Rows.Count > 0)
-                    {
-                        comboBox1.SelectedIndex = 0; // Set default to the first item if available
-                    }
-                    else
-                    {
-                        comboBox1.SelectedIndex = -1; // Set default to -1 if no items are available
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Lỗi tải danh sách khách hàng: " + response.message);
+                    if (customerTable.Rows.Count > 0) comboBox1.SelectedIndex = 0;
+                    else comboBox1.SelectedIndex = -1;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi kết nối: " + ex.Message);
+                MessageBox.Show("Lỗi khách hàng: " + ex.Message);
             }
         }
 
@@ -207,55 +190,31 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                 {
                     DataTable invoiceTable = response.data.ToObject<DataTable>();
 
-                    // Filter invoices to include only those with ServiceId = 1 in InvoiceDetails
-                    var filteredInvoices = invoiceTable.AsEnumerable()
-                        .Where(row =>
-                        {
-                            string invoiceId = row.Field<string>("InvoiceId");
-                            var detailRequest = new { action = "GET_INVOICE_DETAILS", data = new { invoiceId } };
-                            string detailResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(detailRequest));
-                            dynamic detailData = JsonConvert.DeserializeObject(detailResponse);
-
-                            if (detailData.status == "success")
-                            {
-                                DataTable detailsTable = detailData.data.ToObject<DataTable>();
-                                return detailsTable.AsEnumerable().Any(detailRow => detailRow.Field<int>("ServiceId") == 1);
-                            }
-
-                            return false;
-                        });
-
-                    if (filteredInvoices.Any())
+                    if (invoiceTable != null && invoiceTable.Rows.Count > 0)
                     {
-                        DataTable filteredTable = filteredInvoices.CopyToDataTable();
-                        comboBox2.DataSource = filteredTable;
-                        comboBox2.DisplayMember = "InvoiceId"; // Only show InvoiceId
+                        comboBox2.DataSource = invoiceTable;
+                        comboBox2.DisplayMember = "InvoiceId";
                         comboBox2.ValueMember = "InvoiceId";
-                        comboBox2.SelectedIndex = -1; // Set default to -1
+                        comboBox2.SelectedIndex = -1;
+                        currentInvoiceStatus = "NONE";
                     }
                     else
                     {
                         comboBox2.DataSource = null;
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Lỗi tải danh sách hóa đơn: " + response.message);
-                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi kết nối: " + ex.Message);
+                 MessageBox.Show("Lỗi tải hóa đơn: " + ex.Message);
             }
         }
+
 
         private void FilterMenuByCategory(string categoryId)
         {
             if (menuTable == null) return;
-
-            var filteredMenu = menuTable.AsEnumerable()
-                .Where(row => row.Field<string>("CategoryId") == categoryId);
-
+            var filteredMenu = menuTable.AsEnumerable().Where(row => row.Field<string>("CategoryId") == categoryId);
             DataTable dt = filteredMenu.Any() ? filteredMenu.CopyToDataTable() : menuTable.Clone();
             dataGridView2.DataSource = dt;
         }
@@ -276,8 +235,20 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             dataGridView2.DataSource = dt;
         }
 
+        private bool IsInvoiceEditable()
+        {
+            if (currentInvoiceStatus == "COMPLETED" || currentInvoiceStatus == "PAID")
+            {
+                MessageBox.Show("Hóa đơn này đã ở trạng thái COMPLETED hoặc PAID, không thể chỉnh sửa thêm.");
+                return false;
+            }
+            return true;
+        }
+
         private void AddMenuItemToOrder(string foodId, string foodName, decimal price)
         {
+            if (!IsInvoiceEditable()) return;
+
             var existing = orderTable.AsEnumerable().FirstOrDefault(r => r.Field<string>("FoodId") == foodId);
             if (existing != null)
             {
@@ -293,10 +264,21 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                 row["FoodName"] = foodName;
                 row["Quantity"] = 1;
                 row["Price"] = price;
-                row["Total"] = price * 1;
+                row["Total"] = price;
                 orderTable.Rows.Add(row);
             }
             dataGridView1.DataSource = orderTable.Copy();
+            UpdateTotalAmount();
+        }
+
+        private void UpdateTotalAmount()
+        {
+            decimal total = 0;
+            foreach (DataRow row in orderTable.Rows)
+            {
+                total += Convert.ToDecimal(row["Total"]);
+            }
+            textBox2.Text = total.ToString("N0");
         }
 
         private void DataGridView2_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -311,8 +293,6 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
         private void BtnAddSelectedItem_Click(object sender, EventArgs e)
         {
-            var dv = dataGridView2.DataSource as DataTable;
-            if (dv == null || dv.Rows.Count == 0) return;
             if (dataGridView2.CurrentRow == null) return;
             var row = (dataGridView2.CurrentRow.DataBoundItem as DataRowView).Row;
             string id = row["FoodId"].ToString();
@@ -321,164 +301,20 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
             AddMenuItemToOrder(id, name, price);
         }
 
-        private void BtnCalculate_Click(object sender, EventArgs e)
-        {
-            decimal total = 0m;
-            foreach (DataRow r in orderTable.Rows)
-            {
-                int q = r.Field<int>("Quantity");
-                decimal p = r.Field<decimal>("Price");
-                total += q * p;
-            }
-            textBox2.Text = total.ToString("N0");
-        }
-
-        private void BtnExport_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void BtnCategory_Click(object sender, EventArgs e)
         {
-            if (menuTable == null) return;
-            var cats = menuTable.AsEnumerable().Select(r => r.Field<string>("CategoryName")).Distinct().ToList();
-            if (cats.Count == 0) return;
-            string sel = cats.First();
-            var qry = menuTable.AsEnumerable().Where(r => r.Field<string>("CategoryName") == sel);
-            dataGridView2.DataSource = qry.Any() ? qry.CopyToDataTable() : menuTable.Clone();
-        }
-
-        private void BtnRefresh_Click(object sender, EventArgs e)
-        {
-            orderTable.Rows.Clear();
-            dataGridView1.DataSource = orderTable.Copy();
-            textBox2.Text = string.Empty;
-        }
-
-        private void ExportDataTableToCsv(DataTable dt, string filePath)
-        {
-            using (var sw = new StreamWriter(filePath, false, System.Text.Encoding.UTF8))
-            {
-                sw.WriteLine(string.Join(",", dt.Columns.Cast<DataColumn>().Select(c => '"' + c.ColumnName + '"')));
-                foreach (DataRow row in dt.Rows)
-                {
-                    var fields = dt.Columns.Cast<DataColumn>().Select(c =>
-                    {
-                        var val = row[c] == null ? string.Empty : row[c].ToString();
-                        return '"' + val.Replace("\"", "\"\"") + '"';
-                    });
-                    sw.WriteLine(string.Join(",", fields));
-                }
-            }
-        }
-
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
-        }
-
-        private void BtnCreateInvoice_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string customerId = comboBox1.SelectedValue?.ToString();
-                if (string.IsNullOrEmpty(customerId))
-                {
-                    MessageBox.Show("Vui lòng chọn khách hàng trước khi tạo hóa đơn mới.");
-                    return;
-                }
-
-                // Get the latest active session for the customer
-                var sessionResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(new
-                {
-                    action = "get_latest_active_session",
-                    data = new { customerId }
-                }));
-
-                dynamic sessionData = JsonConvert.DeserializeObject(sessionResponse);
-                string sessionId = sessionData?.status == "success" ? sessionData.sessionId?.ToString() : string.Empty;
-
-                // Generate new invoice ID
-                var maxInv = ServerConnection.SendRequest(JsonConvert.SerializeObject(new { action = "get_max_invoice_id" }));
-                dynamic maxInvResponse = JsonConvert.DeserializeObject(maxInv);
-                string lastId = maxInvResponse?.maxId?.ToString();
-
-                string invoiceId;
-                if (string.IsNullOrEmpty(lastId))
-                    invoiceId = "HD001";
-                else
-                {
-                    int num = int.Parse(lastId.Substring(2)) + 1;
-                    invoiceId = "HD" + num.ToString("D3");
-                }
-
-                // Create the new invoice
-                var createInvoiceResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(new
-                {
-                    action = "create_invoice",
-                    data = new
-                    {
-                        invoiceId,
-                        customerId,
-                        sessionId,
-                        totalAmount = 0 // Default total amount
-                    }
-                }));
-
-                dynamic createResponse = JsonConvert.DeserializeObject(createInvoiceResponse);
-                if (createResponse.status == "success")
-                {
-                    var maxDetail = ApiClient.Client.Send(new { action = "get_max_invoice_detail_id" });
-
-                    string detailId;
-                    if (maxDetail?.maxId == null || maxDetail.maxId == "")
-                        detailId = "CTHD001";
-                    else
-                    {
-                        int num = int.Parse(maxDetail.maxId.ToString().Substring(4)) + 1;
-                        detailId = "CTHD" + num.ToString("D3");
-                    }
-                    // Add a default service with ServiceId = 1 and a valid FoodId
-                    var addServiceResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(new
-                    {
-                        action = "create_invoice_detail",
-                        data = new
-                        {
-                            detailId,
-                            invoiceId,
-                            serviceId = 1,
-                        }
-                    }));
-
-                    dynamic serviceResponse = JsonConvert.DeserializeObject(addServiceResponse);
-                    if (serviceResponse.status == "success")
-                    {
-                        MessageBox.Show("Hóa đơn mới đã được tạo thành công.");
-                        LoadInvoices(); // Refresh the invoice list
-                        comboBox2.SelectedValue = invoiceId; // Automatically select the new invoice
-                    }
-                    else
-                    {
-                        MessageBox.Show("Tạo hóa đơn thất bại khi thêm dịch vụ: " + serviceResponse.message);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Tạo hóa đơn thất bại: " + createResponse.message);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tạo hóa đơn mới: " + ex.Message);
-            }
+            if (menuTable != null) dataGridView2.DataSource = menuTable.Copy();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             string invoiceId = comboBox2.SelectedValue?.ToString();
-            if (string.IsNullOrEmpty(invoiceId) || invoiceId == "-1")
+            if (string.IsNullOrEmpty(invoiceId) || comboBox2.SelectedIndex == -1)
             {
                 orderTable.Rows.Clear();
                 dataGridView1.DataSource = orderTable.Copy();
+                currentInvoiceStatus = "NONE";
+                textBox2.Text = "0";
                 return;
             }
 
@@ -490,6 +326,7 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
 
                 if (response.status == "success")
                 {
+                    currentInvoiceStatus = response.invoiceStatus != null ? response.invoiceStatus.ToString() : "PENDING";
                     DataTable invoiceDetails = response.data.ToObject<DataTable>();
                     orderTable.Rows.Clear();
 
@@ -505,16 +342,152 @@ namespace NT106_Q14_DoAnGroup08.Uc_Staff
                     }
 
                     dataGridView1.DataSource = orderTable.Copy();
-                }
-                else
-                {
-                    MessageBox.Show("Lỗi tải chi tiết hóa đơn: " + response.message);
+                    UpdateTotalAmount();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi kết nối: " + ex.Message);
+                MessageBox.Show("Lỗi chi tiết: " + ex.Message);
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (!IsInvoiceEditable()) return;
+            if (orderTable.Rows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn món ăn trước khi xác nhận.");
+                return;
+            }
+
+            try
+            {
+                string customerId = comboBox1.SelectedValue?.ToString();
+                string invoiceId = comboBox2.SelectedValue?.ToString();
+
+                if (string.IsNullOrEmpty(invoiceId) || comboBox2.SelectedIndex == -1)
+                {
+                    var maxInv = ServerConnection.SendRequest(JsonConvert.SerializeObject(new { action = "get_max_invoice_id" }));
+                    dynamic maxInvResponse = JsonConvert.DeserializeObject(maxInv);
+                    string lastId = maxInvResponse?.maxId?.ToString();
+                    invoiceId = string.IsNullOrEmpty(lastId) ? "HD001" : "HD" + (int.Parse(lastId.Substring(2)) + 1).ToString("D3");
+
+                    var createInvoiceRequest = new
+                    {
+                        action = "create_invoice",
+                        data = new { invoiceId, customerId, totalAmount = 0, status = "PENDING" }
+                    };
+                    ServerConnection.SendRequest(JsonConvert.SerializeObject(createInvoiceRequest));
+                }
+
+                foreach (DataRow row in orderTable.Rows)
+                {
+                    string foodId = row["FoodId"].ToString();
+                    string foodName = row["FoodName"].ToString();
+                    int qty = Convert.ToInt32(row["Quantity"]);
+                    decimal price = Convert.ToDecimal(row["Price"]);
+                    string note = "";
+
+                    var maxDetailJson = ServerConnection.SendRequest(JsonConvert.SerializeObject(new { action = "get_max_invoice_detail_id" }));
+                    dynamic maxDetail = JsonConvert.DeserializeObject(maxDetailJson);
+
+                    string detailId;
+                    if (maxDetail?.maxId == null || maxDetail.maxId == "")
+                        detailId = "CTHD001";
+                    else
+                    {
+                        int num = int.Parse(maxDetail.maxId.ToString().Substring(4)) + 1;
+                        detailId = "CTHD" + num.ToString("D3");
+                    }
+
+                    string serviceId = "1";
+                    ServerConnection.SendRequest(JsonConvert.SerializeObject(new
+                    {
+                        action = "create_invoice_detail",
+                        data = new
+                        {
+                            detailId,
+                            invoiceId,
+                            serviceId,
+                            foodId,
+                            quantity = qty,
+                            price,
+                            note
+                        }
+                    }));
+                }
+
+                MessageBox.Show("Đã lưu chi tiết hóa đơn thành công.");
+                LoadInvoices();
+                comboBox2.SelectedValue = invoiceId;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi xác nhận: " + ex.Message);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string invoiceId = comboBox2.SelectedValue?.ToString();
+                if (string.IsNullOrEmpty(invoiceId))
+                {
+                    MessageBox.Show("Vui lòng chọn hóa đơn.");
+                    return;
+                }
+
+                decimal currentTotal = 0;
+                decimal.TryParse(textBox2.Text.Replace(",", ""), out currentTotal);
+
+                var updateRequest = new
+                {
+                    action = "update_invoice_status",
+                    data = new
+                    {
+                        invoiceId = invoiceId,
+                        status = "COMPLETED",
+                        totalAmount = currentTotal
+                    }
+                };
+
+                string jsonResponse = ServerConnection.SendRequest(JsonConvert.SerializeObject(updateRequest));
+                dynamic response = JsonConvert.DeserializeObject(jsonResponse);
+
+                if (response != null && response.status == "success")
+                {
+                    MessageBox.Show("Hóa đơn đã được chuyển sang trạng thái COMPLETED.");
+                    LoadInvoices();
+                }
+                else
+                {
+                    MessageBox.Show("Thất bại: " + response?.message);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi cập nhật: " + ex.Message);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (comboBox2.SelectedIndex == -1)
+            {
+                orderTable.Rows.Clear();
+                dataGridView1.DataSource = orderTable.Copy();
+                textBox2.Text = "0";
+            }
+            else
+            {
+                MessageBox.Show("Hóa đơn đã được lưu trên hệ thống, không thể xóa nhanh danh sách.");
+            }
+        }
+
+        private void BtnCreateInvoice_Click(object sender, EventArgs e)
+        {
+            comboBox2.SelectedIndex = -1;
         }
     }
 }

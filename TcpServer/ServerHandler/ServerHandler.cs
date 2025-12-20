@@ -280,13 +280,16 @@ namespace TcpServer.ServerHandler
                         response = handlerAdmin.HandleGetAdminInfo(obj.data);
                         break;
                     case "GET_INVOICES_BY_CUSTOMER":
-                        response = handlerInvoice.HandleGetInvoicesByCustomer(obj.data);
+                        response = handlerInvoice.HandleGetInvoicesByCustomerAndService(obj.data);
                         break;
                     case "GET_INVOICE_DETAILS":
                         response = handlerInvoice.HandleGetInvoiceDetails(obj.data);
                         break;
                     case "accept_paid":
                         response = handlerInvoice.HandleAcceptPayment(obj);
+                        break;
+                    case "update_invoice_status":
+                        response = handlerInvoice.HandleUpdateInvoiceStatus(obj);
                         break;
                     default: response = new { status = "error", message = $"Unknown action: {action}" }; break;
                 }
