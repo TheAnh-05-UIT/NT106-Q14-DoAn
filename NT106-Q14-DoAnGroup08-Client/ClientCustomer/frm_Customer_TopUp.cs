@@ -129,7 +129,8 @@ namespace NewNet_Customer.ClientCustomer
                 {
                     invoiceId,
                     customerId,
-                    totalAmount
+                    totalAmount,
+                    type = "top_up"
                 }
             });
 

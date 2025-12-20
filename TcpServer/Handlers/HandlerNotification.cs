@@ -65,56 +65,56 @@ namespace TcpServer.Handlers
             };
         }
 
-        private object acceptPaidFoodNotificationHandler(dynamic data)
-        {
-            string title = "Yêu cầu gọi món, hãy xác nhận";
-            string content = string.Empty;
-            string time = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-            string messages = string.Empty;
+        //private object acceptPaidFoodNotificationHandler(dynamic data)
+        //{
+        //    string title = "Yêu cầu gọi món, hãy xác nhận";
+        //    string content = string.Empty;
+        //    string time = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+        //    string messages = string.Empty;
 
-            decimal amount = 0;
-            string accountName = null;
-            string addInfo = null;
-            string session = null;
-            if (data != null)
-            {
-                var d = data;
+        //    decimal amount = 0;
+        //    string accountName = null;
+        //    string addInfo = null;
+        //    string session = null;
+        //    if (data != null)
+        //    {
+        //        var d = data;
 
-                if (d.amount != null)
-                {
-                    decimal.TryParse(d.amount.ToString(), out amount);
-                }
+        //        if (d.amount != null)
+        //        {
+        //            decimal.TryParse(d.amount.ToString(), out amount);
+        //        }
 
-                if (d.accountName != null)
-                {
-                    accountName = d.accountName.ToString();
-                }
+        //        if (d.accountName != null)
+        //        {
+        //            accountName = d.accountName.ToString();
+        //        }
 
-                if (d.addInfo != null)
-                {
-                    addInfo = d.addInfo;
-                }
+        //        if (d.addInfo != null)
+        //        {
+        //            addInfo = d.addInfo;
+        //        }
 
-                if (d.session != null)
-                {
-                    session = d.session;
-                }
+        //        if (d.session != null)
+        //        {
+        //            session = d.session;
+        //        }
 
-                var parts = new System.Text.StringBuilder();
-                if (amount > 0) parts.AppendFormat("Số tiền: {0} ", amount);
-                if (!string.IsNullOrEmpty(accountName)) parts.AppendFormat("Tài khoản: {0} ", accountName);
-                if (!string.IsNullOrEmpty(accountName)) parts.AppendFormat("Mã phiên: {0} ", session);
-                if (parts.Length > 0)
-                    content = parts.ToString();
-            }
+        //        var parts = new System.Text.StringBuilder();
+        //        if (amount > 0) parts.AppendFormat("Số tiền: {0} ", amount);
+        //        if (!string.IsNullOrEmpty(accountName)) parts.AppendFormat("Tài khoản: {0} ", accountName);
+        //        if (!string.IsNullOrEmpty(accountName)) parts.AppendFormat("Mã phiên: {0} ", session);
+        //        if (parts.Length > 0)
+        //            content = parts.ToString();
+        //    }
 
-            return new
-            {
-                status = "success",
-                message = messages,
-                notification = new { title = title, content = content + "\n" + messages, time = time, actionType = "accept_food_paid", addInfo = addInfo }
-            };
-        }
+        //    return new
+        //    {
+        //        status = "success",
+        //        message = messages,
+        //        notification = new { title = title, content = content + "\n" + messages, time = time, actionType = "accept_food_paid", addInfo = addInfo }
+        //    };
+        //}
 
         private object acceptPaidNotificationHandler(dynamic data)
         {
@@ -130,6 +130,22 @@ namespace TcpServer.Handlers
             if (data != null)
             {
                 var d = data;
+
+                if (d.invoiceType != null)
+                {
+                    switch (d.invoiceType.ToString())
+                    {
+                        case "top_up":
+                            title = "Yêu cầu nạp tiền";
+                            break;
+                        case "food_service":
+                            title = "Yêu cầu thanh toán hóa đơn món ăn";
+                            break;
+                        default:
+                            title = "Yêu cầu thanh toán";
+                            break;
+                    }
+                }
 
                 if (d.amount != null)
                 {
@@ -250,9 +266,9 @@ namespace TcpServer.Handlers
                             case "accept_paid":
                                 message = acceptPaidNotificationHandler(data.data);
                                 break;
-                            case "accept_paid_food":
-                                message = acceptPaidFoodNotificationHandler(data.data);
-                                break;
+                            //case "accept_paid_food":
+                            //    message = acceptPaidFoodNotificationHandler(data.data);
+                            //    break;
                             default:
                                 message = genericNotificationHandler(data.data);
                                 break;

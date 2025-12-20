@@ -41,6 +41,7 @@ namespace TcpServer.Handlers
         {
             string invoiceId = data["invoiceId"].ToString();
             string customerId = data["customerId"].ToString();
+            string type = data["type"].ToString();
             decimal totalAmount = data["totalAmount"].ToObject<decimal>();
 
             string sessionQuery = "SELECT TOP 1 SessionId FROM Sessions WHERE CustomerId = @CustomerId AND EndTime IS NULL";
@@ -52,7 +53,7 @@ namespace TcpServer.Handlers
             VALUES ('{invoiceId}', '{sessionId}', '{customerId}', {totalAmount})";
 
             int result = db.ExecuteNonQuery(query);
-            server.notifyToStaff(new { type = "accept_paid_food", data = new { accountName = customerId, amount = totalAmount, addInfo = invoiceId, session = sessionId } });
+            server.notifyToStaff(new { type = "accept_paid", data = new { accountName = customerId, amount = totalAmount, addInfo = invoiceId, session = sessionId, invoiceType = type } });
 
             return new { status = result > 0 ? "success" : "fail" };
         }
@@ -184,7 +185,7 @@ namespace TcpServer.Handlers
 
 
             DataTable result_info = db.ExecuteQuery(query_info);
-            server.notifyToStaff(new { type = "accept_paid", data = new { accountName = result_info.Rows[0]["CustomerId"], amount = price, addInfo = invoiceId, session = result_info.Rows[0]["SessionId"] } });
+            //server.notifyToStaff(new { type = "accept_paid", data = new { accountName = result_info.Rows[0]["CustomerId"], amount = price, addInfo = invoiceId, session = result_info.Rows[0]["SessionId"] } });
 
             return new { status = result > 0 ? "success" : "fail" };
         }

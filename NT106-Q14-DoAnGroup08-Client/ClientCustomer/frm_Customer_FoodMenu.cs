@@ -225,7 +225,8 @@ namespace NewNet_Customer.ClientCustomer
                 {
                     invoiceId,
                     customerId,
-                    totalAmount
+                    totalAmount,
+                    type = "food_service"
                 }
             });
 

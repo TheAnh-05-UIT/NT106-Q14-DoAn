@@ -80,13 +80,15 @@ namespace NewNet_Manager
                         {
                             MessageBox.Show($"Đăng nhập thành công với quyền: {role}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            ClientStaff.frm_Staff staffForm = new ClientStaff.frm_Staff(obj.userId);
+                            ClientStaff.frm_Staff staffForm = new ClientStaff.frm_Staff(obj.userId, this);
                             DTO.UserSession.NextForm = staffForm;
                             ApiClient.Client.Send(new
                             {
                                 action = "staff_online",
                                 staffId = obj.userId
                             });
+                            //LoginSuccess?.Invoke();
+                            //this.Close();
                             this.Hide();
                         }
                         else

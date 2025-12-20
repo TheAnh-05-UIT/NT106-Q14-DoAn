@@ -10,9 +10,10 @@ namespace NewNet_Manager.Uc_Staff
 
         private string staffId;
 
-        public uc_Staff_Account()
+        public uc_Staff_Account(EventHandler logout)
         {
             InitializeComponent();
+            this.LogoutClicked += logout;
         }
 
         public void SetStaffId(string id)
@@ -55,12 +56,18 @@ namespace NewNet_Manager.Uc_Staff
                         action = "staff_offline",
                         staffId = staffId
                     });
+                    SessionManager.Clear();
+                    LogoutClicked?.Invoke(this, EventArgs.Empty);
                 }
-                catch { }
-
-                SessionManager.Clear();
-
-                LogoutClicked?.Invoke(this, EventArgs.Empty);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        $"Lỗi khi đăng xuất: {ex.Message}",
+                        "Lỗi",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
             }
         }
 

@@ -34,7 +34,7 @@ namespace NewNet_Manager.ClientStaff
         }
 
 
-        public frm_Staff(string staffId)
+        public frm_Staff(string staffId, frm_Login lgf)
         {
             InitializeComponent(); this.Icon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
             this.MaximizeBox = false;
@@ -44,7 +44,7 @@ namespace NewNet_Manager.ClientStaff
             ImportGood = new Uc_Staff.uc_Staff_ImportGood();
             Menu = new Uc_Staff.uc_Staff_Menu();
             Bills = new Uc_Staff.uc_Staff_Bills();
-            Account = new Uc_Staff.uc_Staff_Account();
+            Account = new Uc_Staff.uc_Staff_Account((e,s) => { this.Close(); lgf.Show(); });
             Notification = new Uc_Staff.uc_Staff_Notification();
 
             updateNotificationCount();
@@ -348,28 +348,7 @@ namespace NewNet_Manager.ClientStaff
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Đã chấp nhận yêu cầu nạp tiền.", "Thông báo",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    }
-                                };
-                                break;
-                            case "accept_food_paid":
-                                action = () =>
-                                {
-                                    var res = ApiClient.Client.Send(new
-                                    {
-                                        action = "accept_paid",
-                                        invoiceId = notif.addInfo != null ? notif.addInfo.ToString() : ""
-                                    });
-                                    if (res?.status == "error")
-                                    {
-                                        MessageBox.Show(res.message.ToString(), "Thông báo",
-                                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                        return;
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Đã chấp nhận order.", "Thông báo",
+                                        MessageBox.Show("Đã chấp nhận yêu cầu.", "Thông báo",
                                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
                                 };
