@@ -285,38 +285,8 @@
     <Compile Include="ClientAdmin\frm_Revenue.Designer.cs">
       <DependentUpon>frm_Revenue.cs</DependentUpon>
     </Compile>
-    <Compile Include="ClientCustomer\frm_Customer_BillDetail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ClientCustomer\frm_Customer_BillDetail.Designer.cs">
-      <DependentUpon>frm_Customer_BillDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ClientCustomer\frm_Customer_BillList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ClientCustomer\frm_Customer_BillList.Designer.cs">
-      <DependentUpon>frm_Customer_BillList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ClientCustomer\frm_LockScreen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ClientCustomer\frm_LockScreen.Designer.cs">
-      <DependentUpon>frm_LockScreen.cs</DependentUpon>
-    </Compile>
     <Compile Include="DAO\ApiClient.cs" />
     <Compile Include="DAO\ApiRequest.cs" />
-    <Compile Include="ClientCustomer\frm_Customer_Note.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ClientCustomer\frm_Customer_Note.Designer.cs">
-      <DependentUpon>frm_Customer_Note.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ClientCustomer\frm_Customer_QRCode.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ClientCustomer\frm_Customer_QRCode.Designer.cs">
-      <DependentUpon>frm_Customer_QRCode.cs</DependentUpon>
-    </Compile>
     <Compile Include="CustomForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -328,10 +298,10 @@
     <Compile Include="DAO\NotifyClient.cs" />
     <Compile Include="DAO\ServerConfig.cs" />
     <Compile Include="DAO\UserDAO.cs" />
-    <Compile Include="ClientStaff\frm_AddCustomer.cs">
+    <Compile Include="ClientAdmin\frm_AddCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClientStaff\frm_AddCustomer.Designer.cs">
+    <Compile Include="ClientAdmin\frm_AddCustomer.Designer.cs">
       <DependentUpon>frm_AddCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="ClientAdmin\frm_Admin_Employee_management.cs">
@@ -340,34 +310,10 @@
     <Compile Include="ClientAdmin\frm_Admin_Employee_management.Designer.cs">
       <DependentUpon>frm_Admin_Employee_management.cs</DependentUpon>
     </Compile>
-    <Compile Include="ClientCustomer\frm_Customer.cs">
+    <Compile Include="ClientAdmin\frm_Deposit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClientCustomer\frm_Customer.Designer.cs">
-      <DependentUpon>frm_Customer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ClientCustomer\frm_Customer_Chat.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ClientCustomer\frm_Customer_Chat.Designer.cs">
-      <DependentUpon>frm_Customer_Chat.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ClientCustomer\frm_Customer_FoodMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ClientCustomer\frm_Customer_FoodMenu.Designer.cs">
-      <DependentUpon>frm_Customer_FoodMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ClientCustomer\frm_Customer_TopUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ClientCustomer\frm_Customer_TopUp.Designer.cs">
-      <DependentUpon>frm_Customer_TopUp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ClientStaff\frm_Deposit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ClientStaff\frm_Deposit.Designer.cs">
+    <Compile Include="ClientAdmin\frm_Deposit.Designer.cs">
       <DependentUpon>frm_Deposit.cs</DependentUpon>
     </Compile>
     <Compile Include="DTO\Admin.cs" />
@@ -498,40 +444,13 @@
     <EmbeddedResource Include="ClientAdmin\frm_Revenue.resx">
       <DependentUpon>frm_Revenue.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ClientCustomer\frm_Customer_BillDetail.resx">
-      <DependentUpon>frm_Customer_BillDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ClientCustomer\frm_Customer_BillList.resx">
-      <DependentUpon>frm_Customer_BillList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ClientCustomer\frm_LockScreen.resx">
-      <DependentUpon>frm_LockScreen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ClientStaff\frm_AddCustomer.resx">
+    <EmbeddedResource Include="ClientAdmin\frm_AddCustomer.resx">
       <DependentUpon>frm_AddCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClientAdmin\frm_Admin_Employee_management.resx">
       <DependentUpon>frm_Admin_Employee_management.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ClientCustomer\frm_Customer.resx">
-      <DependentUpon>frm_Customer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ClientCustomer\frm_Customer_Chat.resx">
-      <DependentUpon>frm_Customer_Chat.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ClientCustomer\frm_Customer_FoodMenu.resx">
-      <DependentUpon>frm_Customer_FoodMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ClientCustomer\frm_Customer_Note.resx">
-      <DependentUpon>frm_Customer_Note.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ClientCustomer\frm_Customer_QRCode.resx">
-      <DependentUpon>frm_Customer_QRCode.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ClientCustomer\frm_Customer_TopUp.resx">
-      <DependentUpon>frm_Customer_TopUp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ClientStaff\frm_Deposit.resx">
+    <EmbeddedResource Include="ClientAdmin\frm_Deposit.resx">
       <DependentUpon>frm_Deposit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Login.resx">
@@ -539,12 +458,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientAdmin.Admin_CustomerAccountManagement.resources" />
     <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientAdmin.frm_Admin_Employee_management.resources" />
-    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientCustomer.frm_AddCustomer.resources" />
-    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientCustomer.frm_Customer.resources" />
-    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientCustomer.frm_Customer_Chat.resources" />
-    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientCustomer.frm_Customer_FoodMenu.resources" />
-    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientCustomer.frm_Customer_TopUp.resources" />
-    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientCustomer.frm_Deposit.resources" />
+    <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientAdmin.frm_AddCustomer.resources" />
     <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientStaff.frm_Staff.resources" />
     <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.ClientStaff.frm_Staff_ComputerManagement.resources" />
     <EmbeddedResource Include="obj\Debug\NT106_Q14_DoAnGroup08.frm_Login.resources" />

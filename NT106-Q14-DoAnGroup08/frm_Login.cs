@@ -1,5 +1,5 @@
-﻿using NT106_Q14_DoAnGroup08.ConnectionServser;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using NT106_Q14_DoAnGroup08.ConnectionServser;
 using QuanLyQuanNet.Utils;
 using System;
 using System.Drawing;
@@ -59,17 +59,13 @@ namespace NT106_Q14_DoAnGroup08
                         DTO.UserSession.Role = obj.role;
                         DTO.UserSession.FullName = obj.fullName;
 
-                        if (obj.role == "CUSTOMER" && obj.balance.HasValue)
-                        {
-                            DTO.UserSession.Balance = obj.balance.Value;
-                        }
-
                         string role = obj.role;
-                        MessageBox.Show($"Đăng nhập thành công với quyền: {role}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         // Mở form theo role
                         if (role == "ADMIN")
                         {
+                            MessageBox.Show($"Đăng nhập thành công với quyền: {role}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                             ClientAdmin.Admin adminForm = new ClientAdmin.Admin(obj.userId, obj.fullName);
                             DTO.UserSession.NextForm = adminForm;
                             //ApiClient.Client.Send(new
@@ -82,6 +78,8 @@ namespace NT106_Q14_DoAnGroup08
                         }
                         else if (role == "EMPLOYEE")
                         {
+                            MessageBox.Show($"Đăng nhập thành công với quyền: {role}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                             ClientStaff.frm_Staff staffForm = new ClientStaff.frm_Staff(obj.userId);
                             DTO.UserSession.NextForm = staffForm;
                             ApiClient.Client.Send(new
@@ -93,10 +91,7 @@ namespace NT106_Q14_DoAnGroup08
                         }
                         else
                         {
-                            ClientCustomer.frm_Customer customerForm = new ClientCustomer.frm_Customer(obj.userId);
-                            DTO.UserSession.NextForm = customerForm;
-                            LoginSuccess?.Invoke();
-                            this.Close();
+                            MessageBox.Show(obj.message ?? "Sai tài khoản hoặc mật khẩu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                     else

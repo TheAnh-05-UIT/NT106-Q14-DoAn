@@ -1,5 +1,5 @@
-﻿using NT106_Q14_DoAnGroup08.Uc_Staff;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
+using NT106_Q14_DoAnGroup08.Uc_Staff;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

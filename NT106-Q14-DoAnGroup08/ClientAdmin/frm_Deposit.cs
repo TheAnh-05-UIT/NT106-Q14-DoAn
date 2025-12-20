@@ -1,11 +1,11 @@
-﻿using NT106_Q14_DoAnGroup08.ConnectionServser;
+﻿using Newtonsoft.Json;
+using NT106_Q14_DoAnGroup08.ConnectionServser;
 using NT106_Q14_DoAnGroup08.DTO;
-using Newtonsoft.Json;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NT106_Q14_DoAnGroup08.ClientCustomer
+namespace NT106_Q14_DoAnGroup08.ClientAdmin
 {
     public partial class frm_Deposit : Form
     {

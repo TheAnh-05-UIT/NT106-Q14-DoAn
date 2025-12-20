@@ -1,6 +1,5 @@
-﻿using NT106_Q14_DoAnGroup08.ClientCustomer;
+﻿using Newtonsoft.Json;
 using NT106_Q14_DoAnGroup08.ConnectionServser;
-using Newtonsoft.Json;
 using System;
 using System.Data;
 using System.Drawing;
@@ -88,7 +87,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                 Password = drv["Mật khẩu"].ToString()
             };
 
-            using (var frm = new ClientCustomer.frm_AddCustomer(customerToEdit))
+            using (var frm = new frm_AddCustomer(customerToEdit))
             {
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
@@ -142,7 +141,7 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
             };
 
             // Mở form nạp tiền
-            using (var frm = new ClientCustomer.frm_Deposit(customerData))
+            using (var frm = new frm_Deposit(customerData))
             {
                 if (frm.ShowDialog() == DialogResult.OK)
                 {

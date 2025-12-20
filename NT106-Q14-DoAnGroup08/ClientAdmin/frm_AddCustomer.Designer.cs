@@ -1,4 +1,4 @@
-﻿namespace NT106_Q14_DoAnGroup08.ClientCustomer
+﻿namespace NT106_Q14_DoAnGroup08.ClientAdmin
 {
     partial class frm_AddCustomer
     {

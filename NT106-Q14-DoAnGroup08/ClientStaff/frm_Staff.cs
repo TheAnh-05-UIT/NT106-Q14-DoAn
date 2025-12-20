@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using NT106_Q14_DoAnGroup08.ConnectionServser;
-using QuanLyQuanNet.DTOs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;

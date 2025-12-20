@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11222.16 d18.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NT106-Q14-DoAnGroup08", "NT106-Q14-DoAnGroup08\NT106-Q14-DoAnGroup08.csproj", "{D49C3A9D-3903-4F79-AC23-667551669AE5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpServer", "TcpServer\TcpServer.csproj", "{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NT106-Q14-DoAnGroup08-Client", "NT106-Q14-DoAnGroup08-Client\NT106-Q14-DoAnGroup08-Client.csproj", "{A41B922C-EA65-420B-816C-A112C1AAF59B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4474AE7-1D2A-47F5-97E2-16E10FEEAC4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A41B922C-EA65-420B-816C-A112C1AAF59B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A41B922C-EA65-420B-816C-A112C1AAF59B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A41B922C-EA65-420B-816C-A112C1AAF59B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A41B922C-EA65-420B-816C-A112C1AAF59B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
