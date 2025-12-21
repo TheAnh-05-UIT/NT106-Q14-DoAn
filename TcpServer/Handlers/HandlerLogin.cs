@@ -18,32 +18,39 @@ namespace TcpServer.Handlers
             try
             {
                 string username = (string)data.username;
-                string password = (string)data.password;
+                string rawPassword = (string)data.password; // Mật khẩu người dùng nhập (vd: "123")
 
-                string query = "SELECT UserId, FullName, [Role] FROM Users WHERE Username=@user AND [Password]=@pass AND Active=1";
-                SqlParameter[] prms = {
-                    new SqlParameter("@user", username),
-                    new SqlParameter("@pass", password)
-                };
+                // 1. CHỈ TÌM THEO USERNAME (Bỏ check password ở câu SQL)
+                // Phải SELECT cột [Password] ra để đem về so sánh
+                string query = "SELECT UserId, FullName, [Role], [Password] FROM Users WHERE Username=@u AND Active=1";
 
-                DataTable dt = db.ExecuteQuery(query, prms);
+                DataTable dt = db.ExecuteQuery(query, new SqlParameter("@u", username));
+
                 if (dt.Rows.Count > 0)
                 {
-                    string role = dt.Rows[0]["Role"].ToString();
-                    string userId = dt.Rows[0]["UserId"].ToString();
-                    string fullName = dt.Rows[0]["FullName"].ToString();
+                    // 2. LẤY MẬT KHẨU MÃ HÓA TỪ DB
+                    string dbHash = dt.Rows[0]["Password"].ToString();
 
-                    return new { status = "success", role = role, userId = userId, fullName = fullName };
+                    // 3. DÙNG BCRYPT ĐỂ KIỂM TRA
+                    bool isCorrect = PasswordHelper.VerifyPassword(rawPassword, dbHash);
+
+                    if (isCorrect)
+                    {
+                        // Đăng nhập thành công
+                        string role = dt.Rows[0]["Role"].ToString();
+                        string userId = dt.Rows[0]["UserId"].ToString();
+                        string fullName = dt.Rows[0]["FullName"].ToString();
+
+                        return new { status = "success", role = role, userId = userId, fullName = fullName };
+                    }
                 }
-                else
-                {
-                    return new { status = "fail", message = "Sai tài khoản hoặc mật khẩu." };
-                }
+
+                // Nếu tìm không thấy user HOẶC mật khẩu sai
+                return new { status = "fail", message = "Sai tài khoản hoặc mật khẩu." };
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error in HandlerLogin: {ex.Message}");
-                return new { status = "error", message = "Lỗi hệ thống khi đăng nhập." };
+                return new { status = "error", message = "Lỗi: " + ex.Message };
             }
         }
     }

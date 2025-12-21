@@ -279,4 +279,8 @@ SELECT
     Employees.SalaryMonth AS [Lương tháng]
 FROM Employees
 JOIN Users ON Employees.EmployeeId = Users.UserId;
-GO
+
+
+UPDATE Users 
+SET [Password] = '$2a$11$nN0B4L8HHTlvbMW4a2FSBuQtjKEiyQmOveKy6.LyrMMAZ5LPi9Azq' 
+WHERE Username = 'admin';

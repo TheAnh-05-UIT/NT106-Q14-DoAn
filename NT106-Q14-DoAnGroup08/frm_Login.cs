@@ -66,12 +66,14 @@ namespace NT106_Q14_DoAnGroup08
 
                         string role = obj.role;
                         MessageBox.Show($"Đăng nhập thành công với quyền: {role}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                        
+                        
                         // Mở form theo role
                         if (role == "ADMIN")
                         {
                             ClientAdmin.Admin adminForm = new ClientAdmin.Admin(obj.userId, obj.fullName);
                             DTO.UserSession.NextForm = adminForm;
+
                             //ApiClient.Client.Send(new
                             //{
                             //    action = "admin_online",
@@ -98,6 +100,7 @@ namespace NT106_Q14_DoAnGroup08
                             LoginSuccess?.Invoke();
                             this.Close();
                         }
+                        
                     }
                     else
                     {
@@ -109,6 +112,7 @@ namespace NT106_Q14_DoAnGroup08
                     // phản hồi không phải JSON
                     MessageBox.Show($"Phản hồi từ server: {res}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                
             }
             catch (JsonReaderException)
             {
@@ -118,6 +122,7 @@ namespace NT106_Q14_DoAnGroup08
             {
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         // phản hồi JSON
@@ -164,7 +169,6 @@ namespace NT106_Q14_DoAnGroup08
             if (tb == txt_Password)
                 UpdatePasswordMask();
         }
-
         private void TextBox_Leave(object sender, EventArgs e)
         {
             TextBox tb = sender as TextBox;
@@ -181,48 +185,10 @@ namespace NT106_Q14_DoAnGroup08
                 UpdatePasswordMask();
         }
 
-        private void frm_Login_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void txt_Password_TextChanged(object sender, EventArgs e)
         {
             txt_Password.UseSystemPasswordChar = true;
         }
-
-        private void pictureBoxUser_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_Title_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_Username_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_Username_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_Password_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBoxVisible_CheckedChanged(object sender, EventArgs e)
-        {
-            UpdatePasswordMask();
-        }
-
     }
 }
-
-
 

@@ -53,7 +53,6 @@
             this.txt_Username.TabStop = false;
             this.txt_Username.Tag = "Username";
             this.txt_Username.Text = "Username";
-            this.txt_Username.TextChanged += new System.EventHandler(this.txt_Username_TextChanged);
             this.txt_Username.Enter += new System.EventHandler(this.TextBox_Enter);
             this.txt_Username.Leave += new System.EventHandler(this.TextBox_Leave);
             // 
@@ -122,7 +121,6 @@
             this.pictureBoxUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxUser.TabIndex = 6;
             this.pictureBoxUser.TabStop = false;
-            this.pictureBoxUser.Click += new System.EventHandler(this.pictureBoxUser_Click);
             // 
             // checkBoxVisible
             // 
@@ -135,7 +133,6 @@
             this.checkBoxVisible.TabIndex = 9;
             this.checkBoxVisible.Text = "Hiển thị mật khẩu";
             this.checkBoxVisible.UseVisualStyleBackColor = true;
-            this.checkBoxVisible.CheckedChanged += new System.EventHandler(this.checkBoxVisible_CheckedChanged);
             // 
             // frm_Login
             // 
@@ -154,7 +151,6 @@
             this.Name = "frm_Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LOGIN";
-            this.Load += new System.EventHandler(this.frm_Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureUserName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxUser)).EndInit();

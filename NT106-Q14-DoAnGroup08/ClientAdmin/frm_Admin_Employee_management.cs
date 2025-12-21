@@ -50,39 +50,58 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
 
         private void btnThemNV_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtHoTen.Text) || string.IsNullOrWhiteSpace(txtMatKhau.Text))
+            {
+                MessageBox.Show("Vui lòng nhập họ tên và mật khẩu!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
-                var newEmployee = new
+                var newEmployeeData = new
                 {
                     maNV = txtMaNV.Text,
                     hoTen = txtHoTen.Text,
+                    matKhau = txtMatKhau.Text,
+
                     gioiTinh = cboGioiTinh.Text,
-                    ngaySinh = dtpNgaySinh.Value.ToString("yyyy-MM-dd"),
+                    ngaySinh = dtpNgaySinh.Value,
                     soDienThoai = txtSDT.Text,
-                    ngayVaoLam = dtpNgayVaoLam.Value.ToString("yyyy-MM-dd"),
-                    soNgayLam = (int)numSoNgayLam.Value,
+                    ngayVaoLam = dtpNgayVaoLam.Value,
+                    soNgayLam = numSoNgayLam.Value,
                     luongCoBan = decimal.Parse(txtLuongCoBan.Text),
-                    luongThang = decimal.Parse(txtLuongThang.Text)
+                    luongThang = decimal.Parse(txtLuongThang.Text),
                 };
 
+                // REQUEST GỬI ĐI
                 var request = new
                 {
                     action = "add_employee",
-                    data = newEmployee
+                    data = newEmployeeData
                 };
 
                 string jsonRequest = JsonConvert.SerializeObject(request);
                 string jsonResponse = ServerConnection.SendRequest(jsonRequest);
 
-                var result = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
-                MessageBox.Show(result.message.ToString(), result.status.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dynamic result = JsonConvert.DeserializeObject(jsonResponse);
+
                 if (result.status == "success")
+                {
+                    MessageBox.Show(result.message.ToString(), "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadEmployeeData();
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi từ Server: " + result.message.ToString(), "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch
+            catch (FormatException)
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin");
-                return;
+                MessageBox.Show("Vui lòng nhập đúng định dạng số cho Lương!", "Lỗi nhập liệu");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi hệ thống: " + ex.Message);
             }
         }
 

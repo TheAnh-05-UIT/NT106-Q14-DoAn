@@ -77,6 +77,11 @@ namespace TcpServer.Handlers
                     decimal balance = (decimal)data.balance;
                     Console.WriteLine(userId);
                     Console.WriteLine(username);
+                    
+                    // hash password
+                    string rawPassword = (string)data.password;
+                    string hashedPassword = PasswordHelper.HashPassword(rawPassword);
+
                     // INSERT vào bảng Users
                     string userQuery = @"INSERT INTO Users 
                                          (UserId, Username, [Password], FullName, [Role], Active) 
@@ -85,7 +90,7 @@ namespace TcpServer.Handlers
                     {
                         cmdUser.Parameters.AddWithValue("@UserId", userId);
                         cmdUser.Parameters.AddWithValue("@Username", username);
-                        cmdUser.Parameters.AddWithValue("@Password", password);
+                        cmdUser.Parameters.AddWithValue("@Password", hashedPassword);
                         cmdUser.Parameters.AddWithValue("@FullName", fullName);
                         cmdUser.Parameters.AddWithValue("@Active", isActive);
                         cmdUser.ExecuteNonQuery();
