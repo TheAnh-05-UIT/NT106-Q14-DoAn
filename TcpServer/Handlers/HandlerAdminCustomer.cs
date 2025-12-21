@@ -215,52 +215,65 @@ namespace TcpServer.Handlers
             }
         }
 
-        // NẠP TIỀN (Từ frm_Deposit)
+        // NẠP TIỀN
         public object HandleDeposit(dynamic data)
         {
-            // Cập nhật Balance VÀ ghi vào TopUpTransactions
             using (SqlConnection conn = new SqlConnection(db.ConnectionString))
             {
                 conn.Open();
                 SqlTransaction transaction = conn.BeginTransaction();
                 try
                 {
-                    // Lấy dữ liệu
+                    // Lấy và kiểm tra dữ liệu đầu vào an toàn hơn
                     string username = (string)data.username;
-                    decimal amount = (decimal)data.amount;
                     string employeeId = (string)data.employeeId;
+
+                    // Dùng Convert để tránh lỗi nếu JSON gửi số int thay vì decimal
+                    decimal amount = Convert.ToDecimal(data.amount);
+
                     if (string.IsNullOrEmpty(employeeId))
                     {
-                        return new { status = "error", message = "Lỗi: Không xác định được nhân viên thực hiện." };
+                        return new { status = "error", message = "Lỗi: Không xác định được người thực hiện." };
                     }
+
                     // Lấy CustomerId từ Username
                     string customerId;
-                    using (SqlCommand cmdGetId = new SqlCommand("SELECT UserId FROM Users WHERE Username = @Username", conn, transaction))
+                    string getIdQuery = "SELECT UserId FROM Users WHERE Username = @Username AND Active = 1";
+                    using (SqlCommand cmdGetId = new SqlCommand(getIdQuery, conn, transaction))
                     {
                         cmdGetId.Parameters.AddWithValue("@Username", username);
                         var result = cmdGetId.ExecuteScalar();
                         if (result == null)
-                            return new { status = "fail", message = "Không tìm thấy người dùng." };
+                        {
+                            // Rollback không cần thiết ở đây vì chưa làm gì thay đổi DB, nhưng return fail
+                            return new { status = "fail", message = "Tài khoản khách hàng không tồn tại." };
+                        }
                         customerId = result.ToString();
                     }
 
-                    // Cập nhật Balance trong bảng Customers
-                    string updateQuery = @"UPDATE Customers SET Balance = Balance + @Amount 
-                                           WHERE CustomerId = @CustomerId";
+                    // Cập nhật Balance (Số dư)
+                    string updateQuery = "UPDATE Customers SET Balance = Balance + @Amount WHERE CustomerId = @CustomerId";
                     using (SqlCommand cmdUpdate = new SqlCommand(updateQuery, conn, transaction))
                     {
                         cmdUpdate.Parameters.AddWithValue("@Amount", amount);
                         cmdUpdate.Parameters.AddWithValue("@CustomerId", customerId);
-                        cmdUpdate.ExecuteNonQuery();
+                        int rows = cmdUpdate.ExecuteNonQuery();
+
+                        if (rows == 0)
+                        {
+                            transaction.Rollback();
+                            return new { status = "error", message = "Người dùng này chưa được kích hoạt ví (Chưa có trong bảng Customers)." };
+                        }
                     }
 
-                    // Ghi log vào bảng TopUpTransactions
-                    string transQuery = @"INSERT INTO TopUpTransactions 
-                                          (TransactionId, CustomerId, EmployeeId, Amount) 
-                                          VALUES (@TransId, @CustomerId, @EmployeeId, @Amount)";
+                    // Ghi log giao dịch
+                    string transQuery = @"INSERT INTO TopUpTransactions (TransactionId, CustomerId, EmployeeId, Amount, TransactionDate) 
+                                  VALUES (@TransId, @CustomerId, @EmployeeId, @Amount, GETDATE())";
                     using (SqlCommand cmdTrans = new SqlCommand(transQuery, conn, transaction))
                     {
-                        cmdTrans.Parameters.AddWithValue("@TransId", "T" + Guid.NewGuid().ToString("N").Substring(0, 9));
+                        string transId = "T" + Guid.NewGuid().ToString("N").Substring(0, 10).ToUpper();
+
+                        cmdTrans.Parameters.AddWithValue("@TransId", transId);
                         cmdTrans.Parameters.AddWithValue("@CustomerId", customerId);
                         cmdTrans.Parameters.AddWithValue("@EmployeeId", employeeId);
                         cmdTrans.Parameters.AddWithValue("@Amount", amount);
@@ -268,13 +281,23 @@ namespace TcpServer.Handlers
                     }
 
                     transaction.Commit();
-                    return new { status = "success", message = "Nạp tiền thành công." };
+                    return new { status = "success", message = $"Nạp thành công {amount:N0}đ cho khách hàng." };
+                }
+                catch (SqlException sqlEx)
+                {
+                    transaction.Rollback();
+
+                    if (sqlEx.Number == 547) 
+                    {
+                        return new { status = "error", message = "Lỗi dữ liệu: Người thực hiện hoặc Khách hàng không hợp lệ (Lỗi khóa ngoại)." };
+                    }
+                    return new { status = "error", message = "Lỗi SQL: " + sqlEx.Message };
                 }
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    Console.WriteLine($"Error in HandleDeposit: {ex.Message}");
-                    return new { status = "error", message = "Lỗi hệ thống khi nạp tiền." };
+                    Console.WriteLine($"Error HandleDeposit: {ex.Message}");
+                    return new { status = "error", message = "Lỗi hệ thống: " + ex.Message };
                 }
             }
         }

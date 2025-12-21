@@ -207,11 +207,6 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                 SearchCustomers(keyword);
             }
         }
-
-        private void dgvAccCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }
 

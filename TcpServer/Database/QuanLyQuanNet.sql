@@ -284,3 +284,17 @@ JOIN Users ON Employees.EmployeeId = Users.UserId;
 UPDATE Users 
 SET [Password] = '$2a$11$nN0B4L8HHTlvbMW4a2FSBuQtjKEiyQmOveKy6.LyrMMAZ5LPi9Azq' 
 WHERE Username = 'admin';
+
+
+-- ==========================================================
+-- BẢNG TOPUPTRANSACTIONS (Lịch sử nạp tiền)
+-- ==========================================================
+CREATE TABLE TopUpTransactions (
+    TransactionId NVARCHAR(20) PRIMARY KEY, 
+    CustomerId NVARCHAR(20) NOT NULL,
+    EmployeeId NVARCHAR(20) NOT NULL, 
+    Amount DECIMAL(12,2) NOT NULL,
+    TransactionDate DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (EmployeeId) REFERENCES Users(UserId), 
+    FOREIGN KEY (CustomerId) REFERENCES Customers(CustomerId)
+);
