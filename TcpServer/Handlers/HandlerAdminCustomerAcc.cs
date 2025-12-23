@@ -48,7 +48,23 @@ namespace TcpServer.Handlers
 
                 try
                 {
-                    string userId = Guid.NewGuid().ToString("N").Substring(0, 8);
+
+                    string userId = "EMP001"; // Mặc định là người đầu tiên
+
+                    // Tìm mã lớn nhất hiện tại
+                    string getMaxIdQuery = "SELECT TOP 1 UserId FROM Users WHERE UserId LIKE 'EMP%' ORDER BY UserId DESC";
+                    using (SqlCommand cmdGetMax = new SqlCommand(getMaxIdQuery, conn, tran))
+                    {
+                        object result = cmdGetMax.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            string lastId = result.ToString();
+                            if (int.TryParse(lastId.Substring(3), out int number))
+                            {
+                                userId = "EMP" + (number + 1).ToString("D3");
+                            }
+                        }
+                    }
 
                     // Lấy chuỗi
                     string empCode = (string)data.maNV;

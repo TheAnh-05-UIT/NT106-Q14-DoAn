@@ -21,8 +21,8 @@ namespace NT106_Q14_DoAnGroup08
             if (nextform != null)
             {
                 DTO.UserSession.NextForm = null;
-                frm_Login newForm = new frm_Login();
-                newForm.Show();
+                //frm_Login newForm = new frm_Login();
+                //newForm.Show();
                 Application.Run(nextform);
             }
 
