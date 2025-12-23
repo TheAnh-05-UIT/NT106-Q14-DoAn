@@ -33,6 +33,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelInput = new System.Windows.Forms.Panel();
+            this.txtMatKhau = new System.Windows.Forms.TextBox();
+            this.lblPassword = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnThemNV = new System.Windows.Forms.Button();
@@ -67,8 +69,6 @@
             this.colNumberOfWorkingDays = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBasicSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMonthlySalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblPassword = new System.Windows.Forms.Label();
-            this.txtMatKhau = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelInput.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -124,6 +124,24 @@
             this.panelInput.Padding = new System.Windows.Forms.Padding(10);
             this.panelInput.Size = new System.Drawing.Size(354, 743);
             this.panelInput.TabIndex = 0;
+            // 
+            // txtMatKhau
+            // 
+            this.txtMatKhau.Location = new System.Drawing.Point(143, 544);
+            this.txtMatKhau.Name = "txtMatKhau";
+            this.txtMatKhau.Size = new System.Drawing.Size(191, 33);
+            this.txtMatKhau.TabIndex = 22;
+            // 
+            // lblPassword
+            // 
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Location = new System.Drawing.Point(13, 529);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(10);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Padding = new System.Windows.Forms.Padding(10);
+            this.lblPassword.Size = new System.Drawing.Size(121, 48);
+            this.lblPassword.TabIndex = 21;
+            this.lblPassword.Text = "Password";
             // 
             // btnSave
             // 
@@ -472,24 +490,6 @@
             this.colMonthlySalary.MinimumWidth = 10;
             this.colMonthlySalary.Name = "colMonthlySalary";
             this.colMonthlySalary.ReadOnly = true;
-            // 
-            // lblPassword
-            // 
-            this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(13, 544);
-            this.lblPassword.Margin = new System.Windows.Forms.Padding(10);
-            this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Padding = new System.Windows.Forms.Padding(10);
-            this.lblPassword.Size = new System.Drawing.Size(126, 48);
-            this.lblPassword.TabIndex = 21;
-            this.lblPassword.Text = "Username";
-            // 
-            // txtMatKhau
-            // 
-            this.txtMatKhau.Location = new System.Drawing.Point(143, 559);
-            this.txtMatKhau.Name = "txtMatKhau";
-            this.txtMatKhau.Size = new System.Drawing.Size(191, 33);
-            this.txtMatKhau.TabIndex = 22;
             // 
             // frm_Admin_Employee_management
             // 

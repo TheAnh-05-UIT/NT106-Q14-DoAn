@@ -63,7 +63,6 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                     maNV = txtMaNV.Text,
                     hoTen = txtHoTen.Text,
                     matKhau = txtMatKhau.Text,
-
                     gioiTinh = cboGioiTinh.Text,
                     ngaySinh = dtpNgaySinh.Value,
                     soDienThoai = txtSDT.Text,
@@ -181,10 +180,5 @@ namespace NT106_Q14_DoAnGroup08.ClientAdmin
                 txtLuongThang.Text = row.Cells["Lương tháng"].Value.ToString();
             }
         }
-
-        //public static implicit operator frm_Admin_Employee_management(Admin_CustomerAccountManagement v)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
