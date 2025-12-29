@@ -18,7 +18,6 @@ namespace TcpServer.Handlers
         }
         private object CreateNewSession(string customerId, string computerId, decimal balance, decimal pricePerSecond, string username)
         {
-            // Sinh SessionId kiểu S001, S002...
             string sqlMax = "SELECT TOP 1 SessionId FROM Sessions ORDER BY CAST(SUBSTRING(SessionId, 2, 10) AS INT) DESC";
             var dtMax = _db.ExecuteQuery(sqlMax);
 
@@ -67,8 +66,6 @@ namespace TcpServer.Handlers
             };
         }
 
-
-        // --- HÀM XỬ LÝ START SESSION (ĐÃ SỬA LỖI LOGIC) ---
         public object HandleStartSession(dynamic data, ServerHandler.ServerHandler server)
         {
             try
@@ -103,7 +100,7 @@ namespace TcpServer.Handlers
                 decimal pricePerHour = Convert.ToDecimal(dtComputer.Rows[0]["PricePerHour"]);
                 decimal pricePerSecond = pricePerHour / 3600m;
 
-                // 1. Kiểm tra session đang mở (dùng sqlSession đã đúng)
+                //  Kiểm tra session đang mở 
                 string sqlSession = @"SELECT s.SessionId, s.StartTime, s.EndTime, s.ComputerId, s.TotalCost
                                      FROM Sessions s
                                      WHERE s.CustomerId=@customerId AND s.EndTime IS NULL";
@@ -112,7 +109,7 @@ namespace TcpServer.Handlers
 
                 if (dtSession.Rows.Count > 0)
                 {
-                    // Nếu đã có session → tính tiền hiện tại (đã có ở lần trước)
+                    // Nếu đã có session 
                     string sessionId = dtSession.Rows[0]["SessionId"].ToString();
                     DateTime startTime = Convert.ToDateTime(dtSession.Rows[0]["StartTime"]);
                     string computerId = dtSession.Rows[0]["ComputerId"].ToString();
@@ -126,8 +123,6 @@ namespace TcpServer.Handlers
 
                     if (moneyLeft <= 0)
                     {
-                        // Session cũ hết tiền -> Yêu cầu Client đóng form và Server kết thúc session đó
-                        // Gọi HandleEndSession để cập nhật DB lần cuối
                         HandleEndSession(new { sessionId = sessionId }, server);
 
                         return new
@@ -138,7 +133,6 @@ namespace TcpServer.Handlers
                     }
                     else
                     {
-                        // Session cũ vẫn còn tiền -> trả dữ liệu hiện tại
                         return new
                         {
                             status = "success",
@@ -154,7 +148,6 @@ namespace TcpServer.Handlers
                     }
                 }
 
-                // 2. Nếu chưa có session → tạo mới
                 return CreateNewSession(customerId, computerIdNew, balance, pricePerSecond, username);
             }
             catch (Exception ex)
@@ -168,7 +161,6 @@ namespace TcpServer.Handlers
             {
                 string sessionId = data.sessionId;
 
-                // Lấy session hiện tại + thông tin máy + balance khách (ĐÃ THÊM cu.CustomerId)
                 string sql = @"
              SELECT s.StartTime, s.TotalCost, s.EndTime, s.ComputerId, c.PricePerHour, cu.Balance, cu.CustomerId
              FROM Sessions s
@@ -193,7 +185,6 @@ namespace TcpServer.Handlers
 
                 if (endTime != null)
                 {
-                    // Session đã kết thúc (Không cần cập nhật, chỉ cần trả về trạng thái)
                     return new
                     {
                         status = "ended",
@@ -209,7 +200,6 @@ namespace TcpServer.Handlers
                 int timeUsed = (int)(DateTime.Now - startTime).TotalSeconds;
                 decimal moneyUsed = timeUsed * pricePerSecond;
 
-                // Nếu tiền đã dùng >= balance → kết thúc session
                 bool autoEnd = false;
                 if (moneyUsed >= balance)
                 {
@@ -217,7 +207,6 @@ namespace TcpServer.Handlers
                     endTime = DateTime.Now;
                     autoEnd = true;
 
-                    // Cập nhật Balance về 0
                     string sqlUpdateBalance = @"UPDATE Customers SET Balance=0 WHERE CustomerId=@customerId";
                     _db.ExecuteNonQuery(sqlUpdateBalance, new SqlParameter("@customerId", customerId));
                 }
@@ -226,7 +215,6 @@ namespace TcpServer.Handlers
                 int timeLeft = (int)Math.Floor(moneyLeft / pricePerSecond);
                 if (timeLeft < 0) timeLeft = 0;
 
-                // Cập nhật session
                 string sqlUpdate = @"UPDATE Sessions SET TotalCost=@moneyUsed, EndTime=@endTime WHERE SessionId=@sessionId";
                 _db.ExecuteNonQuery(sqlUpdate,
                     new SqlParameter("@moneyUsed", moneyUsed),
@@ -249,15 +237,12 @@ namespace TcpServer.Handlers
             }
         }
 
-
-        // --- HÀM XỬ LÝ END SESSION (ĐÃ SỬA LỖI THIẾU CỘT) ---
         public object HandleEndSession(dynamic data, ServerHandler.ServerHandler server)
         {
             try
             {
                 string sessionId = data.sessionId;
 
-                // Lấy session và tính tiền (ĐÃ THÊM cu.CustomerId và cu.Balance)
                 string sqlGet = @"SELECT s.StartTime, s.ComputerId, s.TotalCost, c.PricePerHour, cu.CustomerId, cu.Balance
                                    FROM Sessions s
                                    JOIN Computers c ON s.ComputerId = c.ComputerId
@@ -280,13 +265,11 @@ namespace TcpServer.Handlers
                 decimal pricePerSecond = pricePerHour / 3600m;
                 decimal finalCost = timeUsed * pricePerSecond;
 
-                // Kiểm tra tiền (không cho trừ quá số dư)
                 if (finalCost > balance)
                 {
                     finalCost = balance;
                 }
 
-                // Cập nhật EndTime và TotalCost cho Session
                 string sqlUpdate = @"UPDATE Sessions
                                      SET EndTime=GETDATE(),
                                          TotalCost=@finalCost
@@ -296,7 +279,6 @@ namespace TcpServer.Handlers
                     new SqlParameter("@finalCost", finalCost),
                     new SqlParameter("@sessionId", sessionId));
 
-                // Cập nhật Balance của khách hàng
                 decimal newBalance = balance - finalCost;
                 string sqlUpdateBalance = @"UPDATE Customers SET Balance=@newBalance WHERE CustomerId=@customerId";
                 _db.ExecuteNonQuery(sqlUpdateBalance,
