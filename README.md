@@ -20,7 +20,7 @@ chat với nhân viên, order đò ăn thức uống.
 | Nguyễn Nhật Anh  |   24520112     |
 | Nguyễn Hoàng Anh  |   24520102     |
 | Phạm Phú Quang  |   24521478     |
-| Trần Minh Hoàng Quân  |   24521454     |
+| Trần Minh Hoàng Quân (Nhóm trưởng)  |   24521454     |
 | Nguyễn Quang Thế Anh   |   24520115     |
 
 ## BẢN QUYỀN
